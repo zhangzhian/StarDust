@@ -40,7 +40,8 @@
                     android:id="@+id/iv_home"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:src="#ff0000"
+                    android:src="@drawable/home"
+                    android:scaleType="fitCenter"
                     />
 
                 <TextView
@@ -66,7 +67,8 @@
                     android:id="@+id/iv_app"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:src="#ff0000"
+                    android:src="@drawable/app"
+                    android:scaleType="fitCenter"
                     />
 
                 <TextView
@@ -92,7 +94,8 @@
                     android:id="@+id/iv_mine"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:src="#ff0000"
+                    android:src="@drawable/mine"
+                    android:scaleType="fitCenter"
                     />
 
                 <TextView
