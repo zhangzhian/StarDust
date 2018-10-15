@@ -1,0 +1,25 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context=".app.ui.AppFragment">
+
+    <!--<com.zza.box.weight.TitleLayout-->
+        <!--android:id="@+id/tl_title"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:background="@color/blue479bff"-->
+        <!--app:center_text="应用"-->
+        <!--app:right_image="@drawable/add"-->
+        <!--app:left_type="0"-->
+        <!--app:right_type="2">-->
+
+    <!--</com.zza.box.weight.TitleLayout>-->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_app"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+      />
+</RelativeLayout>
