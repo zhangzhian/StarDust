@@ -7,7 +7,7 @@
 
 
     <com.zza.library.weight.TitleLayout
-        android:id="@+id/tl"
+        android:id="@+id/tl_title"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentTop="true"
@@ -38,7 +38,7 @@
     <!--</com.zza.box.weight.TitleLayout>-->
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_app"
-        android:layout_below="@id/tl"
+        android:layout_below="@id/tl_title"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />

@@ -1,5 +1,7 @@
 package com.zza.stardust.beam;
 
+import android.support.annotation.DrawableRes;
+
 /**
  * Author：张志安
  * Date:   2017/9/20 18:56
@@ -8,6 +10,7 @@ package com.zza.stardust.beam;
 public class AppInfoBean {
     private String id;
     private String name;
+    @DrawableRes
     private int image;
 
     public String getId() {

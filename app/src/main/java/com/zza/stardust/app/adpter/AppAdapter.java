@@ -1,6 +1,7 @@
 package com.zza.stardust.app.adpter;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.zza.library.common.lmpl.OnItemClickListener;
 import com.zza.stardust.R;
 import com.zza.stardust.beam.AppInfoBean;
 
@@ -22,6 +24,7 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> {
     private List<AppInfoBean> data;
     private Context context;
     private View view;
+    private OnItemClickListener onItemClickListener;
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView iv_image;
@@ -53,10 +56,24 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> {
          *  使用 position 的话会位置错乱
          */
         holder.tv_type.setText(data.get(holder.getAdapterPosition()).getName());
+
+        int sourceId = data.get(holder.getAdapterPosition()).getImage();
+        Drawable imageSouce = null ;
+        try {
+            imageSouce = view.getResources().getDrawable(sourceId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (imageSouce == null) {
+            imageSouce = view.getResources().getDrawable(R.drawable.ic_launcher_foreground);
+        }
+
+        holder.iv_image.setImageDrawable(imageSouce);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                onItemClickListener.onItemClick(v, holder.getAdapterPosition());
             }
         });
     }
@@ -65,6 +82,10 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> {
     @Override
     public int getItemCount() {
         return data.size();
+    }
+
+    public void setOnItemClick(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
     }
 
 }

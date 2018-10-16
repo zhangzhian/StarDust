@@ -1,11 +1,12 @@
 package com.zza.stardust.app.ui;
 
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.zza.library.base.BaseFragment;
 import com.zza.library.base.BasePresenter;
+import com.zza.library.common.lmpl.OnItemClickListener;
 import com.zza.library.weight.TitleLayout;
 import com.zza.stardust.R;
 import com.zza.stardust.app.adpter.AppAdapter;
@@ -23,12 +24,12 @@ import butterknife.Unbinder;
  * @Mail: zhangzhian2016@gmail.com
  * @Date: 2018/10/15 20:33
  */
-public class AppFragment extends BaseFragment {
+public class AppFragment extends BaseFragment implements TitleLayout.TitleClickListener, OnItemClickListener {
 
     @BindView(R.id.rv_app)
     RecyclerView rvApp;
     Unbinder unbinder;
-//    @BindView(R.id.tl_title)
+    @BindView(R.id.tl_title)
     TitleLayout tlTitle;
     Unbinder unbinder1;
 
@@ -55,16 +56,16 @@ public class AppFragment extends BaseFragment {
     }
 
     private void initView(View rootView) {
-        //tlTitle =rootView.findViewById(R.id.tl_title);
-        //tlTitle.setTitle("123");
+        tlTitle.setOnTitleClickListener(this);
     }
 
     private void initRecycleView() {
         //设置布局管理器
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        rvApp.setLayoutManager(linearLayoutManager);
+        GridLayoutManager manager = new GridLayoutManager(getContext(),3 );
+
+        rvApp.setLayoutManager(manager);
         appAdapter = new AppAdapter(appInfoBeanList, getActivity());
+        appAdapter.setOnItemClick(this);
         rvApp.setAdapter(appAdapter);
     }
 
@@ -72,8 +73,12 @@ public class AppFragment extends BaseFragment {
         appInfoBeanList = new ArrayList<>();
 
         AppInfoBean appinfo = new AppInfoBean();
-        appinfo.setName("上传和下载");
-        appInfoBeanList.add(appinfo);
+        appinfo.setImage(R.drawable.ic_launcher_foreground);
+        appinfo.setName("测试");
+        for (int i = 0; i < 4; i++) {
+            appInfoBeanList.add(appinfo);
+        }
+
     }
 
     @Override
@@ -82,4 +87,18 @@ public class AppFragment extends BaseFragment {
         unbinder.unbind();
     }
 
+    @Override
+    public void leftClick(View view) {
+
+    }
+
+    @Override
+    public void rightClick(View view) {
+
+    }
+
+    @Override
+    public void onItemClick(View view, int position) {
+
+    }
 }
