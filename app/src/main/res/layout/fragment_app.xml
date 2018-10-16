@@ -2,22 +2,43 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 tools:context=".app.ui.AppFragment">
 
-    <!--<com.zza.box.weight.TitleLayout-->
-    <!--android:id="@+id/tl_title"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_alignParentTop="true"-->
-    <!--android:background="@color/blue479bff"-->
-    <!--app:center_text="应用"-->
-    <!--app:right_image="@drawable/add"-->
-    <!--app:left_type="0"-->
-    <!--app:right_type="2">-->
+
+    <com.zza.library.weight.TitleLayout
+        android:id="@+id/tl"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/white"
+        android:fitsSystemWindows="true"
+
+
+        app:center_text="@string/application"
+        app:center_text_color="@color/black"
+        app:center_text_size="16sp"
+
+        app:line_color="@color/lined7d7d7"
+        app:line_show="true"
+        app:line_size="1dp"
+
+        app:right_image="@drawable/edit"
+        app:right_image_size="20dp"
+        app:right_type="2"
+
+
+        app:right_padding="10dp"
+        app:left_padding="10dp"
+        app:top_padding = "1dp"
+        app:bottom_padding="1dp"
+        >
+    </com.zza.library.weight.TitleLayout>
 
     <!--</com.zza.box.weight.TitleLayout>-->
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_app"
+        android:layout_below="@id/tl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
