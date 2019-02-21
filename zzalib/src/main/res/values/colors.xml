@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="dialog_b3000000">#b3000000</color>
+    <color name="trans">#00000000</color>
+    <color name="lined7d7d7">#d7d7d7</color>
+    <!--RefreshLayout-->
+    <color name="refresh_progress_1">#536DFE</color>
+    <color name="refresh_progress_2">#f44336</color>
+    <color name="refresh_progress_3">#FF4081</color>
+
+    <!--<color name="colorPrimary">#3F51B5</color>-->
+    <!--<color name="colorPrimaryDark">#303F9F</color>-->
+    <!--<color name="colorAccent">#FF4081</color>-->
+    <!--<color name="color999999">#999999</color>-->
+    <color name="text333333">#333333</color>
+    <color name="text888888">#888888</color>
+    <!--<color name="blue80479bff">#80479bff</color>-->
+    <!--<color name="blue80d5e8ff">#80d5e8ff</color>-->
+    <!--<color name="blue479bff">#479bff</color>-->
+    <!--<color name="blue337ebe">#337ebe</color>-->
+
+    <!--<color name="lineebebeb">#ebebeb</color>-->
+    <color name="line_f1f1f1">#f1f1f1</color>
+    <!--<color name="textd2d1d1">#d2d1d1</color>-->
+    <!--<color name="text_hint">#bbbbbb</color>-->
+    <!--<color name="red_f4333c">#f4333c</color>-->
+    <color name="bg_f0eff5">#f0eff5</color>
+    <!--<color name="color696969">#696969</color>-->
+    <!--<color name="colore6e6e6">#e6e6e6</color>-->
+    <color name="color_b2b2b2">#b2b2b2</color>
+
+
+
+</resources>

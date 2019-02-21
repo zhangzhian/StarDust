@@ -1,4 +1,4 @@
 include ':app'
 
 include ':zzalib'
-project(':zzalib').projectDir = new File('/Users/zhangzhian/Desktop/Github/zzaLib/zzalib')
+//project(':zzalib').projectDir = new File('/Users/zhangzhian/Desktop/Github/zzaLib/zzalib')

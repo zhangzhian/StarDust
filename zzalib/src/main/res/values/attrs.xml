@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CircleImageView">
+        <attr name="border_width" format="dimension"/>
+        <attr name="border_color" format="color"/>
+        <attr name="border_overlay" format="boolean"/>
+    </declare-styleable>
+
+
+    <declare-styleable name="TitleLayout">
+
+        <!--padding-->
+        <attr name="left_padding" format="dimension"/>
+        <attr name="right_padding" format="dimension"/>
+        <attr name="top_padding" format="dimension"/>
+        <attr name="bottom_padding" format="dimension"/>
+        <!--中间文字大小-->
+        <attr name="center_text" format="string"/>
+        <attr name="center_text_size" format="dimension"/>
+        <attr name="center_text_color" format="color"/>
+        <!--左侧属性-->
+        <attr name="left_image" format="reference|color"/>
+        <attr name="left_image_size" format="dimension"/>
+        <attr name="left_type" format="string"/>
+        <attr name="left_text" format="string"/>
+        <attr name="left_text_size" format="dimension"/>
+        <attr name="left_text_color" format="color"/>
+
+        <!--右侧属性-->
+        <attr name="right_image" format="reference|color"/>
+        <attr name="right_image_size" format="dimension"/>
+        <attr name="right_type" format="string"/>
+        <attr name="right_text" format="string"/>
+        <attr name="right_text_size" format="dimension"/>
+        <attr name="right_text_color" format="color"/>
+
+        <!--下划线的属性-->
+        <attr name="line_show" format="boolean"/>
+        <attr name="line_color" format="reference|color"/>
+        <attr name="line_size" format="dimension"/>
+    </declare-styleable>
+</resources>
