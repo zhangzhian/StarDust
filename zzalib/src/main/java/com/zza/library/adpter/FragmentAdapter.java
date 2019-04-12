@@ -1,4 +1,4 @@
-package com.zza.library.base;
+package com.zza.library.adpter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
