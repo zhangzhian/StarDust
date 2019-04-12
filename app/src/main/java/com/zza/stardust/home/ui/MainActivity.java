@@ -137,7 +137,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
             case R.id.ll_app:
                 initBottomTab(APP);
                 vp.setCurrentItem(APP);
-                installApp("/storage/extsd/ipc030601.apk");
+                //installApp("/storage/extsd/ipc030601.apk");
                 break;
             case R.id.ll_personal_center:
                 initBottomTab(MINE);
