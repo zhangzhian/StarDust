@@ -1,5 +1,7 @@
 package com.zza.stardust.app.ui;
 
+import android.os.Bundle;
+
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -31,7 +33,6 @@ public class AppFragment extends BaseFragment implements TitleLayout.TitleClickL
     Unbinder unbinder;
     @BindView(R.id.tl_title)
     TitleLayout tlTitle;
-    Unbinder unbinder1;
 
     private AppAdapter appAdapter;
     private List<AppInfoBean> appInfoBeanList;
@@ -47,7 +48,7 @@ public class AppFragment extends BaseFragment implements TitleLayout.TitleClickL
     }
 
     @Override
-    protected void init(View rootView) {
+    protected void init(View rootView, Bundle savedInstanceState) {
         unbinder = ButterKnife.bind(this, rootView);
         initView(rootView);
         initAppData();

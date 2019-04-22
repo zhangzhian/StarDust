@@ -1,5 +1,6 @@
 package com.zza.stardust.home.ui;
 
+import android.os.Bundle;
 import android.view.View;
 
 import com.zza.library.base.BaseFragment;
@@ -23,7 +24,7 @@ public class HomeFragment extends BaseFragment {
     }
 
     @Override
-    protected void init(View rootView) {
+    protected void init(View rootView, Bundle savedInstanceState) {
 
     }
 }
