@@ -26,7 +26,7 @@ import butterknife.Unbinder;
  * @Mail: zhangzhian2016@gmail.com
  * @Date: 2018/10/15 20:33
  */
-public class AppFragment extends BaseFragment implements TitleLayout.TitleClickListener, OnItemClickListener {
+public class AppFragment extends BaseFragment implements TitleLayout.onTitleClickListener, OnItemClickListener {
 
     @BindView(R.id.rv_app)
     RecyclerView rvApp;

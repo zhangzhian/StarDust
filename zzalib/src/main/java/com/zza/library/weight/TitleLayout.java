@@ -44,7 +44,7 @@ public class TitleLayout extends RelativeLayout implements View.OnClickListener 
     //左侧类型 0：隱藏 1：文字 2：图片
     private int leftType = 0;
 
-    private TitleClickListener mListener;
+    private onTitleClickListener mListener;
 
     private Context context;
 
@@ -302,7 +302,7 @@ public class TitleLayout extends RelativeLayout implements View.OnClickListener 
      *
      * @param mListener
      */
-    public void setOnTitleClickListener(TitleClickListener mListener) {
+    public void setOnTitleClickListener(onTitleClickListener mListener) {
         this.mListener = mListener;
     }
 
@@ -338,7 +338,7 @@ public class TitleLayout extends RelativeLayout implements View.OnClickListener 
     }
 
 
-    public interface TitleClickListener {
+    public interface onTitleClickListener {
         //左面点击事件
         void leftClick(View view);
 

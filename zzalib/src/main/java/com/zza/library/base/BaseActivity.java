@@ -46,7 +46,7 @@ public abstract class BaseActivity<V, T extends BasePresenter<V>> extends Fragme
             setupSwipeRefresh();
         }
         initTitle();
-        init(savedInstanceState);
+        onInit(savedInstanceState);
     }
 
     public void setTransparentStatusBar() {
@@ -149,7 +149,7 @@ public abstract class BaseActivity<V, T extends BasePresenter<V>> extends Fragme
 
     abstract protected int provideContentViewId();//用于引入布局文件
 
-    abstract protected void init(Bundle savedInstanceState);//用于初始化view
+    abstract protected void onInit(Bundle savedInstanceState);//用于初始化view
 
 
 }

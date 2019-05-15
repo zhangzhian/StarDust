@@ -73,7 +73,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     }
 
     @Override
-    protected void init(Bundle savedInstanceState) {
+    protected void onInit(Bundle savedInstanceState) {
         ButterKnife.bind(this);
         initViewPager();
         initBottomTab(HOME);

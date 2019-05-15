@@ -1,5 +1,6 @@
 package com.zza.library.utils;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -13,10 +14,41 @@ import java.util.Date;
 public class TimeUtil {
 
     /*
+     * 将时间转换为时间戳
+     * yyyy-MM-dd HH:mm
+     */
+    public static long dateToStampHM(String s) throws ParseException {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        Date date = simpleDateFormat.parse(s);
+        long ts = date.getTime();
+        return ts;
+    }
+
+    /*
+     * 将时间转换为时间戳
+     * yyyy-MM-dd HH:mm:ss
+     */
+    public static long dateToStampHMS(String s) throws ParseException {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = simpleDateFormat.parse(s);
+        long ts = date.getTime();
+        return ts;
+    }
+
+    /*
      * 将时间戳转换为时间
      */
-    public static String stampToDate(long s) {
+    public static String stampToDateHM(long s) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        Date date = new Date(s);
+        return simpleDateFormat.format(date);
+    }
+
+    /*
+     * 将时间戳转换为时间
+     */
+    public static String stampToDateHMS(long s) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date(s);
         return simpleDateFormat.format(date);
     }
@@ -31,14 +63,21 @@ public class TimeUtil {
     }
 
     /*
-     * 将时间戳转换为时间 -- 月
+     * 将时间戳转换为时间 -- 月日
      */
     public static String stampToDateMouth(long s) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM-dd");
         Date date = new Date(s);
         return simpleDateFormat.format(date);
     }
-
+    /*
+     * 将时间戳转换为时间 -- 月日
+     */
+    public static String stampToDate(long s) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date(s);
+        return simpleDateFormat.format(date);
+    }
     /*
      *两个时间戳转化为间隔
      */
