@@ -4,14 +4,18 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Path;
 import android.graphics.RectF;
+import android.support.v7.widget.AppCompatButton;
 import android.util.AttributeSet;
-import android.widget.Button;
 
 /**
- * Created by zhangzhian on 17/3/16.
+ * @Author: 张志安
+ * @Mail: zhangzhian2016@gmail.com
+ * 带圆角的矩形Button
+ * <p>
+ * TODO 修改为可以选择圆角位置的模式
  */
 
-public class RoundRectButton extends Button {
+public class RoundRectButton extends AppCompatButton {
 
     /*圆角的半径，依次为左上角xy半径，右上角，右下角，左下角*/
     private float[] rids = {0.0f, 0.0f, 0.0f, 0.0f, 25.0f, 25.0f, 25.0f, 25.0f};

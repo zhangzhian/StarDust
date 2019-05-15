@@ -20,7 +20,7 @@ import android.view.View;
 /**
  * Created by Yan Zhenjie on 2016/7/27.
  */
-public interface OnItemClickListener {
+public interface IOnItemClickListener {
 
     /**
      * item点击回调
@@ -29,6 +29,5 @@ public interface OnItemClickListener {
      * @param position
      */
     void onItemClick(View view, int position);
-
 
 }

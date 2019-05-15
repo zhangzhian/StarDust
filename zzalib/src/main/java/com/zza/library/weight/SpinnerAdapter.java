@@ -13,10 +13,6 @@ import java.util.List;
 
 public class SpinnerAdapter extends BaseAdapter {
 
-    public  interface IOnItemSelectListener {
-         void onItemClick(int pos);
-    }
-
     private List<String> mObjects;
 
     private LayoutInflater mInflater;
@@ -56,7 +52,7 @@ public class SpinnerAdapter extends BaseAdapter {
 
 
     @Override
-    public View getView(int pos, View convertView, ViewGroup arg2) {
+    public View getView(int pos, View convertView, ViewGroup viewGroup) {
         ViewHolder viewHolder;
 
         if (convertView == null) {

@@ -8,7 +8,7 @@ import android.view.View;
 
 import com.zza.library.base.BaseFragment;
 import com.zza.library.base.BasePresenter;
-import com.zza.library.common.lmpl.OnItemClickListener;
+import com.zza.library.common.lmpl.IOnItemClickListener;
 import com.zza.library.weight.TitleLayout;
 import com.zza.stardust.R;
 import com.zza.stardust.app.adpter.AppAdapter;
@@ -26,7 +26,7 @@ import butterknife.Unbinder;
  * @Mail: zhangzhian2016@gmail.com
  * @Date: 2018/10/15 20:33
  */
-public class AppFragment extends BaseFragment implements TitleLayout.onTitleClickListener, OnItemClickListener {
+public class AppFragment extends BaseFragment implements TitleLayout.onTitleClickListener, IOnItemClickListener {
 
     @BindView(R.id.rv_app)
     RecyclerView rvApp;

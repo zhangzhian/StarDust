@@ -13,10 +13,14 @@ import com.zza.library.R;
 
 
 /**
- * Created by zza on 2017zza/5/16.
+ * @Author: 张志安
+ * @Mail: zhangzhian2016@gmail.com
+ *
+ * 自定义的Toast，用于不需要和用户交互的提示消息，上方是图片，下方文字
  */
 
 public class TipsToast {
+
     private static TextView mTextView;
     private static ImageView mImageView;
 

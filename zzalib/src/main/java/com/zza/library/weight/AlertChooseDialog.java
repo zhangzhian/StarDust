@@ -24,7 +24,7 @@ import static com.zza.library.utils.ImageUtil.decodeSampledBitmapFromResource;
  * <p>
  * 开放了所有组件的View
  *
- * TODO 优化效率
+ * TODO 优化
  *
  */
 public abstract class AlertChooseDialog extends Dialog implements View.OnClickListener {

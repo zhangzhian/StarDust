@@ -19,7 +19,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 /**
+ * @Author: 张志安
+ * @Mail: zhangzhian2016@gmail.com
+ * <p>
  * 支付密码输入框
+ * TODO 待测试
  */
 public class PayPwdEditText extends RelativeLayout {
 

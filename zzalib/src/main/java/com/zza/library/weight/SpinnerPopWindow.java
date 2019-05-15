@@ -11,32 +11,33 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 
 import com.zza.library.R;
+import com.zza.library.common.lmpl.IOnItemClickListener;
 
 import java.util.List;
 
 /**
+ * @Author: 张志安
+ * @Mail: zhangzhian2016@gmail.com
+ * <p>
  * 自定义SpinerPopWindow类
- *
- * @author gao_chun
  */
 public class SpinnerPopWindow extends PopupWindow implements OnItemClickListener {
 
     private Context mContext;
     private ListView mListView;
     private SpinnerAdapter mAdapter;
-    private IOnItemSelectListener mItemSelectListener;
+    private IOnItemClickListener mIOnItemClickListener;
 
 
     public SpinnerPopWindow(Context context) {
         super(context);
-
         mContext = context;
         init();
     }
 
 
-    public void setItemListener(IOnItemSelectListener listener) {
-        mItemSelectListener = listener;
+    public void setItemListener(IOnItemClickListener listener) {
+        mIOnItemClickListener = listener;
     }
 
     public void setAdapter(SpinnerAdapter adapter) {
@@ -71,16 +72,10 @@ public class SpinnerPopWindow extends PopupWindow implements OnItemClickListener
 
 
     @Override
-    public void onItemClick(AdapterView<?> arg0, View view, int pos, long arg3) {
+    public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
         dismiss();
-        if (mItemSelectListener != null) {
-            mItemSelectListener.onItemClick(pos);
+        if (mIOnItemClickListener != null) {
+            mIOnItemClickListener.onItemClick(view, pos);
         }
     }
-
-    public interface IOnItemSelectListener {
-        void onItemClick(int pos);
-
-    }
-
 }

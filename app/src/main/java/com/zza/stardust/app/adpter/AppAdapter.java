@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.zza.library.common.lmpl.OnItemClickListener;
+import com.zza.library.common.lmpl.IOnItemClickListener;
 import com.zza.stardust.R;
 import com.zza.stardust.beam.AppInfoBean;
 
@@ -24,7 +24,7 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> {
     private List<AppInfoBean> data;
     private Context context;
     private View view;
-    private OnItemClickListener onItemClickListener;
+    private IOnItemClickListener onItemClickListener;
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView iv_image;
@@ -84,7 +84,7 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> {
         return data.size();
     }
 
-    public void setOnItemClick(OnItemClickListener onItemClickListener) {
+    public void setOnItemClick(IOnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
     }
 

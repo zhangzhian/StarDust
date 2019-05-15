@@ -19,11 +19,41 @@ import com.zza.library.utils.DisplayUtil;
 /**
  * @Author: 张志安
  * @Mail: zhangzhian2016@gmail.com
- * @Date: 2018/9/27 21:37
  * <p>
  * 自定义的TitleLayout，中间标题，左右两侧可选设置图片或者是文字，左右两侧可以点击
  * 初步完善和测试完成
  * 开放view
+ *
+ * 使用例子
+ *  <com.zza.library.weight.TitleLayout
+ *         android:id="@+id/tl_title"
+ *         android:layout_width="match_parent"
+ *         android:layout_height="70dp"
+ *         android:layout_alignParentTop="true"
+ *         android:background="@color/white"
+ *         android:fitsSystemWindows="true"
+ *
+ *         app:bottom_padding="1dp"
+ *         app:center_text="@string/change_username"
+ *         app:center_text_color="@color/black"
+ *         app:center_text_size="16sp"
+ *         app:left_image="@drawable/back_black"
+ *         app:left_image_size="20dp"
+ *
+ *         app:left_padding="10dp"
+ *         app:left_type="2"
+ *         app:line_color="@color/lined7d7d7"
+ *
+ *         app:line_show="true"
+ *
+ *         app:line_size="1dp"
+ *         app:right_padding="10dp"
+ *         app:right_type="1"
+ *         app:right_text="保存"
+ *         app:right_text_size="16dp"
+ *         app:top_padding="1dp"
+ *         >
+ * </com.zza.library.weight.TitleLayout>
  */
 
 public class TitleLayout extends RelativeLayout implements View.OnClickListener {

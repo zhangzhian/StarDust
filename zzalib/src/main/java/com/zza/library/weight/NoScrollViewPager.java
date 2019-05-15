@@ -7,8 +7,9 @@ import android.view.MotionEvent;
 
 /**
  * Author：张志安
- * Date:   2018/3/21 18:42
  * Mail：  zhangzhian2016@gmail.com
+ *
+ * 设置是否可以滑动的ViewPager
  */
 public class NoScrollViewPager extends ViewPager {
 
