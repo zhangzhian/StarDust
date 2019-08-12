@@ -15,7 +15,7 @@ public class ActivityCollector {
 
     public static List<Activity> part3Activities = new ArrayList<Activity>();
 
-    public static void addAActivity(Activity activity) {
+    public static void addActivity(Activity activity) {
         activities.add(activity);
     }
 
