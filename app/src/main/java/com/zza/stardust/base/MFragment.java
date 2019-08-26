@@ -17,5 +17,6 @@ public abstract class MFragment extends BaseFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+
     }
 }

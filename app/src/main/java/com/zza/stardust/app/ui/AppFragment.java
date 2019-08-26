@@ -1,5 +1,6 @@
 package com.zza.stardust.app.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.support.v7.widget.GridLayoutManager;
@@ -12,6 +13,7 @@ import com.zza.library.common.lmpl.IOnItemClickListener;
 import com.zza.library.weight.TitleLayout;
 import com.zza.stardust.R;
 import com.zza.stardust.app.adpter.AppAdapter;
+import com.zza.stardust.app.ui.OkHttp.OkHttpActivity;
 import com.zza.stardust.beam.AppInfoBean;
 
 import java.util.ArrayList;
@@ -62,7 +64,7 @@ public class AppFragment extends BaseFragment implements TitleLayout.onTitleClic
 
     private void initRecycleView() {
         //设置布局管理器
-        GridLayoutManager manager = new GridLayoutManager(getContext(),3 );
+        GridLayoutManager manager = new GridLayoutManager(getContext(), 3);
 
         rvApp.setLayoutManager(manager);
         appAdapter = new AppAdapter(appInfoBeanList, getActivity());
@@ -73,12 +75,11 @@ public class AppFragment extends BaseFragment implements TitleLayout.onTitleClic
     private void initAppData() {
         appInfoBeanList = new ArrayList<>();
 
-        AppInfoBean appinfo = new AppInfoBean();
-        appinfo.setImage(R.drawable.ic_launcher_foreground);
-        appinfo.setName("测试");
-        for (int i = 0; i < 4; i++) {
-            appInfoBeanList.add(appinfo);
-        }
+        //OkHttp
+        AppInfoBean appInfoOkHttp = new AppInfoBean();
+        appInfoOkHttp.setImage(R.drawable.app_net_okhttp);
+        appInfoOkHttp.setName("OkHttp");
+        appInfoBeanList.add(appInfoOkHttp);
 
     }
 
@@ -100,6 +101,12 @@ public class AppFragment extends BaseFragment implements TitleLayout.onTitleClic
 
     @Override
     public void onItemClick(View view, int position) {
-
+        switch (position) {
+            case 0:
+                getActivity().startActivity(new Intent(getActivity(), OkHttpActivity.class));
+                break;
+            default:
+                break;
+        }
     }
 }
