@@ -11,10 +11,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.zza.library.base.BaseActivity;
 import com.zza.library.base.BasePresenter;
 import com.zza.stardust.R;
 import com.zza.stardust.app.ui.AppFragment;
+import com.zza.stardust.base.MActivity;
 import com.zza.stardust.home.adpter.FragmentAdapter;
 import com.zza.stardust.mine.ui.MineFragment;
 
@@ -27,7 +27,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener {
+public class MainActivity extends MActivity implements ViewPager.OnPageChangeListener {
 
     private static final int HOME = 0;
     private static final int APP = 1;

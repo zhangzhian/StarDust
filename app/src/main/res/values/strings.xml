@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">StarDust</string>
     <string name="application">应用</string>
+    <string name="okhttp_get_1">异步GET请求</string>
+    <string name="okhttp_get_2">同步GET请求</string>
+    <string name="okhttp_post_1">POST方式提交String</string>
+    <string name="okhttp_post_2">POST方式提交流</string>
+    <string name="okhttp_post_3">POST提交文件</string>
+    <string name="okhttp_post_4">POST方式提交表单</string>
+    <string name="okhttp_post_5">POST方式提交分块请求</string>
 </resources>

@@ -8,6 +8,8 @@ import com.zza.library.utils.ActivityCollector;
 import com.zza.library.utils.StatusBarUtil;
 import com.zza.stardust.R;
 
+import butterknife.ButterKnife;
+
 
 public abstract class MActivity extends BaseActivity {
 
@@ -21,6 +23,12 @@ public abstract class MActivity extends BaseActivity {
         }
 
         ActivityCollector.addActivity(this);
+        ButterKnife.bind(this);
 
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 }

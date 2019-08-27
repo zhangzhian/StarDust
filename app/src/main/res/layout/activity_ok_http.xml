@@ -1,9 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:weightSum="5"
     tools:context=".app.ui.OkHttp.OkHttpActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/bt_get_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@color/blue479bff"
+                android:text="@string/okhttp_get_1"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/bt_get_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@color/blue479bff"
+                android:text="@string/okhttp_get_2"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/bt_post_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@color/blue479bff"
+                android:text="@string/okhttp_post_1"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/bt_post_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@color/blue479bff"
+                android:text="@string/okhttp_post_2"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/bt_post_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@color/blue479bff"
+                android:text="@string/okhttp_post_3"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/bt_post_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@color/blue479bff"
+                android:text="@string/okhttp_post_4"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/bt_post_5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@color/blue479bff"
+                android:text="@string/okhttp_post_5"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2">
+
+        <TextView
+            android:padding="5dp"
+            android:id="@+id/tv_content"
+            android:scrollbars="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+    </LinearLayout>
+</LinearLayout>

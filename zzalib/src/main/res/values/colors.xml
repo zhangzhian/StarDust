@@ -16,10 +16,10 @@
     <!--<color name="color999999">#999999</color>-->
     <color name="text333333">#333333</color>
     <color name="text888888">#888888</color>
-    <!--<color name="blue80479bff">#80479bff</color>-->
-    <!--<color name="blue80d5e8ff">#80d5e8ff</color>-->
-    <!--<color name="blue479bff">#479bff</color>-->
-    <!--<color name="blue337ebe">#337ebe</color>-->
+    <color name="blue80479bff">#80479bff</color>
+    <color name="blue80d5e8ff">#80d5e8ff</color>
+    <color name="blue479bff">#479bff</color>
+    <color name="blue337ebe">#337ebe</color>
 
     <!--<color name="lineebebeb">#ebebeb</color>-->
     <color name="line_f1f1f1">#f1f1f1</color>

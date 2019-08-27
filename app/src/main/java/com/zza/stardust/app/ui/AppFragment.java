@@ -14,7 +14,7 @@ import com.zza.library.weight.TitleLayout;
 import com.zza.stardust.R;
 import com.zza.stardust.app.adpter.AppAdapter;
 import com.zza.stardust.app.ui.OkHttp.OkHttpActivity;
-import com.zza.stardust.beam.AppInfoBean;
+import com.zza.stardust.bean.AppInfoBean;
 
 import java.util.ArrayList;
 import java.util.List;

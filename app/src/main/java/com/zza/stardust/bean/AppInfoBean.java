@@ -1,4 +1,4 @@
-package com.zza.stardust.beam;
+package com.zza.stardust.bean;
 
 import android.support.annotation.DrawableRes;
 

@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.zza.library.common.lmpl.IOnItemClickListener;
 import com.zza.stardust.R;
-import com.zza.stardust.beam.AppInfoBean;
+import com.zza.stardust.bean.AppInfoBean;
 
 import java.util.List;
 
