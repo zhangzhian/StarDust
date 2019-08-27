@@ -30,6 +30,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 import okio.BufferedSink;
 
 public class OkHttpActivity extends MActivity {
@@ -50,6 +51,8 @@ public class OkHttpActivity extends MActivity {
     Button btPost5;
     @BindView(R.id.tv_content)
     TextView tvContent;
+    @BindView(R.id.bt_post_6)
+    Button btPost6;
 
     @Override
     protected BasePresenter createPresenter() {
@@ -67,7 +70,7 @@ public class OkHttpActivity extends MActivity {
         tvContent.setMovementMethod(ScrollingMovementMethod.getInstance());
     }
 
-    @OnClick({R.id.bt_get_1, R.id.bt_get_2, R.id.bt_post_1, R.id.bt_post_2, R.id.bt_post_3, R.id.bt_post_4, R.id.bt_post_5})
+    @OnClick({R.id.bt_get_1, R.id.bt_get_2, R.id.bt_post_1, R.id.bt_post_2, R.id.bt_post_3, R.id.bt_post_4, R.id.bt_post_5, R.id.bt_post_6})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.bt_get_1:
@@ -91,18 +94,47 @@ public class OkHttpActivity extends MActivity {
             case R.id.bt_post_5:
                 postMultipartBody();
                 break;
+            case R.id.bt_post_6:
+                testInterceptor();
+                break;
         }
+    }
+
+    private void testInterceptor() {
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .addInterceptor(new LoggingInterceptor())
+                .build();
+        Request request = new Request.Builder()
+                .url("http://www.publicobject.com/helloworld.txt")
+                .header("User-Agent", "OkHttp Example")
+                .build();
+        okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                runOnUiThread(() -> tvContent.setText("testInterceptor onFailure: " + e.getMessage()));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                ResponseBody body = response.body();
+                String result = response.body().string();
+                if (body != null) {
+                    LogUtil.d("testInterceptor: " + result);
+                    body.close();
+                }
+                runOnUiThread(() -> tvContent.setText("testInterceptor onResponse: " + result));
+            }
+        });
     }
 
     /**
      * POST方式提交分块请求
-     *
-     * TODO 待调试
+     * <p>
+     * TODO 没找到现成的api，待调试
      */
     private void postMultipartBody() {
         OkHttpClient client = new OkHttpClient();
 
-        // Use the imgur image upload API as documented at https://api.imgur.com/endpoints/image
         MultipartBody body = new MultipartBody.Builder("AaB03x")
                 .setType(MultipartBody.FORM)
                 .addPart(
@@ -114,14 +146,12 @@ public class OkHttpActivity extends MActivity {
                 .build();
 
         Request request = new Request.Builder()
-                //修改Client-ID
                 .header("Authorization", "Client-ID " + "...")
                 .url("https://api.imgur.com/3/image")
                 .post(body)
                 .build();
 
         Call call = client.newCall(request);
-
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -136,6 +166,7 @@ public class OkHttpActivity extends MActivity {
 
         });
     }
+
     /**
      * POST方式提交表单
      * 通过FormBody#Builder构造RequestBody
@@ -164,7 +195,7 @@ public class OkHttpActivity extends MActivity {
             public void onResponse(Call call, Response response) throws IOException {
                 StringBuffer buffer = new StringBuffer();
                 buffer.append("postForm: " + "\r\n");
-                buffer.append(response.protocol() + " " +response.code() + " " + response.message()  + "\r\n");
+                buffer.append(response.protocol() + " " + response.code() + " " + response.message() + "\r\n");
                 Headers headers = response.headers();
                 for (int i = 0; i < headers.size(); i++) {
                     buffer.append(headers.name(i) + ":" + headers.value(i) + "\r\n");
@@ -185,7 +216,7 @@ public class OkHttpActivity extends MActivity {
     private void postFile() {
         MediaType mediaType = MediaType.parse("text/x-markdown; charset=utf-8");
         OkHttpClient okHttpClient = new OkHttpClient();
-        String path  = Environment.getExternalStorageDirectory().getPath() + "/zza.md";
+        String path = Environment.getExternalStorageDirectory().getPath() + "/zza.md";
         File file = new File(path);
         Request request = new Request.Builder()
                 .url("https://api.github.com/markdown/raw")
@@ -201,7 +232,7 @@ public class OkHttpActivity extends MActivity {
             public void onResponse(Call call, Response response) throws IOException {
                 StringBuffer buffer = new StringBuffer();
                 buffer.append("postFile: " + "\r\n");
-                buffer.append(response.protocol() + " " +response.code() + " " + response.message()  + "\r\n");
+                buffer.append(response.protocol() + " " + response.code() + " " + response.message() + "\r\n");
                 Headers headers = response.headers();
                 for (int i = 0; i < headers.size(); i++) {
                     buffer.append(headers.name(i) + ":" + headers.value(i) + "\r\n");
@@ -245,7 +276,7 @@ public class OkHttpActivity extends MActivity {
             public void onResponse(Call call, Response response) throws IOException {
                 StringBuffer buffer = new StringBuffer();
                 buffer.append("postStream: " + "\r\n");
-                buffer.append(response.protocol() + " " +response.code() + " " + response.message()  + "\r\n");
+                buffer.append(response.protocol() + " " + response.code() + " " + response.message() + "\r\n");
                 Headers headers = response.headers();
                 for (int i = 0; i < headers.size(); i++) {
                     buffer.append(headers.name(i) + ":" + headers.value(i) + "\r\n");
@@ -280,7 +311,7 @@ public class OkHttpActivity extends MActivity {
             public void onResponse(Call call, Response response) throws IOException {
                 StringBuffer buffer = new StringBuffer();
                 buffer.append("postString: " + "\r\n");
-                buffer.append(response.protocol() + " " +response.code() + " " + response.message()  + "\r\n");
+                buffer.append(response.protocol() + " " + response.code() + " " + response.message() + "\r\n");
                 Headers headers = response.headers();
                 for (int i = 0; i < headers.size(); i++) {
                     buffer.append(headers.name(i) + ":" + headers.value(i) + "\r\n");
@@ -341,8 +372,8 @@ public class OkHttpActivity extends MActivity {
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException{
-               String result =  response.body().string();
+            public void onResponse(Call call, Response response) throws IOException {
+                String result = response.body().string();
                 runOnUiThread(() -> tvContent.setText("asynchronousGetRequests onResponse: " + result));
 
             }

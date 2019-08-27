@@ -80,6 +80,14 @@
                 android:background="@color/blue479bff"
                 android:text="@string/okhttp_post_5"
                 android:textColor="@color/white" />
+            <Button
+                android:id="@+id/bt_post_6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@color/blue479bff"
+                android:text="@string/okhttp_interceptor"
+                android:textColor="@color/white" />
         </LinearLayout>
 
     </ScrollView>

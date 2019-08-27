@@ -8,4 +8,5 @@
     <string name="okhttp_post_3">POST提交文件</string>
     <string name="okhttp_post_4">POST方式提交表单</string>
     <string name="okhttp_post_5">POST方式提交分块请求</string>
+    <string name="okhttp_interceptor">interceptor</string>
 </resources>
