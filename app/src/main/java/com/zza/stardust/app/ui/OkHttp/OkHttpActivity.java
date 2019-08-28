@@ -130,27 +130,36 @@ public class OkHttpActivity extends MActivity {
     /**
      * POST方式提交分块请求
      * <p>
-     * TODO 没找到现成的api，待调试
+     * 使用公司项目的一个接口调试通过，为避免一些问题，接口和参数删掉
      */
     private void postMultipartBody() {
         OkHttpClient client = new OkHttpClient();
 
-        MultipartBody body = new MultipartBody.Builder("AaB03x")
+        File file = new File(Environment.getExternalStorageDirectory().getPath() + "/logo_star_dust.png");
+        MediaType MEDIA_TYPE_PNG = MediaType.parse("image/png");
+        RequestBody filebody = MultipartBody.create(MEDIA_TYPE_PNG, file);
+
+        MultipartBody body = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
+                .addFormDataPart("data", file.getName(), filebody)
                 .addPart(
-                        Headers.of("Content-Disposition", "form-data; name=\"title\""),
-                        RequestBody.create(null, "Square Logo"))
+                        Headers.of("Content-Disposition", "form-data; name=\"vin\""),
+                        RequestBody.create(null, ""))
                 .addPart(
-                        Headers.of("Content-Disposition", "form-data; name=\"image\""),
-                        RequestBody.create(MediaType.parse("image/png"), new File("website/static/logo-square.png")))
+                        Headers.of("Content-Disposition", "form-data; name=\"iccid\""),
+                        RequestBody.create(null, ""))
+                .addPart(
+                        Headers.of("Content-Disposition", "form-data; name=\"type\""),
+                        RequestBody.create(null, ""))
+                .addPart(
+                        Headers.of("Content-Disposition", "form-data; name=\"jobId\""),
+                        RequestBody.create(null, ""))
                 .build();
 
         Request request = new Request.Builder()
-                .header("Authorization", "Client-ID " + "...")
-                .url("https://api.imgur.com/3/image")
+                .url("http://www.baidu.com")
                 .post(body)
                 .build();
-
         Call call = client.newCall(request);
         call.enqueue(new Callback() {
             @Override
@@ -161,7 +170,7 @@ public class OkHttpActivity extends MActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String result = response.body().string();
-                runOnUiThread(() -> tvContent.setText("postMultipartBody onFailure: " + result));
+                runOnUiThread(() -> tvContent.setText("postMultipartBody onResponse: " + result));
             }
 
         });
