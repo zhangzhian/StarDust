@@ -131,6 +131,9 @@ public class OkHttpActivity extends MActivity {
         }
     }
 
+    /**
+     * 处理身份验证
+     */
     private void handlingAuthentication() {
         StringBuffer buffer = new StringBuffer();
 
@@ -244,7 +247,7 @@ public class OkHttpActivity extends MActivity {
     }
 
     /**
-     * 取消缓存
+     * 取消请求
      */
     private void cancelCall() {
         final ScheduledExecutorService executor = Executors.newScheduledThreadPool(2);
