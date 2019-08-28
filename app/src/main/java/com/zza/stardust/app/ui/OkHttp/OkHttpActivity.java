@@ -22,9 +22,11 @@ import java.util.concurrent.TimeUnit;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.Authenticator;
 import okhttp3.Cache;
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.Credentials;
 import okhttp3.FormBody;
 import okhttp3.Headers;
 import okhttp3.MediaType;
@@ -34,6 +36,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
+import okhttp3.Route;
 import okio.BufferedSink;
 
 public class OkHttpActivity extends MActivity {
@@ -120,13 +123,96 @@ public class OkHttpActivity extends MActivity {
                 timeout();
                 break;
             case R.id.bt_post_10:
-
+                perCallConfiguration();
                 break;
             case R.id.bt_post_11:
+                handlingAuthentication();
                 break;
         }
     }
 
+    private void handlingAuthentication() {
+        StringBuffer buffer = new StringBuffer();
+
+        OkHttpClient client = new OkHttpClient.Builder()
+                .authenticator(new Authenticator() {
+
+                    @Override
+                    public Request authenticate(Route route, Response response) throws IOException {
+                        if (response.request().header("Authorization") != null) {
+                            return null; // Give up, we've already attempted to authenticate.
+                        }
+                        buffer.append("Authenticating for response: " + response + "\r\n");
+                        buffer.append("Challenges: " + response.challenges() + "\r\n");
+
+                        String credential = Credentials.basic("jesse", "password1");
+                        return response.request().newBuilder()
+                                .header("Authorization", credential)
+                                .build();
+                    }
+                })
+                .build();
+
+        Request request = new Request.Builder()
+                .url("http://publicobject.com/secrets/hellosecret.txt")
+                .get()
+                .build();
+
+        final Call call = client.newCall(request);
+
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                runOnUiThread(() -> tvContent.setText("handlingAuthentication onFailure: " + e.getMessage()));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String result = response.body().string();
+                buffer.append("handlingAuthentication onResponse:   " + result + "\r\n");
+                runOnUiThread(() -> tvContent.setText(buffer));
+
+            }
+        });
+    }
+
+    /**
+     * 每个call配置
+     */
+    private void perCallConfiguration() {
+        OkHttpClient client = new OkHttpClient.Builder()
+                .build();
+
+        Request request = new Request.Builder()
+                .url("https://httpbin.org/delay/1")
+                .get()
+                .build();
+
+        OkHttpClient clientCopy = client.newBuilder()
+                .readTimeout(500, TimeUnit.MILLISECONDS)
+                .build();
+
+        final Call call = clientCopy.newCall(request);
+        StringBuffer buffer = new StringBuffer();
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                runOnUiThread(() -> tvContent.setText("perCallConfiguration onFailure: " + e.getMessage()));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String result = response.body().string();
+                buffer.append("perCallConfiguration onResponse:   " + result + "\r\n");
+                runOnUiThread(() -> tvContent.setText(buffer));
+
+            }
+        });
+    }
+
+    /**
+     *  超时
+     */
     private void timeout() {
         OkHttpClient client = new OkHttpClient.Builder()
                 .connectTimeout(10, TimeUnit.SECONDS)
