@@ -64,6 +64,15 @@
                 android:textColor="@color/white" />
 
             <Button
+                android:id="@+id/bt_post_5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@color/blue479bff"
+                android:text="@string/okhttp_post_5"
+                android:textColor="@color/white" />
+
+            <Button
                 android:id="@+id/bt_post_4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -73,20 +82,55 @@
                 android:textColor="@color/white" />
 
             <Button
-                android:id="@+id/bt_post_5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="@color/blue479bff"
-                android:text="@string/okhttp_post_5"
-                android:textColor="@color/white" />
-            <Button
                 android:id="@+id/bt_post_6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:background="@color/blue479bff"
                 android:text="@string/okhttp_interceptor"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/bt_post_7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@color/blue479bff"
+                android:text="@string/okhttp_response_cache"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/bt_post_8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@color/blue479bff"
+                android:text="@string/okhttp_cancel_call"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/bt_post_9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@color/blue479bff"
+                android:text="@string/okhttp_timeout"
+                android:textColor="@color/white" />
+            <Button
+                android:id="@+id/bt_post_10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@color/blue479bff"
+                android:text="@string/okhttp_per_call_configuration"
+                android:textColor="@color/white" />
+            <Button
+                android:id="@+id/bt_post_11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@color/blue479bff"
+                android:text="@string/okhttp_handling_authentication"
                 android:textColor="@color/white" />
         </LinearLayout>
 

@@ -9,4 +9,9 @@
     <string name="okhttp_post_4">POST方式提交表单</string>
     <string name="okhttp_post_5">POST方式提交分块请求</string>
     <string name="okhttp_interceptor">interceptor</string>
+    <string name="okhttp_response_cache">支持缓存</string>
+    <string name="okhttp_cancel_call">取消请求</string>
+    <string name="okhttp_timeout">超时</string>
+    <string name="okhttp_per_call_configuration">每个call配置</string>
+    <string name="okhttp_handling_authentication">处理身份验证</string>
 </resources>

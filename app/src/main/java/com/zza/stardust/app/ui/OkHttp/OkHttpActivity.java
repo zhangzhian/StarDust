@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,10 +15,14 @@ import com.zza.stardust.base.MActivity;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.Cache;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -53,6 +56,16 @@ public class OkHttpActivity extends MActivity {
     TextView tvContent;
     @BindView(R.id.bt_post_6)
     Button btPost6;
+    @BindView(R.id.bt_post_7)
+    Button btPost7;
+    @BindView(R.id.bt_post_8)
+    Button btPost8;
+    @BindView(R.id.bt_post_9)
+    Button btPost9;
+    @BindView(R.id.bt_post_10)
+    Button btPost10;
+    @BindView(R.id.bt_post_11)
+    Button btPost11;
 
     @Override
     protected BasePresenter createPresenter() {
@@ -70,7 +83,7 @@ public class OkHttpActivity extends MActivity {
         tvContent.setMovementMethod(ScrollingMovementMethod.getInstance());
     }
 
-    @OnClick({R.id.bt_get_1, R.id.bt_get_2, R.id.bt_post_1, R.id.bt_post_2, R.id.bt_post_3, R.id.bt_post_4, R.id.bt_post_5, R.id.bt_post_6})
+    @OnClick({R.id.bt_get_1, R.id.bt_get_2, R.id.bt_post_1, R.id.bt_post_2, R.id.bt_post_3, R.id.bt_post_4, R.id.bt_post_5, R.id.bt_post_6, R.id.bt_post_7, R.id.bt_post_8, R.id.bt_post_9, R.id.bt_post_10, R.id.bt_post_11})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.bt_get_1:
@@ -97,15 +110,156 @@ public class OkHttpActivity extends MActivity {
             case R.id.bt_post_6:
                 testInterceptor();
                 break;
+            case R.id.bt_post_7:
+                responseCaching();
+                break;
+            case R.id.bt_post_8:
+                cancelCall();
+                break;
+            case R.id.bt_post_9:
+                timeout();
+                break;
+            case R.id.bt_post_10:
+
+                break;
+            case R.id.bt_post_11:
+                break;
         }
     }
 
+    private void timeout() {
+        OkHttpClient client = new OkHttpClient.Builder()
+                .connectTimeout(10, TimeUnit.SECONDS)
+                .writeTimeout(10, TimeUnit.SECONDS)
+                .readTimeout(10, TimeUnit.SECONDS)
+                .build();
+
+         Request request = new Request.Builder()
+                .url("https://httpbin.org/delay/12")
+                .get()
+                .build();
+        final Call call = client.newCall(request);
+
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                runOnUiThread(() -> tvContent.setText("timeout onFailure: " + e.getMessage()));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String result = response.body().string();
+                StringBuffer buffer = new StringBuffer();
+                buffer.append("timeout onResponse:   " + result + "\r\n");
+                runOnUiThread(() -> tvContent.setText(buffer));
+
+            }
+        });
+    }
+
+    /**
+     * 取消缓存
+     */
+    private void cancelCall() {
+        final ScheduledExecutorService executor = Executors.newScheduledThreadPool(2);
+        final OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url("https://httpbin.org/delay/2") // This URL is served with a 2 second delay.
+                .build();
+
+        final long startNanos = System.nanoTime();
+        final Call call = client.newCall(request);
+
+        StringBuffer buffer = new StringBuffer();
+        // Schedule a job to cancel the call in 1 second.
+        executor.schedule(new Runnable() {
+            @Override
+            public void run() {
+                buffer.append(String.format("%.2f Canceling call.%n",
+                        (System.nanoTime() - startNanos) / 1e9f));
+                call.cancel();
+                buffer.append(String.format("%.2f Canceled call.%n",
+                        (System.nanoTime() - startNanos) / 1e9f) );
+                runOnUiThread(() -> tvContent.setText(buffer));
+            }
+        }, 1, TimeUnit.SECONDS);
+
+        executor.schedule(new Runnable() {
+            @Override
+            public void run() {
+                buffer.append(String.format("%.2f Executing call.%n", (System.nanoTime() - startNanos) / 1e9f) );
+                try (Response response = call.execute()) {
+                    buffer.append(String.format("%.2f Call was expected to fail, but completed: %s%n",
+                            (System.nanoTime() - startNanos) / 1e9f, response));
+                } catch (IOException e) {
+                    buffer.append(String.format("%.2f Call failed as expected: %s%n",
+                            (System.nanoTime() - startNanos) / 1e9f, e) );
+                }
+            }
+        }, 0, TimeUnit.SECONDS);
+    }
+
+    /**
+     * 支持缓存
+     */
+    private void responseCaching() {
+        String url = "https://publicobject.com/helloworld.txt";
+        File cacheDirectory = new File(Environment.getExternalStorageDirectory() + "/cache");
+        int cacheSize = 10 * 1024 * 1024; // 10 MiB
+        Cache cache = new Cache(cacheDirectory, cacheSize);
+
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .cache(cache)
+                .build();
+
+        final Request request = new Request.Builder()
+                .url(url)
+                .get()//默认就是GET请求
+                .build();
+        final Call call1 = okHttpClient.newCall(request);
+        final Call call2 = okHttpClient.newCall(request);
+        new Thread(() -> {
+            try {
+                StringBuffer buffer = new StringBuffer();
+                //直接execute call
+                Response response1 = call1.execute();
+                if (!response1.isSuccessful()) {
+                    runOnUiThread(() -> tvContent.setText("responseCaching onFailure"));
+                } else {
+                    String result = response1.body().string();
+
+                    buffer.append("responseCaching1 onResponse:   " + result + "\r\n");
+                    buffer.append("responseCaching1 cache response:    " + response1.cacheResponse() + "\r\n");
+                    buffer.append("responseCaching1 network response:  " + response1.networkResponse() + "\r\n");
+                    runOnUiThread(() -> tvContent.setText(buffer));
+                }
+                Response response2 = call2.execute();
+                if (!response2.isSuccessful()) {
+                    runOnUiThread(() -> tvContent.setText("responseCaching onFailure"));
+                } else {
+                    String result = response2.body().string();
+                    buffer.append("responseCaching2 onResponse:   " + result + "\r\n");
+                    buffer.append("responseCaching2 cache response:    " + response2.cacheResponse() + "\r\n");
+                    buffer.append("responseCaching2 network response:  " + response2.networkResponse() + "\r\n");
+                    runOnUiThread(() -> tvContent.setText(buffer));
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
+
+    /**
+     * 拦截器
+     * <p>
+     * 请查看打印输出
+     */
     private void testInterceptor() {
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .addInterceptor(new LoggingInterceptor())
                 .build();
         Request request = new Request.Builder()
-                .url("http://www.publicobject.com/helloworld.txt")
+                .url("https://www.publicobject.com/helloworld.txt")
                 .header("User-Agent", "OkHttp Example")
                 .build();
         okHttpClient.newCall(request).enqueue(new Callback() {
@@ -157,7 +311,7 @@ public class OkHttpActivity extends MActivity {
                 .build();
 
         Request request = new Request.Builder()
-                .url("http://www.baidu.com")
+                .url("https://www.baidu.com")
                 .post(body)
                 .build();
         Call call = client.newCall(request);
@@ -340,7 +494,7 @@ public class OkHttpActivity extends MActivity {
      * 在子线程中通过Call#execute()方法来提交同步请求；
      */
     private void synchronizedGetRequests() {
-        String url = "http://wwww.baidu.com";
+        String url = "https://wwww.baidu.com";
         OkHttpClient okHttpClient = new OkHttpClient();
         final Request request = new Request.Builder()
                 .url(url)
@@ -367,7 +521,7 @@ public class OkHttpActivity extends MActivity {
      * 通过Call#enqueue(Callback)方法来提交异步请求；
      */
     private void asynchronousGetRequests() {
-        String url = "http://wwww.baidu.com";
+        String url = "https://wwww.baidu.com";
         OkHttpClient okHttpClient = new OkHttpClient();
         final Request request = new Request.Builder()
                 .url(url)
