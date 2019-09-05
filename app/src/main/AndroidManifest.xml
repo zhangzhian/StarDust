@@ -2,20 +2,22 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.zza.stardust">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".base.MApplication"
         android:allowBackup="true"
         android:icon="@drawable/logo_star_dust"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@drawable/logo_star_dust"
         android:supportsRtl="true"
-        android:networkSecurityConfig="@xml/network_security_config"
         android:theme="@style/AppTheme">
-        <activity android:name=".app.ui.OkHttp.OkHttpActivity"></activity>
+        <activity android:name=".app.ui.ConstraintLayout.ConstraintLayoutMoreActivity"></activity>
+        <activity android:name=".app.ui.ConstraintLayout.ConstraintLayoutActivity" />
+        <activity android:name=".app.ui.OkHttp.OkHttpActivity" />
         <activity android:name=".home.ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

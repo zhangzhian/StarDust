@@ -13,6 +13,7 @@ import com.zza.library.common.lmpl.IOnItemClickListener;
 import com.zza.library.weight.TitleLayout;
 import com.zza.stardust.R;
 import com.zza.stardust.app.adpter.AppAdapter;
+import com.zza.stardust.app.ui.ConstraintLayout.ConstraintLayoutActivity;
 import com.zza.stardust.app.ui.OkHttp.OkHttpActivity;
 import com.zza.stardust.bean.AppInfoBean;
 
@@ -80,7 +81,10 @@ public class AppFragment extends BaseFragment implements TitleLayout.onTitleClic
         appInfoOkHttp.setImage(R.drawable.app_net_okhttp);
         appInfoOkHttp.setName("OkHttp");
         appInfoBeanList.add(appInfoOkHttp);
-
+        AppInfoBean appConstraintLayout = new AppInfoBean();
+        appConstraintLayout.setImage(R.drawable.app_android);
+        appConstraintLayout.setName("ConstraintLayout");
+        appInfoBeanList.add(appConstraintLayout);
     }
 
     @Override
@@ -104,6 +108,9 @@ public class AppFragment extends BaseFragment implements TitleLayout.onTitleClic
         switch (position) {
             case 0:
                 getActivity().startActivity(new Intent(getActivity(), OkHttpActivity.class));
+                break;
+            case 1:
+                getActivity().startActivity(new Intent(getActivity(), ConstraintLayoutActivity.class));
                 break;
             default:
                 break;
