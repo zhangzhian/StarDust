@@ -14,4 +14,10 @@
     <string name="okhttp_timeout">超时</string>
     <string name="okhttp_per_call_configuration">每个call配置</string>
     <string name="okhttp_handling_authentication">处理身份验证</string>
+    <string name="app_layout_constraintdimensionratio">app:layout_constraintDimensionRatio=\"H,16:6\"</string>
+    <string name="app_layout_constrainthorizontal_weight">app:layout_constraintHorizontal_weight=\"5\"</string>
+    <string name="app_layout_constraintHorizontal_chainStyle_packed">chainStyle=\"packed\"</string>
+    <string name="app_layout_constraintHorizontal_chainStyle_spread_inside">chainStyle=\"spread_inside\"</string>
+    <string name="app_layout_constraintHorizontal_chainStyle_spread">chainStyle=\"spread\"</string>
+    <string name="app_layout_constrainthorizontal_vertical_bias">app:layout_constraintHorizontal/vertical_bias</string>
 </resources>

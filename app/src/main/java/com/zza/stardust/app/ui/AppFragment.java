@@ -82,7 +82,7 @@ public class AppFragment extends BaseFragment implements TitleLayout.onTitleClic
         appInfoOkHttp.setName("OkHttp");
         appInfoBeanList.add(appInfoOkHttp);
         AppInfoBean appConstraintLayout = new AppInfoBean();
-        appConstraintLayout.setImage(R.drawable.app_android);
+        appConstraintLayout.setImage(R.drawable.app_layout);
         appConstraintLayout.setName("ConstraintLayout");
         appInfoBeanList.add(appConstraintLayout);
     }
