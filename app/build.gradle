@@ -46,4 +46,5 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-rc1'
     implementation project(':zzalib')
     implementation 'org.jetbrains:annotations:15.0'
+    implementation files('lib/commons-net-3.6.jar')
 }

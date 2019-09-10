@@ -15,7 +15,8 @@
         android:roundIcon="@drawable/logo_star_dust"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".app.ui.ConstraintLayout.ConstraintLayoutMoreActivity"></activity>
+        <activity android:name=".app.ui.TFTP.TFTPActivity"></activity>
+        <activity android:name=".app.ui.ConstraintLayout.ConstraintLayoutMoreActivity" />
         <activity android:name=".app.ui.ConstraintLayout.ConstraintLayoutActivity" />
         <activity android:name=".app.ui.OkHttp.OkHttpActivity" />
         <activity android:name=".home.ui.MainActivity">

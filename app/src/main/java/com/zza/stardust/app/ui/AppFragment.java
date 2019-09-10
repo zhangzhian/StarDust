@@ -15,6 +15,7 @@ import com.zza.stardust.R;
 import com.zza.stardust.app.adpter.AppAdapter;
 import com.zza.stardust.app.ui.ConstraintLayout.ConstraintLayoutActivity;
 import com.zza.stardust.app.ui.OkHttp.OkHttpActivity;
+import com.zza.stardust.app.ui.TFTP.TFTPActivity;
 import com.zza.stardust.bean.AppInfoBean;
 
 import java.util.ArrayList;
@@ -85,6 +86,10 @@ public class AppFragment extends BaseFragment implements TitleLayout.onTitleClic
         appConstraintLayout.setImage(R.drawable.app_layout);
         appConstraintLayout.setName("ConstraintLayout");
         appInfoBeanList.add(appConstraintLayout);
+        AppInfoBean appTFTP = new AppInfoBean();
+        appTFTP.setImage(R.drawable.app_android);
+        appTFTP.setName("TFTP");
+        appInfoBeanList.add(appTFTP);
     }
 
     @Override
@@ -111,6 +116,9 @@ public class AppFragment extends BaseFragment implements TitleLayout.onTitleClic
                 break;
             case 1:
                 getActivity().startActivity(new Intent(getActivity(), ConstraintLayoutActivity.class));
+                break;
+            case 2:
+                getActivity().startActivity(new Intent(getActivity(), TFTPActivity.class));
                 break;
             default:
                 break;
