@@ -17,7 +17,7 @@ public class TFTPSendFileClient {
 
     private TFTPClient tftp = null;
     private int timeout = 60000;
-    private boolean verbose = true;
+    private boolean verbose = false;
 
     public void initClient() {
         // Create our TFTP instance to handle the file transfer.
