@@ -1,6 +1,5 @@
 package com.zza.stardust.app.ui.TFTP;
 
-import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.tftp.TFTP;
 import org.apache.commons.net.tftp.TFTPClient;
 import org.apache.commons.net.tftp.TFTPPacket;

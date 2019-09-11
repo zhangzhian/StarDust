@@ -41,8 +41,6 @@ public class TFTPActivity extends MActivity {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-
-
                 TFTPSendFileClient client = new TFTPSendFileClient();
                 client.initClient();
                 client.sendFile("192.168.225.1:69",
