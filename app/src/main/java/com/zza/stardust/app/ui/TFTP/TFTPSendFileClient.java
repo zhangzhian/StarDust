@@ -16,8 +16,8 @@ public class TFTPSendFileClient {
     private int transferMode = TFTP.BINARY_MODE;
 
     private TFTPClient tftp = null;
-    private int timeout = 60000;
-    private boolean verbose = false;
+    private int timeout = 10000;
+    private boolean verbose = true;
 
     public void initClient() {
         // Create our TFTP instance to handle the file transfer.

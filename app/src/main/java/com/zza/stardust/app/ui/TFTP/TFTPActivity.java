@@ -12,22 +12,13 @@ import com.zza.library.utils.LogUtil;
 import com.zza.stardust.R;
 import com.zza.stardust.base.MActivity;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class TFTPActivity extends MActivity {
@@ -93,32 +84,48 @@ public class TFTPActivity extends MActivity {
                 Socket socket = new Socket("192.168.225.1", 60002);
                 //2.获取输出流，向服务器端发送信息
                 OutputStream os = socket.getOutputStream();//字节输出流
-                PrintWriter pw=new PrintWriter(os);
+                PrintWriter pw = new PrintWriter(os);
                 byte[] data = protocolMake();
-                String strData = BinaryToHexString(data);
+                String strData = BytesToHexString(data);
 
                 //3.获取输入流，并读取服务器端的响应信息
-                InputStream is=socket.getInputStream();
+                InputStream is = socket.getInputStream();
 
                 //接收服务器的响应
                 int line = 0;
-                byte[] buf = new byte[128];
+                byte[] buf = new byte[1024];
                 LogUtil.w(strData);
                 pw.write(strData);
                 pw.flush();
                 //socket.shutdownOutput();//关闭输出流
                 //接收收到的数据
-                while((line=is.read(buf))!=-1){
+                while ((line = is.read(buf)) != -1) {
                     //将字节数组转换成十六进制的字符串
-                    String strReturn= BinaryToHexString(buf);
-                    //byte[] datas = hexStrToBinaryStr(strReturn);
+                    String strReturn = BytesToHexString(buf);
                     LogUtil.w("---->:" + strReturn);
-//                    for (int i = 0; i < datas.length; i++) {
-////                        LogUtil.i(datas[i] + "");
-////                    }
+                    byte[] dataBuf = convertHexToBytes(buf, line);
+
+                    if (dataBuf[20] == 0x2C && dataBuf[21] == 0x01) {
+                        LogUtil.i("收到回复：");
+                        //收到的wifi升级的回复消息
+                        if (dataBuf[23] == 0x02) {
+                            // 收到则认为tbox以收到
+                            LogUtil.i("开始刷新");
+                        } else if (dataBuf[23] == 0x03) {
+                            // 1:升级成功2:上次升级没结束3:条件不满足4:用户取消5:用户延迟6:超时
+                            // 7:下载失败8:启动信息失败9:校验失败10:pwr为off或acc 11:pwr为on
+                            //范围0-19Byte，’\0’结束
+                            if (dataBuf[30] == 01) {
+                                LogUtil.i("刷新成功");
+                            } else {
+                                LogUtil.i("刷新失败，错误码：" + dataBuf[30]);
+                            }
+                            break;
+                        }
+
+                    }
                     Thread.sleep(100);
                 }
-
 
                 //4.关闭资源
                 pw.close();
@@ -127,12 +134,9 @@ public class TFTPActivity extends MActivity {
 
                 socket.close();
 
-            } catch (UnknownHostException e) {
-                e.printStackTrace();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         });
         thread.start();
     }
@@ -159,10 +163,10 @@ public class TFTPActivity extends MActivity {
         String currentTime = Long.toString(System.currentTimeMillis() / 1000, 16).toUpperCase();
         //Event Creation Time eventCreationTime 4 UINT32 0.. 4294967295 √ √
         //System.arraycopy(currentTime, 0, result, 10, currentTime.length);
-        result[10] = (byte) Integer.parseInt((currentTime.substring(0,2)), 16);
-        result[11] = (byte) Integer.parseInt((currentTime.substring(2,4)), 16);
-        result[12] = (byte) Integer.parseInt((currentTime.substring(4,6)), 16);
-        result[13] = (byte) Integer.parseInt((currentTime.substring(6,8)), 16);
+        result[10] = (byte) Integer.parseInt((currentTime.substring(0, 2)), 16);
+        result[11] = (byte) Integer.parseInt((currentTime.substring(2, 4)), 16);
+        result[12] = (byte) Integer.parseInt((currentTime.substring(4, 6)), 16);
+        result[13] = (byte) Integer.parseInt((currentTime.substring(6, 8)), 16);
         //Event ID eventId 6 BYTE Size(6)
         result[14] = 0x00;
         result[15] = 0x00;
@@ -245,7 +249,7 @@ public class TFTPActivity extends MActivity {
      *
      * @return
      */
-    public static String BinaryToHexString(byte[] bytes) {
+    public static String BytesToHexString(byte[] bytes) {
         String hexStr = "0123456789ABCDEF";
         String result = "";
         String hex = "";
@@ -255,6 +259,29 @@ public class TFTPActivity extends MActivity {
             result += hex + "";
         }
         return result;
+    }
+
+    public static byte[] convertHexToBytes(byte[] hex,int size){
+
+        byte[] bytes = new byte[size / 2];
+
+        String hexStr = "0123456789ABCDEF";
+
+        for (int i = 0; i < size; i+=2) {
+
+//            String hexTemp1 = String.valueOf(hexStr.charAt((hex[i] & 0xF0) >> 4)) + String.valueOf(hexStr.charAt(hex[i] & 0x0F));
+//            String hexTemp2 = String.valueOf(hexStr.charAt((hex[i+1] & 0xF0) >> 4)) + String.valueOf(hexStr.charAt(hex[i+1] & 0x0F));
+//            int decimal = Integer.parseInt(hexTemp1, 16);
+            char charTemp1 = (char)hex[i];
+            char charTemp2 = (char)hex[i+1];
+            StringBuffer temp = new StringBuffer();
+            temp.append(charTemp1);
+            temp.append(charTemp2);
+            bytes[i/2] = (byte) Integer.parseInt(temp.toString(),16);
+
+        }
+
+        return bytes;
     }
 
 }
