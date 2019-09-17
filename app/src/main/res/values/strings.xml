@@ -20,4 +20,6 @@
     <string name="app_layout_constraintHorizontal_chainStyle_spread_inside">chainStyle=\"spread_inside\"</string>
     <string name="app_layout_constraintHorizontal_chainStyle_spread">chainStyle=\"spread\"</string>
     <string name="app_layout_constrainthorizontal_vertical_bias">app:layout_constraintHorizontal/vertical_bias</string>
+    <string name="upgrade_step_title">刷新流程操作</string>
+    <string name="upgrade_step_info">1. 公网下载刷新文件（存在刷新的文件，可忽略）\n2. 连接TBox WiFi \n3. 选择本地文件 \n4. 输入参数开始刷新 \n5. 等待刷新结果返回</string>
 </resources>

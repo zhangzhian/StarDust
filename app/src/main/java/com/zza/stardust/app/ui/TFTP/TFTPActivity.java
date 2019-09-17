@@ -28,8 +28,7 @@ public class TFTPActivity extends MActivity {
     Button btStart;
     @BindView(R.id.tv_result)
     TextView tvResult;
-    @BindView(R.id.bt_tcp)
-    Button btTcp;
+
 
     @Override
     protected BasePresenter createPresenter() {
@@ -47,7 +46,7 @@ public class TFTPActivity extends MActivity {
         LogUtil.i(Environment.getExternalStorageDirectory().getPath() + "/TBOX.bin");
     }
 
-    @OnClick({R.id.bt_start, R.id.bt_tcp})
+    @OnClick({R.id.bt_start})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.bt_start:
@@ -71,9 +70,9 @@ public class TFTPActivity extends MActivity {
                 });
                 thread.start();
                 break;
-            case R.id.bt_tcp:
-                SendTcpData();
-                break;
+//            case R.id.bt_tcp:
+//                SendTcpData();
+//                break;
         }
     }
 
