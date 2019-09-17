@@ -1,22 +1,36 @@
 package com.zza.stardust.app.ui.TFTP;
 
+import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
+import android.content.ContentUris;
+import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.DocumentsContract;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.zza.library.base.BasePresenter;
 import com.zza.library.utils.LogUtil;
+import com.zza.library.utils.ToastUtil;
 import com.zza.stardust.R;
 import com.zza.stardust.base.MActivity;
 
+import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.net.UnknownHostException;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -24,11 +38,27 @@ import butterknife.OnClick;
 public class TFTPActivity extends MActivity {
 
 
+    private static final int REQUEST_CHOOSEFILE = 1;
+    private static final String TBOX_WIFI_ANDROID = "TBOX_WIFI_ANDROID.bin";
     @BindView(R.id.bt_start)
     Button btStart;
     @BindView(R.id.tv_result)
     TextView tvResult;
-
+    @BindView(R.id.et_filename)
+    EditText etFilename;
+    @BindView(R.id.tv_filepath)
+    TextView tvFilepath;
+    @BindView(R.id.bt_download)
+    Button btDownload;
+    @BindView(R.id.bt_choose_path)
+    Button btChoosePath;
+    @BindView(R.id.et_sv)
+    EditText etSv;
+    @BindView(R.id.et_hv)
+    EditText etHv;
+    @BindView(R.id.progressBar)
+    ProgressBar progressBar;
+    private ProgressDialog progressDialog = null;
 
     @Override
     protected BasePresenter createPresenter() {
@@ -46,33 +76,112 @@ public class TFTPActivity extends MActivity {
         LogUtil.i(Environment.getExternalStorageDirectory().getPath() + "/TBOX.bin");
     }
 
-    @OnClick({R.id.bt_start})
+    @OnClick({R.id.bt_start, R.id.bt_download, R.id.bt_choose_path})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.bt_start:
-                Thread thread = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        TFTPSendFileClient client = new TFTPSendFileClient();
-                        long timeStart = System.currentTimeMillis();
-                        client.initClient();
-                        client.sendFile("192.168.225.1:69",
-                                Environment.getExternalStorageDirectory().getPath() + "/TBOX.bin", "TBOX.bin");
-                        long timeEnd = System.currentTimeMillis();
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                tvResult.setText("result time: " + (timeEnd - timeStart) / 1000 + "");
-                            }
-                        });
-                    }
-
-                });
-                thread.start();
+                if (TextUtils.isEmpty(tvFilepath.getText().toString())) {
+                    ToastUtil.show("请选择路径");
+                } else if (TextUtils.isEmpty(etHv.getText().toString())) {
+                    ToastUtil.show("输入软件版本号");
+                } else if (TextUtils.isEmpty(etSv.getText().toString())) {
+                    ToastUtil.show("请选择硬件版本号");
+                } else if (etHv.getText().toString().length() >= 31) {
+                    ToastUtil.show("请输入正确软件版本号");
+                } else if (etSv.getText().toString().length() >= 31) {
+                    ToastUtil.show("请输入正确硬件版本号");
+                } else {
+                    startUpgrade();
+                }
                 break;
-//            case R.id.bt_tcp:
-//                SendTcpData();
-//                break;
+            case R.id.bt_download:
+                break;
+            case R.id.bt_choose_path:
+                chooseLocalFilePath();
+
+                break;
+        }
+    }
+
+    private void startUpgrade() {
+        if (progressDialog == null)
+            progressDialog = ProgressDialog.show(this, "提示", "正在传输升级文件", false, false);
+        tvResult.setText("");
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    TFTPSendFileClient client = new TFTPSendFileClient();
+                    long timeStart = System.currentTimeMillis();
+                    client.initClient();
+                    //client.sendFile("192.168.225.1:69", Environment.getExternalStorageDirectory().getPath() + "/TBOX.bin", "TBOX.bin");
+                    client.sendFile("192.168.225.1:69",
+                            tvFilepath.getText().toString(), TBOX_WIFI_ANDROID);
+                    long timeEnd = System.currentTimeMillis();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            progressDialog.setMessage("正在升级TBox");
+                        }
+                    });
+
+                    SendTcpData();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (progressDialog != null) {
+                                progressDialog.dismiss();
+                                progressDialog = null;
+                            }
+                        }
+                    });
+                }
+            }
+
+        });
+        thread.start();
+
+
+    }
+
+    private void chooseLocalFilePath() {
+        if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            return;
+        }
+        //调用系统文件管理器打开指定路径目录
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("*/*");//设置类型，我这里是任意类型，任意后缀的可以这样写。
+
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        startActivityForResult(intent, REQUEST_CHOOSEFILE);
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {//选择文件返回
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case REQUEST_CHOOSEFILE:
+                    String path;
+                    Uri uri = data.getData();
+                    if ("file".equalsIgnoreCase(uri.getScheme())) {//使用第三方应用打开
+                        path = uri.getPath();
+                        tvFilepath.setText(path);
+                        LogUtil.i("File path:" + path);
+                        return;
+                    }
+                    if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {//4.4以后
+                        path = getPath(this, uri);
+                    } else {//4.4以下下系统调用方法
+                        path = getRealPathFromURI(uri);
+                    }
+                    tvFilepath.setText(path);
+                    LogUtil.i("File path:" + path);
+                    break;
+            }
         }
     }
 
@@ -110,15 +219,44 @@ public class TFTPActivity extends MActivity {
                         if (dataBuf[23] == 0x02) {
                             // 收到则认为tbox以收到
                             LogUtil.i("开始刷新");
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    progressDialog.setMessage("开始刷新TBox");
+                                }
+                            });
                         } else if (dataBuf[23] == 0x03) {
                             // 1:升级成功2:上次升级没结束3:条件不满足4:用户取消5:用户延迟6:超时
                             // 7:下载失败8:启动信息失败9:校验失败10:pwr为off或acc 11:pwr为on
                             //范围0-19Byte，’\0’结束
                             if (dataBuf[30] == 01) {
                                 LogUtil.i("刷新成功");
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        tvResult.setText("刷新成功");
+                                    }
+                                });
                             } else {
                                 LogUtil.i("刷新失败，错误码：" + dataBuf[30]);
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        tvResult.setText("刷新失败，错误码：" + dataBuf[30]);
+                                    }
+                                });
+
                             }
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (progressDialog != null) {
+                                        progressDialog.dismiss();
+                                        progressDialog = null;
+                                    }
+                                }
+                            });
+
                             break;
                         }
 
@@ -135,6 +273,15 @@ public class TFTPActivity extends MActivity {
 
             } catch (Exception e) {
                 e.printStackTrace();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (progressDialog != null) {
+                            progressDialog.dismiss();
+                            progressDialog = null;
+                        }
+                    }
+                });
             }
         });
         thread.start();
@@ -190,10 +337,10 @@ public class TFTPActivity extends MActivity {
         result[28] = 0x00;
         result[29] = 0x00;
 
-        String fileName = "TBOX.bin";
+        String fileName = TBOX_WIFI_ANDROID;
         System.arraycopy(fileName.getBytes(), 0, result, 30, fileName.length());
-        String sv = "1";
-        String hv = "1";
+        String sv = etSv.getText().toString();
+        String hv = etHv.getText().toString();
         System.arraycopy(sv.getBytes(), 0, result, 30 + 32, sv.length());
         System.arraycopy(hv.getBytes(), 0, result, 30 + 32 + 32, hv.length());
         result[126] = getXor(result);
@@ -209,38 +356,6 @@ public class TFTPActivity extends MActivity {
         }
 
         return temp;
-    }
-
-    /**
-     * 将十六进制的字符串转换成字节数组
-     *
-     * @param hexString
-     * @return
-     */
-    public static byte[] hexStrToBinaryStr(String hexString) {
-
-        if (TextUtils.isEmpty(hexString)) {
-            return null;
-        }
-
-        hexString = hexString.replaceAll(" ", "");
-
-        int len = hexString.length();
-        int index = 0;
-
-        byte[] bytes = new byte[len / 2];
-
-        while (index < len) {
-
-            String sub = hexString.substring(index, index + 2);
-
-            bytes[index / 2] = (byte) Integer.parseInt(sub, 16);
-
-            index += 2;
-        }
-
-
-        return bytes;
     }
 
     /**
@@ -260,27 +375,151 @@ public class TFTPActivity extends MActivity {
         return result;
     }
 
-    public static byte[] convertHexToBytes(byte[] hex,int size){
+    public static byte[] convertHexToBytes(byte[] hex, int size) {
 
         byte[] bytes = new byte[size / 2];
 
-        String hexStr = "0123456789ABCDEF";
+        for (int i = 0; i < size; i += 2) {
 
-        for (int i = 0; i < size; i+=2) {
-
-//            String hexTemp1 = String.valueOf(hexStr.charAt((hex[i] & 0xF0) >> 4)) + String.valueOf(hexStr.charAt(hex[i] & 0x0F));
-//            String hexTemp2 = String.valueOf(hexStr.charAt((hex[i+1] & 0xF0) >> 4)) + String.valueOf(hexStr.charAt(hex[i+1] & 0x0F));
-//            int decimal = Integer.parseInt(hexTemp1, 16);
-            char charTemp1 = (char)hex[i];
-            char charTemp2 = (char)hex[i+1];
+            char charTemp1 = (char) hex[i];
+            char charTemp2 = (char) hex[i + 1];
             StringBuffer temp = new StringBuffer();
             temp.append(charTemp1);
             temp.append(charTemp2);
-            bytes[i/2] = (byte) Integer.parseInt(temp.toString(),16);
+            bytes[i / 2] = (byte) Integer.parseInt(temp.toString(), 16);
 
         }
 
         return bytes;
+    }
+
+    public String getRealPathFromURI(Uri contentUri) {
+        String res = null;
+        String[] proj = {MediaStore.Images.Media.DATA};
+        Cursor cursor = getContentResolver().query(contentUri, proj, null, null, null);
+        if (null != cursor && cursor.moveToFirst()) {
+            ;
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            res = cursor.getString(column_index);
+            cursor.close();
+        }
+        return res;
+    }
+
+    /**
+     * 专为Android4.4设计的从Uri获取文件绝对路径，以前的方法已不好使
+     */
+    @SuppressLint("NewApi")
+    public String getPath(final Context context, final Uri uri) {
+
+        final boolean isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
+
+        // DocumentProvider
+        if (isKitKat && DocumentsContract.isDocumentUri(context, uri)) {
+            // ExternalStorageProvider
+            if (isExternalStorageDocument(uri)) {
+                final String docId = DocumentsContract.getDocumentId(uri);
+                final String[] split = docId.split(":");
+                final String type = split[0];
+
+                if ("primary".equalsIgnoreCase(type)) {
+                    return Environment.getExternalStorageDirectory() + "/" + split[1];
+                }
+            }
+            // DownloadsProvider
+            else if (isDownloadsDocument(uri)) {
+
+                final String id = DocumentsContract.getDocumentId(uri);
+                final Uri contentUri = ContentUris.withAppendedId(
+                        Uri.parse("content://downloads/public_downloads"), Long.valueOf(id));
+
+                return getDataColumn(context, contentUri, null, null);
+            }
+            // MediaProvider
+            else if (isMediaDocument(uri)) {
+                final String docId = DocumentsContract.getDocumentId(uri);
+                final String[] split = docId.split(":");
+                final String type = split[0];
+
+                Uri contentUri = null;
+                if ("image".equals(type)) {
+                    contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+                } else if ("video".equals(type)) {
+                    contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                } else if ("audio".equals(type)) {
+                    contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+                }
+
+                final String selection = "_id=?";
+                final String[] selectionArgs = new String[]{split[1]};
+
+                return getDataColumn(context, contentUri, selection, selectionArgs);
+            }
+        }
+        // MediaStore (and general)
+        else if ("content".equalsIgnoreCase(uri.getScheme())) {
+            return getDataColumn(context, uri, null, null);
+        }
+        // File
+        else if ("file".equalsIgnoreCase(uri.getScheme())) {
+            return uri.getPath();
+        }
+        return null;
+    }
+
+    /**
+     * Get the value of the data column for this Uri. This is useful for
+     * MediaStore Uris, and other file-based ContentProviders.
+     *
+     * @param context       The context.
+     * @param uri           The Uri to query.
+     * @param selection     (Optional) Filter used in the query.
+     * @param selectionArgs (Optional) Selection arguments used in the query.
+     * @return The value of the _data column, which is typically a file path.
+     */
+    public String getDataColumn(Context context, Uri uri, String selection,
+                                String[] selectionArgs) {
+
+        Cursor cursor = null;
+        final String column = "_data";
+        final String[] projection = {column};
+
+        try {
+            cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs,
+                    null);
+            if (cursor != null && cursor.moveToFirst()) {
+                final int column_index = cursor.getColumnIndexOrThrow(column);
+                return cursor.getString(column_index);
+            }
+        } finally {
+            if (cursor != null)
+                cursor.close();
+        }
+        return null;
+    }
+
+    /**
+     * @param uri The Uri to check.
+     * @return Whether the Uri authority is ExternalStorageProvider.
+     */
+    public boolean isExternalStorageDocument(Uri uri) {
+        return "com.android.externalstorage.documents".equals(uri.getAuthority());
+    }
+
+    /**
+     * @param uri The Uri to check.
+     * @return Whether the Uri authority is DownloadsProvider.
+     */
+    public boolean isDownloadsDocument(Uri uri) {
+        return "com.android.providers.downloads.documents".equals(uri.getAuthority());
+    }
+
+    /**
+     * @param uri The Uri to check.
+     * @return Whether the Uri authority is MediaProvider.
+     */
+    public boolean isMediaDocument(Uri uri) {
+        return "com.android.providers.media.documents".equals(uri.getAuthority());
     }
 
 }
