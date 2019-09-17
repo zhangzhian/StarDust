@@ -87,8 +87,8 @@ public class AppFragment extends BaseFragment implements TitleLayout.onTitleClic
         appConstraintLayout.setName("ConstraintLayout");
         appInfoBeanList.add(appConstraintLayout);
         AppInfoBean appTFTP = new AppInfoBean();
-        appTFTP.setImage(R.drawable.app_android);
-        appTFTP.setName("TFTP");
+        appTFTP.setImage(R.drawable.app_box_wifi_upgrade);
+        appTFTP.setName("TBox Wifi升级");
         appInfoBeanList.add(appTFTP);
     }
 
