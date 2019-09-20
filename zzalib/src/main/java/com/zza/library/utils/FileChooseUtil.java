@@ -170,6 +170,9 @@ public class FileChooseUtil {
         returnCursor.moveToFirst();
         String name = (returnCursor.getString(nameIndex));
         String size = (Long.toString(returnCursor.getLong(sizeIndex)));
+        if (name == null) {
+            name = System.currentTimeMillis() + "";
+        }
         File file = new File(context.getFilesDir(), name);
         try {
             InputStream inputStream = context.getContentResolver().openInputStream(uri);
