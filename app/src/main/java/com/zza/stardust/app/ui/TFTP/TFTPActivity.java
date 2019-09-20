@@ -1,10 +1,13 @@
 package com.zza.stardust.app.ui.TFTP;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
@@ -12,7 +15,11 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.provider.OpenableColumns;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,6 +34,7 @@ import com.zza.stardust.R;
 import com.zza.stardust.base.MActivity;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
@@ -59,6 +67,8 @@ public class TFTPActivity extends MActivity {
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
     private ProgressDialog progressDialog = null;
+    private static final int CODE_FOR_WRITE_PERMISSION = 1;
+    private boolean isPermission = false;
 
     @Override
     protected BasePresenter createPresenter() {
@@ -74,6 +84,40 @@ public class TFTPActivity extends MActivity {
     protected void onInit(Bundle savedInstanceState) {
         super.onInit(savedInstanceState);
         LogUtil.i(Environment.getExternalStorageDirectory().getPath() + "/TBOX.bin");
+        //使用兼容库就无需判断系统版本
+        int hasWriteStoragePermission = ContextCompat.checkSelfPermission(getApplication(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (hasWriteStoragePermission == PackageManager.PERMISSION_GRANTED) {
+            //拥有权限，执行操作
+            isPermission = true;
+        } else {
+            //没有权限，向用户请求权限
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, CODE_FOR_WRITE_PERMISSION);
+        }
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        //通过requestCode来识别是否同一个请求
+        if (requestCode == CODE_FOR_WRITE_PERMISSION) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                //用户同意，执行操作
+                isPermission = true;
+            } else {
+                //用户不同意，向用户展示该权限作用
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                    new AlertDialog.Builder(this)
+                            .setMessage("需要该权限读取本地升级文件")
+                            .setPositiveButton("OK", (dialog1, which) ->
+                                    ActivityCompat.requestPermissions(this,
+                                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                            CODE_FOR_WRITE_PERMISSION))
+                            .setNegativeButton("Cancel", null)
+                            .create()
+                            .show();
+                }
+            }
+        }
     }
 
     @OnClick({R.id.bt_start, R.id.bt_download, R.id.bt_choose_path})
@@ -90,6 +134,8 @@ public class TFTPActivity extends MActivity {
                     ToastUtil.show("请输入正确软件版本号");
                 } else if (etSv.getText().toString().length() >= 31) {
                     ToastUtil.show("请输入正确硬件版本号");
+                } else if (!isPermission) {
+                    ToastUtil.show("无读写权限，请授予权限后重试");
                 } else {
                     startUpgrade();
                 }
@@ -173,9 +219,12 @@ public class TFTPActivity extends MActivity {
                         LogUtil.i("File path:" + path);
                         return;
                     }
-                    if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {//4.4以后
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        path = getFilePathForN(uri, this);
+                    } else if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {//4.4以后
                         path = getPath(this, uri);
-                    } else {//4.4以下下系统调用方法
+
+                    } else {
                         path = getRealPathFromURI(uri);
                     }
                     tvFilepath.setText(path);
@@ -203,11 +252,30 @@ public class TFTPActivity extends MActivity {
                 int line = 0;
                 byte[] buf = new byte[1024];
                 LogUtil.w(strData);
+
+//                long startTime = System.currentTimeMillis();
                 pw.write(strData);
                 pw.flush();
                 //socket.shutdownOutput();//关闭输出流
                 //接收收到的数据
                 while ((line = is.read(buf)) != -1) {
+//                    long endTime = System.currentTimeMillis();
+//                    LogUtil.i("gap:"+(endTime - startTime));
+//                    if (endTime - startTime > 10 * 60 * 1000) {
+//                        LogUtil.i("刷新超时");
+//                        runOnUiThread(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                tvResult.setText("刷新超时");
+//                                if (progressDialog != null) {
+//                                    progressDialog.dismiss();
+//                                    progressDialog = null;
+//                                }
+//                            }
+//                        });
+//                        break;
+//                    }
+
                     //将字节数组转换成十六进制的字符串
                     String strReturn = BytesToHexString(buf);
                     LogUtil.w("---->:" + strReturn);
@@ -235,6 +303,10 @@ public class TFTPActivity extends MActivity {
                                     @Override
                                     public void run() {
                                         tvResult.setText("刷新成功");
+                                        if (progressDialog != null) {
+                                            progressDialog.dismiss();
+                                            progressDialog = null;
+                                        }
                                     }
                                 });
                             } else {
@@ -243,20 +315,14 @@ public class TFTPActivity extends MActivity {
                                     @Override
                                     public void run() {
                                         tvResult.setText("刷新失败，错误码：" + dataBuf[30]);
+                                        if (progressDialog != null) {
+                                            progressDialog.dismiss();
+                                            progressDialog = null;
+                                        }
                                     }
                                 });
 
                             }
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    if (progressDialog != null) {
-                                        progressDialog.dismiss();
-                                        progressDialog = null;
-                                    }
-                                }
-                            });
-
                             break;
                         }
 
@@ -270,12 +336,22 @@ public class TFTPActivity extends MActivity {
                 os.close();
 
                 socket.close();
-
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (progressDialog != null) {
+                            tvResult.setText("刷新异常");
+                            progressDialog.dismiss();
+                            progressDialog = null;
+                        }
+                    }
+                });
             } catch (Exception e) {
                 e.printStackTrace();
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        tvResult.setText("刷新异常");
                         if (progressDialog != null) {
                             progressDialog.dismiss();
                             progressDialog = null;
@@ -482,7 +558,7 @@ public class TFTPActivity extends MActivity {
 
         Cursor cursor = null;
         final String column = "_data";
-        final String[] projection = {column};
+        final String[] projection = {MediaStore.Images.Media.DATA};
 
         try {
             cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs,
@@ -520,6 +596,45 @@ public class TFTPActivity extends MActivity {
      */
     public boolean isMediaDocument(Uri uri) {
         return "com.android.providers.media.documents".equals(uri.getAuthority());
+    }
+
+    private static String getFilePathForN(Uri uri, Context context) {
+        Uri returnUri = uri;
+        Cursor returnCursor = context.getContentResolver().query(returnUri, null, null, null, null);
+        /*
+         * Get the column indexes of the data in the Cursor,
+         *     * move to the first row in the Cursor, get the data,
+         *     * and display it.
+         * */
+        int nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+        int sizeIndex = returnCursor.getColumnIndex(OpenableColumns.SIZE);
+        returnCursor.moveToFirst();
+        String name = (returnCursor.getString(nameIndex));
+        String size = (Long.toString(returnCursor.getLong(sizeIndex)));
+        File file = new File(context.getFilesDir(), name);
+        try {
+            InputStream inputStream = context.getContentResolver().openInputStream(uri);
+            FileOutputStream outputStream = new FileOutputStream(file);
+            int read = 0;
+            int maxBufferSize = 1 * 1024 * 1024;
+            int bytesAvailable = inputStream.available();
+
+            //int bufferSize = 1024;
+            int bufferSize = Math.min(bytesAvailable, maxBufferSize);
+
+            final byte[] buffers = new byte[bufferSize];
+            while ((read = inputStream.read(buffers)) != -1) {
+                outputStream.write(buffers, 0, read);
+            }
+            Log.e("File Size", "Size " + file.length());
+            inputStream.close();
+            outputStream.close();
+            Log.e("File Path", "Path " + file.getPath());
+            Log.e("File Size", "Size " + file.length());
+        } catch (Exception e) {
+            Log.e("Exception", e.getMessage());
+        }
+        return file.getPath();
     }
 
 }
