@@ -17,7 +17,12 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 
-
+/**
+ * 系统文件选择工具，解析系统系统文件选择后返回URI，返回真正的Path
+ *
+ *
+ * 使用见TFTPActivity#chooseLocalFilePath
+ */
 public class FileChooseUtil {
     private Context context;
     private static FileChooseUtil fileChooseUtil = null;
@@ -74,6 +79,8 @@ public class FileChooseUtil {
 
     /**
      * 专为Android4.4设计的从Uri获取文件绝对路径，以前的方法已不好使
+     * <p>
+     * TODO 在9.0 Magic UI 有问题
      */
     @SuppressLint("NewApi")
     private String getPath(final Context context, final Uri uri) {
