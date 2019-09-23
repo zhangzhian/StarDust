@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.media.audiofx.EnvironmentalReverb;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -30,6 +31,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class TFTPActivity extends MActivity {
@@ -55,6 +57,10 @@ public class TFTPActivity extends MActivity {
     EditText etHv;
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
+    @BindView(R.id.bt_get_log)
+    Button btGetLog;
+    @BindView(R.id.tv_log_info)
+    TextView tvLogInfo;
     private ProgressDialog progressDialog = null;
     private static final int CODE_FOR_WRITE_PERMISSION = 1;
     private boolean isPermission = false;
@@ -109,7 +115,7 @@ public class TFTPActivity extends MActivity {
         }
     }
 
-    @OnClick({R.id.bt_start, R.id.bt_download, R.id.bt_choose_path})
+    @OnClick({R.id.bt_start, R.id.bt_download, R.id.bt_choose_path, R.id.bt_get_log})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.bt_start:
@@ -134,7 +140,51 @@ public class TFTPActivity extends MActivity {
             case R.id.bt_choose_path:
                 chooseLocalFilePath();
                 break;
+            case R.id.bt_get_log:
+                pullLog();
+                break;
         }
+    }
+
+    private void pullLog() {
+        if (progressDialog == null)
+            progressDialog = ProgressDialog.show(this, "提示", "正在传输获取日志", false, false);
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    TFTPClientUtil client = new TFTPClientUtil();
+                    long timeStart = System.currentTimeMillis();
+                    client.initClient();
+                    //client.sendFile("192.168.225.1:69", Environment.getExternalStorageDirectory().getPath() + "/TBOX.bin", "TBOX.bin");
+                    client.getFile("192.168.225.1:69",
+                            Environment.getExternalStorageDirectory() + "/aaa", "fda");
+                    long timeEnd = System.currentTimeMillis();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (progressDialog != null) {
+                                progressDialog.dismiss();
+                                progressDialog = null;
+                            }
+                        }
+                    });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (progressDialog != null) {
+                                progressDialog.dismiss();
+                                progressDialog = null;
+                            }
+                        }
+                    });
+                }
+            }
+
+        });
+        thread.start();
     }
 
     private void startUpgrade() {
@@ -145,7 +195,7 @@ public class TFTPActivity extends MActivity {
             @Override
             public void run() {
                 try {
-                    TFTPSendFileClient client = new TFTPSendFileClient();
+                    TFTPClientUtil client = new TFTPClientUtil();
                     long timeStart = System.currentTimeMillis();
                     client.initClient();
                     //client.sendFile("192.168.225.1:69", Environment.getExternalStorageDirectory().getPath() + "/TBOX.bin", "TBOX.bin");
@@ -176,8 +226,6 @@ public class TFTPActivity extends MActivity {
 
         });
         thread.start();
-
-
     }
 
     private void chooseLocalFilePath() {
@@ -443,4 +491,5 @@ public class TFTPActivity extends MActivity {
 
         return bytes;
     }
+
 }
