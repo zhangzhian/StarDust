@@ -4,9 +4,7 @@ package com.zza.stardust.app.ui.TFTP;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Environment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -20,7 +18,6 @@ import java.io.File;
 import java.util.ArrayList;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
@@ -33,7 +30,9 @@ public class TBoxLogFragment extends MFragment {
     private static final String TBOX_FILE_STORAGE_DIR = Environment.getExternalStorageDirectory() + "/TBoxData/";
     private static final String TBOX_ARM_LOG = "data/log/armlog/";
     private static final String TBOX_APPDATA_LOG = "data/data/appdata/";
-    private static final String[] moduleName = {"app", "bgd", "crt", "fda", "hum", "ldr", "loc", "mdc", "ntm", "swd"};
+    private static final String[] MODULE_NAME = {"app", "bgd", "crt", "fda", "hum", "ldr", "loc", "mdc", "ntm", "swd"};
+    private static final String[] MODULE_NAME_DEBUG = {"appd", "bgdd", "crtd", "fdad", "humd", "ldrd", "locd", "mdcd", "ntmd", "swdd"};
+
     @BindView(R.id.scrollView)
     ScrollView scrollView;
     Unbinder unbinder;
@@ -71,7 +70,7 @@ public class TBoxLogFragment extends MFragment {
     }
 
     private void initLogDataPath() {
-        for (String module : moduleName) {
+        for (String module : MODULE_NAME) {
             for (int i = 0; i <= 5; i++) {
                 if (i == 0) {
                     list.add(TBOX_ARM_LOG + module + ".log");
@@ -80,7 +79,15 @@ public class TBoxLogFragment extends MFragment {
                 }
             }
         }
-
+        for (String module : MODULE_NAME_DEBUG) {
+            for (int i = 0; i <= 1; i++) {
+                if (i == 0) {
+                    list.add(TBOX_ARM_LOG + module + ".log");
+                } else {
+                    list.add(TBOX_ARM_LOG + module + ".log" + "." + (i - 1));
+                }
+            }
+        }
         list.add(TBOX_APPDATA_LOG + "blind_data_file");
         list.add(TBOX_APPDATA_LOG + "qb_blind_data_file");
 
@@ -109,17 +116,13 @@ public class TBoxLogFragment extends MFragment {
             public void run() {
                 try {
                     TFTPClientUtil client = new TFTPClientUtil();
-                    long timeStart = System.currentTimeMillis();
                     client.initClient(getActivity());
-//                    client.getFile("192.168.225.1:69",Environment.getExternalStorageDirectory() + "/fda1.log", "data/log/armlog/fda");
-
                     String storageDir = TBOX_FILE_STORAGE_DIR + TimeUtil.stampToDateHMS(System.currentTimeMillis()) + "/";
                     File file = new File(storageDir);
                     if (!file.exists()) file.mkdirs();
 
                     client.getFiles("192.168.225.1:69", storageDir, list);
 
-                    long timeEnd = System.currentTimeMillis();
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {

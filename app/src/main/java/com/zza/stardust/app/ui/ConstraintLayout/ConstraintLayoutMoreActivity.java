@@ -1,8 +1,5 @@
 package com.zza.stardust.app.ui.ConstraintLayout;
 
-import android.app.Activity;
-import android.os.Bundle;
-
 import com.zza.library.base.BasePresenter;
 import com.zza.stardust.R;
 import com.zza.stardust.base.MActivity;

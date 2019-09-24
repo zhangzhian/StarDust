@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".base.MApplication"
+        android:name="com.zza.stardust.base.MApplication"
         android:allowBackup="true"
         android:icon="@drawable/logo_star_dust"
         android:label="@string/app_name"
@@ -15,11 +15,11 @@
         android:roundIcon="@drawable/logo_star_dust"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".app.ui.TFTP.TFTPActivity"></activity>
-        <activity android:name=".app.ui.ConstraintLayout.ConstraintLayoutMoreActivity" />
-        <activity android:name=".app.ui.ConstraintLayout.ConstraintLayoutActivity" />
-        <activity android:name=".app.ui.OkHttp.OkHttpActivity" />
-        <activity android:name=".home.ui.MainActivity">
+        <activity android:name="com.zza.stardust.app.ui.TFTP.TFTPActivity"></activity>
+        <activity android:name="com.zza.stardust.app.ui.ConstraintLayout.ConstraintLayoutMoreActivity" />
+        <activity android:name="com.zza.stardust.app.ui.ConstraintLayout.ConstraintLayoutActivity" />
+        <activity android:name="com.zza.stardust.app.ui.OkHttp.OkHttpActivity" />
+        <activity android:name="com.zza.stardust.home.ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

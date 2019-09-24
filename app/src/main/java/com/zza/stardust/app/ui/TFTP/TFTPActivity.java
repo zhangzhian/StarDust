@@ -2,9 +2,7 @@ package com.zza.stardust.app.ui.TFTP;
 
 import android.Manifest;
 import android.app.AlertDialog;
-import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
@@ -17,7 +15,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.zza.library.base.BasePresenter;
-import com.zza.library.utils.FileChooseUtil;
 import com.zza.library.utils.LogUtil;
 import com.zza.stardust.R;
 import com.zza.stardust.base.MActivity;
@@ -27,10 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-
-import static com.zza.stardust.app.ui.TFTP.TBoxUpgradeFragment.REQUEST_CHOOSEFILE;
 
 public class TFTPActivity extends MActivity implements ViewPager.OnPageChangeListener {
 

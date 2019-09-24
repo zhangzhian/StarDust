@@ -2,9 +2,7 @@ package com.zza.stardust.app.ui.OkHttp;
 
 import com.zza.library.utils.LogUtil;
 
-import java.io.BufferedOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 
 import okhttp3.Interceptor;
 import okhttp3.Request;
