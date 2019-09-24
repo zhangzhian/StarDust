@@ -29,7 +29,11 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Unbinder;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -56,10 +60,7 @@ public class TBoxUpgradeFragment extends MFragment {
     EditText etHv;
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
-    @BindView(R.id.bt_get_log)
-    Button btGetLog;
-    @BindView(R.id.tv_log_info)
-    TextView tvLogInfo;
+
     private ProgressDialog progressDialog = null;
 
     @Override
@@ -78,7 +79,7 @@ public class TBoxUpgradeFragment extends MFragment {
 
     }
 
-    @OnClick({R.id.bt_start, R.id.bt_download, R.id.bt_choose_path, R.id.bt_get_log})
+    @OnClick({R.id.bt_start, R.id.bt_download, R.id.bt_choose_path})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.bt_start:
@@ -103,56 +104,14 @@ public class TBoxUpgradeFragment extends MFragment {
             case R.id.bt_choose_path:
                 chooseLocalFilePath();
                 break;
-            case R.id.bt_get_log:
-                pullLog();
-                break;
+
         }
     }
 
-    protected void setTvFilepath(String path){
+    protected void setTvFilepath(String path) {
         tvFilepath.setText(path);
     }
 
-    private void pullLog() {
-        if (progressDialog == null)
-            progressDialog = ProgressDialog.show(getActivity(), "提示", "正在传输获取日志", false, false);
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    TFTPClientUtil client = new TFTPClientUtil();
-                    long timeStart = System.currentTimeMillis();
-                    client.initClient();
-                    //client.sendFile("192.168.225.1:69", Environment.getExternalStorageDirectory().getPath() + "/TBOX.bin", "TBOX.bin");
-                    client.getFile("192.168.225.1:69",
-                            Environment.getExternalStorageDirectory() + "/fda1.log", "data/log/armlog/fda");
-                    long timeEnd = System.currentTimeMillis();
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (progressDialog != null) {
-                                progressDialog.dismiss();
-                                progressDialog = null;
-                            }
-                        }
-                    });
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (progressDialog != null) {
-                                progressDialog.dismiss();
-                                progressDialog = null;
-                            }
-                        }
-                    });
-                }
-            }
-
-        });
-        thread.start();
-    }
 
     private void startUpgrade() {
         if (progressDialog == null)
@@ -164,7 +123,7 @@ public class TBoxUpgradeFragment extends MFragment {
                 try {
                     TFTPClientUtil client = new TFTPClientUtil();
                     long timeStart = System.currentTimeMillis();
-                    client.initClient();
+                    client.initClient(getActivity());
                     //client.sendFile("192.168.225.1:69", Environment.getExternalStorageDirectory().getPath() + "/TBOX.bin", "TBOX.bin");
                     client.sendFile("192.168.225.1:69",
                             tvFilepath.getText().toString(), TBOX_WIFI_ANDROID);
@@ -207,7 +166,21 @@ public class TBoxUpgradeFragment extends MFragment {
         startActivityForResult(intent, REQUEST_CHOOSEFILE);
     }
 
-
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case REQUEST_CHOOSEFILE:
+                    String path;
+                    Uri uri = data.getData();
+                    path = FileChooseUtil.getInstance(getActivity()).getChooseFileResultPath(uri);
+                    setTvFilepath(path);
+                    LogUtil.i("File path:" + path);
+                    break;
+            }
+        }
+    }
 
     private void SendTcpData() {
         Thread thread = new Thread(() -> {
@@ -443,4 +416,5 @@ public class TBoxUpgradeFragment extends MFragment {
 
         return bytes;
     }
+
 }

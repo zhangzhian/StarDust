@@ -85,6 +85,10 @@ public class TFTPActivity extends MActivity implements ViewPager.OnPageChangeLis
     }
 
 
+    public void updataText(String content){
+        tBoxLogFragment.updateTextShow(content);
+    }
+
     /**
      * 初始化底部Tab
      **/
@@ -151,23 +155,6 @@ public class TFTPActivity extends MActivity implements ViewPager.OnPageChangeLis
         }
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {//选择文件返回
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            switch (requestCode) {
-                case REQUEST_CHOOSEFILE:
-                    String path;
-                    Uri uri = data.getData();
-                    path = FileChooseUtil.getInstance(this).getChooseFileResultPath(uri);
-
-                    LogUtil.i("File path:" + path);
-                    break;
-            }
-        }
-    }
-
-
     @OnClick({R.id.iv_upgrade, R.id.tv_upgrade, R.id.tv_log, R.id.iv_log, R.id.fl_upgrade, R.id.fl_log})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -196,13 +183,6 @@ public class TFTPActivity extends MActivity implements ViewPager.OnPageChangeLis
     @Override
     public void onPageScrollStateChanged(int i) {
 
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
     }
 
 }
