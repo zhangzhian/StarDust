@@ -24,7 +24,7 @@ public class MineFragment extends BaseFragment {
     }
 
     @Override
-    protected void init(View rootView, Bundle savedInstanceState) {
+    protected void onInit(View rootView, Bundle savedInstanceState) {
 
     }
 

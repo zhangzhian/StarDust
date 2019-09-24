@@ -32,7 +32,7 @@ public abstract class BaseFragment<V, T extends BasePresenter<V>> extends Fragme
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(createViewLayoutId(), container, false);
         //ButterKnife.bind(this, rootView);
-        init(rootView,savedInstanceState);
+        onInit(rootView,savedInstanceState);
         if (isSetRefresh()) {
             setupSwipeRefresh(rootView);
         }
@@ -91,7 +91,7 @@ public abstract class BaseFragment<V, T extends BasePresenter<V>> extends Fragme
 
     protected abstract int createViewLayoutId();
 
-    protected abstract void init(View rootView, Bundle savedInstanceState);
+    protected abstract void onInit(View rootView, Bundle savedInstanceState);
 
     public Boolean isSetRefresh() {
         return true;

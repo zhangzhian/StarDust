@@ -52,7 +52,7 @@ public class AppFragment extends BaseFragment implements TitleLayout.onTitleClic
     }
 
     @Override
-    protected void init(View rootView, Bundle savedInstanceState) {
+    protected void onInit(View rootView, Bundle savedInstanceState) {
         unbinder = ButterKnife.bind(this, rootView);
         initView(rootView);
         initAppData();
