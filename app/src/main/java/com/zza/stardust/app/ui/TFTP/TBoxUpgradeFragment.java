@@ -37,7 +37,8 @@ import static android.app.Activity.RESULT_OK;
 public class TBoxUpgradeFragment extends MFragment {
 
     protected static final int REQUEST_CHOOSEFILE = 1;
-    private static final String TBOX_WIFI_ANDROID = "cache/upgrade/TBOX_WIFI_ANDROID.bin";
+    private static final String TBOX_WIFI_ANDROID = "TBOX_WIFI_ANDROID.bin";
+    private static final String TBOX_WIFI_ANDROID_PATH = "cache/upgrade/TBOX_WIFI_ANDROID.bin";
     @BindView(R.id.bt_start)
     Button btStart;
     @BindView(R.id.tv_result)
@@ -82,9 +83,9 @@ public class TBoxUpgradeFragment extends MFragment {
                 if (TextUtils.isEmpty(tvFilepath.getText().toString())) {
                     ToastUtil.show("请选择路径");
                 } else if (TextUtils.isEmpty(etHv.getText().toString())) {
-                    ToastUtil.show("输入软件版本号");
+                    ToastUtil.show("请输入软件版本号");
                 } else if (TextUtils.isEmpty(etSv.getText().toString())) {
-                    ToastUtil.show("请选择硬件版本号");
+                    ToastUtil.show("请输入硬件版本号");
                 } else if (etHv.getText().toString().length() >= 31) {
                     ToastUtil.show("请输入正确软件版本号");
                 } else if (etSv.getText().toString().length() >= 31) {
@@ -122,7 +123,7 @@ public class TBoxUpgradeFragment extends MFragment {
                     client.initClient(getActivity());
                     //client.sendFile("192.168.225.1:69", Environment.getExternalStorageDirectory().getPath() + "/TBOX.bin", "TBOX.bin");
                     client.sendFile("192.168.225.1:69",
-                            tvFilepath.getText().toString(), TBOX_WIFI_ANDROID);
+                            tvFilepath.getText().toString(), TBOX_WIFI_ANDROID_PATH);
                     long timeEnd = System.currentTimeMillis();
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
