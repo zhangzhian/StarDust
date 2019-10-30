@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:name="com.zza.stardust.base.MApplication"
+        android:name=".base.MApplication"
         android:allowBackup="true"
         android:icon="@drawable/logo_star_dust"
         android:label="@string/app_name"
@@ -15,11 +15,24 @@
         android:roundIcon="@drawable/logo_star_dust"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.zza.stardust.app.ui.TFTP.TFTPActivity"></activity>
-        <activity android:name="com.zza.stardust.app.ui.ConstraintLayout.ConstraintLayoutMoreActivity" />
-        <activity android:name="com.zza.stardust.app.ui.ConstraintLayout.ConstraintLayoutActivity" />
-        <activity android:name="com.zza.stardust.app.ui.OkHttp.OkHttpActivity" />
-        <activity android:name="com.zza.stardust.home.ui.MainActivity">
+        <activity
+            android:name=".app.ui.androidart.AndroidArtActivity"
+            android:label="@string/title_activity_android_art"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".app.ui.androidhero.AndroidHeroActivity"
+            android:label="@string/title_activity_android_hero"
+            android:parentActivityName=".base.MActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.zza.stardust.base.MActivity" />
+        </activity>
+        <activity android:name=".app.ui.TFTP.TFTPActivity" />
+        <activity android:name=".app.ui.ConstraintLayout.ConstraintLayoutMoreActivity" />
+        <activity android:name=".app.ui.ConstraintLayout.ConstraintLayoutActivity" />
+        <activity android:name=".app.ui.OkHttp.OkHttpActivity" />
+        <activity android:name=".home.ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

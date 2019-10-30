@@ -16,6 +16,8 @@ import com.zza.stardust.app.adpter.AppAdapter;
 import com.zza.stardust.app.ui.ConstraintLayout.ConstraintLayoutActivity;
 import com.zza.stardust.app.ui.OkHttp.OkHttpActivity;
 import com.zza.stardust.app.ui.TFTP.TFTPActivity;
+import com.zza.stardust.app.ui.androidart.AndroidArtActivity;
+import com.zza.stardust.app.ui.androidhero.AndroidHeroActivity;
 import com.zza.stardust.bean.AppInfoBean;
 
 import java.util.ArrayList;
@@ -82,14 +84,27 @@ public class AppFragment extends BaseFragment implements TitleLayout.onTitleClic
         appInfoOkHttp.setImage(R.drawable.app_net_okhttp);
         appInfoOkHttp.setName("OkHttp");
         appInfoBeanList.add(appInfoOkHttp);
+
         AppInfoBean appConstraintLayout = new AppInfoBean();
         appConstraintLayout.setImage(R.drawable.app_layout);
         appConstraintLayout.setName("ConstraintLayout");
         appInfoBeanList.add(appConstraintLayout);
+
         AppInfoBean appTFTP = new AppInfoBean();
         appTFTP.setImage(R.drawable.app_box_wifi_upgrade);
         appTFTP.setName("TBox Wifi升级");
         appInfoBeanList.add(appTFTP);
+
+        AppInfoBean appAndroidHero = new AppInfoBean();
+        appAndroidHero.setImage(R.drawable.app_android_hero);
+        appAndroidHero.setName("群英传");
+        appInfoBeanList.add(appAndroidHero);
+
+        AppInfoBean appAndroidArt = new AppInfoBean();
+        appAndroidArt.setImage(R.drawable.app_android_art);
+        appAndroidArt.setName("开发艺术探索");
+        appInfoBeanList.add(appAndroidArt);
+
     }
 
     @Override
@@ -119,6 +134,12 @@ public class AppFragment extends BaseFragment implements TitleLayout.onTitleClic
                 break;
             case 2:
                 getActivity().startActivity(new Intent(getActivity(), TFTPActivity.class));
+                break;
+            case 3:
+                getActivity().startActivity(new Intent(getActivity(), AndroidHeroActivity.class));
+                break;
+            case 4:
+                getActivity().startActivity(new Intent(getActivity(), AndroidArtActivity.class));
                 break;
             default:
                 break;
