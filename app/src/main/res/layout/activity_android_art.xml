@@ -6,5 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".app.ui.androidart.AndroidArtActivity">
 
-
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_test"
+        android:fitsSystemWindows="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
 </android.support.design.widget.CoordinatorLayout>
