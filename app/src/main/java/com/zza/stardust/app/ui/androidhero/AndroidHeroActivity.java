@@ -2,20 +2,14 @@ package com.zza.stardust.app.ui.androidhero;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.zza.library.base.BasePresenter;
 import com.zza.library.common.lmpl.IOnItemClickListener;
-import com.zza.library.utils.ToastUtil;
 import com.zza.stardust.R;
 import com.zza.stardust.app.adpter.StrItemAdapter;
-import com.zza.stardust.app.ui.androidart.CustomViewActivity;
 import com.zza.stardust.base.MActivity;
 
 import java.util.ArrayList;

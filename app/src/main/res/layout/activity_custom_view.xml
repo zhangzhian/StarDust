@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
-    tools:context=".app.ui.androidart.CustomViewActivity">
-    <com.zza.stardust.app.ui.androidart.MTextView
+    tools:context=".app.ui.androidhero.CustomViewActivity">
+    <com.zza.stardust.app.ui.androidhero.MTextView
         android:background="@color/blue479bff"
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -15,7 +15,7 @@
         android:text="MTextView"
         />
     
-    <com.zza.stardust.app.ui.androidart.ShineTextView
+    <com.zza.stardust.app.ui.androidhero.ShineTextView
         android:layout_marginTop="15dp"
         android:textSize="14sp"
         android:text="ShineTextView"
