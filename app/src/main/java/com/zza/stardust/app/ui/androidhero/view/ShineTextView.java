@@ -1,4 +1,4 @@
-package com.zza.stardust.app.ui.androidhero;
+package com.zza.stardust.app.ui.androidhero.view;
 
 import android.content.Context;
 import android.graphics.Canvas;

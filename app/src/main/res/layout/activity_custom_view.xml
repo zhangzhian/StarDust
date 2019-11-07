@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:fitsSystemWindows="true"
     tools:context=".app.ui.androidhero.CustomViewActivity">
-    <com.zza.stardust.app.ui.androidhero.MTextView
+    <com.zza.stardust.app.ui.androidhero.view.MTextView
         android:background="@color/blue479bff"
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -15,7 +15,7 @@
         android:text="MTextView"
         />
     
-    <com.zza.stardust.app.ui.androidhero.ShineTextView
+    <com.zza.stardust.app.ui.androidhero.view.ShineTextView
         android:layout_marginTop="15dp"
         android:textSize="14sp"
         android:text="ShineTextView"
@@ -51,4 +51,11 @@
         app:bottom_padding="1dp"
         >
     </com.zza.library.weight.TitleLayout>
+
+    <com.zza.stardust.app.ui.androidhero.view.CircleProgressView
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
+    <com.zza.stardust.app.ui.androidhero.view.VolumeView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>
