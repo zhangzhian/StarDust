@@ -1,5 +1,6 @@
 package com.zza.stardust.app.ui.androidhero;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -14,6 +15,7 @@ import com.zza.library.common.lmpl.IOnItemClickListener;
 import com.zza.library.utils.ToastUtil;
 import com.zza.stardust.R;
 import com.zza.stardust.app.adpter.StrItemAdapter;
+import com.zza.stardust.app.ui.androidart.CustomViewActivity;
 import com.zza.stardust.base.MActivity;
 
 import java.util.ArrayList;
@@ -47,7 +49,7 @@ public class AndroidHeroActivity extends MActivity implements IOnItemClickListen
 
     private void initData() {
         data.clear();
-        data.add("Test");
+        data.add("自定义组件");
     }
 
     private void initRecycleView() {
@@ -60,11 +62,12 @@ public class AndroidHeroActivity extends MActivity implements IOnItemClickListen
         rvTest.setAdapter(adapter);
     }
 
+
     @Override
     public void onItemClick(View view, int position) {
         switch (position){
             case 0:
-                ToastUtil.show("Click Test");
+                startActivity(new Intent(this,CustomViewActivity.class));
                 break;
 
             case 1:
