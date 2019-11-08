@@ -43,7 +43,9 @@ public class AndroidHeroActivity extends MActivity implements IOnItemClickListen
 
     private void initData() {
         data.clear();
-        data.add("自定义组件");
+        data.add("自定义View");
+        data.add("自定义ViewGroup");
+
     }
 
     private void initRecycleView() {
@@ -65,6 +67,7 @@ public class AndroidHeroActivity extends MActivity implements IOnItemClickListen
                 break;
 
             case 1:
+                startActivity(new Intent(this,CustomViewGroupActivity.class));
 
                 break;
         }

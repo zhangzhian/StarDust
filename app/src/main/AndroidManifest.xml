@@ -15,6 +15,7 @@
         android:roundIcon="@drawable/logo_star_dust"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".app.ui.androidhero.CustomViewGroupActivity"></activity>
         <activity android:name=".app.ui.androidhero.CustomViewActivity" />
         <activity
             android:name=".app.ui.androidart.AndroidArtActivity"
