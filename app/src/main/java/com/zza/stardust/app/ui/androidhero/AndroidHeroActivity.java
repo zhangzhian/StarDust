@@ -45,6 +45,8 @@ public class AndroidHeroActivity extends MActivity implements IOnItemClickListen
         data.clear();
         data.add("自定义View");
         data.add("自定义ViewGroup");
+        data.add("View Scoll分析");
+        data.add("ViewGroup Scoll分析");
 
     }
 
@@ -65,10 +67,14 @@ public class AndroidHeroActivity extends MActivity implements IOnItemClickListen
             case 0:
                 startActivity(new Intent(this,CustomViewActivity.class));
                 break;
-
             case 1:
                 startActivity(new Intent(this,CustomViewGroupActivity.class));
-
+                break;
+            case 2:
+                startActivity(new Intent(this,ScollViewActivity.class));
+                break;
+            case 3:
+                startActivity(new Intent(this,ScollViewGroupActivity.class));
                 break;
         }
     }
