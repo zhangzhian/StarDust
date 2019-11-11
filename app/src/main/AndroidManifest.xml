@@ -15,7 +15,9 @@
         android:roundIcon="@drawable/logo_star_dust"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".app.ui.androidhero.ScollViewGroupActivity"></activity>
+        <activity android:name=".app.ui.androidhero.XMLPicActivity"></activity>
+        <activity android:name=".app.ui.androidhero.Base2DPicActivity" />
+        <activity android:name=".app.ui.androidhero.ScollViewGroupActivity" />
         <activity android:name=".app.ui.androidhero.ScollViewActivity" />
         <activity android:name=".app.ui.androidhero.CustomViewGroupActivity" />
         <activity android:name=".app.ui.androidhero.CustomViewActivity" />

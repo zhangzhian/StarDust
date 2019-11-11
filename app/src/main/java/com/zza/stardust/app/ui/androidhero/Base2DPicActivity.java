@@ -5,7 +5,7 @@ import com.zza.stardust.R;
 import com.zza.stardust.base.MActivity;
 
 
-public class ScollViewGroupActivity extends MActivity {
+public class Base2DPicActivity extends MActivity {
 
     @Override
     protected BasePresenter createPresenter() {
@@ -14,6 +14,6 @@ public class ScollViewGroupActivity extends MActivity {
 
     @Override
     protected int provideContentViewId() {
-        return R.layout.activity_scoll_view_group;
+        return R.layout.activity_base2_dpic;
     }
 }

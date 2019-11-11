@@ -47,7 +47,7 @@ public class AndroidHeroActivity extends MActivity implements IOnItemClickListen
         data.add("自定义ViewGroup");
         data.add("View Scoll分析");
         data.add("ViewGroup Scoll分析");
-
+        data.add("2D绘图基础");
     }
 
     private void initRecycleView() {
@@ -75,6 +75,9 @@ public class AndroidHeroActivity extends MActivity implements IOnItemClickListen
                 break;
             case 3:
                 startActivity(new Intent(this,ScollViewGroupActivity.class));
+                break;
+            case 4:
+                startActivity(new Intent(this,Base2DPicActivity.class));
                 break;
         }
     }
