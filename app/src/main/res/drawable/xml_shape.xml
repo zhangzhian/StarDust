@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    android:shape="rectangle">
+    <!--默认是rectangle-->
+
+    <!--rectangle/oval/line/ring-->
+    <!--&lt;!&ndash;当shape= rectangle的时候使用&ndash;&gt;-->
+    <!--<corners-->
+        <!--android:bottomLeftRadius="1dp"-->
+        <!--android:bottomRightRadius="1dp"-->
+        <!--android:radius="1dp"-->
+        <!--android:topLeftRadius="1dp"-->
+        <!--android:topRightRadius="1dp" />-->
+    <!--&lt;!&ndash;半径，会被后面的单个半径属性覆盖，默认是1dp&ndash;&gt;-->
+
+    <!--&lt;!&ndash;渐变&ndash;&gt;-->
+    <!--<gradient-->
+        <!--android:angle="1dp"-->
+        <!--android:centerColor="@color/colorAccent"-->
+        <!--android:centerX="1dp"-->
+        <!--android:centerY="1dp"-->
+        <!--android:gradientRadius="1dp"-->
+        <!--android:startColor="@color/colorAccent"-->
+        <!--android:type="linear"-->
+        <!--android:useLevel="true" />-->
+
+    <!--&lt;!&ndash;内间距&ndash;&gt;-->
+    <!--<padding-->
+        <!--android:bottom="1dp"-->
+        <!--android:left="1dp"-->
+        <!--android:right="1dp"-->
+        <!--android:top="1dp" />-->
+
+    <!--&lt;!&ndash;大小，主要用于imageview用于scaletype&ndash;&gt;-->
+    <!--<size-->
+        <!--android:width="1dp"-->
+        <!--android:height="1dp" />-->
+
+    <!--&lt;!&ndash;填充颜色&ndash;&gt;-->
+    <!--<solid android:color="@color/colorAccent" />-->
+
+    <!--&lt;!&ndash;指定边框&ndash;&gt;-->
+    <!--&lt;!&ndash;虚线间隔宽度&ndash;&gt;-->
+    <!--&lt;!&ndash;虚线宽度&ndash;&gt;-->
+    <!--<stroke-->
+        <!--android:width="1dp"-->
+        <!--android:color="@color/colorAccent"-->
+        <!--android:dashWidth= "1dp"-->
+        <!--android:dashGap= "1dp" />-->
+
+    <!--渐变-->
+    <gradient
+        android:angle="90"
+        android:startColor="@color/colorAccent"
+        android:endColor="@color/color_1296db"
+        />
+
+    <!--内间距-->
+    <padding
+        android:bottom="7dp"
+        android:left="7dp"
+        android:right="7dp"
+        android:top="7dp" />
+
+    <corners android:radius="8dp"/>
+</shape>
