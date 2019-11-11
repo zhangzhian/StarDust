@@ -50,6 +50,8 @@ public class AndroidHeroActivity extends MActivity implements IOnItemClickListen
         data.add("2D绘图基础");
         data.add("XML绘图");
         data.add("绘图机制与技巧");
+        data.add("色彩特效处理1");
+        data.add("色彩特效处理2");
     }
 
     private void initRecycleView() {
@@ -86,6 +88,12 @@ public class AndroidHeroActivity extends MActivity implements IOnItemClickListen
                 break;
             case 6:
                 startActivity(new Intent(this,DrawingSkillsActivity.class));
+                break;
+            case 7:
+                startActivity(new Intent(this,ColorMatrix1Activity.class));
+                break;
+            case 8:
+                startActivity(new Intent(this,ColorMatrix2Activity.class));
                 break;
         }
     }

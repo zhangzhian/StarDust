@@ -15,7 +15,9 @@
         android:roundIcon="@drawable/logo_star_dust"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".app.ui.androidhero.DrawingSkillsActivity"></activity>
+        <activity android:name=".app.ui.androidhero.ColorMatrix2Activity"></activity>
+        <activity android:name=".app.ui.androidhero.ColorMatrix1Activity" />
+        <activity android:name=".app.ui.androidhero.DrawingSkillsActivity" />
         <activity android:name=".app.ui.androidhero.XMLPicActivity" />
         <activity android:name=".app.ui.androidhero.Base2DPicActivity" />
         <activity android:name=".app.ui.androidhero.ScollViewGroupActivity" />
