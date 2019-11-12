@@ -15,7 +15,9 @@
         android:roundIcon="@drawable/logo_star_dust"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".app.ui.androidhero.FlagBitmapActivity"></activity>
+        <activity android:name=".app.ui.androidhero.ShaderActivity"></activity>
+        <activity android:name=".app.ui.androidhero.XfermodeActivity" />
+        <activity android:name=".app.ui.androidhero.FlagBitmapActivity" />
         <activity android:name=".app.ui.androidhero.ImageMatrixActivity" />
         <activity android:name=".app.ui.androidhero.ColorMatrix2Activity" />
         <activity android:name=".app.ui.androidhero.ColorMatrix1Activity" />

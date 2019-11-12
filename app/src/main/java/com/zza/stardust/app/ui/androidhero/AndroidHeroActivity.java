@@ -10,6 +10,7 @@ import com.zza.library.base.BasePresenter;
 import com.zza.library.common.lmpl.IOnItemClickListener;
 import com.zza.stardust.R;
 import com.zza.stardust.app.adpter.StrItemAdapter;
+import com.zza.stardust.app.ui.androidhero.view.XfermodeView;
 import com.zza.stardust.base.MActivity;
 
 import java.util.ArrayList;
@@ -108,6 +109,12 @@ public class AndroidHeroActivity extends MActivity implements IOnItemClickListen
                 break;
             case 10:
                 startActivity(new Intent(this,FlagBitmapActivity.class));
+                break;
+            case 11:
+                startActivity(new Intent(this, XfermodeActivity.class));
+                break;
+            case 12:
+                startActivity(new Intent(this, ShaderActivity.class));
                 break;
         }
     }
