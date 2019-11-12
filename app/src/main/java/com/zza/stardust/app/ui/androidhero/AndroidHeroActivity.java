@@ -1,6 +1,7 @@
 package com.zza.stardust.app.ui.androidhero;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +9,8 @@ import android.view.View;
 
 import com.zza.library.base.BasePresenter;
 import com.zza.library.common.lmpl.IOnItemClickListener;
+import com.zza.library.utils.ActivityCollector;
+import com.zza.library.utils.StatusBarUtil;
 import com.zza.stardust.R;
 import com.zza.stardust.app.adpter.StrItemAdapter;
 import com.zza.stardust.app.ui.androidhero.view.XfermodeView;
@@ -17,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class AndroidHeroActivity extends MActivity implements IOnItemClickListener {
 
@@ -58,8 +62,7 @@ public class AndroidHeroActivity extends MActivity implements IOnItemClickListen
         data.add("画笔特效处理：PorterDuffXfermode");
         data.add("画笔特效处理：Shader");
         data.add("画笔特效处理：PathEffect");
-        data.add("SurfaceView 1");
-        data.add("SurfaceView 2");
+        data.add("SurfaceView ");
 
     }
 
@@ -115,6 +118,9 @@ public class AndroidHeroActivity extends MActivity implements IOnItemClickListen
                 break;
             case 12:
                 startActivity(new Intent(this, ShaderActivity.class));
+                break;
+            case 13:
+                startActivity(new Intent(this, PathEffectViewActivity.class));
                 break;
         }
     }

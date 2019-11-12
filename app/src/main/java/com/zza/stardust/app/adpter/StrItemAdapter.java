@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.zza.library.common.lmpl.IOnItemClickListener;
+import com.zza.library.utils.LogUtil;
 import com.zza.stardust.R;
 import com.zza.stardust.bean.AppInfoBean;
 
@@ -44,23 +45,24 @@ public class StrItemAdapter extends RecyclerView.Adapter<StrItemAdapter.ViewHold
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_str_info, parent, false);
         ViewHolder holder = new ViewHolder(view);
-        return holder;
-    }
-
-    @Override
-    public void onBindViewHolder(final ViewHolder holder, final int position) {
         /**
          *  holder.getAdapterPosition()
          *  使用 position 的话会位置错乱
          */
-        holder.tv_content.setText(data.get(holder.getAdapterPosition()).toString());
-
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onItemClickListener.onItemClick(v, holder.getAdapterPosition());
+                // LogUtil.w(" getAdapterPosition:" + holder.getAdapterPosition() +" getLayoutPosition:" +holder.getLayoutPosition());
+                onItemClickListener.onItemClick(v,  holder.getAdapterPosition());
             }
         });
+        return holder;
+    }
+
+    @Override
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        //设置数据
+        holder.tv_content.setText(data.get( holder.getAdapterPosition()).toString());
     }
 
 
