@@ -52,6 +52,14 @@ public class AndroidHeroActivity extends MActivity implements IOnItemClickListen
         data.add("绘图机制与技巧");
         data.add("色彩特效处理1");
         data.add("色彩特效处理2");
+        data.add("图像特效处理：变换矩阵");
+        data.add("图像特效处理：像素块");
+        data.add("画笔特效处理：PorterDuffXfermode");
+        data.add("画笔特效处理：Shader");
+        data.add("画笔特效处理：PathEffect");
+        data.add("SurfaceView 1");
+        data.add("SurfaceView 2");
+
     }
 
     private void initRecycleView() {
@@ -94,6 +102,12 @@ public class AndroidHeroActivity extends MActivity implements IOnItemClickListen
                 break;
             case 8:
                 startActivity(new Intent(this,ColorMatrix2Activity.class));
+                break;
+            case 9:
+                startActivity(new Intent(this,ImageMatrixActivity.class));
+                break;
+            case 10:
+                startActivity(new Intent(this,FlagBitmapActivity.class));
                 break;
         }
     }
