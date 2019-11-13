@@ -252,14 +252,14 @@ public class OkHttpActivity extends MActivity {
         final ScheduledExecutorService executor = Executors.newScheduledThreadPool(2);
         final OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
-                .url("https://httpbin.org/delay/2") // This URL is served with a 2 second delay.
+                .url("https://httpbin.org/delay/2") // This URL is served with test_a 2 second delay.
                 .build();
 
         final long startNanos = System.nanoTime();
         final Call call = client.newCall(request);
 
         StringBuffer buffer = new StringBuffer();
-        // Schedule a job to cancel the call in 1 second.
+        // Schedule test_a job to cancel the call in 1 second.
         executor.schedule(new Runnable() {
             @Override
             public void run() {

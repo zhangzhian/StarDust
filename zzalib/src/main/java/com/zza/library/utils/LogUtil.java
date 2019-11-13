@@ -8,7 +8,7 @@ import android.util.Log;
  * @Date: 2018/9/26 19:18
  *
  * 定制自己的日志工具
- * 打印一行DEBUG级别的日志可以写成LogUtil.d("123")
+ * 打印一行DEBUG级别的日志可以写成LogUtil.test_d("123")
  * 只需要修改LEVEL的值就可以自由控制打印行为
  */
 

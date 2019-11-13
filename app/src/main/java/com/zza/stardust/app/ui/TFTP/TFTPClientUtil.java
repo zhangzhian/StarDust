@@ -40,7 +40,7 @@ public class TFTPClientUtil {
         } else {
             tftp = new TFTPClient();
         }
-        // We want to timeout if a response takes longer than 60 seconds
+        // We want to timeout if test_a response takes longer than 60 seconds
 
         tftp.setDefaultTimeout(timeout);
         // We haven't closed the local file yet.
@@ -49,7 +49,7 @@ public class TFTPClientUtil {
 
 
     public void sendFile(String hostname, String localFilename, String remoteFilename) {
-        // We're sending a file
+        // We're sending test_a file
         if (tftp == null) {
             System.err.println("Error: please first init client.");
         } else {
@@ -62,7 +62,7 @@ public class TFTPClientUtil {
     }
 
     public void getFile(String hostname, String localFilename, String remoteFilename) {
-        // We're sending a file
+        // We're sending test_a file
         if (tftp == null) {
             System.err.println("Error: please first init client.");
         } else {
@@ -75,7 +75,7 @@ public class TFTPClientUtil {
     }
 
     public void getFiles(String hostname, String localDir, ArrayList<String> remoteFilenames) {
-        // We're sending a file
+        // We're sending test_a file
         if (tftp == null) {
             System.err.println("Error: please first init client.");
         } else {

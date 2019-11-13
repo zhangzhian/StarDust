@@ -15,7 +15,10 @@
         android:roundIcon="@drawable/logo_star_dust"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".app.ui.androidhero.SufaceViewActivity"></activity>
+        <activity android:name=".app.ui.androidhero.CustomAnimActivity"></activity>
+        <activity android:name=".app.ui.androidhero.PropertyAnimActivity" />
+        <activity android:name=".app.ui.androidhero.ViewAnimActivity" />
+        <activity android:name=".app.ui.androidhero.SufaceViewActivity" />
         <activity android:name=".app.ui.androidhero.PathEffectViewActivity" />
         <activity android:name=".app.ui.androidhero.ShaderActivity" />
         <activity android:name=".app.ui.androidhero.XfermodeActivity" />

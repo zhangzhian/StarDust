@@ -63,6 +63,9 @@ public class AndroidHeroActivity extends MActivity implements IOnItemClickListen
         data.add("画笔特效处理：Shader");
         data.add("画笔特效处理：PathEffect");
         data.add("SurfaceView ");
+        data.add("视图动画 ");
+        data.add("属性动画 ");
+        data.add("自定义动画 ");
 
     }
 
@@ -124,6 +127,15 @@ public class AndroidHeroActivity extends MActivity implements IOnItemClickListen
                 break;
             case 14:
                 startActivity(new Intent(this, SufaceViewActivity.class));
+                break;
+            case 15:
+                startActivity(new Intent(this, ViewAnimActivity.class));
+                break;
+            case 16:
+                startActivity(new Intent(this, PropertyAnimActivity.class));
+                break;
+            case 17:
+                startActivity(new Intent(this, CustomAnimActivity.class));
                 break;
         }
     }

@@ -20,11 +20,11 @@ public class ValidatorUtil {
      * 正则表达式：验证密码
      */
     public static final String REGEX_PASSWORD = "^[a-zA-Z0-9_]{6,16}$";
-    //    public static final String REGEX_PASSWORD = "^[a-zA-Z_]\\w{6,16}$";
+    //    public static final String REGEX_PASSWORD = "^[test_a-zA-Z_]\\w{6,16}$";
     /**
      * 正则表达式：验证手机号
      */
-    //    public static final String REGEX_MOBILE = "^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
+    //    public static final String REGEX_MOBILE = "^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\test_d{8}$";
     public static final String REGEX_MOBILE = "^((13[0-9])|(15[^4,\\D])|(18[0-9]))\\d{8}$";
     /**
      * 正则表达式：验证邮箱
