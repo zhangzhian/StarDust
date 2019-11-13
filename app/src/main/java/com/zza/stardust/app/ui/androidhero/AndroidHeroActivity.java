@@ -66,6 +66,7 @@ public class AndroidHeroActivity extends MActivity implements IOnItemClickListen
         data.add("视图动画 ");
         data.add("属性动画 ");
         data.add("自定义动画 ");
+        data.add("SVG动画 ");
 
     }
 
@@ -136,6 +137,9 @@ public class AndroidHeroActivity extends MActivity implements IOnItemClickListen
                 break;
             case 17:
                 startActivity(new Intent(this, CustomAnimActivity.class));
+                break;
+            case 18:
+                startActivity(new Intent(this, SVGActivity.class));
                 break;
         }
     }
