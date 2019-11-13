@@ -13,26 +13,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        app:srcCompat="@drawable/vector_searchbar" />
+        app:srcCompat="@drawable/vector_searchbar_anim" />
 
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/image2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        app:srcCompat="@drawable/trick_anim" />
+        app:srcCompat="@drawable/vector_trick_anim" />
 
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/image3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        app:srcCompat="@drawable/sun_system" />
+        app:srcCompat="@drawable/vector_sun_system_anim" />
 
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/image4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        app:srcCompat="@drawable/anim_vector" />
+        app:srcCompat="@drawable/vector" />
 </LinearLayout>
