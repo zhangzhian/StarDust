@@ -122,6 +122,9 @@ public class AndroidHeroActivity extends MActivity implements IOnItemClickListen
             case 13:
                 startActivity(new Intent(this, PathEffectViewActivity.class));
                 break;
+            case 14:
+                startActivity(new Intent(this, SufaceViewActivity.class));
+                break;
         }
     }
 }

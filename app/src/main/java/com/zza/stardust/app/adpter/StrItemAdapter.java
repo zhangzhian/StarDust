@@ -45,14 +45,10 @@ public class StrItemAdapter extends RecyclerView.Adapter<StrItemAdapter.ViewHold
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_str_info, parent, false);
         ViewHolder holder = new ViewHolder(view);
-        /**
-         *  holder.getAdapterPosition()
-         *  使用 position 的话会位置错乱
-         */
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // LogUtil.w(" getAdapterPosition:" + holder.getAdapterPosition() +" getLayoutPosition:" +holder.getLayoutPosition());
+                //LogUtil.w(" getAdapterPosition:" + holder.getAdapterPosition() +" getLayoutPosition:" +holder.getLayoutPosition());
                 onItemClickListener.onItemClick(v,  holder.getAdapterPosition());
             }
         });

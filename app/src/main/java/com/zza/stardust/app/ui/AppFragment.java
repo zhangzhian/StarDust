@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -69,6 +70,7 @@ public class AppFragment extends BaseFragment implements TitleLayout.onTitleClic
     private void initRecycleView() {
         //设置布局管理器
         GridLayoutManager manager = new GridLayoutManager(getContext(), 3);
+        //LinearLayoutManager manager = new LinearLayoutManager(getContext());
 
         rvApp.setLayoutManager(manager);
         appAdapter = new AppAdapter(appInfoBeanList, getActivity());
@@ -104,7 +106,6 @@ public class AppFragment extends BaseFragment implements TitleLayout.onTitleClic
         appAndroidArt.setImage(R.drawable.app_android_art);
         appAndroidArt.setName("开发艺术探索");
         appInfoBeanList.add(appAndroidArt);
-
     }
 
     @Override

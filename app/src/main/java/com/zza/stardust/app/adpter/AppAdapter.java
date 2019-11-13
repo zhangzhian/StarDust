@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.zza.library.common.lmpl.IOnItemClickListener;
+import com.zza.library.utils.LogUtil;
 import com.zza.stardust.R;
 import com.zza.stardust.bean.AppInfoBean;
 
@@ -46,6 +47,12 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> {
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_app_info, parent, false);
         ViewHolder holder = new ViewHolder(view);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemClickListener.onItemClick(v, holder.getAdapterPosition());
+            }
+        });
         return holder;
     }
 
@@ -70,12 +77,7 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> {
         }
 
         holder.iv_image.setImageDrawable(imageSouce);
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onItemClickListener.onItemClick(v, holder.getAdapterPosition());
-            }
-        });
+
     }
 
 
