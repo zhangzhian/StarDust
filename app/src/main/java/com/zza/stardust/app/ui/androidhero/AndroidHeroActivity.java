@@ -67,7 +67,9 @@ public class AndroidHeroActivity extends MActivity implements IOnItemClickListen
         data.add("属性动画 ");
         data.add("自定义动画 ");
         data.add("SVG动画 ");
-
+        data.add("系统信息");
+        data.add("PackageManager");
+        data.add("ActivityManagerActivity");
     }
 
     private void initRecycleView() {
@@ -140,6 +142,15 @@ public class AndroidHeroActivity extends MActivity implements IOnItemClickListen
                 break;
             case 18:
                 startActivity(new Intent(this, SVGActivity.class));
+                break;
+            case 19:
+                startActivity(new Intent(this, SystemInfoActivity.class));
+                break;
+            case 20:
+                startActivity(new Intent(this, PackageManagerActivity.class));
+                break;
+            case 21:
+                startActivity(new Intent(this, ActivityManagerActivity.class));
                 break;
         }
     }
