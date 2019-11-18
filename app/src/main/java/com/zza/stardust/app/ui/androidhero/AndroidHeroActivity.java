@@ -71,6 +71,7 @@ public class AndroidHeroActivity extends MActivity implements IOnItemClickListen
         data.add("PackageManager");
         data.add("ActivityManagerActivity");
         data.add("Palette");
+        data.add("ShadowTintingClippingCardView");
     }
 
     private void initRecycleView() {
@@ -155,6 +156,9 @@ public class AndroidHeroActivity extends MActivity implements IOnItemClickListen
                 break;
             case 22:
                 startActivity(new Intent(this, PaletteActivity.class));
+                break;
+            case 23:
+                startActivity(new Intent(this, ShadowTintingClippingActivity.class));
                 break;
         }
     }

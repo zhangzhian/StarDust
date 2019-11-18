@@ -15,10 +15,10 @@
         android:roundIcon="@drawable/logo_star_dust"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".app.ui.androidhero.PaletteActivity"
-            android:theme="@style/TestAppTheme">
-
-        </activity>
+        <activity android:name=".app.ui.androidhero.ShadowTintingClippingActivity"></activity>
+        <activity
+            android:name=".app.ui.androidhero.PaletteActivity"
+            android:theme="@style/TestAppTheme"></activity>
         <activity android:name=".app.ui.androidhero.ActivityManagerActivity" />
         <activity android:name=".app.ui.androidhero.PackageManagerActivity" />
         <activity android:name=".app.ui.androidhero.SystemInfoActivity" />
@@ -41,10 +41,8 @@
         <activity android:name=".app.ui.androidhero.ScollViewActivity" />
         <activity android:name=".app.ui.androidhero.CustomViewGroupActivity" />
         <activity android:name=".app.ui.androidhero.CustomViewActivity" />
-        <activity
-            android:name=".app.ui.androidart.AndroidArtActivity"/>
-        <activity
-            android:name=".app.ui.androidhero.AndroidHeroActivity"/>
+        <activity android:name=".app.ui.androidart.AndroidArtActivity" />
+        <activity android:name=".app.ui.androidhero.AndroidHeroActivity" />
         <activity android:name=".app.ui.TFTP.TFTPActivity" />
         <activity android:name=".app.ui.ConstraintLayout.ConstraintLayoutMoreActivity" />
         <activity android:name=".app.ui.ConstraintLayout.ConstraintLayoutActivity" />
