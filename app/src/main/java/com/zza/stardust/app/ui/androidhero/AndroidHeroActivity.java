@@ -72,6 +72,7 @@ public class AndroidHeroActivity extends MActivity implements IOnItemClickListen
         data.add("ActivityManagerActivity");
         data.add("Palette");
         data.add("ShadowTintingClippingCardView");
+        data.add("OverAnimation");
     }
 
     private void initRecycleView() {
@@ -159,6 +160,9 @@ public class AndroidHeroActivity extends MActivity implements IOnItemClickListen
                 break;
             case 23:
                 startActivity(new Intent(this, ShadowTintingClippingActivity.class));
+                break;
+            case 24:
+                startActivity(new Intent(this, OverAnimationActivity.class));
                 break;
         }
     }

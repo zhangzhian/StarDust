@@ -15,10 +15,12 @@
         android:roundIcon="@drawable/logo_star_dust"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".app.ui.androidhero.ShadowTintingClippingActivity"></activity>
+        <activity android:name=".app.ui.androidhero.OverAnimationTargetActivity"></activity>
+        <activity android:name=".app.ui.androidhero.OverAnimationActivity" />
+        <activity android:name=".app.ui.androidhero.ShadowTintingClippingActivity" />
         <activity
             android:name=".app.ui.androidhero.PaletteActivity"
-            android:theme="@style/TestAppTheme"></activity>
+            android:theme="@style/TestAppTheme" />
         <activity android:name=".app.ui.androidhero.ActivityManagerActivity" />
         <activity android:name=".app.ui.androidhero.PackageManagerActivity" />
         <activity android:name=".app.ui.androidhero.SystemInfoActivity" />
