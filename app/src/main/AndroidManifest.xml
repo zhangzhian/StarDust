@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <!--<uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />-->
 
     <application
         android:name=".base.MApplication"
@@ -16,7 +15,11 @@
         android:roundIcon="@drawable/logo_star_dust"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".app.ui.androidhero.ActivityManagerActivity"></activity>
+        <activity android:name=".app.ui.androidhero.PaletteActivity"
+            android:theme="@style/TestAppTheme">
+
+        </activity>
+        <activity android:name=".app.ui.androidhero.ActivityManagerActivity" />
         <activity android:name=".app.ui.androidhero.PackageManagerActivity" />
         <activity android:name=".app.ui.androidhero.SystemInfoActivity" />
         <activity android:name=".app.ui.androidhero.SVGActivity" />
@@ -39,18 +42,9 @@
         <activity android:name=".app.ui.androidhero.CustomViewGroupActivity" />
         <activity android:name=".app.ui.androidhero.CustomViewActivity" />
         <activity
-            android:name=".app.ui.androidart.AndroidArtActivity"
-            android:label="@string/title_activity_android_art"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".app.ui.androidart.AndroidArtActivity"/>
         <activity
-            android:name=".app.ui.androidhero.AndroidHeroActivity"
-            android:label="@string/title_activity_android_hero"
-            android:parentActivityName=".base.MActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.zza.stardust.base.MActivity" />
-        </activity>
+            android:name=".app.ui.androidhero.AndroidHeroActivity"/>
         <activity android:name=".app.ui.TFTP.TFTPActivity" />
         <activity android:name=".app.ui.ConstraintLayout.ConstraintLayoutMoreActivity" />
         <activity android:name=".app.ui.ConstraintLayout.ConstraintLayoutActivity" />
