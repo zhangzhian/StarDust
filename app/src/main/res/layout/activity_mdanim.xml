@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:background="@color/blue479bff"
+    tools:context=".app.ui.MDAnimActivity">
+    <Button
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_margin="10dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:text="有界波纹"
+        android:textColor="@android:color/white" />
+
+
+    <Button
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_margin="10dp"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:text="无界波纹"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/ripple_test"
+        android:textColor="@android:color/white" />
+
+    <ImageView
+        android:id="@+id/oval"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_margin="10dp"
+        android:background="@mipmap/ic_launcher" />
+
+    <ImageView
+        android:id="@+id/rect"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_margin="10dp"
+        android:background="@mipmap/ic_launcher" />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/image"
+        android:onClick="anim"
+        android:background="@drawable/fab_anim"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+</LinearLayout>

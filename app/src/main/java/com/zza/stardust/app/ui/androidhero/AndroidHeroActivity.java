@@ -13,6 +13,7 @@ import com.zza.library.utils.ActivityCollector;
 import com.zza.library.utils.StatusBarUtil;
 import com.zza.stardust.R;
 import com.zza.stardust.app.adpter.StrItemAdapter;
+import com.zza.stardust.app.ui.MDAnimActivity;
 import com.zza.stardust.app.ui.androidhero.view.XfermodeView;
 import com.zza.stardust.base.MActivity;
 
@@ -72,7 +73,8 @@ public class AndroidHeroActivity extends MActivity implements IOnItemClickListen
         data.add("ActivityManagerActivity");
         data.add("Palette");
         data.add("ShadowTintingClippingCardView");
-        data.add("OverAnimation");
+        data.add("过渡动画");
+        data.add("MD动画效果");
     }
 
     private void initRecycleView() {
@@ -163,6 +165,9 @@ public class AndroidHeroActivity extends MActivity implements IOnItemClickListen
                 break;
             case 24:
                 startActivity(new Intent(this, OverAnimationActivity.class));
+                break;
+            case 25:
+                startActivity(new Intent(this, MDAnimActivity.class));
                 break;
         }
     }
