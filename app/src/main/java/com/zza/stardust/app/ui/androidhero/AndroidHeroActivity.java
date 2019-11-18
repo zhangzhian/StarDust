@@ -176,6 +176,9 @@ public class AndroidHeroActivity extends MActivity implements IOnItemClickListen
             case 26:
                 startActivity(new Intent(this, ToolBarActivity.class));
                 break;
+            case 27:
+                startActivity(new Intent(this, NotificationActivity.class));
+                break;
         }
     }
 }
