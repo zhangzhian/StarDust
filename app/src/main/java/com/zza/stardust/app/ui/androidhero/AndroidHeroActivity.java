@@ -14,6 +14,7 @@ import com.zza.library.utils.StatusBarUtil;
 import com.zza.stardust.R;
 import com.zza.stardust.app.adpter.StrItemAdapter;
 import com.zza.stardust.app.ui.MDAnimActivity;
+import com.zza.stardust.app.ui.ToolBarActivity;
 import com.zza.stardust.app.ui.androidhero.view.XfermodeView;
 import com.zza.stardust.base.MActivity;
 
@@ -75,6 +76,9 @@ public class AndroidHeroActivity extends MActivity implements IOnItemClickListen
         data.add("ShadowTintingClippingCardView");
         data.add("过渡动画");
         data.add("MD动画效果");
+        data.add("ToolBar");
+        data.add("Notification");
+
     }
 
     private void initRecycleView() {
@@ -168,6 +172,9 @@ public class AndroidHeroActivity extends MActivity implements IOnItemClickListen
                 break;
             case 25:
                 startActivity(new Intent(this, MDAnimActivity.class));
+                break;
+            case 26:
+                startActivity(new Intent(this, ToolBarActivity.class));
                 break;
         }
     }

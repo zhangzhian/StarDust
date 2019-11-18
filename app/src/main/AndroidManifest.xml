@@ -15,7 +15,10 @@
         android:roundIcon="@drawable/logo_star_dust"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".app.ui.MDAnimActivity"></activity>
+        <activity android:name=".app.ui.ToolBarActivity"
+            android:theme="@style/NoActionBarAppTheme"
+            ></activity>
+        <activity android:name=".app.ui.MDAnimActivity" />
         <activity android:name=".app.ui.androidhero.OverAnimationTargetActivity" />
         <activity android:name=".app.ui.androidhero.OverAnimationActivity" />
         <activity android:name=".app.ui.androidhero.ShadowTintingClippingActivity" />
