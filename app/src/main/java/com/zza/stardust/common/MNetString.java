@@ -6,6 +6,6 @@ package com.zza.stardust.common;
  *
  * 网络相关的一些常量
  */
-public class MClientString {
+public class MNetString {
 
 }
