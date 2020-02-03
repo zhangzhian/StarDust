@@ -20,6 +20,8 @@ import com.zza.stardust.app.ui.TFTP.TFTPActivity;
 import com.zza.stardust.app.ui.androidart.AndroidArtActivity;
 import com.zza.stardust.app.ui.androidhero.AndroidHeroActivity;
 import com.zza.stardust.bean.AppInfoBean;
+import com.zza.stardust.common.MAppConfigInfo;
+import com.zza.stardust.common.MAppTypeInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,8 +32,12 @@ import butterknife.Unbinder;
 
 /**
  * @Author: 张志安
- * @Mail: zhangzhian2016@gmail.com
- * @Date: 2018/10/15 20:33
+ * @Mail: zhangzhian_123@qq.com zhangzhian2016@gmail.com
+ * @Description:
+ * @CreateDate: 2018/10/15 20:33
+ * @UpdateDate: 2020/2/3 17:59
+ * @UpdateRemark:
+ * @Version: 1.0
  */
 public class AppFragment extends BaseFragment implements TitleLayout.onTitleClickListener, IOnItemClickListener {
 
@@ -42,7 +48,6 @@ public class AppFragment extends BaseFragment implements TitleLayout.onTitleClic
     TitleLayout tlTitle;
 
     private AppAdapter appAdapter;
-    private List<AppInfoBean> appInfoBeanList;
 
     @Override
     protected BasePresenter createPresenter() {
@@ -58,7 +63,6 @@ public class AppFragment extends BaseFragment implements TitleLayout.onTitleClic
     protected void onInit(View rootView, Bundle savedInstanceState) {
         unbinder = ButterKnife.bind(this, rootView);
         initView(rootView);
-        initAppData();
         initRecycleView();
 
     }
@@ -73,39 +77,9 @@ public class AppFragment extends BaseFragment implements TitleLayout.onTitleClic
         //LinearLayoutManager manager = new LinearLayoutManager(getContext());
 
         rvApp.setLayoutManager(manager);
-        appAdapter = new AppAdapter(appInfoBeanList, getActivity());
+        appAdapter = new AppAdapter(MAppConfigInfo.getFuncList(), getActivity());
         appAdapter.setOnItemClick(this);
         rvApp.setAdapter(appAdapter);
-    }
-
-    private void initAppData() {
-        appInfoBeanList = new ArrayList<>();
-
-        //OkHttp
-        AppInfoBean appInfoOkHttp = new AppInfoBean();
-        appInfoOkHttp.setImage(R.drawable.app_net_okhttp);
-        appInfoOkHttp.setName("OkHttp");
-        appInfoBeanList.add(appInfoOkHttp);
-
-        AppInfoBean appConstraintLayout = new AppInfoBean();
-        appConstraintLayout.setImage(R.drawable.app_layout);
-        appConstraintLayout.setName("ConstraintLayout");
-        appInfoBeanList.add(appConstraintLayout);
-
-        AppInfoBean appTFTP = new AppInfoBean();
-        appTFTP.setImage(R.drawable.app_box_wifi_upgrade);
-        appTFTP.setName("TBox Wifi升级");
-        appInfoBeanList.add(appTFTP);
-
-        AppInfoBean appAndroidHero = new AppInfoBean();
-        appAndroidHero.setImage(R.drawable.app_android_hero);
-        appAndroidHero.setName("群英传");
-        appInfoBeanList.add(appAndroidHero);
-
-        AppInfoBean appAndroidArt = new AppInfoBean();
-        appAndroidArt.setImage(R.drawable.app_android_art);
-        appAndroidArt.setName("开发艺术探索");
-        appInfoBeanList.add(appAndroidArt);
     }
 
     @Override

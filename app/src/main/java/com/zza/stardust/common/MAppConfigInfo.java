@@ -37,4 +37,9 @@ public final class MAppConfigInfo {
     public static int getFuncListSize() {
         return funcList.size();
     }
+
+    //获取功能列表大小
+    public static void clearFuncList() {
+        funcList.clear();
+    }
 }
