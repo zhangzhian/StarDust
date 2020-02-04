@@ -38,47 +38,47 @@ public class MAppInfo {
         appInfoOkHttp.setImage(R.drawable.app_net_okhttp);
         appInfoOkHttp.setName("OkHttp");
 
-        appInfoOkHttp.setId(DEFAULT_ALL_START + 2);
+        appAndroidHero.setId(DEFAULT_ALL_START + 2);
         appAndroidHero.setImage(R.drawable.app_android_hero);
         appAndroidHero.setName("群英传");
 
-        appInfoOkHttp.setId(DEFAULT_ALL_START + 3);
+        appAndroidArt.setId(DEFAULT_ALL_START + 3);
         appAndroidArt.setImage(R.drawable.app_android_art);
         appAndroidArt.setName("开发艺术探索");
 
-        appInfoOkHttp.setId(DEFAULT_ALL_START + 4);
+        appEventBus.setId(DEFAULT_ALL_START + 4);
         appEventBus.setImage(R.drawable.app_android);
         appEventBus.setName("EventBus");
 
-        appInfoOkHttp.setId(DEFAULT_ALL_START + 5);
+        appPermission.setId(DEFAULT_ALL_START + 5);
         appPermission.setImage(R.drawable.app_android);
         appPermission.setName("权限");
 
-        appInfoOkHttp.setId(DEFAULT_ALL_START + 6);
+        appRecyclerView.setId(DEFAULT_ALL_START + 6);
         appRecyclerView.setImage(R.drawable.app_android);
         appRecyclerView.setName("RecyclerView");
 
 
-        appInfoOkHttp.setId(DEFAULT_ALL_START + 7);
+        appConstraintLayout.setId(DEFAULT_ALL_START + 7);
         appConstraintLayout.setImage(R.drawable.app_layout);
         appConstraintLayout.setName("ConstraintLayout");
 
         /**
          * yd app
          * */
-        appInfoOkHttp.setId(YD_START + 1);
+        appTBoxUpgrade.setId(YD_START + 1);
         appTBoxUpgrade.setImage(R.drawable.upgrade_wifi_press);
         appTBoxUpgrade.setName("TBox Wifi升级");
 
-        appInfoOkHttp.setId(YD_START + 2);
+        appTBoxUpgradeDebug.setId(YD_START + 2);
         appTBoxUpgradeDebug.setImage(R.drawable.app_box_wifi_upgrade);
         appTBoxUpgradeDebug.setName("大屏TBox升级");
 
-        appInfoOkHttp.setId(YD_START + 3);
+        appTBoxLog.setId(YD_START + 3);
         appTBoxLog.setImage(R.drawable.log_wifi_press);
         appTBoxLog.setName("TBox日志获取");
 
-        appInfoOkHttp.setId(YD_START + 4);
+        appTBoxProtobufTest.setId(YD_START + 4);
         appTBoxProtobufTest.setImage(R.drawable.debug_press);
         appTBoxProtobufTest.setName("Protobuf工具");
 
