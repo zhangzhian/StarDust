@@ -1,4 +1,4 @@
-package com.zza.stardust.app.ui.tboxupgrade.api.callback;
+package com.zza.stardust.callback;
 
 public interface TransFileCallBack {
     void onTrans(String direction, String packetData, int progress);

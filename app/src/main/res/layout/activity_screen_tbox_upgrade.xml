@@ -25,7 +25,7 @@
         android:paddingRight="5dp"
         android:paddingBottom="5dp"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/bt_start_upgrade"
+        app:layout_constraintBottom_toTopOf="@+id/bt_upgrade"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView5" />
 
@@ -41,7 +41,7 @@
         app:layout_constraintTop_toTopOf="@+id/tv_choose_car_type" />
 
     <Button
-        android:id="@+id/bt_start_upgrade"
+        android:id="@+id/bt_upgrade"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

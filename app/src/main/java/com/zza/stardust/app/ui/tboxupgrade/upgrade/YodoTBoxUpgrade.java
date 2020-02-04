@@ -4,11 +4,11 @@ import android.text.TextUtils;
 
 import com.zza.library.utils.LogUtil;
 import com.zza.library.utils.ValidatorUtil;
-import com.zza.stardust.app.ui.tboxupgrade.uilts.TFTPClientUtil;
-import com.zza.stardust.app.ui.tboxupgrade.api.callback.TransFileCallBack;
-import com.zza.stardust.app.ui.tboxupgrade.api.callback.UpgradeCallBack;
+import com.zza.stardust.uilts.TFTPClientUtil;
+import com.zza.stardust.callback.TransFileCallBack;
+import com.zza.stardust.callback.UpgradeCallBack;
 import com.zza.stardust.app.ui.tboxupgrade.upgrade.impl.YodeTBoxUpgrdeImpl;
-import com.zza.stardust.app.ui.tboxupgrade.uilts.UpgradeUtils;
+import com.zza.stardust.uilts.UpgradeUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -102,6 +102,7 @@ public class YodoTBoxUpgrade implements YodeTBoxUpgrdeImpl {
                     LogUtil.i("TFTP: time(ms) " + (timeEnd - timeStart));
 
                     callBack.onTransSuccess();
+                    isRunning = false;
                 } catch (UnknownHostException e) {
                     LogUtil.e("Error: could not resolve hostname.");
                     LogUtil.e(e.getMessage());
@@ -225,7 +226,7 @@ public class YodoTBoxUpgrade implements YodeTBoxUpgrdeImpl {
         thread.start();
     }
 
-    public void ForceSetRunning(){
+    public void ForceSetRunningFalse(){
         isRunning = false;
     }
 

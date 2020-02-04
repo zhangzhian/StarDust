@@ -1,7 +1,7 @@
 package com.zza.stardust.app.ui.tboxupgrade.upgrade.impl;
 
-import com.zza.stardust.app.ui.tboxupgrade.api.callback.TransFileCallBack;
-import com.zza.stardust.app.ui.tboxupgrade.api.callback.UpgradeCallBack;
+import com.zza.stardust.callback.TransFileCallBack;
+import com.zza.stardust.callback.UpgradeCallBack;
 
 public interface YodeTBoxUpgrdeImpl {
     void TransFile(String host, int post, String filePath, TransFileCallBack callBack);

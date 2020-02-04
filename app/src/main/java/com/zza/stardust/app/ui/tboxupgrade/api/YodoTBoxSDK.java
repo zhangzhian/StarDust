@@ -1,14 +1,15 @@
 package com.zza.stardust.app.ui.tboxupgrade.api;
 
 import com.zza.stardust.app.ui.tboxupgrade.upgrade.YodoTBoxUpgrade;
-import com.zza.stardust.app.ui.tboxupgrade.api.callback.TransFileCallBack;
-import com.zza.stardust.app.ui.tboxupgrade.api.callback.UpgradeCallBack;
+import com.zza.stardust.callback.TransFileCallBack;
+import com.zza.stardust.callback.UpgradeCallBack;
 
 public class YodoTBoxSDK {
 
     private volatile static YodoTBoxSDK uniqueInstance;
     //zt
     //private static final String host = "192.168.100.1";
+    //other
     private static final String host = "192.168.225.1";
     private static final int port = 69;
     private static final int port_u = 60002;
@@ -29,13 +30,16 @@ public class YodoTBoxSDK {
         return uniqueInstance;
     }
 
-
     public void UpgradeTBox(String filePath, UpgradeCallBack callBack) {
         UpgradeTBoxControl(filePath, callBack);
     }
 
+    public void UpgradeTBox(String host, int port_trans, int port_upgrade, String softVersion, String hardVersion, String filePath, UpgradeCallBack callBack) {
+        UpgradeTBoxControl(host, port_trans, port_upgrade, softVersion, hardVersion, filePath, callBack);
+    }
+
     public void ForceSetRunning() {
-        YodoTBoxUpgrade.getInstance().ForceSetRunning();
+        YodoTBoxUpgrade.getInstance().ForceSetRunningFalse();
     }
 
     private void UpgradeTBoxControl(final String filePath, final UpgradeCallBack callBack) {
@@ -58,4 +62,25 @@ public class YodoTBoxSDK {
         });
     }
 
+    private void UpgradeTBoxControl(final String host, final int port_trans, final int port_upgrade,
+                                    final String softVersion, final String hardVersion,
+                                    final String filePath, final UpgradeCallBack callBack) {
+        YodoTBoxUpgrade.getInstance().TransFile(host, port_trans, filePath, new TransFileCallBack() {
+            @Override
+            public void onTrans(String direction, String packetData, int progress) {
+                callBack.onTrans(direction, packetData, progress);
+            }
+
+            @Override
+            public void onTransSuccess() {
+                callBack.onTransSuccess();
+                YodoTBoxUpgrade.getInstance().UpgradeTBox(host, port_upgrade, softVersion, hardVersion, callBack);
+            }
+
+            @Override
+            public void onTransFail(int errorCode, Exception exception) {
+                callBack.onTransFail(errorCode, exception);
+            }
+        });
+    }
 }

@@ -1,4 +1,4 @@
-package com.zza.stardust.app.ui.tboxupgrade.uilts;
+package com.zza.stardust.uilts;
 
 public class UpgradeUtils {
     public static byte[] protocolMake(String svStr, String hvStr, String fileNameStr) {

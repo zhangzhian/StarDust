@@ -1,6 +1,7 @@
-package com.zza.stardust.app.ui.tboxupgrade.uilts;
+package com.zza.stardust.uilts;
 
-import com.zza.stardust.app.ui.tboxupgrade.api.callback.TransFileCallBack;
+import com.zza.stardust.callback.PullFileCallBack;
+import com.zza.stardust.callback.TransFileCallBack;
 
 import org.apache.commons.net.tftp.TFTP;
 import org.apache.commons.net.tftp.TFTPClient;
@@ -36,8 +37,11 @@ public class TFTPClientUtil {
                 protected void trace(String direction, TFTPPacket packet) {
                     currentNum++;
                     //System.out.println(direction + " " + packet);
-                    int progress = (int) (((currentNum * 1.0) / totle) * 100);
-                    callBack.onTrans(direction, packet.toString(), progress);
+                    int progress = 0;
+                    if (totle != 0)
+                        progress = (int) (((currentNum * 1.0) / totle) * 100);
+                    if (callBack != null)
+                        callBack.onTrans(direction, packet.toString(), progress);
                 }
             };
         } else {
@@ -49,7 +53,6 @@ public class TFTPClientUtil {
         // We haven't closed the local file yet.
         closed = false;
     }
-
 
     public void sendFile(final String hostname, final String localFilename, final String remoteFilename) throws Exception {
         // We're sending a file
@@ -64,7 +67,7 @@ public class TFTPClientUtil {
         System.out.println("OK");
     }
 
-    public void getFile(String hostname, String localFilename, String remoteFilename) throws Exception{
+    public void getFile(String hostname, String localFilename, String remoteFilename) throws Exception {
         // We're sending a file
         if (tftp == null) {
             System.err.println("Error: please first init client.");
@@ -77,7 +80,8 @@ public class TFTPClientUtil {
         System.out.println("OK");
     }
 
-    public void getFiles(String hostname, String localDir, ArrayList<String> remoteFilenames) throws Exception{
+    public void getFiles(String hostname, String localDir, ArrayList<String> remoteFilenames,
+                         final TransFileCallBack callBack) throws Exception {
         // We're sending a file
         if (tftp == null) {
             System.err.println("Error: please first init client.");
@@ -88,19 +92,20 @@ public class TFTPClientUtil {
 
                 closed = receive(transferMode, hostname, localDir + fileSplite[fileSplite.length - 1], filePath, tftp);
 
-//                if (context != null) {
-//                    if (!closed) {
-//                        //((TFTPActivity) context).updataText("[" + fileSplite[fileSplite.length - 1] + "]Failed");
-//                    } else {
-//                        //((TFTPActivity) context).updataText("[" + fileSplite[fileSplite.length - 1] + "]Success: " + localDir + fileSplite[fileSplite.length - 1] + "");
-//                    }
-//                }
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                if (callBack != null)
+                    if (callBack instanceof PullFileCallBack) {
+                        ((PullFileCallBack) callBack).onTransSingleSuccess(
+                                fileSplite[fileSplite.length - 1],
+                                localDir + fileSplite[fileSplite.length - 1] + "");
+                    } else {
+                        throw new Exception("callBack interface Type error");
+                    }
+                if (!closed) {
+                    System.out.println("Failed");
                 }
+                Thread.sleep(1000);
             }
+            callBack.onTransSuccess();
         }
     }
 
@@ -135,7 +140,7 @@ public class TFTPClientUtil {
     }
 
     private static boolean receive(int transferMode, String hostname, String localFilename, String remoteFilename,
-                                   TFTPClient tftp) throws Exception{
+                                   TFTPClient tftp) throws Exception {
         boolean closed;
         boolean result = true;
         FileOutputStream out = null;
