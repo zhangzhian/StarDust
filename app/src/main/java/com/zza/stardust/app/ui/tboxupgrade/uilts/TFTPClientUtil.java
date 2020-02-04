@@ -1,6 +1,6 @@
-package com.zza.stardust.app.ui.TFTP;
+package com.zza.stardust.app.ui.tboxupgrade.uilts;
 
-import android.content.Context;
+import com.zza.stardust.app.ui.tboxupgrade.api.callback.TransFileCallBack;
 
 import org.apache.commons.net.tftp.TFTP;
 import org.apache.commons.net.tftp.TFTPClient;
@@ -10,8 +10,6 @@ import java.io.Closeable;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.SocketException;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 /**
@@ -25,22 +23,27 @@ public class TFTPClientUtil {
     private TFTPClient tftp = null;
     private int timeout = 5 * 1000;
     private boolean verbose = true;
-    private Context context;
+    private int currentNum = 0;
+    //private Context context;
 
-    public void initClient(Context context) {
-        this.context = context;
+    public void initClient(final TransFileCallBack callBack, final int totle) {
+        //this.context = context;
         // Create our TFTP instance to handle the file transfer.
+        currentNum = 0;
         if (verbose) {
             tftp = new TFTPClient() {
                 @Override
                 protected void trace(String direction, TFTPPacket packet) {
-                    System.out.println(direction + " " + packet);
+                    currentNum++;
+                    //System.out.println(direction + " " + packet);
+                    int progress = (int) (((currentNum * 1.0) / totle) * 100);
+                    callBack.onTrans(direction, packet.toString(), progress);
                 }
             };
         } else {
             tftp = new TFTPClient();
         }
-        // We want to timeout if test_a response takes longer than 60 seconds
+        // We want to timeout if a response takes longer than 60 seconds
 
         tftp.setDefaultTimeout(timeout);
         // We haven't closed the local file yet.
@@ -48,8 +51,8 @@ public class TFTPClientUtil {
     }
 
 
-    public void sendFile(String hostname, String localFilename, String remoteFilename) {
-        // We're sending test_a file
+    public void sendFile(final String hostname, final String localFilename, final String remoteFilename) throws Exception {
+        // We're sending a file
         if (tftp == null) {
             System.err.println("Error: please first init client.");
         } else {
@@ -61,8 +64,8 @@ public class TFTPClientUtil {
         System.out.println("OK");
     }
 
-    public void getFile(String hostname, String localFilename, String remoteFilename) {
-        // We're sending test_a file
+    public void getFile(String hostname, String localFilename, String remoteFilename) throws Exception{
+        // We're sending a file
         if (tftp == null) {
             System.err.println("Error: please first init client.");
         } else {
@@ -74,8 +77,8 @@ public class TFTPClientUtil {
         System.out.println("OK");
     }
 
-    public void getFiles(String hostname, String localDir, ArrayList<String> remoteFilenames) {
-        // We're sending test_a file
+    public void getFiles(String hostname, String localDir, ArrayList<String> remoteFilenames) throws Exception{
+        // We're sending a file
         if (tftp == null) {
             System.err.println("Error: please first init client.");
         } else {
@@ -85,13 +88,13 @@ public class TFTPClientUtil {
 
                 closed = receive(transferMode, hostname, localDir + fileSplite[fileSplite.length - 1], filePath, tftp);
 
-                if (context != null) {
-                    if (!closed) {
-                        ((TFTPActivity) context).updataText("[" + fileSplite[fileSplite.length - 1] + "]Failed");
-                    } else {
-                        ((TFTPActivity) context).updataText("[" + fileSplite[fileSplite.length - 1] + "]Success: " + localDir + fileSplite[fileSplite.length - 1] + "");
-                    }
-                }
+//                if (context != null) {
+//                    if (!closed) {
+//                        //((TFTPActivity) context).updataText("[" + fileSplite[fileSplite.length - 1] + "]Failed");
+//                    } else {
+//                        //((TFTPActivity) context).updataText("[" + fileSplite[fileSplite.length - 1] + "]Success: " + localDir + fileSplite[fileSplite.length - 1] + "");
+//                    }
+//                }
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
@@ -102,18 +105,15 @@ public class TFTPClientUtil {
     }
 
     private static boolean send(int transferMode, String hostname, String localFilename, String remoteFilename,
-                                TFTPClient tftp) {
+                                TFTPClient tftp) throws Exception {
         boolean closed;
         FileInputStream input = null;
 
         // Try to open local file for reading
         try {
             input = new FileInputStream(localFilename);
-        } catch (IOException e) {
+        } finally {
             tftp.close();
-            System.err.println("Error: could not open local file for reading.");
-            System.err.println(e.getMessage());
-            System.exit(1);
         }
 
         open(tftp);
@@ -126,12 +126,6 @@ public class TFTPClientUtil {
             } else {
                 tftp.sendFile(remoteFilename, transferMode, input, hostname);
             }
-        } catch (UnknownHostException e) {
-            System.err.println("Error: could not resolve hostname.");
-            System.err.println(e.getMessage());
-        } catch (IOException e) {
-            System.err.println("Error: I/O exception occurred while sending file.");
-            System.err.println(e.getMessage());
         } finally {
             // Close local socket and input file
             closed = close(tftp, input);
@@ -141,7 +135,7 @@ public class TFTPClientUtil {
     }
 
     private static boolean receive(int transferMode, String hostname, String localFilename, String remoteFilename,
-                                   TFTPClient tftp) {
+                                   TFTPClient tftp) throws Exception{
         boolean closed;
         boolean result = true;
         FileOutputStream out = null;
@@ -167,14 +161,6 @@ public class TFTPClientUtil {
             } else {
                 tftp.receiveFile(remoteFilename, transferMode, out, hostname);
             }
-        } catch (UnknownHostException e) {
-            System.err.println("Error: could not resolve hostname.");
-            System.err.println(e.getMessage());
-            result = false;
-        } catch (IOException e) {
-            System.err.println("Error: I/O exception occurred while sending file.");
-            System.err.println(e.getMessage());
-            result = false;
         } finally {
             // Close local socket and input file
             closed = close(tftp, out);
@@ -183,29 +169,21 @@ public class TFTPClientUtil {
         return result;
     }
 
-    private static void open(TFTPClient tftp) {
-        try {
-            tftp.open();
-        } catch (SocketException e) {
-            System.err.println("Error: could not open local UDP socket.");
-            System.err.println(e.getMessage());
-        }
+    private static void open(TFTPClient tftp) throws Exception {
+        tftp.open();
     }
 
 
-    private static boolean close(TFTPClient tftp, Closeable output) {
+    private static boolean close(TFTPClient tftp, Closeable output) throws Exception {
         boolean closed;
         tftp.close();
-        try {
-            if (output != null) {
-                output.close();
-            }
-            closed = true;
-        } catch (IOException e) {
-            closed = false;
-            System.err.println("Error: error closing file.");
-            System.err.println(e.getMessage());
+
+        if (output != null) {
+            output.close();
         }
+
+        closed = true;
+
         return closed;
     }
 

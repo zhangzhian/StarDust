@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -16,15 +15,14 @@ import com.zza.stardust.R;
 import com.zza.stardust.app.adpter.AppAdapter;
 import com.zza.stardust.app.ui.ConstraintLayout.ConstraintLayoutActivity;
 import com.zza.stardust.app.ui.OkHttp.OkHttpActivity;
-import com.zza.stardust.app.ui.TFTP.TFTPActivity;
 import com.zza.stardust.app.ui.androidart.AndroidArtActivity;
 import com.zza.stardust.app.ui.androidhero.AndroidHeroActivity;
-import com.zza.stardust.bean.AppInfoBean;
+import com.zza.stardust.app.ui.tboxlog.GetLogActivity;
+import com.zza.stardust.app.ui.tboxprotobuf.ProtobufActivity;
+import com.zza.stardust.app.ui.tboxupgrade.ScreenTboxUpgradeActivity;
+import com.zza.stardust.app.ui.tboxupgrade.UpgradeWifiActivity;
 import com.zza.stardust.common.MAppConfigInfo;
-import com.zza.stardust.common.MAppTypeInfo;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.zza.stardust.common.MAppInfo;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -100,22 +98,40 @@ public class AppFragment extends BaseFragment implements TitleLayout.onTitleClic
 
     @Override
     public void onItemClick(View view, int position) {
-
-        switch (position) {
-            case 0:
+        int id = MAppConfigInfo.getFuncList().get(position).getId();
+        switch (id) {
+            case MAppInfo.APP_NET_OKHTTP:
                 getActivity().startActivity(new Intent(getActivity(), OkHttpActivity.class));
                 break;
-            case 1:
-                getActivity().startActivity(new Intent(getActivity(), ConstraintLayoutActivity.class));
-                break;
-            case 2:
-                getActivity().startActivity(new Intent(getActivity(), TFTPActivity.class));
-                break;
-            case 3:
+            case MAppInfo.APP_ANDROID_HERO:
                 getActivity().startActivity(new Intent(getActivity(), AndroidHeroActivity.class));
                 break;
-            case 4:
+            case MAppInfo.APP_ANDROID_ART:
                 getActivity().startActivity(new Intent(getActivity(), AndroidArtActivity.class));
+                break;
+            case MAppInfo.APP_EVENTBUS:
+                //getActivity().startActivity(new Intent(getActivity(), ConstraintLayoutActivity.class));
+                break;
+            case MAppInfo.APP_PERMISSION:
+                //getActivity().startActivity(new Intent(getActivity(), ConstraintLayoutActivity.class));
+                break;
+            case MAppInfo.APP_RECYCLERVIEW:
+                //getActivity().startActivity(new Intent(getActivity(), ConstraintLayoutActivity.class));
+                break;
+            case MAppInfo.APP_CONSTRAINTLAYOUT:
+                getActivity().startActivity(new Intent(getActivity(), ConstraintLayoutActivity.class));
+                break;
+            case MAppInfo.APP_UPGRADE_WIFI:
+                getActivity().startActivity(new Intent(getActivity(), UpgradeWifiActivity.class));
+                break;
+            case MAppInfo.APP_SCREEN_TBOX_UPGRADE:
+                getActivity().startActivity(new Intent(getActivity(), ScreenTboxUpgradeActivity.class));
+                break;
+            case MAppInfo.APP_LOG_WIFI:
+                getActivity().startActivity(new Intent(getActivity(), GetLogActivity.class));
+                break;
+            case MAppInfo.APP_PROTOBUF_DEBUG:
+                getActivity().startActivity(new Intent(getActivity(), ProtobufActivity.class));
                 break;
             default:
                 break;

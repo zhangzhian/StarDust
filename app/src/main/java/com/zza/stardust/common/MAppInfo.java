@@ -14,20 +14,20 @@ import com.zza.stardust.bean.AppInfoBean;
  */
 public class MAppInfo {
 
-    private static final int DEFAULT_ALL_START = 0;
-    private static final int APP_NET_OKHTTP = DEFAULT_ALL_START + 1;
-    private static final int APP_ANDROID_HERO = DEFAULT_ALL_START + 2;
-    private static final int APP_ANDROID_ART = DEFAULT_ALL_START + 3;
-    private static final int APP_EVENTBUS = DEFAULT_ALL_START + 4;
-    private static final int APP_PERMISSION = DEFAULT_ALL_START + 5;
-    private static final int APP_RECYCLERVIEW = DEFAULT_ALL_START + 6;
-    private static final int APP_CONSTRAINTLAYOUT = DEFAULT_ALL_START + 7;
+    public static final int DEFAULT_ALL_START = 0;
+    public static final int APP_NET_OKHTTP = DEFAULT_ALL_START + 1;
+    public static final int APP_ANDROID_HERO = DEFAULT_ALL_START + 2;
+    public static final int APP_ANDROID_ART = DEFAULT_ALL_START + 3;
+    public static final int APP_EVENTBUS = DEFAULT_ALL_START + 4;
+    public static final int APP_PERMISSION = DEFAULT_ALL_START + 5;
+    public static final int APP_RECYCLERVIEW = DEFAULT_ALL_START + 6;
+    public static final int APP_CONSTRAINTLAYOUT = DEFAULT_ALL_START + 7;
 
-    private static final int YD_START = 1000;
-    private static final int APP_UPGRADE_WIFI = YD_START + 1;
-    private static final int APP_BOX_WIFI_UPGRADE = YD_START + 2;
-    private static final int APP_LOG_WIFI = YD_START + 3;
-    private static final int APP_DEBUG = YD_START + 4;
+    public static final int YD_START = 1000;
+    public static final int APP_UPGRADE_WIFI = YD_START + 1;
+    public static final int APP_SCREEN_TBOX_UPGRADE = YD_START + 2;
+    public static final int APP_LOG_WIFI = YD_START + 3;
+    public static final int APP_PROTOBUF_DEBUG = YD_START + 4;
 
     private static AppInfoBean appInfoOkHttp = new AppInfoBean();
     private static AppInfoBean appConstraintLayout = new AppInfoBean();
@@ -80,7 +80,7 @@ public class MAppInfo {
         appTBoxUpgrade.setImage(R.drawable.upgrade_wifi_press);
         appTBoxUpgrade.setName("TBox Wifi升级");
 
-        appTBoxUpgradeDebug.setId(APP_BOX_WIFI_UPGRADE);
+        appTBoxUpgradeDebug.setId(APP_SCREEN_TBOX_UPGRADE);
         appTBoxUpgradeDebug.setImage(R.drawable.app_box_wifi_upgrade);
         appTBoxUpgradeDebug.setName("大屏TBox升级");
 
@@ -88,7 +88,7 @@ public class MAppInfo {
         appTBoxLog.setImage(R.drawable.log_wifi_press);
         appTBoxLog.setName("TBox日志获取");
 
-        appTBoxProtobufTest.setId(APP_DEBUG);
+        appTBoxProtobufTest.setId(APP_PROTOBUF_DEBUG);
         appTBoxProtobufTest.setImage(R.drawable.debug_press);
         appTBoxProtobufTest.setName("Protobuf工具");
 

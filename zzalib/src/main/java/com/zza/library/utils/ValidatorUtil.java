@@ -130,5 +130,14 @@ public class ValidatorUtil {
     public static boolean isIPAddr(String ipAddr) {
         return Pattern.matches(REGEX_IP_ADDR, ipAddr);
     }
-
+    
+    /**
+     * 校验端口号
+     *
+     * @param port
+     * @return
+     */
+    public static boolean isPort(int port) {
+        return (port >= 0 && port < 65536) ? true : false;
+    }
 }
