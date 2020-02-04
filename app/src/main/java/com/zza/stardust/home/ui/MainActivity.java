@@ -17,6 +17,7 @@ import com.zza.stardust.app.ui.AppFragment;
 import com.zza.stardust.base.MActivity;
 import com.zza.stardust.bean.AppInfoBean;
 import com.zza.stardust.common.MAppConfigInfo;
+import com.zza.stardust.common.MAppInfo;
 import com.zza.stardust.common.MAppTypeInfo;
 import com.zza.stardust.home.adpter.FragmentAdapter;
 import com.zza.stardust.mine.ui.MineFragment;
@@ -211,83 +212,21 @@ public class MainActivity extends MActivity implements ViewPager.OnPageChangeLis
         MAppConfigInfo.clearFuncList();
         switch (MAppTypeInfo.APP_TYPE) {
             case MAppTypeInfo.APP_ZZA:
-                getDefaultAllAppInfoData();
+                MAppInfo.getDefaultAllAppInfoData();
                 break;
             case MAppTypeInfo.APP_YD_YODO:
-                getYodosmartYodoData();
+                MAppInfo.getYodosmartYodoData();
                 break;
             case MAppTypeInfo.APP_YD_ZT:
-                getYodosmartZTData();
+                MAppInfo.getYodosmartZTData();
                 break;
             case MAppTypeInfo.APP_YD_OTHER_CAR_FACTORY:
-                getYodosmartUniversalCarfactoryData();
+                MAppInfo.getYodosmartUniversalCarfactoryData();
                 break;
         }
 
 
     }
 
-    private void getYodosmartUniversalCarfactoryData() {
-        AppInfoBean appTFTP = new AppInfoBean();
-        appTFTP.setImage(R.drawable.app_box_wifi_upgrade);
-        appTFTP.setName("TBox Wifi升级");
-        MAppConfigInfo.addFuncList(appTFTP);
-    }
 
-    private void getYodosmartZTData() {
-        AppInfoBean appTFTP = new AppInfoBean();
-        appTFTP.setImage(R.drawable.app_box_wifi_upgrade);
-        appTFTP.setName("TBox Wifi升级");
-        MAppConfigInfo.addFuncList(appTFTP);
-    }
-
-    private void getYodosmartYodoData() {
-        AppInfoBean appTFTP = new AppInfoBean();
-        appTFTP.setImage(R.drawable.app_box_wifi_upgrade);
-        appTFTP.setName("TBox Wifi升级");
-        MAppConfigInfo.addFuncList(appTFTP);
-    }
-
-    private void getDefaultAllAppInfoData() {
-        //OkHttp
-        AppInfoBean appInfoOkHttp = new AppInfoBean();
-        appInfoOkHttp.setImage(R.drawable.app_net_okhttp);
-        appInfoOkHttp.setName("OkHttp");
-        MAppConfigInfo.addFuncList(appInfoOkHttp);
-
-        AppInfoBean appConstraintLayout = new AppInfoBean();
-        appConstraintLayout.setImage(R.drawable.app_layout);
-        appConstraintLayout.setName("ConstraintLayout");
-        MAppConfigInfo.addFuncList(appConstraintLayout);
-
-        AppInfoBean appTFTP = new AppInfoBean();
-        appTFTP.setImage(R.drawable.app_box_wifi_upgrade);
-        appTFTP.setName("TBox Wifi升级");
-        MAppConfigInfo.addFuncList(appTFTP);
-
-        AppInfoBean appAndroidHero = new AppInfoBean();
-        appAndroidHero.setImage(R.drawable.app_android_hero);
-        appAndroidHero.setName("群英传");
-        MAppConfigInfo.addFuncList(appAndroidHero);
-
-        AppInfoBean appAndroidArt = new AppInfoBean();
-        appAndroidArt.setImage(R.drawable.app_android_art);
-        appAndroidArt.setName("开发艺术探索");
-        MAppConfigInfo.addFuncList(appAndroidArt);
-
-        AppInfoBean appEventBus = new AppInfoBean();
-        appEventBus.setImage(R.drawable.app_android);
-        appEventBus.setName("EventBus");
-        MAppConfigInfo.addFuncList(appEventBus);
-
-        AppInfoBean appPermission = new AppInfoBean();
-        appPermission.setImage(R.drawable.app_android);
-        appPermission.setName("权限");
-        MAppConfigInfo.addFuncList(appPermission);
-
-        AppInfoBean appRecyclerView = new AppInfoBean();
-        appRecyclerView.setImage(R.drawable.app_android);
-        appRecyclerView.setName("RecyclerView");
-        MAppConfigInfo.addFuncList(appRecyclerView);
-    }
 }
