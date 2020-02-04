@@ -15,9 +15,19 @@ import com.zza.stardust.bean.AppInfoBean;
 public class MAppInfo {
 
     private static final int DEFAULT_ALL_START = 0;
+    private static final int APP_NET_OKHTTP = DEFAULT_ALL_START + 1;
+    private static final int APP_ANDROID_HERO = DEFAULT_ALL_START + 2;
+    private static final int APP_ANDROID_ART = DEFAULT_ALL_START + 3;
+    private static final int APP_EVENTBUS = DEFAULT_ALL_START + 4;
+    private static final int APP_PERMISSION = DEFAULT_ALL_START + 5;
+    private static final int APP_RECYCLERVIEW = DEFAULT_ALL_START + 6;
+    private static final int APP_CONSTRAINTLAYOUT = DEFAULT_ALL_START + 7;
+
     private static final int YD_START = 1000;
-
-
+    private static final int APP_UPGRADE_WIFI = YD_START + 1;
+    private static final int APP_BOX_WIFI_UPGRADE = YD_START + 2;
+    private static final int APP_LOG_WIFI = YD_START + 3;
+    private static final int APP_DEBUG = YD_START + 4;
 
     private static AppInfoBean appInfoOkHttp = new AppInfoBean();
     private static AppInfoBean appConstraintLayout = new AppInfoBean();
@@ -34,51 +44,51 @@ public class MAppInfo {
 
     static {
         //OkHttp
-        appInfoOkHttp.setId(DEFAULT_ALL_START + 1);
+        appInfoOkHttp.setId(APP_NET_OKHTTP);
         appInfoOkHttp.setImage(R.drawable.app_net_okhttp);
         appInfoOkHttp.setName("OkHttp");
 
-        appAndroidHero.setId(DEFAULT_ALL_START + 2);
+        appAndroidHero.setId(APP_ANDROID_HERO);
         appAndroidHero.setImage(R.drawable.app_android_hero);
         appAndroidHero.setName("群英传");
 
-        appAndroidArt.setId(DEFAULT_ALL_START + 3);
+        appAndroidArt.setId(APP_ANDROID_ART);
         appAndroidArt.setImage(R.drawable.app_android_art);
         appAndroidArt.setName("开发艺术探索");
 
-        appEventBus.setId(DEFAULT_ALL_START + 4);
+        appEventBus.setId(APP_EVENTBUS);
         appEventBus.setImage(R.drawable.app_android);
         appEventBus.setName("EventBus");
 
-        appPermission.setId(DEFAULT_ALL_START + 5);
+        appPermission.setId(APP_PERMISSION);
         appPermission.setImage(R.drawable.app_android);
         appPermission.setName("权限");
 
-        appRecyclerView.setId(DEFAULT_ALL_START + 6);
+        appRecyclerView.setId(APP_RECYCLERVIEW);
         appRecyclerView.setImage(R.drawable.app_android);
         appRecyclerView.setName("RecyclerView");
 
 
-        appConstraintLayout.setId(DEFAULT_ALL_START + 7);
+        appConstraintLayout.setId(APP_CONSTRAINTLAYOUT);
         appConstraintLayout.setImage(R.drawable.app_layout);
         appConstraintLayout.setName("ConstraintLayout");
 
         /**
          * yd app
          * */
-        appTBoxUpgrade.setId(YD_START + 1);
+        appTBoxUpgrade.setId(APP_UPGRADE_WIFI);
         appTBoxUpgrade.setImage(R.drawable.upgrade_wifi_press);
         appTBoxUpgrade.setName("TBox Wifi升级");
 
-        appTBoxUpgradeDebug.setId(YD_START + 2);
+        appTBoxUpgradeDebug.setId(APP_BOX_WIFI_UPGRADE);
         appTBoxUpgradeDebug.setImage(R.drawable.app_box_wifi_upgrade);
         appTBoxUpgradeDebug.setName("大屏TBox升级");
 
-        appTBoxLog.setId(YD_START + 3);
+        appTBoxLog.setId(APP_LOG_WIFI);
         appTBoxLog.setImage(R.drawable.log_wifi_press);
         appTBoxLog.setName("TBox日志获取");
 
-        appTBoxProtobufTest.setId(YD_START + 4);
+        appTBoxProtobufTest.setId(APP_DEBUG);
         appTBoxProtobufTest.setImage(R.drawable.debug_press);
         appTBoxProtobufTest.setName("Protobuf工具");
 

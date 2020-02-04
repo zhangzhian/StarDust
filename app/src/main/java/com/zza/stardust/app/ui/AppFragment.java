@@ -100,6 +100,7 @@ public class AppFragment extends BaseFragment implements TitleLayout.onTitleClic
 
     @Override
     public void onItemClick(View view, int position) {
+
         switch (position) {
             case 0:
                 getActivity().startActivity(new Intent(getActivity(), OkHttpActivity.class));
