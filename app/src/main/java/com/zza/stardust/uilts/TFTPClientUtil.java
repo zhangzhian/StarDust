@@ -80,35 +80,6 @@ public class TFTPClientUtil {
         System.out.println("OK");
     }
 
-    public void getFiles(String hostname, String localDir, ArrayList<String> remoteFilenames,
-                         final TransFileCallBack callBack) throws Exception {
-        // We're sending a file
-        if (tftp == null) {
-            System.err.println("Error: please first init client.");
-        } else {
-            for (int i = 0; i < remoteFilenames.size(); i++) {
-                String filePath = remoteFilenames.get(i);
-                String[] fileSplite = filePath.split("/");
-
-                closed = receive(transferMode, hostname, localDir + fileSplite[fileSplite.length - 1], filePath, tftp);
-
-                if (callBack != null)
-                    if (callBack instanceof PullFileCallBack) {
-                        ((PullFileCallBack) callBack).onTransSingleSuccess(
-                                fileSplite[fileSplite.length - 1],
-                                localDir + fileSplite[fileSplite.length - 1] + "");
-                    } else {
-                        throw new Exception("callBack interface Type error");
-                    }
-                if (!closed) {
-                    System.out.println("Failed");
-                }
-                Thread.sleep(1000);
-            }
-            callBack.onTransSuccess();
-        }
-    }
-
     private static boolean send(int transferMode, String hostname, String localFilename, String remoteFilename,
                                 TFTPClient tftp) throws Exception {
         boolean closed;

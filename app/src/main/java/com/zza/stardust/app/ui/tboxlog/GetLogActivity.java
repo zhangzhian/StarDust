@@ -1,8 +1,13 @@
 package com.zza.stardust.app.ui.tboxlog;
 
+import android.Manifest;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -12,10 +17,11 @@ import android.widget.TextView;
 import com.zza.library.base.BasePresenter;
 import com.zza.library.utils.LogUtil;
 import com.zza.library.utils.TimeUtil;
+import com.zza.library.utils.ToastUtil;
 import com.zza.stardust.R;
 import com.zza.stardust.app.dialog.CarmakerChooseDialog;
+import com.zza.stardust.callback.PullFileCallBack;
 import com.zza.stardust.callback.TransFileCallBack;
-import com.zza.stardust.uilts.TFTPClientUtil;
 import com.zza.stardust.base.MActivity;
 import com.zza.stardust.bean.CarmakerBean;
 import com.zza.stardust.common.MAppTypeInfo;
@@ -37,7 +43,7 @@ public class GetLogActivity extends MActivity {
     Button btGetLog;
     @BindView(R.id.tv_log_info)
     TextView tvLogInfo;
-
+    private static final int CODE_FOR_WRITE_PERMISSION = 1;
     private static final String TBOX_FILE_STORAGE_DIR = Environment.getExternalStorageDirectory() + "/TBoxData/";
     private static final String TBOX_ARM_LOG = "data/log/armlog/";
     private static final String TBOX_APPDATA_LOG = "data/data/appdata/";
@@ -52,11 +58,14 @@ public class GetLogActivity extends MActivity {
     @BindView(R.id.textView5)
     TextView textView5;
 
-    private ArrayList<String> list = new ArrayList<>();
+    private ArrayList<String> filePathList = new ArrayList<>();
     private ProgressDialog progressDialog = null;
     private StringBuffer bufferShow = new StringBuffer();
-    private ArrayList<String> logConfList = new ArrayList<>();
+    private ArrayList<String> logConfDataList = new ArrayList<>();
     private CarmakerChooseDialog carmakerChooseDialog = null;
+    private CarmakerBean carmakerBeanChoose = null;
+    private boolean isPermission = false;
+
 
     @Override
     protected BasePresenter createPresenter() {
@@ -71,6 +80,18 @@ public class GetLogActivity extends MActivity {
     @Override
     protected void onInit(Bundle savedInstanceState) {
         super.onInit(savedInstanceState);
+
+        //使用兼容库就无需判断系统版本
+        int hasWriteStoragePermission = ContextCompat.checkSelfPermission(getApplication(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (hasWriteStoragePermission == PackageManager.PERMISSION_GRANTED) {
+            //拥有权限，执行操作
+            isPermission = true;
+        } else {
+            //没有权限，向用户请求权限
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, CODE_FOR_WRITE_PERMISSION);
+        }
+
+
         File file = new File(TBOX_FILE_STORAGE_DIR);
         if (!file.exists()) {
             file.mkdirs();
@@ -82,6 +103,10 @@ public class GetLogActivity extends MActivity {
         if (MAppTypeInfo.APP_TYPE == MAppTypeInfo.APP_YD_ZT) {
             textView5.setVisibility(View.GONE);
             tvChooseCarType.setVisibility(View.GONE);
+            carmakerBeanChoose = new CarmakerBean();
+            carmakerBeanChoose.setCarmakeId("1");
+            carmakerBeanChoose.setCarmakeName("众泰");
+            carmakerBeanChoose.setCarmakeIp("192.168.100.1");
         } else {
             initCarmakerDialog();
         }
@@ -102,10 +127,10 @@ public class GetLogActivity extends MActivity {
         lists.add(carmakerBean2);
         CarmakerBean carmakerBean3 = new CarmakerBean();
         carmakerBean3.setCarmakeId("3");
-        carmakerBean3.setCarmakeName("其他");
+        carmakerBean3.setCarmakeName("通用");
         carmakerBean3.setCarmakeIp("192.168.225.1");
         lists.add(carmakerBean3);
-
+        carmakerBeanChoose = carmakerBean3;
         carmakerChooseDialog = new CarmakerChooseDialog(this, lists) {
             @Override
             public void onChooseReviewer(View view, int position) {
@@ -118,50 +143,44 @@ public class GetLogActivity extends MActivity {
 
     public void chooseCarmakerData(CarmakerBean bean) {
         //LogUtil.i(bean.toString());
-        tvChooseCarType.setText(bean.getCarmakeName());
+        carmakerBeanChoose = bean;
+        tvChooseCarType.setText(carmakerBeanChoose.getCarmakeName());
     }
 
-    public void updateTextShow(String content) {
-        bufferShow.append(content + "\r\n");
-        runOnUiThread(() -> {
-            tvLogInfo.setText(bufferShow.toString());
-            scrollView.fullScroll(ScrollView.FOCUS_DOWN);
-        });
-    }
 
     private void initLogDataPath() {
-        list.clear();
+        filePathList.clear();
         for (String module : MODULE_NAME) {
             for (int i = 0; i <= 5; i++) {
                 if (i == 0) {
-                    list.add(TBOX_ARM_LOG + module + ".log");
+                    filePathList.add(TBOX_ARM_LOG + module + ".log");
                 } else {
-                    list.add(TBOX_ARM_LOG + module + ".log" + "." + (i - 1));
+                    filePathList.add(TBOX_ARM_LOG + module + ".log" + "." + (i - 1));
                 }
             }
         }
         for (String module : MODULE_NAME_DEBUG) {
             for (int i = 0; i <= 1; i++) {
                 if (i == 0) {
-                    list.add(TBOX_ARM_LOG + module + ".log");
+                    filePathList.add(TBOX_ARM_LOG + module + ".log");
                 } else {
-                    list.add(TBOX_ARM_LOG + module + ".log" + "." + (i - 1));
+                    filePathList.add(TBOX_ARM_LOG + module + ".log" + "." + (i - 1));
                 }
             }
         }
-        list.add(TBOX_APPDATA_LOG + "blind_data_file");
-        list.add(TBOX_APPDATA_LOG + "qb_blind_data_file");
+        filePathList.add(TBOX_APPDATA_LOG + "blind_data_file");
+        filePathList.add(TBOX_APPDATA_LOG + "qb_blind_data_file");
 
         for (int i = 0; i < 7; i++) {
-            list.add(TBOX_APPDATA_LOG + "weekday_data_" + i);
+            filePathList.add(TBOX_APPDATA_LOG + "weekday_data_" + i);
         }
 
     }
 
     private void initLogDataPathByConf() throws Exception {
-        list.clear();
+        filePathList.clear();
         Boolean rules = false;
-        for (String conf : logConfList) {
+        for (String conf : logConfDataList) {
             if ("[rules]".equals(conf)) {
                 rules = true;
                 continue;
@@ -179,9 +198,9 @@ public class GetLogActivity extends MActivity {
                                 if (buffSize != null && buffSize.length == 2) {
                                     for (int i = 0; i <= Integer.parseInt(buffSize[1]); i++) {
                                         if (i == 0) {
-                                            list.add(logPath);
+                                            filePathList.add(logPath);
                                         } else {
-                                            list.add(logPath + "." + (i - 1));
+                                            filePathList.add(logPath + "." + (i - 1));
                                         }
                                     }
                                 }
@@ -194,23 +213,25 @@ public class GetLogActivity extends MActivity {
             }
         }
 
-        list.add(TBOX_APPDATA_LOG + "blind_data_file");
-        list.add(TBOX_APPDATA_LOG + "qb_blind_data_file");
+        filePathList.add(TBOX_APPDATA_LOG + "blind_data_file");
+        filePathList.add(TBOX_APPDATA_LOG + "qb_blind_data_file");
 
         for (int i = 0; i < 7; i++) {
-            list.add(TBOX_APPDATA_LOG + "weekday_data_" + i);
+            filePathList.add(TBOX_APPDATA_LOG + "weekday_data_" + i);
         }
 
-        updateTextShow("size:" + list.size());
+        showlog("size:" + filePathList.size());
     }
 
     @OnClick({R.id.bt_get_log, R.id.tv_choose_car_type})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.bt_get_log:
-                //pullLog();
-                //TODO 权限判断
-                pullLogConfFile(LOG_CONF_PATH);
+                if (!isPermission) {
+                    ToastUtil.show("无读写权限，请授予权限后重试");
+                } else {
+                    pullLogConfFile(LOG_CONF_PATH);
+                }
                 break;
             case R.id.tv_choose_car_type:
                 chooseCarmaker(view);
@@ -223,36 +244,40 @@ public class GetLogActivity extends MActivity {
             progressDialog = ProgressDialog.show(this, "提示", "正在传输获取日志配置文件", false, false);
         bufferShow.setLength(0);
         tvLogInfo.setText(bufferShow.toString());
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    TFTPClientUtil client = new TFTPClientUtil();
-                    client.initClient(null, 0);
-                    String storageDir = TBOX_FILE_STORAGE_DIR + TimeUtil.stampToDateHMS(System.currentTimeMillis()) + "/";
-                    File file = new File(storageDir);
-                    if (!file.exists()) file.mkdirs();
+        String storageDir = TBOX_FILE_STORAGE_DIR + TimeUtil.stampToDateHMS(System.currentTimeMillis()) + "/";
+        File file = new File(storageDir);
+        if (!file.exists()) file.mkdirs();
 
-                    client.getFile(MNetString.getYD_TFTP_URL(), storageDir, filePath);
+        YodoTBoxGetLogImpl.getInstance().TransFile(carmakerBeanChoose.getCarmakeIp(),
+                MNetString.YD_TFTP_PORT, storageDir, filePath, new TransFileCallBack() {
 
-                    String[] fileSplit = filePath.split("/");
-                    logConfList.clear();
-                    logConfList.addAll(getRowStrByFile(storageDir + fileSplit[fileSplit.length - 1]));
-                    initLogDataPathByConf();
+                    @Override
+                    public void onTrans(String direction, String packetData, int progress) {
+                        LogUtil.i(direction + " " + packetData + " progress:" + progress);
+                    }
 
+                    @Override
+                    public void onTransSuccess() {
+                        String[] fileSplit = filePath.split("/");
+                        logConfDataList.clear();
+                        logConfDataList.addAll(getRowStrByFile(storageDir + fileSplit[fileSplit.length - 1]));
+                        try {
+                            initLogDataPathByConf();
+                            pullLog();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            initLogDataPath();
+                            pullLog();
+                        }
+                    }
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    initLogDataPath();
-                } finally {
-                    pullLog();
-                }
-            }
-
-        });
-        thread.start();
+                    @Override
+                    public void onTransFail(int errorCode, Exception exception) {
+                        initLogDataPath();
+                        pullLog();
+                    }
+                });
     }
-
 
     public static List<String> getRowStrByFile(String name) {
         // 使用ArrayList来存储每行读取到的字符串
@@ -279,60 +304,98 @@ public class GetLogActivity extends MActivity {
     }
 
     private void pullLog() {
-        try {
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    progressDialog.setMessage("正在获取日志");
-                }
-            });
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                progressDialog.setMessage("正在获取日志");
+            }
+        });
 
-            TFTPClientUtil client = new TFTPClientUtil();
+        String storageDir = TBOX_FILE_STORAGE_DIR + TimeUtil.stampToDateHMS(System.currentTimeMillis()) + "/";
+        File file = new File(storageDir);
+        if (!file.exists()) file.mkdirs();
 
-            client.initClient(new TransFileCallBack() {
-                @Override
-                public void onTrans(String direction, String packetData, int progress) {
-                    LogUtil.e(direction + " " + packetData + " progress:" + progress);
-                }
-
-                @Override
-                public void onTransSuccess() {
-                    //showlog("onTransSuccess");
-                }
-
-                @Override
-                public void onTransFail(int errorCode, Exception exception) {
-                    LogUtil.e(("onTransFinsh:" + errorCode + " " + exception.getMessage()));
-                }
-            }, 0);
-
-            String storageDir = TBOX_FILE_STORAGE_DIR + TimeUtil.stampToDateHMS(System.currentTimeMillis()) + "/";
-            File file = new File(storageDir);
-            if (!file.exists()) file.mkdirs();
-
-            client.getFiles(MNetString.getYD_TFTP_URL(), storageDir, list, null);
-
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    if (progressDialog != null) {
-                        progressDialog.dismiss();
-                        progressDialog = null;
+        YodoTBoxGetLogImpl.getInstance().TransFiles(carmakerBeanChoose.getCarmakeIp(),
+                MNetString.YD_TFTP_PORT, storageDir, filePathList, new PullFileCallBack() {
+                    @Override
+                    public void onTransSingleSuccess(String remoteFileName, String localFilePath) {
+                        String[] fileSplit = remoteFileName.split("/");
+                        showlog("[" + fileSplit[fileSplit.length - 1] + "]Success: " + localFilePath + "");
                     }
-                }
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    if (progressDialog != null) {
-                        progressDialog.dismiss();
-                        progressDialog = null;
+
+                    @Override
+                    public void onTransSingleFail(String remoteFileName, String localFilePath, int errorCode, Exception exception) {
+                        String[] fileSplit = remoteFileName.split("/");
+                        showlog("[" + fileSplit[fileSplit.length - 1] + "]Fail: " + errorCode + " " + exception.getMessage());
                     }
+
+                    @Override
+                    public void onTrans(String direction, String packetData, int progress) {
+                        LogUtil.i(direction + " " + packetData + " progress:" + progress);
+                    }
+
+                    @Override
+                    public void onTransSuccess() {
+                        runOnUiThread(() -> {
+                            if (progressDialog != null) {
+                                progressDialog.dismiss();
+                                progressDialog = null;
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onTransFail(int errorCode, Exception exception) {
+                        showlog("Fail: " + errorCode + " " + exception.getMessage());
+
+                        runOnUiThread(() -> {
+                            if (progressDialog != null) {
+                                progressDialog.dismiss();
+                                progressDialog = null;
+                            }
+                        });
+                    }
+                });
+    }
+
+    private void showlog(String log) {
+        bufferShow.append(log + "\r\n");
+        runOnUiThread(() -> {
+            tvLogInfo.setText(bufferShow.toString());
+            scrollView.fullScroll(ScrollView.FOCUS_DOWN);
+        });
+
+    }
+
+    private void clearlog() {
+        bufferShow.setLength(0);
+        runOnUiThread(() -> {
+            tvLogInfo.setText(bufferShow.toString());
+            scrollView.fullScroll(ScrollView.FOCUS_DOWN);
+        });
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        //通过requestCode来识别是否同一个请求
+        if (requestCode == CODE_FOR_WRITE_PERMISSION) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                //用户同意，执行操作
+                isPermission = true;
+            } else {
+                //用户不同意，向用户展示该权限作用
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                    new AlertDialog.Builder(this)
+                            .setMessage("需要该权限读写本地文件")
+                            .setPositiveButton("OK", (dialog1, which) ->
+                                    ActivityCompat.requestPermissions(this,
+                                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                            CODE_FOR_WRITE_PERMISSION))
+                            .setNegativeButton("Cancel", null)
+                            .create()
+                            .show();
                 }
-            });
+            }
         }
-
     }
 }

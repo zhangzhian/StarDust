@@ -4,10 +4,10 @@ import android.text.TextUtils;
 
 import com.zza.library.utils.LogUtil;
 import com.zza.library.utils.ValidatorUtil;
+import com.zza.stardust.callback.PullFileCallBack;
 import com.zza.stardust.uilts.TFTPClientUtil;
 import com.zza.stardust.callback.TransFileCallBack;
 import com.zza.stardust.callback.UpgradeCallBack;
-import com.zza.stardust.app.ui.tboxupgrade.upgrade.impl.YodeTBoxUpgrdeImpl;
 import com.zza.stardust.uilts.UpgradeUtils;
 
 import java.io.File;
@@ -19,9 +19,9 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 
-public class YodoTBoxUpgrade implements YodeTBoxUpgrdeImpl {
+public class YodoTBoxUpgradeImpl implements YodeTBoxUpgrade {
 
-    private volatile static YodoTBoxUpgrade uniqueInstance;
+    private volatile static YodoTBoxUpgradeImpl uniqueInstance;
     private static final String TBOX_WIFI_ANDROID = "TBOX_WIFI_ANDROID.bin";
     private static final String TBOX_WIFI_ANDROID_PATH = "cache/upgrade/TBOX_WIFI_ANDROID.bin";
     private static final int NO_ERROR = 0;
@@ -36,14 +36,14 @@ public class YodoTBoxUpgrade implements YodeTBoxUpgrdeImpl {
     private static final int EXCEPTION = -99;
     private static boolean isRunning = false;
 
-    private YodoTBoxUpgrade() {
+    private YodoTBoxUpgradeImpl() {
     }
 
-    public static YodoTBoxUpgrade getInstance() {
+    public static YodoTBoxUpgradeImpl getInstance() {
         if (uniqueInstance == null) {
-            synchronized (YodoTBoxUpgrade.class) {
+            synchronized (YodoTBoxUpgradeImpl.class) {
                 if (uniqueInstance == null) {
-                    uniqueInstance = new YodoTBoxUpgrade();
+                    uniqueInstance = new YodoTBoxUpgradeImpl();
                 }
             }
         }
@@ -81,7 +81,6 @@ public class YodoTBoxUpgrade implements YodeTBoxUpgrdeImpl {
             isRunning = false;
             return;
         }
-
 
         Thread thread = new Thread(new Runnable() {
             @Override

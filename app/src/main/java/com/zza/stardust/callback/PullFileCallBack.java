@@ -10,6 +10,7 @@ package com.zza.stardust.callback;
  * @Version: 1.0
  */
 public interface PullFileCallBack extends TransFileCallBack {
-    void onTransSingleSuccess(String fileName, String filePath);
-    void onTransSingleFail(String fileName, String filePath);
+    void onTransSingleSuccess(String remoteFileName, String localFilePath);
+    void onTransSingleFail(String remoteFileName, String localFilePath,
+                           int errorCode, Exception exception);
 }

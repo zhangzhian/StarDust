@@ -17,7 +17,7 @@ public class MNetString {
     /**
      * 服务器端口号
      */
-    public static String YD_TFTP_PORT = "69";
+    public static int YD_TFTP_PORT = 69;
 
     /**
      * 获取服务器地址
