@@ -55,7 +55,7 @@
         app:layout_constraintBottom_toBottomOf="@id/tv1" />
 
     <TextView
-        android:id="@+id/tab1"
+        android:id="@+id/tv_choose_data"
         android:layout_width="0dp"
         android:layout_height="30dp"
         android:background="#f67"
@@ -65,11 +65,11 @@
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintHorizontal_weight="7"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/tab2" />
+        app:layout_constraintRight_toLeftOf="@+id/tv_send_data" />
 
 
     <TextView
-        android:id="@+id/tab2"
+        android:id="@+id/tv_send_data"
         android:layout_width="0dp"
         android:layout_height="30dp"
         android:background="#A67"
@@ -77,12 +77,12 @@
         android:text="Tab2"
         app:layout_constraintHorizontal_weight= "1"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/tab1"
-        app:layout_constraintRight_toLeftOf="@+id/tab3" />
+        app:layout_constraintLeft_toRightOf="@id/tv_choose_data"
+        app:layout_constraintRight_toLeftOf="@+id/tv_muit_send" />
 
 
     <TextView
-        android:id="@+id/tab3"
+        android:id="@+id/tv_muit_send"
         android:layout_width="0dp"
         android:layout_height="30dp"
         android:background="#767"
@@ -90,11 +90,11 @@
         android:text="Tab3"
         app:layout_constraintHorizontal_weight= "1"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/tab2"
+        app:layout_constraintLeft_toRightOf="@id/tv_send_data"
         app:layout_constraintRight_toRightOf="parent" />
 
     <TextView
-        android:id="@+id/tab4"
+        android:id="@+id/tv_muit_stop"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_marginBottom="40dp"
@@ -117,7 +117,7 @@
         android:text="tab5"
         android:layout_marginBottom="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/tab4"
+        app:layout_constraintLeft_toRightOf="@id/tv_muit_stop"
         app:layout_constraintRight_toLeftOf="@+id/tab6" />
 
 
