@@ -76,7 +76,7 @@
         app:layout_constraintGuide_percent="0.55" />
 
     <ScrollView
-        android:id="@+id/scrollView3"
+        android:id="@+id/sv_send_msg"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
@@ -159,17 +159,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintLeft_toRightOf="@id/tv_send_data"
-        app:layout_constraintRight_toLeftOf="@+id/tv_muit_stop" />
+        app:layout_constraintRight_toLeftOf="@+id/tv_clear_text" />
 
     <TextView
-        android:id="@+id/tv_muit_stop"
+        android:id="@+id/tv_clear_text"
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/bg_blue_5"
         android:gravity="center"
-        android:text="周期停止"
+        android:text="清除数据"
         android:textColor="@color/white"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -246,7 +246,7 @@
         android:text="停止心跳"
         android:textColor="@color/white"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/tv_muit_stop"
+        app:layout_constraintBottom_toTopOf="@+id/tv_clear_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/tv_send_heart"

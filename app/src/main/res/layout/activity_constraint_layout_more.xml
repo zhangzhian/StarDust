@@ -94,7 +94,7 @@
         app:layout_constraintRight_toRightOf="parent" />
 
     <TextView
-        android:id="@+id/tv_muit_stop"
+        android:id="@+id/tv_clear_text"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_marginBottom="40dp"
@@ -117,7 +117,7 @@
         android:text="tab5"
         android:layout_marginBottom="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/tv_muit_stop"
+        app:layout_constraintLeft_toRightOf="@id/tv_clear_text"
         app:layout_constraintRight_toLeftOf="@+id/tab6" />
 
 
