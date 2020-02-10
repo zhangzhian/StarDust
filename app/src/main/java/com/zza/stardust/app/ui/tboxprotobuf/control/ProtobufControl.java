@@ -10,10 +10,10 @@ package com.zza.stardust.app.ui.tboxprotobuf.control;
  * @Version: 1.0
  */
 public interface ProtobufControl {
-    void connect(String host, int post);
+    void connect(String host, int port);
     void disConnect();
     void sendCmd(int msgId, String cmd,int times, int period);
     void stopCmd(int msgId);
-    void addReceDataListener(ProtobufReceDataListener listener);
-    void removeReceDataListener(ProtobufReceDataListener listener);
+    void addReceDataListener(ProtobufListener listener);
+    void removeReceDataListener();
 }

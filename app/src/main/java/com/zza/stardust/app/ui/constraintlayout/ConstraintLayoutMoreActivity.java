@@ -1,4 +1,4 @@
-package com.zza.stardust.app.ui.constraintLayout;
+package com.zza.stardust.app.ui.constraintlayout;
 
 import com.zza.library.base.BasePresenter;
 import com.zza.stardust.R;

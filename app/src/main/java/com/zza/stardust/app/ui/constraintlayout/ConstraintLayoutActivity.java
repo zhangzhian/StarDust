@@ -1,4 +1,4 @@
-package com.zza.stardust.app.ui.constraintLayout;
+package com.zza.stardust.app.ui.constraintlayout;
 
 import android.content.Intent;
 import android.view.View;

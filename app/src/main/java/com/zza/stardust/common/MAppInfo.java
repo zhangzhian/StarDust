@@ -120,10 +120,10 @@ public class MAppInfo {
         MAppConfigInfo.addFuncList(appEventBus);
         MAppConfigInfo.addFuncList(appPermission);
         MAppConfigInfo.addFuncList(appRecyclerView);
-        MAppConfigInfo.addFuncList(appTBoxUpgrade);
-        MAppConfigInfo.addFuncList(appTBoxUpgradeDebug);
-        MAppConfigInfo.addFuncList(appTBoxLog);
-        MAppConfigInfo.addFuncList(appTBoxProtobufTest);
+//        MAppConfigInfo.addFuncList(appTBoxUpgrade);
+//        MAppConfigInfo.addFuncList(appTBoxUpgradeDebug);
+//        MAppConfigInfo.addFuncList(appTBoxLog);
+//        MAppConfigInfo.addFuncList(appTBoxProtobufTest);
     }
 
 }

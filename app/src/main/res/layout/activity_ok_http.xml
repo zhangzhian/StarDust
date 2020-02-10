@@ -6,7 +6,7 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     android:weightSum="5"
-    tools:context=".app.ui.okHttp.OkHttpActivity">
+    tools:context=".app.ui.okhttp.OkHttpActivity">
 
     <ScrollView
         android:layout_width="match_parent"

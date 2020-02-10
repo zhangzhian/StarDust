@@ -9,6 +9,8 @@ package com.zza.stardust.app.ui.tboxprotobuf.control;
  * @UpdateRemark:
  * @Version: 1.0
  */
-public interface ProtobufReceDataListener {
+public interface ProtobufListener {
     void receData(byte[] data);
+    void onConnect();
+    void onDisConnect(Exception e,String info);
 }
