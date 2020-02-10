@@ -75,6 +75,7 @@ public class ProtobufActivity extends MActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_choose_data:
+
                 break;
             case R.id.tv_send_data:
                 break;
