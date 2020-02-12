@@ -1,5 +1,7 @@
 package com.zza.stardust.app.ui.tboxprotobuf.control;
 
+import com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto;
+
 /**
  * @Author: 张志安
  * @Mail: zhangzhian_123@qq.com zhangzhian2016@gmail.com
@@ -10,7 +12,9 @@ package com.zza.stardust.app.ui.tboxprotobuf.control;
  * @Version: 1.0
  */
 public interface ProtobufListener {
-    void receData(byte[] data);
-    void onConnect();
-    void onDisConnect(Exception e,String info);
+    void receData(IVITboxProto.TopMessage data);
+    void onConnectSuccess();
+    void onConnectFail(int code, Exception e);
+    void onDisConnect();
+    void onDisConnectFail(int code, Exception e);
 }

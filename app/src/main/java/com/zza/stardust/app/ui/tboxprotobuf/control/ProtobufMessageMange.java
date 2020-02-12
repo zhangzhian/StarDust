@@ -2,6 +2,7 @@ package com.zza.stardust.app.ui.tboxprotobuf.control;
 
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
+import com.google.protobuf.util.JsonFormat;
 import com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.*;
 
 /**
@@ -120,13 +121,19 @@ public class ProtobufMessageMange {
         return message.build();
     }
 
-    public static TopMessage parase2Message(byte[] data) throws InvalidProtocolBufferException {
+    public static TopMessage paraseBytes2Message(byte[] data) throws InvalidProtocolBufferException {
         return TopMessage.parseFrom(data);
     }
 
 
-    public static String message2StringMessage(TopMessage message) {
-        return message.toString();
+    public static String message2JSONString(TopMessage message) throws InvalidProtocolBufferException {
+        return JsonFormat.printer().print(message);
+    }
+
+    public static TopMessage paraseJSONString2Message(String message, TopMessage.Builder builder)
+            throws InvalidProtocolBufferException {
+        JsonFormat.parser().merge(message, builder);
+        return builder.build();
     }
 
 }

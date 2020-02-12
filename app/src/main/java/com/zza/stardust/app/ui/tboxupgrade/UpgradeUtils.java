@@ -1,4 +1,4 @@
-package com.zza.stardust.uilts;
+package com.zza.stardust.app.ui.tboxupgrade;
 
 public class UpgradeUtils {
     public static byte[] protocolMake(String svStr, String hvStr, String fileNameStr) {
@@ -70,41 +70,6 @@ public class UpgradeUtils {
         }
 
         return temp;
-    }
-
-    /**
-     * 将字节数组转换成十六进制的字符串
-     *
-     * @return
-     */
-    public static String bytesToHexString(byte[] bytes) {
-        String hexStr = "0123456789ABCDEF";
-        String result = "";
-        String hex = "";
-        for (byte b : bytes) {
-            hex = String.valueOf(hexStr.charAt((b & 0xF0) >> 4));
-            hex += String.valueOf(hexStr.charAt(b & 0x0F));
-            result += hex + "";
-        }
-        return result;
-    }
-
-    public static byte[] convertHexToBytes(byte[] hex, int size) {
-
-        byte[] bytes = new byte[size / 2];
-
-        for (int i = 0; i < size; i += 2) {
-
-            char charTemp1 = (char) hex[i];
-            char charTemp2 = (char) hex[i + 1];
-            StringBuffer temp = new StringBuffer();
-            temp.append(charTemp1);
-            temp.append(charTemp2);
-            bytes[i / 2] = (byte) Integer.parseInt(temp.toString(), 16);
-
-        }
-
-        return bytes;
     }
 
     public static String errorCode2Str(byte errorCode){

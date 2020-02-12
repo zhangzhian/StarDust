@@ -1,11 +1,16 @@
 package com.zza.stardust.app.ui.tboxprotobuf.control;
 
+import com.zza.library.utils.BytesUtils;
+import com.zza.library.utils.LogUtil;
+import com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * @Author: 张志安
@@ -18,8 +23,20 @@ import java.net.UnknownHostException;
  */
 public class ProtobufControlImpl implements ProtobufControl {
 
+    private static final int NO_ERROR = 0;
+    private static final int ERR_NOT_INIT = -1;
+    private static final int ERR_INTERRUPTED = -2;
+    private static final int ERR_UNKNOWN_HOST = -3;
+    private static final int ERR_IO = -4;
+
+    private static final int ERROR = -99;
+
+    private static final String PROTOBUF_START = "#START*";
+    private static final String PROTOBUF_END = "#END*";
+
     private ProtobufListener listener = null;
-    private Thread thread = null;
+    private Thread threadTcp = null;
+    private Thread threadSend = null;
     private Boolean isRunning = true;
 
     private Socket socket = null;
@@ -30,29 +47,63 @@ public class ProtobufControlImpl implements ProtobufControl {
     private String host;
     private int port;
 
+    private CopyOnWriteArrayList<ProtoBufEvent> buffList = new CopyOnWriteArrayList<>();
+    private int currentPos = 0;
+
     @Override
-    public void connect(String host, int port) {
+    public void init(String host, int port, ProtobufListener listener) {
         this.host = host;
         this.port = port;
-        if (thread == null) {
-            thread = new Thread(new TcpRunnable());
+        this.listener = listener;
+        if (threadTcp == null) {
+            threadTcp = new Thread(new TcpRunnable());
         }
-        thread.start();
+        if (threadSend == null) threadSend = new Thread(new TcpSendRunning());
+    }
+
+    @Override
+    public void connect() {
+        if (threadTcp != null) {
+            threadTcp.start();
+        } else {
+            if (listener != null) listener.onConnectFail(ERR_NOT_INIT, new Exception("not init."));
+        }
+
+        if (threadSend != null) threadSend.start();
     }
 
     @Override
     public void disConnect() {
-        isRunning = false;
+        //4.关闭资源
+        try {
+            if (is != null)
+                is.close();
+            if (os != null)
+                os.close();
+            if (socket != null)
+                socket.close();
+            if (pw != null)
+                pw.close();
+            isRunning = false;
+            if (listener != null) listener.onDisConnect();
+        } catch (IOException e) {
+            e.printStackTrace();
+            if (listener != null) listener.onDisConnectFail(ERR_IO, e);
+            isRunning = false;
+        }
     }
 
     @Override
-    public void sendCmd(int msgId, String msg, int times, int period) {
-
+    public void sendCmd(int msgId, String cmd, boolean period, int periodTimeMils) {
+        buffList.add(new ProtoBufEvent(msgId, cmd, period, periodTimeMils));
     }
 
     @Override
     public void stopCmd(int msgId) {
-
+        for (int i = 0; i < buffList.size(); i++) {
+            if (buffList.get(i).getMsgId() == msgId)
+                buffList.remove(i);
+        }
     }
 
     @Override
@@ -66,24 +117,117 @@ public class ProtobufControlImpl implements ProtobufControl {
     }
 
 
-    class TcpRunnable implements Runnable{
+    class TcpRunnable implements Runnable {
 
         @Override
-        public void run(){
-            if (isRunning) {
-                try {
-                    socket = new Socket(host,port);
+        public void run() {
+            try {
+                //接收服务器的响应
+                byte[] buf = new byte[1024];
 
+                //创建客户端Socket，指定服务器地址和端口
+                socket = new Socket(host, port);
+                //获取输出流，向服务器端发送信息
+                os = socket.getOutputStream();
+                pw = new PrintWriter(os);
+                //获取输入流，并读取服务器端的响应信息
+                is = socket.getInputStream();
+
+                listener.onConnectSuccess();
+
+                while (isRunning || (is.read(buf)) != -1) {
+                    //将字节数组转换成十六进制的字符串
+                    String dataStr = BytesUtils.bytesToHexString(buf);
+                    LogUtil.w("---->:" + dataStr);
+                    paraseReceData(dataStr);
                     Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (UnknownHostException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                if (listener != null) listener.onConnectFail(ERR_INTERRUPTED, e);
+            } catch (UnknownHostException e) {
+                e.printStackTrace();
+                if (listener != null) listener.onConnectFail(ERR_UNKNOWN_HOST, e);
+            } catch (IOException e) {
+                e.printStackTrace();
+                if (listener != null) listener.onConnectFail(ERR_IO, e);
+            } finally {
+                disConnect();
+            }
+
+        }
+
+        private void paraseReceData(String dataStr) {
+            int startIndex;
+            int endIndex;
+            int dataLength;
+            while ((startIndex = dataStr.indexOf(PROTOBUF_START)) >= 0) {
+                dataStr = dataStr.substring(startIndex);
+                String lengthData = dataStr.substring(PROTOBUF_START.length(), PROTOBUF_START.length() + 2);
+                if (lengthData != null && lengthData.length() == 2) {
+                    int length_high = 0;
+                    int length_low = 0;
+                    try {
+                        length_high = Integer.parseInt(lengthData.substring(0, 1));
+                        length_low = Integer.parseInt(lengthData.substring(1));
+                        dataLength = length_high * 16 + length_low;
+                        endIndex = dataStr.indexOf(PROTOBUF_END);
+                        if (endIndex > 0 && endIndex - PROTOBUF_START.length() - 2 == dataLength) {
+                            dataStr = dataStr.substring(2, dataLength - PROTOBUF_END.length());
+                            byte[] dataBuf = BytesUtils.convertHexToBytes(dataStr.getBytes(), dataLength);
+                            if (listener != null) {
+                                IVITboxProto.TopMessage topMessage = ProtobufMessageMange.paraseBytes2Message(dataBuf);
+                                listener.receData(topMessage);
+                            }
+                        } else {
+                            dataStr = dataStr.substring(startIndex + PROTOBUF_START.length());
+                            continue;
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        dataStr = dataStr.substring(startIndex + PROTOBUF_START.length());
+                        continue;
+                    }
+
+                } else {
+                    return;
                 }
             }
         }
     }
 
+    class TcpSendRunning implements Runnable {
+
+        @Override
+        public void run() {
+            while (isRunning) {
+                try {
+                    if (buffList.size() == 0) {
+                        Thread.sleep(1000);
+                    } else {
+                        if (currentPos >= buffList.size()) {
+                            currentPos = 0;
+                        } else {
+                            currentPos++;
+                        }
+                        ProtoBufEvent protoBufEvent = buffList.get(currentPos);
+                        if (!protoBufEvent.getPeriod()){
+
+                        }else {
+                            String sendData = getSendData(protoBufEvent.getMsg());
+
+                        }
+                        Thread.sleep(50);
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        private String getSendData(String msg) {
+            //ProtobufMessageMange.paraseBytes2Message();
+            return "";
+        }
+    }
 }

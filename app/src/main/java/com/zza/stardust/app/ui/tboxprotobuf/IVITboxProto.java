@@ -8,11 +8,17 @@ public final class IVITboxProto {
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistryLite registry) {
   }
+
+  public static void registerAllExtensions(
+      com.google.protobuf.ExtensionRegistry registry) {
+    registerAllExtensions(
+        (com.google.protobuf.ExtensionRegistryLite) registry);
+  }
   /**
    * Protobuf enum {@code Messagetype}
    */
   public enum Messagetype
-      implements com.google.protobuf.Internal.EnumLite {
+      implements com.google.protobuf.ProtocolMessageEnum {
     /**
      * <pre>
      *no use,just for remove 0 in the enum
@@ -362,7 +368,6 @@ public final class IVITboxProto {
     public static final int RESPONSE_TBOX_CHARGECTRL_RESULT_VALUE = 21;
 
 
-    @Override
     public final int getNumber() {
       if (this == UNRECOGNIZED) {
         throw new IllegalArgumentException(
@@ -372,8 +377,8 @@ public final class IVITboxProto {
     }
 
     /**
-     * @param value The number of the enum to look for.
-     * @return The enum associated with the given number.
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
      * @deprecated Use {@link #forNumber(int)} instead.
      */
     @Deprecated
@@ -381,6 +386,10 @@ public final class IVITboxProto {
       return forNumber(value);
     }
 
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     */
     public static Messagetype forNumber(int value) {
       switch (value) {
         case 0: return REQUEST_RESPONSE_NONE;
@@ -416,25 +425,37 @@ public final class IVITboxProto {
     private static final com.google.protobuf.Internal.EnumLiteMap<
         Messagetype> internalValueMap =
           new com.google.protobuf.Internal.EnumLiteMap<Messagetype>() {
-            @Override
             public Messagetype findValueByNumber(int number) {
               return Messagetype.forNumber(number);
             }
           };
 
-    public static com.google.protobuf.Internal.EnumVerifier 
-        internalGetVerifier() {
-      return MessagetypeVerifier.INSTANCE;
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(ordinal());
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return IVITboxProto.getDescriptor().getEnumTypes().get(0);
     }
 
-    private static final class MessagetypeVerifier implements 
-         com.google.protobuf.Internal.EnumVerifier { 
-            static final com.google.protobuf.Internal.EnumVerifier           INSTANCE = new MessagetypeVerifier();
-            @Override
-            public boolean isInRange(int number) {
-              return Messagetype.forNumber(number) != null;
-            }
-          };
+    private static final Messagetype[] VALUES = values();
+
+    public static Messagetype valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
+      return VALUES[desc.getIndex()];
+    }
 
     private final int value;
 
@@ -449,7 +470,7 @@ public final class IVITboxProto {
    * Protobuf enum {@code NETWORK_SEND_OnOff}
    */
   public enum NETWORK_SEND_OnOff
-      implements com.google.protobuf.Internal.EnumLite {
+      implements com.google.protobuf.ProtocolMessageEnum {
     /**
      * <pre>
      *start network signal send to IVI
@@ -503,7 +524,6 @@ public final class IVITboxProto {
     public static final int NETWORK_ONCE_VALUE = 2;
 
 
-    @Override
     public final int getNumber() {
       if (this == UNRECOGNIZED) {
         throw new IllegalArgumentException(
@@ -513,8 +533,8 @@ public final class IVITboxProto {
     }
 
     /**
-     * @param value The number of the enum to look for.
-     * @return The enum associated with the given number.
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
      * @deprecated Use {@link #forNumber(int)} instead.
      */
     @Deprecated
@@ -522,6 +542,10 @@ public final class IVITboxProto {
       return forNumber(value);
     }
 
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     */
     public static NETWORK_SEND_OnOff forNumber(int value) {
       switch (value) {
         case 0: return NETWORK_ON;
@@ -538,25 +562,37 @@ public final class IVITboxProto {
     private static final com.google.protobuf.Internal.EnumLiteMap<
         NETWORK_SEND_OnOff> internalValueMap =
           new com.google.protobuf.Internal.EnumLiteMap<NETWORK_SEND_OnOff>() {
-            @Override
             public NETWORK_SEND_OnOff findValueByNumber(int number) {
               return NETWORK_SEND_OnOff.forNumber(number);
             }
           };
 
-    public static com.google.protobuf.Internal.EnumVerifier 
-        internalGetVerifier() {
-      return NETWORK_SEND_OnOffVerifier.INSTANCE;
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(ordinal());
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return IVITboxProto.getDescriptor().getEnumTypes().get(1);
     }
 
-    private static final class NETWORK_SEND_OnOffVerifier implements 
-         com.google.protobuf.Internal.EnumVerifier { 
-            static final com.google.protobuf.Internal.EnumVerifier           INSTANCE = new NETWORK_SEND_OnOffVerifier();
-            @Override
-            public boolean isInRange(int number) {
-              return NETWORK_SEND_OnOff.forNumber(number) != null;
-            }
-          };
+    private static final NETWORK_SEND_OnOff[] VALUES = values();
+
+    public static NETWORK_SEND_OnOff valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
+      return VALUES[desc.getIndex()];
+    }
 
     private final int value;
 
@@ -571,7 +607,7 @@ public final class IVITboxProto {
    * Protobuf enum {@code SignalType}
    */
   public enum SignalType
-      implements com.google.protobuf.Internal.EnumLite {
+      implements com.google.protobuf.ProtocolMessageEnum {
     /**
      * <pre>
      * no signal
@@ -641,7 +677,6 @@ public final class IVITboxProto {
     public static final int LTE_VALUE = 3;
 
 
-    @Override
     public final int getNumber() {
       if (this == UNRECOGNIZED) {
         throw new IllegalArgumentException(
@@ -651,8 +686,8 @@ public final class IVITboxProto {
     }
 
     /**
-     * @param value The number of the enum to look for.
-     * @return The enum associated with the given number.
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
      * @deprecated Use {@link #forNumber(int)} instead.
      */
     @Deprecated
@@ -660,6 +695,10 @@ public final class IVITboxProto {
       return forNumber(value);
     }
 
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     */
     public static SignalType forNumber(int value) {
       switch (value) {
         case 0: return NONE_SIGNAL;
@@ -677,25 +716,37 @@ public final class IVITboxProto {
     private static final com.google.protobuf.Internal.EnumLiteMap<
         SignalType> internalValueMap =
           new com.google.protobuf.Internal.EnumLiteMap<SignalType>() {
-            @Override
             public SignalType findValueByNumber(int number) {
               return SignalType.forNumber(number);
             }
           };
 
-    public static com.google.protobuf.Internal.EnumVerifier 
-        internalGetVerifier() {
-      return SignalTypeVerifier.INSTANCE;
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(ordinal());
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return IVITboxProto.getDescriptor().getEnumTypes().get(2);
     }
 
-    private static final class SignalTypeVerifier implements 
-         com.google.protobuf.Internal.EnumVerifier { 
-            static final com.google.protobuf.Internal.EnumVerifier           INSTANCE = new SignalTypeVerifier();
-            @Override
-            public boolean isInRange(int number) {
-              return SignalType.forNumber(number) != null;
-            }
-          };
+    private static final SignalType[] VALUES = values();
+
+    public static SignalType valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
+      return VALUES[desc.getIndex()];
+    }
 
     private final int value;
 
@@ -710,7 +761,7 @@ public final class IVITboxProto {
    * Protobuf enum {@code GPS_SEND_OnOff}
    */
   public enum GPS_SEND_OnOff
-      implements com.google.protobuf.Internal.EnumLite {
+      implements com.google.protobuf.ProtocolMessageEnum {
     /**
      * <pre>
      *start GPS info send to IVI
@@ -764,7 +815,6 @@ public final class IVITboxProto {
     public static final int GPS_ONCE_VALUE = 2;
 
 
-    @Override
     public final int getNumber() {
       if (this == UNRECOGNIZED) {
         throw new IllegalArgumentException(
@@ -774,8 +824,8 @@ public final class IVITboxProto {
     }
 
     /**
-     * @param value The number of the enum to look for.
-     * @return The enum associated with the given number.
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
      * @deprecated Use {@link #forNumber(int)} instead.
      */
     @Deprecated
@@ -783,6 +833,10 @@ public final class IVITboxProto {
       return forNumber(value);
     }
 
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     */
     public static GPS_SEND_OnOff forNumber(int value) {
       switch (value) {
         case 0: return GPS_ON;
@@ -799,25 +853,37 @@ public final class IVITboxProto {
     private static final com.google.protobuf.Internal.EnumLiteMap<
         GPS_SEND_OnOff> internalValueMap =
           new com.google.protobuf.Internal.EnumLiteMap<GPS_SEND_OnOff>() {
-            @Override
             public GPS_SEND_OnOff findValueByNumber(int number) {
               return GPS_SEND_OnOff.forNumber(number);
             }
           };
 
-    public static com.google.protobuf.Internal.EnumVerifier 
-        internalGetVerifier() {
-      return GPS_SEND_OnOffVerifier.INSTANCE;
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(ordinal());
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return IVITboxProto.getDescriptor().getEnumTypes().get(3);
     }
 
-    private static final class GPS_SEND_OnOffVerifier implements 
-         com.google.protobuf.Internal.EnumVerifier { 
-            static final com.google.protobuf.Internal.EnumVerifier           INSTANCE = new GPS_SEND_OnOffVerifier();
-            @Override
-            public boolean isInRange(int number) {
-              return GPS_SEND_OnOff.forNumber(number) != null;
-            }
-          };
+    private static final GPS_SEND_OnOff[] VALUES = values();
+
+    public static GPS_SEND_OnOff valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
+      return VALUES[desc.getIndex()];
+    }
 
     private final int value;
 
@@ -832,7 +898,7 @@ public final class IVITboxProto {
    * Protobuf enum {@code DataTypeEnum}
    */
   public enum DataTypeEnum
-      implements com.google.protobuf.Internal.EnumLite {
+      implements com.google.protobuf.ProtocolMessageEnum {
     /**
      * <code>PHOTO_TYPE = 0;</code>
      */
@@ -854,7 +920,6 @@ public final class IVITboxProto {
     public static final int VIDEO_TYPE_VALUE = 1;
 
 
-    @Override
     public final int getNumber() {
       if (this == UNRECOGNIZED) {
         throw new IllegalArgumentException(
@@ -864,8 +929,8 @@ public final class IVITboxProto {
     }
 
     /**
-     * @param value The number of the enum to look for.
-     * @return The enum associated with the given number.
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
      * @deprecated Use {@link #forNumber(int)} instead.
      */
     @Deprecated
@@ -873,6 +938,10 @@ public final class IVITboxProto {
       return forNumber(value);
     }
 
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     */
     public static DataTypeEnum forNumber(int value) {
       switch (value) {
         case 0: return PHOTO_TYPE;
@@ -888,25 +957,37 @@ public final class IVITboxProto {
     private static final com.google.protobuf.Internal.EnumLiteMap<
         DataTypeEnum> internalValueMap =
           new com.google.protobuf.Internal.EnumLiteMap<DataTypeEnum>() {
-            @Override
             public DataTypeEnum findValueByNumber(int number) {
               return DataTypeEnum.forNumber(number);
             }
           };
 
-    public static com.google.protobuf.Internal.EnumVerifier 
-        internalGetVerifier() {
-      return DataTypeEnumVerifier.INSTANCE;
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(ordinal());
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return IVITboxProto.getDescriptor().getEnumTypes().get(4);
     }
 
-    private static final class DataTypeEnumVerifier implements 
-         com.google.protobuf.Internal.EnumVerifier { 
-            static final com.google.protobuf.Internal.EnumVerifier           INSTANCE = new DataTypeEnumVerifier();
-            @Override
-            public boolean isInRange(int number) {
-              return DataTypeEnum.forNumber(number) != null;
-            }
-          };
+    private static final DataTypeEnum[] VALUES = values();
+
+    public static DataTypeEnum valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
+      return VALUES[desc.getIndex()];
+    }
 
     private final int value;
 
@@ -921,7 +1002,7 @@ public final class IVITboxProto {
    * Protobuf enum {@code CameraNameEnum}
    */
   public enum CameraNameEnum
-      implements com.google.protobuf.Internal.EnumLite {
+      implements com.google.protobuf.ProtocolMessageEnum {
     /**
      * <code>DVR_TYPE = 0;</code>
      */
@@ -943,7 +1024,6 @@ public final class IVITboxProto {
     public static final int DMS_TYPE_VALUE = 1;
 
 
-    @Override
     public final int getNumber() {
       if (this == UNRECOGNIZED) {
         throw new IllegalArgumentException(
@@ -953,8 +1033,8 @@ public final class IVITboxProto {
     }
 
     /**
-     * @param value The number of the enum to look for.
-     * @return The enum associated with the given number.
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
      * @deprecated Use {@link #forNumber(int)} instead.
      */
     @Deprecated
@@ -962,6 +1042,10 @@ public final class IVITboxProto {
       return forNumber(value);
     }
 
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     */
     public static CameraNameEnum forNumber(int value) {
       switch (value) {
         case 0: return DVR_TYPE;
@@ -977,25 +1061,37 @@ public final class IVITboxProto {
     private static final com.google.protobuf.Internal.EnumLiteMap<
         CameraNameEnum> internalValueMap =
           new com.google.protobuf.Internal.EnumLiteMap<CameraNameEnum>() {
-            @Override
             public CameraNameEnum findValueByNumber(int number) {
               return CameraNameEnum.forNumber(number);
             }
           };
 
-    public static com.google.protobuf.Internal.EnumVerifier 
-        internalGetVerifier() {
-      return CameraNameEnumVerifier.INSTANCE;
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(ordinal());
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return IVITboxProto.getDescriptor().getEnumTypes().get(5);
     }
 
-    private static final class CameraNameEnumVerifier implements 
-         com.google.protobuf.Internal.EnumVerifier { 
-            static final com.google.protobuf.Internal.EnumVerifier           INSTANCE = new CameraNameEnumVerifier();
-            @Override
-            public boolean isInRange(int number) {
-              return CameraNameEnum.forNumber(number) != null;
-            }
-          };
+    private static final CameraNameEnum[] VALUES = values();
+
+    public static CameraNameEnum valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
+      return VALUES[desc.getIndex()];
+    }
 
     private final int value;
 
@@ -1008,7 +1104,7 @@ public final class IVITboxProto {
 
   public interface TboxNetworkCtrlOrBuilder extends
       // @@protoc_insertion_point(interface_extends:TboxNetworkCtrl)
-      com.google.protobuf.MessageLiteOrBuilder {
+      com.google.protobuf.MessageOrBuilder {
 
     /**
      * <code>.NETWORK_SEND_OnOff onoff = 1;</code>
@@ -1031,19 +1127,97 @@ public final class IVITboxProto {
    * Protobuf type {@code TboxNetworkCtrl}
    */
   public  static final class TboxNetworkCtrl extends
-      com.google.protobuf.GeneratedMessageLite<
-          TboxNetworkCtrl, TboxNetworkCtrl.Builder> implements
+      com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:TboxNetworkCtrl)
       TboxNetworkCtrlOrBuilder {
-    private TboxNetworkCtrl() {
+  private static final long serialVersionUID = 0L;
+    // Use TboxNetworkCtrl.newBuilder() to construct.
+    private TboxNetworkCtrl(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
     }
+    private TboxNetworkCtrl() {
+      onoff_ = 0;
+    }
+
+    @Override
+    @SuppressWarnings({"unused"})
+    protected Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new TboxNetworkCtrl();
+    }
+
+    @Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private TboxNetworkCtrl(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+              int rawValue = input.readEnum();
+
+              onoff_ = rawValue;
+              break;
+            }
+            case 16: {
+
+              timeCycle_ = input.readUInt32();
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return IVITboxProto.internal_static_TboxNetworkCtrl_descriptor;
+    }
+
+    @Override
+    protected FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return IVITboxProto.internal_static_TboxNetworkCtrl_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              TboxNetworkCtrl.class, Builder.class);
+    }
+
     public static final int ONOFF_FIELD_NUMBER = 1;
     private int onoff_;
     /**
      * <code>.NETWORK_SEND_OnOff onoff = 1;</code>
      * @return The enum numeric value on the wire for onoff.
      */
-    @Override
     public int getOnoffValue() {
       return onoff_;
     }
@@ -1051,32 +1225,10 @@ public final class IVITboxProto {
      * <code>.NETWORK_SEND_OnOff onoff = 1;</code>
      * @return The onoff.
      */
-    @Override
     public NETWORK_SEND_OnOff getOnoff() {
-      NETWORK_SEND_OnOff result = NETWORK_SEND_OnOff.forNumber(onoff_);
+      @SuppressWarnings("deprecation")
+      NETWORK_SEND_OnOff result = NETWORK_SEND_OnOff.valueOf(onoff_);
       return result == null ? NETWORK_SEND_OnOff.UNRECOGNIZED : result;
-    }
-    /**
-     * <code>.NETWORK_SEND_OnOff onoff = 1;</code>
-     * @param value The enum numeric value on the wire for onoff to set.
-     */
-    private void setOnoffValue(int value) {
-        onoff_ = value;
-    }
-    /**
-     * <code>.NETWORK_SEND_OnOff onoff = 1;</code>
-     * @param value The onoff to set.
-     */
-    private void setOnoff(NETWORK_SEND_OnOff value) {
-      onoff_ = value.getNumber();
-      
-    }
-    /**
-     * <code>.NETWORK_SEND_OnOff onoff = 1;</code>
-     */
-    private void clearOnoff() {
-      
-      onoff_ = 0;
     }
 
     public static final int TIME_CYCLE_FIELD_NUMBER = 2;
@@ -1085,155 +1237,367 @@ public final class IVITboxProto {
      * <code>uint32 time_cycle = 2;</code>
      * @return The timeCycle.
      */
-    @Override
     public int getTimeCycle() {
       return timeCycle_;
     }
-    /**
-     * <code>uint32 time_cycle = 2;</code>
-     * @param value The timeCycle to set.
-     */
-    private void setTimeCycle(int value) {
-      
-      timeCycle_ = value;
+
+    private byte memoizedIsInitialized = -1;
+    @Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
     }
-    /**
-     * <code>uint32 time_cycle = 2;</code>
-     */
-    private void clearTimeCycle() {
-      
-      timeCycle_ = 0;
+
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (onoff_ != NETWORK_SEND_OnOff.NETWORK_ON.getNumber()) {
+        output.writeEnum(1, onoff_);
+      }
+      if (timeCycle_ != 0) {
+        output.writeUInt32(2, timeCycle_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (onoff_ != NETWORK_SEND_OnOff.NETWORK_ON.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(1, onoff_);
+      }
+      if (timeCycle_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(2, timeCycle_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof TboxNetworkCtrl)) {
+        return super.equals(obj);
+      }
+      TboxNetworkCtrl other = (TboxNetworkCtrl) obj;
+
+      if (onoff_ != other.onoff_) return false;
+      if (getTimeCycle()
+          != other.getTimeCycle()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + ONOFF_FIELD_NUMBER;
+      hash = (53 * hash) + onoff_;
+      hash = (37 * hash) + TIME_CYCLE_FIELD_NUMBER;
+      hash = (53 * hash) + getTimeCycle();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
     }
 
     public static TboxNetworkCtrl parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static TboxNetworkCtrl parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static TboxNetworkCtrl parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static TboxNetworkCtrl parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static TboxNetworkCtrl parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static TboxNetworkCtrl parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static TboxNetworkCtrl parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static TboxNetworkCtrl parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static TboxNetworkCtrl parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
     }
     public static TboxNetworkCtrl parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static TboxNetworkCtrl parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static TboxNetworkCtrl parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
+    @Override
+    public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
-      return (Builder) DEFAULT_INSTANCE.createBuilder();
+      return DEFAULT_INSTANCE.toBuilder();
     }
     public static Builder newBuilder(TboxNetworkCtrl prototype) {
-      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
     }
 
+    @Override
+    protected Builder newBuilderForType(
+        BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
     /**
      * Protobuf type {@code TboxNetworkCtrl}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          TboxNetworkCtrl, Builder> implements
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:TboxNetworkCtrl)
         TboxNetworkCtrlOrBuilder {
-      // Construct using com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.TboxNetworkCtrl.newBuilder()
-      private Builder() {
-        super(DEFAULT_INSTANCE);
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return IVITboxProto.internal_static_TboxNetworkCtrl_descriptor;
       }
 
+      @Override
+      protected FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return IVITboxProto.internal_static_TboxNetworkCtrl_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                TboxNetworkCtrl.class, Builder.class);
+      }
 
+      // Construct using com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.TboxNetworkCtrl.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @Override
+      public Builder clear() {
+        super.clear();
+        onoff_ = 0;
+
+        timeCycle_ = 0;
+
+        return this;
+      }
+
+      @Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return IVITboxProto.internal_static_TboxNetworkCtrl_descriptor;
+      }
+
+      @Override
+      public TboxNetworkCtrl getDefaultInstanceForType() {
+        return TboxNetworkCtrl.getDefaultInstance();
+      }
+
+      @Override
+      public TboxNetworkCtrl build() {
+        TboxNetworkCtrl result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @Override
+      public TboxNetworkCtrl buildPartial() {
+        TboxNetworkCtrl result = new TboxNetworkCtrl(this);
+        result.onoff_ = onoff_;
+        result.timeCycle_ = timeCycle_;
+        onBuilt();
+        return result;
+      }
+
+      @Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return super.setField(field, value);
+      }
+      @Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof TboxNetworkCtrl) {
+          return mergeFrom((TboxNetworkCtrl)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(TboxNetworkCtrl other) {
+        if (other == TboxNetworkCtrl.getDefaultInstance()) return this;
+        if (other.onoff_ != 0) {
+          setOnoffValue(other.getOnoffValue());
+        }
+        if (other.getTimeCycle() != 0) {
+          setTimeCycle(other.getTimeCycle());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        TboxNetworkCtrl parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (TboxNetworkCtrl) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int onoff_ = 0;
       /**
        * <code>.NETWORK_SEND_OnOff onoff = 1;</code>
        * @return The enum numeric value on the wire for onoff.
        */
-      @Override
       public int getOnoffValue() {
-        return instance.getOnoffValue();
-      }
-      /**
-       * <code>.NETWORK_SEND_OnOff onoff = 1;</code>
-       * @param value The onoff to set.
-       * @return This builder for chaining.
-       */
-      public Builder setOnoffValue(int value) {
-        copyOnWrite();
-        instance.setOnoffValue(value);
-        return this;
-      }
-      /**
-       * <code>.NETWORK_SEND_OnOff onoff = 1;</code>
-       * @return The onoff.
-       */
-      @Override
-      public NETWORK_SEND_OnOff getOnoff() {
-        return instance.getOnoff();
+        return onoff_;
       }
       /**
        * <code>.NETWORK_SEND_OnOff onoff = 1;</code>
        * @param value The enum numeric value on the wire for onoff to set.
        * @return This builder for chaining.
        */
+      public Builder setOnoffValue(int value) {
+        onoff_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.NETWORK_SEND_OnOff onoff = 1;</code>
+       * @return The onoff.
+       */
+      public NETWORK_SEND_OnOff getOnoff() {
+        @SuppressWarnings("deprecation")
+        NETWORK_SEND_OnOff result = NETWORK_SEND_OnOff.valueOf(onoff_);
+        return result == null ? NETWORK_SEND_OnOff.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.NETWORK_SEND_OnOff onoff = 1;</code>
+       * @param value The onoff to set.
+       * @return This builder for chaining.
+       */
       public Builder setOnoff(NETWORK_SEND_OnOff value) {
-        copyOnWrite();
-        instance.setOnoff(value);
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        onoff_ = value.getNumber();
+        onChanged();
         return this;
       }
       /**
@@ -1241,18 +1605,19 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearOnoff() {
-        copyOnWrite();
-        instance.clearOnoff();
+        
+        onoff_ = 0;
+        onChanged();
         return this;
       }
 
+      private int timeCycle_ ;
       /**
        * <code>uint32 time_cycle = 2;</code>
        * @return The timeCycle.
        */
-      @Override
       public int getTimeCycle() {
-        return instance.getTimeCycle();
+        return timeCycle_;
       }
       /**
        * <code>uint32 time_cycle = 2;</code>
@@ -1260,8 +1625,9 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder setTimeCycle(int value) {
-        copyOnWrite();
-        instance.setTimeCycle(value);
+        
+        timeCycle_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -1269,90 +1635,67 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearTimeCycle() {
-        copyOnWrite();
-        instance.clearTimeCycle();
+        
+        timeCycle_ = 0;
+        onChanged();
         return this;
       }
+      @Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
 
       // @@protoc_insertion_point(builder_scope:TboxNetworkCtrl)
     }
-    @Override
-    @SuppressWarnings({"unchecked", "fallthrough"})
-    protected final Object dynamicMethod(
-        MethodToInvoke method,
-        Object arg0, Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new TboxNetworkCtrl();
-        }
-        case NEW_BUILDER: {
-          return new Builder();
-        }
-        case BUILD_MESSAGE_INFO: {
-            Object[] objects = new Object[] {
-              "onoff_",
-              "timeCycle_",
-            };
-            String info =
-                "\u0000\u0002\u0000\u0000\u0001\u0002\u0002\u0000\u0000\u0000\u0001\f\u0002\u000b" +
-                "";
-            return newMessageInfo(DEFAULT_INSTANCE, info, objects);
-        }
-        // fall through
-        case GET_DEFAULT_INSTANCE: {
-          return DEFAULT_INSTANCE;
-        }
-        case GET_PARSER: {
-          com.google.protobuf.Parser<TboxNetworkCtrl> parser = PARSER;
-          if (parser == null) {
-            synchronized (TboxNetworkCtrl.class) {
-              parser = PARSER;
-              if (parser == null) {
-                parser =
-                    new DefaultInstanceBasedParser<TboxNetworkCtrl>(
-                        DEFAULT_INSTANCE);
-                PARSER = parser;
-              }
-            }
-          }
-          return parser;
-      }
-      case GET_MEMOIZED_IS_INITIALIZED: {
-        return (byte) 1;
-      }
-      case SET_MEMOIZED_IS_INITIALIZED: {
-        return null;
-      }
-      }
-      throw new UnsupportedOperationException();
-    }
-
 
     // @@protoc_insertion_point(class_scope:TboxNetworkCtrl)
     private static final TboxNetworkCtrl DEFAULT_INSTANCE;
     static {
-      TboxNetworkCtrl defaultInstance = new TboxNetworkCtrl();
-      // New instances are implicitly immutable so no need to make
-      // immutable.
-      DEFAULT_INSTANCE = defaultInstance;
-      com.google.protobuf.GeneratedMessageLite.registerDefaultInstance(
-        TboxNetworkCtrl.class, defaultInstance);
+      DEFAULT_INSTANCE = new TboxNetworkCtrl();
     }
 
     public static TboxNetworkCtrl getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static volatile com.google.protobuf.Parser<TboxNetworkCtrl> PARSER;
+    private static final com.google.protobuf.Parser<TboxNetworkCtrl>
+        PARSER = new com.google.protobuf.AbstractParser<TboxNetworkCtrl>() {
+      @Override
+      public TboxNetworkCtrl parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new TboxNetworkCtrl(input, extensionRegistry);
+      }
+    };
 
     public static com.google.protobuf.Parser<TboxNetworkCtrl> parser() {
-      return DEFAULT_INSTANCE.getParserForType();
+      return PARSER;
     }
+
+    @Override
+    public com.google.protobuf.Parser<TboxNetworkCtrl> getParserForType() {
+      return PARSER;
+    }
+
+    @Override
+    public TboxNetworkCtrl getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
   }
 
   public interface TboxInfoOrBuilder extends
       // @@protoc_insertion_point(interface_extends:TboxInfo)
-      com.google.protobuf.MessageLiteOrBuilder {
+      com.google.protobuf.MessageOrBuilder {
 
     /**
      * <code>string software_version = 1;</code>
@@ -1430,10 +1773,14 @@ public final class IVITboxProto {
    * Protobuf type {@code TboxInfo}
    */
   public  static final class TboxInfo extends
-      com.google.protobuf.GeneratedMessageLite<
-          TboxInfo, TboxInfo.Builder> implements
+      com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:TboxInfo)
       TboxInfoOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use TboxInfo.newBuilder() to construct.
+    private TboxInfo(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
     private TboxInfo() {
       softwareVersion_ = "";
       hardwareVersion_ = "";
@@ -1442,399 +1789,741 @@ public final class IVITboxProto {
       imei_ = "";
       vin_ = "";
     }
+
+    @Override
+    @SuppressWarnings({"unused"})
+    protected Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new TboxInfo();
+    }
+
+    @Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private TboxInfo(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              String s = input.readStringRequireUtf8();
+
+              softwareVersion_ = s;
+              break;
+            }
+            case 18: {
+              String s = input.readStringRequireUtf8();
+
+              hardwareVersion_ = s;
+              break;
+            }
+            case 26: {
+              String s = input.readStringRequireUtf8();
+
+              iccid_ = s;
+              break;
+            }
+            case 34: {
+              String s = input.readStringRequireUtf8();
+
+              pdid_ = s;
+              break;
+            }
+            case 42: {
+              String s = input.readStringRequireUtf8();
+
+              imei_ = s;
+              break;
+            }
+            case 50: {
+              String s = input.readStringRequireUtf8();
+
+              vin_ = s;
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return IVITboxProto.internal_static_TboxInfo_descriptor;
+    }
+
+    @Override
+    protected FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return IVITboxProto.internal_static_TboxInfo_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              TboxInfo.class, Builder.class);
+    }
+
     public static final int SOFTWARE_VERSION_FIELD_NUMBER = 1;
-    private String softwareVersion_;
+    private volatile Object softwareVersion_;
     /**
      * <code>string software_version = 1;</code>
      * @return The softwareVersion.
      */
-    @Override
     public String getSoftwareVersion() {
-      return softwareVersion_;
+      Object ref = softwareVersion_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        softwareVersion_ = s;
+        return s;
+      }
     }
     /**
      * <code>string software_version = 1;</code>
      * @return The bytes for softwareVersion.
      */
-    @Override
     public com.google.protobuf.ByteString
         getSoftwareVersionBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(softwareVersion_);
-    }
-    /**
-     * <code>string software_version = 1;</code>
-     * @param value The softwareVersion to set.
-     */
-    private void setSoftwareVersion(
-        String value) {
-      value.getClass();
-  
-      softwareVersion_ = value;
-    }
-    /**
-     * <code>string software_version = 1;</code>
-     */
-    private void clearSoftwareVersion() {
-      
-      softwareVersion_ = getDefaultInstance().getSoftwareVersion();
-    }
-    /**
-     * <code>string software_version = 1;</code>
-     * @param value The bytes for softwareVersion to set.
-     */
-    private void setSoftwareVersionBytes(
-        com.google.protobuf.ByteString value) {
-      checkByteStringIsUtf8(value);
-      softwareVersion_ = value.toStringUtf8();
-      
+      Object ref = softwareVersion_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (String) ref);
+        softwareVersion_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int HARDWARE_VERSION_FIELD_NUMBER = 2;
-    private String hardwareVersion_;
+    private volatile Object hardwareVersion_;
     /**
      * <code>string hardware_version = 2;</code>
      * @return The hardwareVersion.
      */
-    @Override
     public String getHardwareVersion() {
-      return hardwareVersion_;
+      Object ref = hardwareVersion_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        hardwareVersion_ = s;
+        return s;
+      }
     }
     /**
      * <code>string hardware_version = 2;</code>
      * @return The bytes for hardwareVersion.
      */
-    @Override
     public com.google.protobuf.ByteString
         getHardwareVersionBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(hardwareVersion_);
-    }
-    /**
-     * <code>string hardware_version = 2;</code>
-     * @param value The hardwareVersion to set.
-     */
-    private void setHardwareVersion(
-        String value) {
-      value.getClass();
-  
-      hardwareVersion_ = value;
-    }
-    /**
-     * <code>string hardware_version = 2;</code>
-     */
-    private void clearHardwareVersion() {
-      
-      hardwareVersion_ = getDefaultInstance().getHardwareVersion();
-    }
-    /**
-     * <code>string hardware_version = 2;</code>
-     * @param value The bytes for hardwareVersion to set.
-     */
-    private void setHardwareVersionBytes(
-        com.google.protobuf.ByteString value) {
-      checkByteStringIsUtf8(value);
-      hardwareVersion_ = value.toStringUtf8();
-      
+      Object ref = hardwareVersion_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (String) ref);
+        hardwareVersion_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int ICCID_FIELD_NUMBER = 3;
-    private String iccid_;
+    private volatile Object iccid_;
     /**
      * <code>string iccid = 3;</code>
      * @return The iccid.
      */
-    @Override
     public String getIccid() {
-      return iccid_;
+      Object ref = iccid_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        iccid_ = s;
+        return s;
+      }
     }
     /**
      * <code>string iccid = 3;</code>
      * @return The bytes for iccid.
      */
-    @Override
     public com.google.protobuf.ByteString
         getIccidBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(iccid_);
-    }
-    /**
-     * <code>string iccid = 3;</code>
-     * @param value The iccid to set.
-     */
-    private void setIccid(
-        String value) {
-      value.getClass();
-  
-      iccid_ = value;
-    }
-    /**
-     * <code>string iccid = 3;</code>
-     */
-    private void clearIccid() {
-      
-      iccid_ = getDefaultInstance().getIccid();
-    }
-    /**
-     * <code>string iccid = 3;</code>
-     * @param value The bytes for iccid to set.
-     */
-    private void setIccidBytes(
-        com.google.protobuf.ByteString value) {
-      checkByteStringIsUtf8(value);
-      iccid_ = value.toStringUtf8();
-      
+      Object ref = iccid_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (String) ref);
+        iccid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int PDID_FIELD_NUMBER = 4;
-    private String pdid_;
+    private volatile Object pdid_;
     /**
      * <code>string pdid = 4;</code>
      * @return The pdid.
      */
-    @Override
     public String getPdid() {
-      return pdid_;
+      Object ref = pdid_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        pdid_ = s;
+        return s;
+      }
     }
     /**
      * <code>string pdid = 4;</code>
      * @return The bytes for pdid.
      */
-    @Override
     public com.google.protobuf.ByteString
         getPdidBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(pdid_);
-    }
-    /**
-     * <code>string pdid = 4;</code>
-     * @param value The pdid to set.
-     */
-    private void setPdid(
-        String value) {
-      value.getClass();
-  
-      pdid_ = value;
-    }
-    /**
-     * <code>string pdid = 4;</code>
-     */
-    private void clearPdid() {
-      
-      pdid_ = getDefaultInstance().getPdid();
-    }
-    /**
-     * <code>string pdid = 4;</code>
-     * @param value The bytes for pdid to set.
-     */
-    private void setPdidBytes(
-        com.google.protobuf.ByteString value) {
-      checkByteStringIsUtf8(value);
-      pdid_ = value.toStringUtf8();
-      
+      Object ref = pdid_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (String) ref);
+        pdid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int IMEI_FIELD_NUMBER = 5;
-    private String imei_;
+    private volatile Object imei_;
     /**
      * <code>string imei = 5;</code>
      * @return The imei.
      */
-    @Override
     public String getImei() {
-      return imei_;
+      Object ref = imei_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        imei_ = s;
+        return s;
+      }
     }
     /**
      * <code>string imei = 5;</code>
      * @return The bytes for imei.
      */
-    @Override
     public com.google.protobuf.ByteString
         getImeiBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(imei_);
-    }
-    /**
-     * <code>string imei = 5;</code>
-     * @param value The imei to set.
-     */
-    private void setImei(
-        String value) {
-      value.getClass();
-  
-      imei_ = value;
-    }
-    /**
-     * <code>string imei = 5;</code>
-     */
-    private void clearImei() {
-      
-      imei_ = getDefaultInstance().getImei();
-    }
-    /**
-     * <code>string imei = 5;</code>
-     * @param value The bytes for imei to set.
-     */
-    private void setImeiBytes(
-        com.google.protobuf.ByteString value) {
-      checkByteStringIsUtf8(value);
-      imei_ = value.toStringUtf8();
-      
+      Object ref = imei_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (String) ref);
+        imei_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int VIN_FIELD_NUMBER = 6;
-    private String vin_;
+    private volatile Object vin_;
     /**
      * <code>string vin = 6;</code>
      * @return The vin.
      */
-    @Override
     public String getVin() {
-      return vin_;
+      Object ref = vin_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        vin_ = s;
+        return s;
+      }
     }
     /**
      * <code>string vin = 6;</code>
      * @return The bytes for vin.
      */
-    @Override
     public com.google.protobuf.ByteString
         getVinBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(vin_);
+      Object ref = vin_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (String) ref);
+        vin_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
-    /**
-     * <code>string vin = 6;</code>
-     * @param value The vin to set.
-     */
-    private void setVin(
-        String value) {
-      value.getClass();
-  
-      vin_ = value;
+
+    private byte memoizedIsInitialized = -1;
+    @Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
     }
-    /**
-     * <code>string vin = 6;</code>
-     */
-    private void clearVin() {
-      
-      vin_ = getDefaultInstance().getVin();
+
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getSoftwareVersionBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, softwareVersion_);
+      }
+      if (!getHardwareVersionBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, hardwareVersion_);
+      }
+      if (!getIccidBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, iccid_);
+      }
+      if (!getPdidBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, pdid_);
+      }
+      if (!getImeiBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, imei_);
+      }
+      if (!getVinBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, vin_);
+      }
+      unknownFields.writeTo(output);
     }
-    /**
-     * <code>string vin = 6;</code>
-     * @param value The bytes for vin to set.
-     */
-    private void setVinBytes(
-        com.google.protobuf.ByteString value) {
-      checkByteStringIsUtf8(value);
-      vin_ = value.toStringUtf8();
-      
+
+    @Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getSoftwareVersionBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, softwareVersion_);
+      }
+      if (!getHardwareVersionBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, hardwareVersion_);
+      }
+      if (!getIccidBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, iccid_);
+      }
+      if (!getPdidBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, pdid_);
+      }
+      if (!getImeiBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, imei_);
+      }
+      if (!getVinBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, vin_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof TboxInfo)) {
+        return super.equals(obj);
+      }
+      TboxInfo other = (TboxInfo) obj;
+
+      if (!getSoftwareVersion()
+          .equals(other.getSoftwareVersion())) return false;
+      if (!getHardwareVersion()
+          .equals(other.getHardwareVersion())) return false;
+      if (!getIccid()
+          .equals(other.getIccid())) return false;
+      if (!getPdid()
+          .equals(other.getPdid())) return false;
+      if (!getImei()
+          .equals(other.getImei())) return false;
+      if (!getVin()
+          .equals(other.getVin())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + SOFTWARE_VERSION_FIELD_NUMBER;
+      hash = (53 * hash) + getSoftwareVersion().hashCode();
+      hash = (37 * hash) + HARDWARE_VERSION_FIELD_NUMBER;
+      hash = (53 * hash) + getHardwareVersion().hashCode();
+      hash = (37 * hash) + ICCID_FIELD_NUMBER;
+      hash = (53 * hash) + getIccid().hashCode();
+      hash = (37 * hash) + PDID_FIELD_NUMBER;
+      hash = (53 * hash) + getPdid().hashCode();
+      hash = (37 * hash) + IMEI_FIELD_NUMBER;
+      hash = (53 * hash) + getImei().hashCode();
+      hash = (37 * hash) + VIN_FIELD_NUMBER;
+      hash = (53 * hash) + getVin().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
     }
 
     public static TboxInfo parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static TboxInfo parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static TboxInfo parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static TboxInfo parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static TboxInfo parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static TboxInfo parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static TboxInfo parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static TboxInfo parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static TboxInfo parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
     }
     public static TboxInfo parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static TboxInfo parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static TboxInfo parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
+    @Override
+    public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
-      return (Builder) DEFAULT_INSTANCE.createBuilder();
+      return DEFAULT_INSTANCE.toBuilder();
     }
     public static Builder newBuilder(TboxInfo prototype) {
-      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
     }
 
+    @Override
+    protected Builder newBuilderForType(
+        BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
     /**
      * Protobuf type {@code TboxInfo}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          TboxInfo, Builder> implements
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:TboxInfo)
         TboxInfoOrBuilder {
-      // Construct using com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.TboxInfo.newBuilder()
-      private Builder() {
-        super(DEFAULT_INSTANCE);
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return IVITboxProto.internal_static_TboxInfo_descriptor;
       }
 
+      @Override
+      protected FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return IVITboxProto.internal_static_TboxInfo_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                TboxInfo.class, Builder.class);
+      }
 
+      // Construct using com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.TboxInfo.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @Override
+      public Builder clear() {
+        super.clear();
+        softwareVersion_ = "";
+
+        hardwareVersion_ = "";
+
+        iccid_ = "";
+
+        pdid_ = "";
+
+        imei_ = "";
+
+        vin_ = "";
+
+        return this;
+      }
+
+      @Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return IVITboxProto.internal_static_TboxInfo_descriptor;
+      }
+
+      @Override
+      public TboxInfo getDefaultInstanceForType() {
+        return TboxInfo.getDefaultInstance();
+      }
+
+      @Override
+      public TboxInfo build() {
+        TboxInfo result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @Override
+      public TboxInfo buildPartial() {
+        TboxInfo result = new TboxInfo(this);
+        result.softwareVersion_ = softwareVersion_;
+        result.hardwareVersion_ = hardwareVersion_;
+        result.iccid_ = iccid_;
+        result.pdid_ = pdid_;
+        result.imei_ = imei_;
+        result.vin_ = vin_;
+        onBuilt();
+        return result;
+      }
+
+      @Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return super.setField(field, value);
+      }
+      @Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof TboxInfo) {
+          return mergeFrom((TboxInfo)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(TboxInfo other) {
+        if (other == TboxInfo.getDefaultInstance()) return this;
+        if (!other.getSoftwareVersion().isEmpty()) {
+          softwareVersion_ = other.softwareVersion_;
+          onChanged();
+        }
+        if (!other.getHardwareVersion().isEmpty()) {
+          hardwareVersion_ = other.hardwareVersion_;
+          onChanged();
+        }
+        if (!other.getIccid().isEmpty()) {
+          iccid_ = other.iccid_;
+          onChanged();
+        }
+        if (!other.getPdid().isEmpty()) {
+          pdid_ = other.pdid_;
+          onChanged();
+        }
+        if (!other.getImei().isEmpty()) {
+          imei_ = other.imei_;
+          onChanged();
+        }
+        if (!other.getVin().isEmpty()) {
+          vin_ = other.vin_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        TboxInfo parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (TboxInfo) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private Object softwareVersion_ = "";
       /**
        * <code>string software_version = 1;</code>
        * @return The softwareVersion.
        */
-      @Override
       public String getSoftwareVersion() {
-        return instance.getSoftwareVersion();
+        Object ref = softwareVersion_;
+        if (!(ref instanceof String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          String s = bs.toStringUtf8();
+          softwareVersion_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
       }
       /**
        * <code>string software_version = 1;</code>
        * @return The bytes for softwareVersion.
        */
-      @Override
       public com.google.protobuf.ByteString
           getSoftwareVersionBytes() {
-        return instance.getSoftwareVersionBytes();
+        Object ref = softwareVersion_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (String) ref);
+          softwareVersion_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
       }
       /**
        * <code>string software_version = 1;</code>
@@ -1843,8 +2532,12 @@ public final class IVITboxProto {
        */
       public Builder setSoftwareVersion(
           String value) {
-        copyOnWrite();
-        instance.setSoftwareVersion(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        softwareVersion_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -1852,8 +2545,9 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearSoftwareVersion() {
-        copyOnWrite();
-        instance.clearSoftwareVersion();
+        
+        softwareVersion_ = getDefaultInstance().getSoftwareVersion();
+        onChanged();
         return this;
       }
       /**
@@ -1863,27 +2557,49 @@ public final class IVITboxProto {
        */
       public Builder setSoftwareVersionBytes(
           com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setSoftwareVersionBytes(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        softwareVersion_ = value;
+        onChanged();
         return this;
       }
 
+      private Object hardwareVersion_ = "";
       /**
        * <code>string hardware_version = 2;</code>
        * @return The hardwareVersion.
        */
-      @Override
       public String getHardwareVersion() {
-        return instance.getHardwareVersion();
+        Object ref = hardwareVersion_;
+        if (!(ref instanceof String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          String s = bs.toStringUtf8();
+          hardwareVersion_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
       }
       /**
        * <code>string hardware_version = 2;</code>
        * @return The bytes for hardwareVersion.
        */
-      @Override
       public com.google.protobuf.ByteString
           getHardwareVersionBytes() {
-        return instance.getHardwareVersionBytes();
+        Object ref = hardwareVersion_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (String) ref);
+          hardwareVersion_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
       }
       /**
        * <code>string hardware_version = 2;</code>
@@ -1892,8 +2608,12 @@ public final class IVITboxProto {
        */
       public Builder setHardwareVersion(
           String value) {
-        copyOnWrite();
-        instance.setHardwareVersion(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        hardwareVersion_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -1901,8 +2621,9 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearHardwareVersion() {
-        copyOnWrite();
-        instance.clearHardwareVersion();
+        
+        hardwareVersion_ = getDefaultInstance().getHardwareVersion();
+        onChanged();
         return this;
       }
       /**
@@ -1912,27 +2633,49 @@ public final class IVITboxProto {
        */
       public Builder setHardwareVersionBytes(
           com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setHardwareVersionBytes(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        hardwareVersion_ = value;
+        onChanged();
         return this;
       }
 
+      private Object iccid_ = "";
       /**
        * <code>string iccid = 3;</code>
        * @return The iccid.
        */
-      @Override
       public String getIccid() {
-        return instance.getIccid();
+        Object ref = iccid_;
+        if (!(ref instanceof String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          String s = bs.toStringUtf8();
+          iccid_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
       }
       /**
        * <code>string iccid = 3;</code>
        * @return The bytes for iccid.
        */
-      @Override
       public com.google.protobuf.ByteString
           getIccidBytes() {
-        return instance.getIccidBytes();
+        Object ref = iccid_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (String) ref);
+          iccid_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
       }
       /**
        * <code>string iccid = 3;</code>
@@ -1941,8 +2684,12 @@ public final class IVITboxProto {
        */
       public Builder setIccid(
           String value) {
-        copyOnWrite();
-        instance.setIccid(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        iccid_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -1950,8 +2697,9 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearIccid() {
-        copyOnWrite();
-        instance.clearIccid();
+        
+        iccid_ = getDefaultInstance().getIccid();
+        onChanged();
         return this;
       }
       /**
@@ -1961,27 +2709,49 @@ public final class IVITboxProto {
        */
       public Builder setIccidBytes(
           com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setIccidBytes(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        iccid_ = value;
+        onChanged();
         return this;
       }
 
+      private Object pdid_ = "";
       /**
        * <code>string pdid = 4;</code>
        * @return The pdid.
        */
-      @Override
       public String getPdid() {
-        return instance.getPdid();
+        Object ref = pdid_;
+        if (!(ref instanceof String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          String s = bs.toStringUtf8();
+          pdid_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
       }
       /**
        * <code>string pdid = 4;</code>
        * @return The bytes for pdid.
        */
-      @Override
       public com.google.protobuf.ByteString
           getPdidBytes() {
-        return instance.getPdidBytes();
+        Object ref = pdid_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (String) ref);
+          pdid_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
       }
       /**
        * <code>string pdid = 4;</code>
@@ -1990,8 +2760,12 @@ public final class IVITboxProto {
        */
       public Builder setPdid(
           String value) {
-        copyOnWrite();
-        instance.setPdid(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        pdid_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -1999,8 +2773,9 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearPdid() {
-        copyOnWrite();
-        instance.clearPdid();
+        
+        pdid_ = getDefaultInstance().getPdid();
+        onChanged();
         return this;
       }
       /**
@@ -2010,27 +2785,49 @@ public final class IVITboxProto {
        */
       public Builder setPdidBytes(
           com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setPdidBytes(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        pdid_ = value;
+        onChanged();
         return this;
       }
 
+      private Object imei_ = "";
       /**
        * <code>string imei = 5;</code>
        * @return The imei.
        */
-      @Override
       public String getImei() {
-        return instance.getImei();
+        Object ref = imei_;
+        if (!(ref instanceof String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          String s = bs.toStringUtf8();
+          imei_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
       }
       /**
        * <code>string imei = 5;</code>
        * @return The bytes for imei.
        */
-      @Override
       public com.google.protobuf.ByteString
           getImeiBytes() {
-        return instance.getImeiBytes();
+        Object ref = imei_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (String) ref);
+          imei_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
       }
       /**
        * <code>string imei = 5;</code>
@@ -2039,8 +2836,12 @@ public final class IVITboxProto {
        */
       public Builder setImei(
           String value) {
-        copyOnWrite();
-        instance.setImei(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        imei_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -2048,8 +2849,9 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearImei() {
-        copyOnWrite();
-        instance.clearImei();
+        
+        imei_ = getDefaultInstance().getImei();
+        onChanged();
         return this;
       }
       /**
@@ -2059,27 +2861,49 @@ public final class IVITboxProto {
        */
       public Builder setImeiBytes(
           com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setImeiBytes(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        imei_ = value;
+        onChanged();
         return this;
       }
 
+      private Object vin_ = "";
       /**
        * <code>string vin = 6;</code>
        * @return The vin.
        */
-      @Override
       public String getVin() {
-        return instance.getVin();
+        Object ref = vin_;
+        if (!(ref instanceof String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          String s = bs.toStringUtf8();
+          vin_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
       }
       /**
        * <code>string vin = 6;</code>
        * @return The bytes for vin.
        */
-      @Override
       public com.google.protobuf.ByteString
           getVinBytes() {
-        return instance.getVinBytes();
+        Object ref = vin_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (String) ref);
+          vin_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
       }
       /**
        * <code>string vin = 6;</code>
@@ -2088,8 +2912,12 @@ public final class IVITboxProto {
        */
       public Builder setVin(
           String value) {
-        copyOnWrite();
-        instance.setVin(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        vin_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -2097,8 +2925,9 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearVin() {
-        copyOnWrite();
-        instance.clearVin();
+        
+        vin_ = getDefaultInstance().getVin();
+        onChanged();
         return this;
       }
       /**
@@ -2108,94 +2937,71 @@ public final class IVITboxProto {
        */
       public Builder setVinBytes(
           com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setVinBytes(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        vin_ = value;
+        onChanged();
         return this;
       }
+      @Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
 
       // @@protoc_insertion_point(builder_scope:TboxInfo)
     }
-    @Override
-    @SuppressWarnings({"unchecked", "fallthrough"})
-    protected final Object dynamicMethod(
-        MethodToInvoke method,
-        Object arg0, Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new TboxInfo();
-        }
-        case NEW_BUILDER: {
-          return new Builder();
-        }
-        case BUILD_MESSAGE_INFO: {
-            Object[] objects = new Object[] {
-              "softwareVersion_",
-              "hardwareVersion_",
-              "iccid_",
-              "pdid_",
-              "imei_",
-              "vin_",
-            };
-            String info =
-                "\u0000\u0006\u0000\u0000\u0001\u0006\u0006\u0000\u0000\u0000\u0001\u0208\u0002\u0208" +
-                "\u0003\u0208\u0004\u0208\u0005\u0208\u0006\u0208";
-            return newMessageInfo(DEFAULT_INSTANCE, info, objects);
-        }
-        // fall through
-        case GET_DEFAULT_INSTANCE: {
-          return DEFAULT_INSTANCE;
-        }
-        case GET_PARSER: {
-          com.google.protobuf.Parser<TboxInfo> parser = PARSER;
-          if (parser == null) {
-            synchronized (TboxInfo.class) {
-              parser = PARSER;
-              if (parser == null) {
-                parser =
-                    new DefaultInstanceBasedParser<TboxInfo>(
-                        DEFAULT_INSTANCE);
-                PARSER = parser;
-              }
-            }
-          }
-          return parser;
-      }
-      case GET_MEMOIZED_IS_INITIALIZED: {
-        return (byte) 1;
-      }
-      case SET_MEMOIZED_IS_INITIALIZED: {
-        return null;
-      }
-      }
-      throw new UnsupportedOperationException();
-    }
-
 
     // @@protoc_insertion_point(class_scope:TboxInfo)
     private static final TboxInfo DEFAULT_INSTANCE;
     static {
-      TboxInfo defaultInstance = new TboxInfo();
-      // New instances are implicitly immutable so no need to make
-      // immutable.
-      DEFAULT_INSTANCE = defaultInstance;
-      com.google.protobuf.GeneratedMessageLite.registerDefaultInstance(
-        TboxInfo.class, defaultInstance);
+      DEFAULT_INSTANCE = new TboxInfo();
     }
 
     public static TboxInfo getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static volatile com.google.protobuf.Parser<TboxInfo> PARSER;
+    private static final com.google.protobuf.Parser<TboxInfo>
+        PARSER = new com.google.protobuf.AbstractParser<TboxInfo>() {
+      @Override
+      public TboxInfo parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new TboxInfo(input, extensionRegistry);
+      }
+    };
 
     public static com.google.protobuf.Parser<TboxInfo> parser() {
-      return DEFAULT_INSTANCE.getParserForType();
+      return PARSER;
     }
+
+    @Override
+    public com.google.protobuf.Parser<TboxInfo> getParserForType() {
+      return PARSER;
+    }
+
+    @Override
+    public TboxInfo getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
   }
 
   public interface TboxGPSCmdOrBuilder extends
       // @@protoc_insertion_point(interface_extends:TboxGPSCmd)
-      com.google.protobuf.MessageLiteOrBuilder {
+      com.google.protobuf.MessageOrBuilder {
 
     /**
      * <code>.GPS_SEND_OnOff onoff = 1;</code>
@@ -2218,19 +3024,97 @@ public final class IVITboxProto {
    * Protobuf type {@code TboxGPSCmd}
    */
   public  static final class TboxGPSCmd extends
-      com.google.protobuf.GeneratedMessageLite<
-          TboxGPSCmd, TboxGPSCmd.Builder> implements
+      com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:TboxGPSCmd)
       TboxGPSCmdOrBuilder {
-    private TboxGPSCmd() {
+  private static final long serialVersionUID = 0L;
+    // Use TboxGPSCmd.newBuilder() to construct.
+    private TboxGPSCmd(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
     }
+    private TboxGPSCmd() {
+      onoff_ = 0;
+    }
+
+    @Override
+    @SuppressWarnings({"unused"})
+    protected Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new TboxGPSCmd();
+    }
+
+    @Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private TboxGPSCmd(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+              int rawValue = input.readEnum();
+
+              onoff_ = rawValue;
+              break;
+            }
+            case 16: {
+
+              timeCycle_ = input.readUInt32();
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return IVITboxProto.internal_static_TboxGPSCmd_descriptor;
+    }
+
+    @Override
+    protected FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return IVITboxProto.internal_static_TboxGPSCmd_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              TboxGPSCmd.class, Builder.class);
+    }
+
     public static final int ONOFF_FIELD_NUMBER = 1;
     private int onoff_;
     /**
      * <code>.GPS_SEND_OnOff onoff = 1;</code>
      * @return The enum numeric value on the wire for onoff.
      */
-    @Override
     public int getOnoffValue() {
       return onoff_;
     }
@@ -2238,32 +3122,10 @@ public final class IVITboxProto {
      * <code>.GPS_SEND_OnOff onoff = 1;</code>
      * @return The onoff.
      */
-    @Override
     public GPS_SEND_OnOff getOnoff() {
-      GPS_SEND_OnOff result = GPS_SEND_OnOff.forNumber(onoff_);
+      @SuppressWarnings("deprecation")
+      GPS_SEND_OnOff result = GPS_SEND_OnOff.valueOf(onoff_);
       return result == null ? GPS_SEND_OnOff.UNRECOGNIZED : result;
-    }
-    /**
-     * <code>.GPS_SEND_OnOff onoff = 1;</code>
-     * @param value The enum numeric value on the wire for onoff to set.
-     */
-    private void setOnoffValue(int value) {
-        onoff_ = value;
-    }
-    /**
-     * <code>.GPS_SEND_OnOff onoff = 1;</code>
-     * @param value The onoff to set.
-     */
-    private void setOnoff(GPS_SEND_OnOff value) {
-      onoff_ = value.getNumber();
-      
-    }
-    /**
-     * <code>.GPS_SEND_OnOff onoff = 1;</code>
-     */
-    private void clearOnoff() {
-      
-      onoff_ = 0;
     }
 
     public static final int TIME_CYCLE_FIELD_NUMBER = 2;
@@ -2272,155 +3134,367 @@ public final class IVITboxProto {
      * <code>uint32 time_cycle = 2;</code>
      * @return The timeCycle.
      */
-    @Override
     public int getTimeCycle() {
       return timeCycle_;
     }
-    /**
-     * <code>uint32 time_cycle = 2;</code>
-     * @param value The timeCycle to set.
-     */
-    private void setTimeCycle(int value) {
-      
-      timeCycle_ = value;
+
+    private byte memoizedIsInitialized = -1;
+    @Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
     }
-    /**
-     * <code>uint32 time_cycle = 2;</code>
-     */
-    private void clearTimeCycle() {
-      
-      timeCycle_ = 0;
+
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (onoff_ != GPS_SEND_OnOff.GPS_ON.getNumber()) {
+        output.writeEnum(1, onoff_);
+      }
+      if (timeCycle_ != 0) {
+        output.writeUInt32(2, timeCycle_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (onoff_ != GPS_SEND_OnOff.GPS_ON.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(1, onoff_);
+      }
+      if (timeCycle_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(2, timeCycle_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof TboxGPSCmd)) {
+        return super.equals(obj);
+      }
+      TboxGPSCmd other = (TboxGPSCmd) obj;
+
+      if (onoff_ != other.onoff_) return false;
+      if (getTimeCycle()
+          != other.getTimeCycle()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + ONOFF_FIELD_NUMBER;
+      hash = (53 * hash) + onoff_;
+      hash = (37 * hash) + TIME_CYCLE_FIELD_NUMBER;
+      hash = (53 * hash) + getTimeCycle();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
     }
 
     public static TboxGPSCmd parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static TboxGPSCmd parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static TboxGPSCmd parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static TboxGPSCmd parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static TboxGPSCmd parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static TboxGPSCmd parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static TboxGPSCmd parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static TboxGPSCmd parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static TboxGPSCmd parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
     }
     public static TboxGPSCmd parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static TboxGPSCmd parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static TboxGPSCmd parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
+    @Override
+    public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
-      return (Builder) DEFAULT_INSTANCE.createBuilder();
+      return DEFAULT_INSTANCE.toBuilder();
     }
     public static Builder newBuilder(TboxGPSCmd prototype) {
-      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
     }
 
+    @Override
+    protected Builder newBuilderForType(
+        BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
     /**
      * Protobuf type {@code TboxGPSCmd}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          TboxGPSCmd, Builder> implements
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:TboxGPSCmd)
         TboxGPSCmdOrBuilder {
-      // Construct using com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.TboxGPSCmd.newBuilder()
-      private Builder() {
-        super(DEFAULT_INSTANCE);
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return IVITboxProto.internal_static_TboxGPSCmd_descriptor;
       }
 
+      @Override
+      protected FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return IVITboxProto.internal_static_TboxGPSCmd_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                TboxGPSCmd.class, Builder.class);
+      }
 
+      // Construct using com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.TboxGPSCmd.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @Override
+      public Builder clear() {
+        super.clear();
+        onoff_ = 0;
+
+        timeCycle_ = 0;
+
+        return this;
+      }
+
+      @Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return IVITboxProto.internal_static_TboxGPSCmd_descriptor;
+      }
+
+      @Override
+      public TboxGPSCmd getDefaultInstanceForType() {
+        return TboxGPSCmd.getDefaultInstance();
+      }
+
+      @Override
+      public TboxGPSCmd build() {
+        TboxGPSCmd result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @Override
+      public TboxGPSCmd buildPartial() {
+        TboxGPSCmd result = new TboxGPSCmd(this);
+        result.onoff_ = onoff_;
+        result.timeCycle_ = timeCycle_;
+        onBuilt();
+        return result;
+      }
+
+      @Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return super.setField(field, value);
+      }
+      @Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof TboxGPSCmd) {
+          return mergeFrom((TboxGPSCmd)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(TboxGPSCmd other) {
+        if (other == TboxGPSCmd.getDefaultInstance()) return this;
+        if (other.onoff_ != 0) {
+          setOnoffValue(other.getOnoffValue());
+        }
+        if (other.getTimeCycle() != 0) {
+          setTimeCycle(other.getTimeCycle());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        TboxGPSCmd parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (TboxGPSCmd) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int onoff_ = 0;
       /**
        * <code>.GPS_SEND_OnOff onoff = 1;</code>
        * @return The enum numeric value on the wire for onoff.
        */
-      @Override
       public int getOnoffValue() {
-        return instance.getOnoffValue();
-      }
-      /**
-       * <code>.GPS_SEND_OnOff onoff = 1;</code>
-       * @param value The onoff to set.
-       * @return This builder for chaining.
-       */
-      public Builder setOnoffValue(int value) {
-        copyOnWrite();
-        instance.setOnoffValue(value);
-        return this;
-      }
-      /**
-       * <code>.GPS_SEND_OnOff onoff = 1;</code>
-       * @return The onoff.
-       */
-      @Override
-      public GPS_SEND_OnOff getOnoff() {
-        return instance.getOnoff();
+        return onoff_;
       }
       /**
        * <code>.GPS_SEND_OnOff onoff = 1;</code>
        * @param value The enum numeric value on the wire for onoff to set.
        * @return This builder for chaining.
        */
+      public Builder setOnoffValue(int value) {
+        onoff_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.GPS_SEND_OnOff onoff = 1;</code>
+       * @return The onoff.
+       */
+      public GPS_SEND_OnOff getOnoff() {
+        @SuppressWarnings("deprecation")
+        GPS_SEND_OnOff result = GPS_SEND_OnOff.valueOf(onoff_);
+        return result == null ? GPS_SEND_OnOff.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.GPS_SEND_OnOff onoff = 1;</code>
+       * @param value The onoff to set.
+       * @return This builder for chaining.
+       */
       public Builder setOnoff(GPS_SEND_OnOff value) {
-        copyOnWrite();
-        instance.setOnoff(value);
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        onoff_ = value.getNumber();
+        onChanged();
         return this;
       }
       /**
@@ -2428,18 +3502,19 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearOnoff() {
-        copyOnWrite();
-        instance.clearOnoff();
+        
+        onoff_ = 0;
+        onChanged();
         return this;
       }
 
+      private int timeCycle_ ;
       /**
        * <code>uint32 time_cycle = 2;</code>
        * @return The timeCycle.
        */
-      @Override
       public int getTimeCycle() {
-        return instance.getTimeCycle();
+        return timeCycle_;
       }
       /**
        * <code>uint32 time_cycle = 2;</code>
@@ -2447,8 +3522,9 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder setTimeCycle(int value) {
-        copyOnWrite();
-        instance.setTimeCycle(value);
+        
+        timeCycle_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -2456,90 +3532,67 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearTimeCycle() {
-        copyOnWrite();
-        instance.clearTimeCycle();
+        
+        timeCycle_ = 0;
+        onChanged();
         return this;
       }
+      @Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
 
       // @@protoc_insertion_point(builder_scope:TboxGPSCmd)
     }
-    @Override
-    @SuppressWarnings({"unchecked", "fallthrough"})
-    protected final Object dynamicMethod(
-        MethodToInvoke method,
-        Object arg0, Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new TboxGPSCmd();
-        }
-        case NEW_BUILDER: {
-          return new Builder();
-        }
-        case BUILD_MESSAGE_INFO: {
-            Object[] objects = new Object[] {
-              "onoff_",
-              "timeCycle_",
-            };
-            String info =
-                "\u0000\u0002\u0000\u0000\u0001\u0002\u0002\u0000\u0000\u0000\u0001\f\u0002\u000b" +
-                "";
-            return newMessageInfo(DEFAULT_INSTANCE, info, objects);
-        }
-        // fall through
-        case GET_DEFAULT_INSTANCE: {
-          return DEFAULT_INSTANCE;
-        }
-        case GET_PARSER: {
-          com.google.protobuf.Parser<TboxGPSCmd> parser = PARSER;
-          if (parser == null) {
-            synchronized (TboxGPSCmd.class) {
-              parser = PARSER;
-              if (parser == null) {
-                parser =
-                    new DefaultInstanceBasedParser<TboxGPSCmd>(
-                        DEFAULT_INSTANCE);
-                PARSER = parser;
-              }
-            }
-          }
-          return parser;
-      }
-      case GET_MEMOIZED_IS_INITIALIZED: {
-        return (byte) 1;
-      }
-      case SET_MEMOIZED_IS_INITIALIZED: {
-        return null;
-      }
-      }
-      throw new UnsupportedOperationException();
-    }
-
 
     // @@protoc_insertion_point(class_scope:TboxGPSCmd)
     private static final TboxGPSCmd DEFAULT_INSTANCE;
     static {
-      TboxGPSCmd defaultInstance = new TboxGPSCmd();
-      // New instances are implicitly immutable so no need to make
-      // immutable.
-      DEFAULT_INSTANCE = defaultInstance;
-      com.google.protobuf.GeneratedMessageLite.registerDefaultInstance(
-        TboxGPSCmd.class, defaultInstance);
+      DEFAULT_INSTANCE = new TboxGPSCmd();
     }
 
     public static TboxGPSCmd getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static volatile com.google.protobuf.Parser<TboxGPSCmd> PARSER;
+    private static final com.google.protobuf.Parser<TboxGPSCmd>
+        PARSER = new com.google.protobuf.AbstractParser<TboxGPSCmd>() {
+      @Override
+      public TboxGPSCmd parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new TboxGPSCmd(input, extensionRegistry);
+      }
+    };
 
     public static com.google.protobuf.Parser<TboxGPSCmd> parser() {
-      return DEFAULT_INSTANCE.getParserForType();
+      return PARSER;
     }
+
+    @Override
+    public com.google.protobuf.Parser<TboxGPSCmd> getParserForType() {
+      return PARSER;
+    }
+
+    @Override
+    public TboxGPSCmd getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
   }
 
   public interface TboxGPSInfoOrBuilder extends
       // @@protoc_insertion_point(interface_extends:TboxGPSInfo)
-      com.google.protobuf.MessageLiteOrBuilder {
+      com.google.protobuf.MessageOrBuilder {
 
     /**
      * <code>string nmea = 1;</code>
@@ -2557,171 +3610,457 @@ public final class IVITboxProto {
    * Protobuf type {@code TboxGPSInfo}
    */
   public  static final class TboxGPSInfo extends
-      com.google.protobuf.GeneratedMessageLite<
-          TboxGPSInfo, TboxGPSInfo.Builder> implements
+      com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:TboxGPSInfo)
       TboxGPSInfoOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use TboxGPSInfo.newBuilder() to construct.
+    private TboxGPSInfo(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
     private TboxGPSInfo() {
       nmea_ = "";
     }
+
+    @Override
+    @SuppressWarnings({"unused"})
+    protected Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new TboxGPSInfo();
+    }
+
+    @Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private TboxGPSInfo(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              String s = input.readStringRequireUtf8();
+
+              nmea_ = s;
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return IVITboxProto.internal_static_TboxGPSInfo_descriptor;
+    }
+
+    @Override
+    protected FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return IVITboxProto.internal_static_TboxGPSInfo_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              TboxGPSInfo.class, Builder.class);
+    }
+
     public static final int NMEA_FIELD_NUMBER = 1;
-    private String nmea_;
+    private volatile Object nmea_;
     /**
      * <code>string nmea = 1;</code>
      * @return The nmea.
      */
-    @Override
     public String getNmea() {
-      return nmea_;
+      Object ref = nmea_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        nmea_ = s;
+        return s;
+      }
     }
     /**
      * <code>string nmea = 1;</code>
      * @return The bytes for nmea.
      */
-    @Override
     public com.google.protobuf.ByteString
         getNmeaBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(nmea_);
+      Object ref = nmea_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (String) ref);
+        nmea_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
-    /**
-     * <code>string nmea = 1;</code>
-     * @param value The nmea to set.
-     */
-    private void setNmea(
-        String value) {
-      value.getClass();
-  
-      nmea_ = value;
+
+    private byte memoizedIsInitialized = -1;
+    @Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
     }
-    /**
-     * <code>string nmea = 1;</code>
-     */
-    private void clearNmea() {
-      
-      nmea_ = getDefaultInstance().getNmea();
+
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getNmeaBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, nmea_);
+      }
+      unknownFields.writeTo(output);
     }
-    /**
-     * <code>string nmea = 1;</code>
-     * @param value The bytes for nmea to set.
-     */
-    private void setNmeaBytes(
-        com.google.protobuf.ByteString value) {
-      checkByteStringIsUtf8(value);
-      nmea_ = value.toStringUtf8();
-      
+
+    @Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getNmeaBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, nmea_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof TboxGPSInfo)) {
+        return super.equals(obj);
+      }
+      TboxGPSInfo other = (TboxGPSInfo) obj;
+
+      if (!getNmea()
+          .equals(other.getNmea())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + NMEA_FIELD_NUMBER;
+      hash = (53 * hash) + getNmea().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
     }
 
     public static TboxGPSInfo parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static TboxGPSInfo parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static TboxGPSInfo parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static TboxGPSInfo parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static TboxGPSInfo parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static TboxGPSInfo parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static TboxGPSInfo parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static TboxGPSInfo parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static TboxGPSInfo parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
     }
     public static TboxGPSInfo parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static TboxGPSInfo parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static TboxGPSInfo parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
+    @Override
+    public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
-      return (Builder) DEFAULT_INSTANCE.createBuilder();
+      return DEFAULT_INSTANCE.toBuilder();
     }
     public static Builder newBuilder(TboxGPSInfo prototype) {
-      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
     }
 
+    @Override
+    protected Builder newBuilderForType(
+        BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
     /**
      * Protobuf type {@code TboxGPSInfo}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          TboxGPSInfo, Builder> implements
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:TboxGPSInfo)
         TboxGPSInfoOrBuilder {
-      // Construct using com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.TboxGPSInfo.newBuilder()
-      private Builder() {
-        super(DEFAULT_INSTANCE);
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return IVITboxProto.internal_static_TboxGPSInfo_descriptor;
       }
 
+      @Override
+      protected FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return IVITboxProto.internal_static_TboxGPSInfo_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                TboxGPSInfo.class, Builder.class);
+      }
 
+      // Construct using com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.TboxGPSInfo.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @Override
+      public Builder clear() {
+        super.clear();
+        nmea_ = "";
+
+        return this;
+      }
+
+      @Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return IVITboxProto.internal_static_TboxGPSInfo_descriptor;
+      }
+
+      @Override
+      public TboxGPSInfo getDefaultInstanceForType() {
+        return TboxGPSInfo.getDefaultInstance();
+      }
+
+      @Override
+      public TboxGPSInfo build() {
+        TboxGPSInfo result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @Override
+      public TboxGPSInfo buildPartial() {
+        TboxGPSInfo result = new TboxGPSInfo(this);
+        result.nmea_ = nmea_;
+        onBuilt();
+        return result;
+      }
+
+      @Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return super.setField(field, value);
+      }
+      @Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof TboxGPSInfo) {
+          return mergeFrom((TboxGPSInfo)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(TboxGPSInfo other) {
+        if (other == TboxGPSInfo.getDefaultInstance()) return this;
+        if (!other.getNmea().isEmpty()) {
+          nmea_ = other.nmea_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        TboxGPSInfo parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (TboxGPSInfo) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private Object nmea_ = "";
       /**
        * <code>string nmea = 1;</code>
        * @return The nmea.
        */
-      @Override
       public String getNmea() {
-        return instance.getNmea();
+        Object ref = nmea_;
+        if (!(ref instanceof String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          String s = bs.toStringUtf8();
+          nmea_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
       }
       /**
        * <code>string nmea = 1;</code>
        * @return The bytes for nmea.
        */
-      @Override
       public com.google.protobuf.ByteString
           getNmeaBytes() {
-        return instance.getNmeaBytes();
+        Object ref = nmea_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (String) ref);
+          nmea_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
       }
       /**
        * <code>string nmea = 1;</code>
@@ -2730,8 +4069,12 @@ public final class IVITboxProto {
        */
       public Builder setNmea(
           String value) {
-        copyOnWrite();
-        instance.setNmea(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        nmea_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -2739,8 +4082,9 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearNmea() {
-        copyOnWrite();
-        instance.clearNmea();
+        
+        nmea_ = getDefaultInstance().getNmea();
+        onChanged();
         return this;
       }
       /**
@@ -2750,88 +4094,71 @@ public final class IVITboxProto {
        */
       public Builder setNmeaBytes(
           com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setNmeaBytes(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        nmea_ = value;
+        onChanged();
         return this;
       }
+      @Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
 
       // @@protoc_insertion_point(builder_scope:TboxGPSInfo)
     }
-    @Override
-    @SuppressWarnings({"unchecked", "fallthrough"})
-    protected final Object dynamicMethod(
-        MethodToInvoke method,
-        Object arg0, Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new TboxGPSInfo();
-        }
-        case NEW_BUILDER: {
-          return new Builder();
-        }
-        case BUILD_MESSAGE_INFO: {
-            Object[] objects = new Object[] {
-              "nmea_",
-            };
-            String info =
-                "\u0000\u0001\u0000\u0000\u0001\u0001\u0001\u0000\u0000\u0000\u0001\u0208";
-            return newMessageInfo(DEFAULT_INSTANCE, info, objects);
-        }
-        // fall through
-        case GET_DEFAULT_INSTANCE: {
-          return DEFAULT_INSTANCE;
-        }
-        case GET_PARSER: {
-          com.google.protobuf.Parser<TboxGPSInfo> parser = PARSER;
-          if (parser == null) {
-            synchronized (TboxGPSInfo.class) {
-              parser = PARSER;
-              if (parser == null) {
-                parser =
-                    new DefaultInstanceBasedParser<TboxGPSInfo>(
-                        DEFAULT_INSTANCE);
-                PARSER = parser;
-              }
-            }
-          }
-          return parser;
-      }
-      case GET_MEMOIZED_IS_INITIALIZED: {
-        return (byte) 1;
-      }
-      case SET_MEMOIZED_IS_INITIALIZED: {
-        return null;
-      }
-      }
-      throw new UnsupportedOperationException();
-    }
-
 
     // @@protoc_insertion_point(class_scope:TboxGPSInfo)
     private static final TboxGPSInfo DEFAULT_INSTANCE;
     static {
-      TboxGPSInfo defaultInstance = new TboxGPSInfo();
-      // New instances are implicitly immutable so no need to make
-      // immutable.
-      DEFAULT_INSTANCE = defaultInstance;
-      com.google.protobuf.GeneratedMessageLite.registerDefaultInstance(
-        TboxGPSInfo.class, defaultInstance);
+      DEFAULT_INSTANCE = new TboxGPSInfo();
     }
 
     public static TboxGPSInfo getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static volatile com.google.protobuf.Parser<TboxGPSInfo> PARSER;
+    private static final com.google.protobuf.Parser<TboxGPSInfo>
+        PARSER = new com.google.protobuf.AbstractParser<TboxGPSInfo>() {
+      @Override
+      public TboxGPSInfo parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new TboxGPSInfo(input, extensionRegistry);
+      }
+    };
 
     public static com.google.protobuf.Parser<TboxGPSInfo> parser() {
-      return DEFAULT_INSTANCE.getParserForType();
+      return PARSER;
     }
+
+    @Override
+    public com.google.protobuf.Parser<TboxGPSInfo> getParserForType() {
+      return PARSER;
+    }
+
+    @Override
+    public TboxGPSInfo getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
   }
 
   public interface TboxActiveStateOrBuilder extends
       // @@protoc_insertion_point(interface_extends:TboxActiveState)
-      com.google.protobuf.MessageLiteOrBuilder {
+      com.google.protobuf.MessageOrBuilder {
 
     /**
      * <pre>
@@ -2847,12 +4174,84 @@ public final class IVITboxProto {
    * Protobuf type {@code TboxActiveState}
    */
   public  static final class TboxActiveState extends
-      com.google.protobuf.GeneratedMessageLite<
-          TboxActiveState, TboxActiveState.Builder> implements
+      com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:TboxActiveState)
       TboxActiveStateOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use TboxActiveState.newBuilder() to construct.
+    private TboxActiveState(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
     private TboxActiveState() {
     }
+
+    @Override
+    @SuppressWarnings({"unused"})
+    protected Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new TboxActiveState();
+    }
+
+    @Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private TboxActiveState(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              activeState_ = input.readBool();
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return IVITboxProto.internal_static_TboxActiveState_descriptor;
+    }
+
+    @Override
+    protected FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return IVITboxProto.internal_static_TboxActiveState_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              TboxActiveState.class, Builder.class);
+    }
+
     public static final int ACTIVE_STATE_FIELD_NUMBER = 1;
     private boolean activeState_;
     /**
@@ -2863,129 +4262,314 @@ public final class IVITboxProto {
      * <code>bool active_state = 1;</code>
      * @return The activeState.
      */
-    @Override
     public boolean getActiveState() {
       return activeState_;
     }
-    /**
-     * <pre>
-     *true:activated   false:not active
-     * </pre>
-     *
-     * <code>bool active_state = 1;</code>
-     * @param value The activeState to set.
-     */
-    private void setActiveState(boolean value) {
-      
-      activeState_ = value;
+
+    private byte memoizedIsInitialized = -1;
+    @Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
     }
-    /**
-     * <pre>
-     *true:activated   false:not active
-     * </pre>
-     *
-     * <code>bool active_state = 1;</code>
-     */
-    private void clearActiveState() {
-      
-      activeState_ = false;
+
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (activeState_ != false) {
+        output.writeBool(1, activeState_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (activeState_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(1, activeState_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof TboxActiveState)) {
+        return super.equals(obj);
+      }
+      TboxActiveState other = (TboxActiveState) obj;
+
+      if (getActiveState()
+          != other.getActiveState()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + ACTIVE_STATE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getActiveState());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
     }
 
     public static TboxActiveState parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static TboxActiveState parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static TboxActiveState parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static TboxActiveState parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static TboxActiveState parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static TboxActiveState parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static TboxActiveState parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static TboxActiveState parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static TboxActiveState parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
     }
     public static TboxActiveState parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static TboxActiveState parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static TboxActiveState parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
+    @Override
+    public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
-      return (Builder) DEFAULT_INSTANCE.createBuilder();
+      return DEFAULT_INSTANCE.toBuilder();
     }
     public static Builder newBuilder(TboxActiveState prototype) {
-      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
     }
 
+    @Override
+    protected Builder newBuilderForType(
+        BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
     /**
      * Protobuf type {@code TboxActiveState}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          TboxActiveState, Builder> implements
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:TboxActiveState)
         TboxActiveStateOrBuilder {
-      // Construct using com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.TboxActiveState.newBuilder()
-      private Builder() {
-        super(DEFAULT_INSTANCE);
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return IVITboxProto.internal_static_TboxActiveState_descriptor;
       }
 
+      @Override
+      protected FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return IVITboxProto.internal_static_TboxActiveState_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                TboxActiveState.class, Builder.class);
+      }
 
+      // Construct using com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.TboxActiveState.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @Override
+      public Builder clear() {
+        super.clear();
+        activeState_ = false;
+
+        return this;
+      }
+
+      @Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return IVITboxProto.internal_static_TboxActiveState_descriptor;
+      }
+
+      @Override
+      public TboxActiveState getDefaultInstanceForType() {
+        return TboxActiveState.getDefaultInstance();
+      }
+
+      @Override
+      public TboxActiveState build() {
+        TboxActiveState result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @Override
+      public TboxActiveState buildPartial() {
+        TboxActiveState result = new TboxActiveState(this);
+        result.activeState_ = activeState_;
+        onBuilt();
+        return result;
+      }
+
+      @Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return super.setField(field, value);
+      }
+      @Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof TboxActiveState) {
+          return mergeFrom((TboxActiveState)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(TboxActiveState other) {
+        if (other == TboxActiveState.getDefaultInstance()) return this;
+        if (other.getActiveState() != false) {
+          setActiveState(other.getActiveState());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        TboxActiveState parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (TboxActiveState) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private boolean activeState_ ;
       /**
        * <pre>
        *true:activated   false:not active
@@ -2994,9 +4578,8 @@ public final class IVITboxProto {
        * <code>bool active_state = 1;</code>
        * @return The activeState.
        */
-      @Override
       public boolean getActiveState() {
-        return instance.getActiveState();
+        return activeState_;
       }
       /**
        * <pre>
@@ -3008,8 +4591,9 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder setActiveState(boolean value) {
-        copyOnWrite();
-        instance.setActiveState(value);
+        
+        activeState_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -3021,88 +4605,67 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearActiveState() {
-        copyOnWrite();
-        instance.clearActiveState();
+        
+        activeState_ = false;
+        onChanged();
         return this;
       }
+      @Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
 
       // @@protoc_insertion_point(builder_scope:TboxActiveState)
     }
-    @Override
-    @SuppressWarnings({"unchecked", "fallthrough"})
-    protected final Object dynamicMethod(
-        MethodToInvoke method,
-        Object arg0, Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new TboxActiveState();
-        }
-        case NEW_BUILDER: {
-          return new Builder();
-        }
-        case BUILD_MESSAGE_INFO: {
-            Object[] objects = new Object[] {
-              "activeState_",
-            };
-            String info =
-                "\u0000\u0001\u0000\u0000\u0001\u0001\u0001\u0000\u0000\u0000\u0001\u0007";
-            return newMessageInfo(DEFAULT_INSTANCE, info, objects);
-        }
-        // fall through
-        case GET_DEFAULT_INSTANCE: {
-          return DEFAULT_INSTANCE;
-        }
-        case GET_PARSER: {
-          com.google.protobuf.Parser<TboxActiveState> parser = PARSER;
-          if (parser == null) {
-            synchronized (TboxActiveState.class) {
-              parser = PARSER;
-              if (parser == null) {
-                parser =
-                    new DefaultInstanceBasedParser<TboxActiveState>(
-                        DEFAULT_INSTANCE);
-                PARSER = parser;
-              }
-            }
-          }
-          return parser;
-      }
-      case GET_MEMOIZED_IS_INITIALIZED: {
-        return (byte) 1;
-      }
-      case SET_MEMOIZED_IS_INITIALIZED: {
-        return null;
-      }
-      }
-      throw new UnsupportedOperationException();
-    }
-
 
     // @@protoc_insertion_point(class_scope:TboxActiveState)
     private static final TboxActiveState DEFAULT_INSTANCE;
     static {
-      TboxActiveState defaultInstance = new TboxActiveState();
-      // New instances are implicitly immutable so no need to make
-      // immutable.
-      DEFAULT_INSTANCE = defaultInstance;
-      com.google.protobuf.GeneratedMessageLite.registerDefaultInstance(
-        TboxActiveState.class, defaultInstance);
+      DEFAULT_INSTANCE = new TboxActiveState();
     }
 
     public static TboxActiveState getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static volatile com.google.protobuf.Parser<TboxActiveState> PARSER;
+    private static final com.google.protobuf.Parser<TboxActiveState>
+        PARSER = new com.google.protobuf.AbstractParser<TboxActiveState>() {
+      @Override
+      public TboxActiveState parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new TboxActiveState(input, extensionRegistry);
+      }
+    };
 
     public static com.google.protobuf.Parser<TboxActiveState> parser() {
-      return DEFAULT_INSTANCE.getParserForType();
+      return PARSER;
     }
+
+    @Override
+    public com.google.protobuf.Parser<TboxActiveState> getParserForType() {
+      return PARSER;
+    }
+
+    @Override
+    public TboxActiveState getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
   }
 
   public interface TboxRemoteDiagnoseOrBuilder extends
       // @@protoc_insertion_point(interface_extends:TboxRemoteDiagnose)
-      com.google.protobuf.MessageLiteOrBuilder {
+      com.google.protobuf.MessageOrBuilder {
 
     /**
      * <code>string vin = 1;</code>
@@ -3178,58 +4741,164 @@ public final class IVITboxProto {
    * Protobuf type {@code TboxRemoteDiagnose}
    */
   public  static final class TboxRemoteDiagnose extends
-      com.google.protobuf.GeneratedMessageLite<
-          TboxRemoteDiagnose, TboxRemoteDiagnose.Builder> implements
+      com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:TboxRemoteDiagnose)
       TboxRemoteDiagnoseOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use TboxRemoteDiagnose.newBuilder() to construct.
+    private TboxRemoteDiagnose(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
     private TboxRemoteDiagnose() {
       vin_ = "";
+      datatype_ = 0;
+      cameraname_ = 0;
     }
+
+    @Override
+    @SuppressWarnings({"unused"})
+    protected Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new TboxRemoteDiagnose();
+    }
+
+    @Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private TboxRemoteDiagnose(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              String s = input.readStringRequireUtf8();
+
+              vin_ = s;
+              break;
+            }
+            case 16: {
+
+              eventid_ = input.readUInt32();
+              break;
+            }
+            case 24: {
+
+              timestamp_ = input.readUInt32();
+              break;
+            }
+            case 32: {
+              int rawValue = input.readEnum();
+
+              datatype_ = rawValue;
+              break;
+            }
+            case 40: {
+              int rawValue = input.readEnum();
+
+              cameraname_ = rawValue;
+              break;
+            }
+            case 48: {
+
+              aid_ = input.readUInt32();
+              break;
+            }
+            case 56: {
+
+              mid_ = input.readUInt32();
+              break;
+            }
+            case 64: {
+
+              effectivetime_ = input.readUInt32();
+              break;
+            }
+            case 72: {
+
+              sizelimit_ = input.readUInt32();
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return IVITboxProto.internal_static_TboxRemoteDiagnose_descriptor;
+    }
+
+    @Override
+    protected FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return IVITboxProto.internal_static_TboxRemoteDiagnose_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              TboxRemoteDiagnose.class, Builder.class);
+    }
+
     public static final int VIN_FIELD_NUMBER = 1;
-    private String vin_;
+    private volatile Object vin_;
     /**
      * <code>string vin = 1;</code>
      * @return The vin.
      */
-    @Override
     public String getVin() {
-      return vin_;
+      Object ref = vin_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        vin_ = s;
+        return s;
+      }
     }
     /**
      * <code>string vin = 1;</code>
      * @return The bytes for vin.
      */
-    @Override
     public com.google.protobuf.ByteString
         getVinBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(vin_);
-    }
-    /**
-     * <code>string vin = 1;</code>
-     * @param value The vin to set.
-     */
-    private void setVin(
-        String value) {
-      value.getClass();
-  
-      vin_ = value;
-    }
-    /**
-     * <code>string vin = 1;</code>
-     */
-    private void clearVin() {
-      
-      vin_ = getDefaultInstance().getVin();
-    }
-    /**
-     * <code>string vin = 1;</code>
-     * @param value The bytes for vin to set.
-     */
-    private void setVinBytes(
-        com.google.protobuf.ByteString value) {
-      checkByteStringIsUtf8(value);
-      vin_ = value.toStringUtf8();
-      
+      Object ref = vin_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (String) ref);
+        vin_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int EVENTID_FIELD_NUMBER = 2;
@@ -3238,24 +4907,8 @@ public final class IVITboxProto {
      * <code>uint32 eventid = 2;</code>
      * @return The eventid.
      */
-    @Override
     public int getEventid() {
       return eventid_;
-    }
-    /**
-     * <code>uint32 eventid = 2;</code>
-     * @param value The eventid to set.
-     */
-    private void setEventid(int value) {
-      
-      eventid_ = value;
-    }
-    /**
-     * <code>uint32 eventid = 2;</code>
-     */
-    private void clearEventid() {
-      
-      eventid_ = 0;
     }
 
     public static final int TIMESTAMP_FIELD_NUMBER = 3;
@@ -3264,24 +4917,8 @@ public final class IVITboxProto {
      * <code>uint32 timestamp = 3;</code>
      * @return The timestamp.
      */
-    @Override
     public int getTimestamp() {
       return timestamp_;
-    }
-    /**
-     * <code>uint32 timestamp = 3;</code>
-     * @param value The timestamp to set.
-     */
-    private void setTimestamp(int value) {
-      
-      timestamp_ = value;
-    }
-    /**
-     * <code>uint32 timestamp = 3;</code>
-     */
-    private void clearTimestamp() {
-      
-      timestamp_ = 0;
     }
 
     public static final int DATATYPE_FIELD_NUMBER = 4;
@@ -3290,7 +4927,6 @@ public final class IVITboxProto {
      * <code>.DataTypeEnum datatype = 4;</code>
      * @return The enum numeric value on the wire for datatype.
      */
-    @Override
     public int getDatatypeValue() {
       return datatype_;
     }
@@ -3298,32 +4934,10 @@ public final class IVITboxProto {
      * <code>.DataTypeEnum datatype = 4;</code>
      * @return The datatype.
      */
-    @Override
     public DataTypeEnum getDatatype() {
-      DataTypeEnum result = DataTypeEnum.forNumber(datatype_);
+      @SuppressWarnings("deprecation")
+      DataTypeEnum result = DataTypeEnum.valueOf(datatype_);
       return result == null ? DataTypeEnum.UNRECOGNIZED : result;
-    }
-    /**
-     * <code>.DataTypeEnum datatype = 4;</code>
-     * @param value The enum numeric value on the wire for datatype to set.
-     */
-    private void setDatatypeValue(int value) {
-        datatype_ = value;
-    }
-    /**
-     * <code>.DataTypeEnum datatype = 4;</code>
-     * @param value The datatype to set.
-     */
-    private void setDatatype(DataTypeEnum value) {
-      datatype_ = value.getNumber();
-      
-    }
-    /**
-     * <code>.DataTypeEnum datatype = 4;</code>
-     */
-    private void clearDatatype() {
-      
-      datatype_ = 0;
     }
 
     public static final int CAMERANAME_FIELD_NUMBER = 5;
@@ -3332,7 +4946,6 @@ public final class IVITboxProto {
      * <code>.CameraNameEnum cameraname = 5;</code>
      * @return The enum numeric value on the wire for cameraname.
      */
-    @Override
     public int getCameranameValue() {
       return cameraname_;
     }
@@ -3340,32 +4953,10 @@ public final class IVITboxProto {
      * <code>.CameraNameEnum cameraname = 5;</code>
      * @return The cameraname.
      */
-    @Override
     public CameraNameEnum getCameraname() {
-      CameraNameEnum result = CameraNameEnum.forNumber(cameraname_);
+      @SuppressWarnings("deprecation")
+      CameraNameEnum result = CameraNameEnum.valueOf(cameraname_);
       return result == null ? CameraNameEnum.UNRECOGNIZED : result;
-    }
-    /**
-     * <code>.CameraNameEnum cameraname = 5;</code>
-     * @param value The enum numeric value on the wire for cameraname to set.
-     */
-    private void setCameranameValue(int value) {
-        cameraname_ = value;
-    }
-    /**
-     * <code>.CameraNameEnum cameraname = 5;</code>
-     * @param value The cameraname to set.
-     */
-    private void setCameraname(CameraNameEnum value) {
-      cameraname_ = value.getNumber();
-      
-    }
-    /**
-     * <code>.CameraNameEnum cameraname = 5;</code>
-     */
-    private void clearCameraname() {
-      
-      cameraname_ = 0;
     }
 
     public static final int AID_FIELD_NUMBER = 6;
@@ -3374,24 +4965,8 @@ public final class IVITboxProto {
      * <code>uint32 aid = 6;</code>
      * @return The aid.
      */
-    @Override
     public int getAid() {
       return aid_;
-    }
-    /**
-     * <code>uint32 aid = 6;</code>
-     * @param value The aid to set.
-     */
-    private void setAid(int value) {
-      
-      aid_ = value;
-    }
-    /**
-     * <code>uint32 aid = 6;</code>
-     */
-    private void clearAid() {
-      
-      aid_ = 0;
     }
 
     public static final int MID_FIELD_NUMBER = 7;
@@ -3400,24 +4975,8 @@ public final class IVITboxProto {
      * <code>uint32 mid = 7;</code>
      * @return The mid.
      */
-    @Override
     public int getMid() {
       return mid_;
-    }
-    /**
-     * <code>uint32 mid = 7;</code>
-     * @param value The mid to set.
-     */
-    private void setMid(int value) {
-      
-      mid_ = value;
-    }
-    /**
-     * <code>uint32 mid = 7;</code>
-     */
-    private void clearMid() {
-      
-      mid_ = 0;
     }
 
     public static final int EFFECTIVETIME_FIELD_NUMBER = 8;
@@ -3426,24 +4985,8 @@ public final class IVITboxProto {
      * <code>uint32 effectivetime = 8;</code>
      * @return The effectivetime.
      */
-    @Override
     public int getEffectivetime() {
       return effectivetime_;
-    }
-    /**
-     * <code>uint32 effectivetime = 8;</code>
-     * @param value The effectivetime to set.
-     */
-    private void setEffectivetime(int value) {
-      
-      effectivetime_ = value;
-    }
-    /**
-     * <code>uint32 effectivetime = 8;</code>
-     */
-    private void clearEffectivetime() {
-      
-      effectivetime_ = 0;
     }
 
     public static final int SIZELIMIT_FIELD_NUMBER = 9;
@@ -3452,137 +4995,479 @@ public final class IVITboxProto {
      * <code>uint32 sizelimit = 9;</code>
      * @return The sizelimit.
      */
-    @Override
     public int getSizelimit() {
       return sizelimit_;
     }
-    /**
-     * <code>uint32 sizelimit = 9;</code>
-     * @param value The sizelimit to set.
-     */
-    private void setSizelimit(int value) {
-      
-      sizelimit_ = value;
+
+    private byte memoizedIsInitialized = -1;
+    @Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
     }
-    /**
-     * <code>uint32 sizelimit = 9;</code>
-     */
-    private void clearSizelimit() {
-      
-      sizelimit_ = 0;
+
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getVinBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, vin_);
+      }
+      if (eventid_ != 0) {
+        output.writeUInt32(2, eventid_);
+      }
+      if (timestamp_ != 0) {
+        output.writeUInt32(3, timestamp_);
+      }
+      if (datatype_ != DataTypeEnum.PHOTO_TYPE.getNumber()) {
+        output.writeEnum(4, datatype_);
+      }
+      if (cameraname_ != CameraNameEnum.DVR_TYPE.getNumber()) {
+        output.writeEnum(5, cameraname_);
+      }
+      if (aid_ != 0) {
+        output.writeUInt32(6, aid_);
+      }
+      if (mid_ != 0) {
+        output.writeUInt32(7, mid_);
+      }
+      if (effectivetime_ != 0) {
+        output.writeUInt32(8, effectivetime_);
+      }
+      if (sizelimit_ != 0) {
+        output.writeUInt32(9, sizelimit_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getVinBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, vin_);
+      }
+      if (eventid_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(2, eventid_);
+      }
+      if (timestamp_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(3, timestamp_);
+      }
+      if (datatype_ != DataTypeEnum.PHOTO_TYPE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(4, datatype_);
+      }
+      if (cameraname_ != CameraNameEnum.DVR_TYPE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(5, cameraname_);
+      }
+      if (aid_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(6, aid_);
+      }
+      if (mid_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(7, mid_);
+      }
+      if (effectivetime_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(8, effectivetime_);
+      }
+      if (sizelimit_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(9, sizelimit_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof TboxRemoteDiagnose)) {
+        return super.equals(obj);
+      }
+      TboxRemoteDiagnose other = (TboxRemoteDiagnose) obj;
+
+      if (!getVin()
+          .equals(other.getVin())) return false;
+      if (getEventid()
+          != other.getEventid()) return false;
+      if (getTimestamp()
+          != other.getTimestamp()) return false;
+      if (datatype_ != other.datatype_) return false;
+      if (cameraname_ != other.cameraname_) return false;
+      if (getAid()
+          != other.getAid()) return false;
+      if (getMid()
+          != other.getMid()) return false;
+      if (getEffectivetime()
+          != other.getEffectivetime()) return false;
+      if (getSizelimit()
+          != other.getSizelimit()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + VIN_FIELD_NUMBER;
+      hash = (53 * hash) + getVin().hashCode();
+      hash = (37 * hash) + EVENTID_FIELD_NUMBER;
+      hash = (53 * hash) + getEventid();
+      hash = (37 * hash) + TIMESTAMP_FIELD_NUMBER;
+      hash = (53 * hash) + getTimestamp();
+      hash = (37 * hash) + DATATYPE_FIELD_NUMBER;
+      hash = (53 * hash) + datatype_;
+      hash = (37 * hash) + CAMERANAME_FIELD_NUMBER;
+      hash = (53 * hash) + cameraname_;
+      hash = (37 * hash) + AID_FIELD_NUMBER;
+      hash = (53 * hash) + getAid();
+      hash = (37 * hash) + MID_FIELD_NUMBER;
+      hash = (53 * hash) + getMid();
+      hash = (37 * hash) + EFFECTIVETIME_FIELD_NUMBER;
+      hash = (53 * hash) + getEffectivetime();
+      hash = (37 * hash) + SIZELIMIT_FIELD_NUMBER;
+      hash = (53 * hash) + getSizelimit();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
     }
 
     public static TboxRemoteDiagnose parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static TboxRemoteDiagnose parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static TboxRemoteDiagnose parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static TboxRemoteDiagnose parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static TboxRemoteDiagnose parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static TboxRemoteDiagnose parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static TboxRemoteDiagnose parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static TboxRemoteDiagnose parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static TboxRemoteDiagnose parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
     }
     public static TboxRemoteDiagnose parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static TboxRemoteDiagnose parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static TboxRemoteDiagnose parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
+    @Override
+    public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
-      return (Builder) DEFAULT_INSTANCE.createBuilder();
+      return DEFAULT_INSTANCE.toBuilder();
     }
     public static Builder newBuilder(TboxRemoteDiagnose prototype) {
-      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
     }
 
+    @Override
+    protected Builder newBuilderForType(
+        BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
     /**
      * Protobuf type {@code TboxRemoteDiagnose}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          TboxRemoteDiagnose, Builder> implements
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:TboxRemoteDiagnose)
         TboxRemoteDiagnoseOrBuilder {
-      // Construct using com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.TboxRemoteDiagnose.newBuilder()
-      private Builder() {
-        super(DEFAULT_INSTANCE);
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return IVITboxProto.internal_static_TboxRemoteDiagnose_descriptor;
       }
 
+      @Override
+      protected FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return IVITboxProto.internal_static_TboxRemoteDiagnose_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                TboxRemoteDiagnose.class, Builder.class);
+      }
 
+      // Construct using com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.TboxRemoteDiagnose.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @Override
+      public Builder clear() {
+        super.clear();
+        vin_ = "";
+
+        eventid_ = 0;
+
+        timestamp_ = 0;
+
+        datatype_ = 0;
+
+        cameraname_ = 0;
+
+        aid_ = 0;
+
+        mid_ = 0;
+
+        effectivetime_ = 0;
+
+        sizelimit_ = 0;
+
+        return this;
+      }
+
+      @Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return IVITboxProto.internal_static_TboxRemoteDiagnose_descriptor;
+      }
+
+      @Override
+      public TboxRemoteDiagnose getDefaultInstanceForType() {
+        return TboxRemoteDiagnose.getDefaultInstance();
+      }
+
+      @Override
+      public TboxRemoteDiagnose build() {
+        TboxRemoteDiagnose result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @Override
+      public TboxRemoteDiagnose buildPartial() {
+        TboxRemoteDiagnose result = new TboxRemoteDiagnose(this);
+        result.vin_ = vin_;
+        result.eventid_ = eventid_;
+        result.timestamp_ = timestamp_;
+        result.datatype_ = datatype_;
+        result.cameraname_ = cameraname_;
+        result.aid_ = aid_;
+        result.mid_ = mid_;
+        result.effectivetime_ = effectivetime_;
+        result.sizelimit_ = sizelimit_;
+        onBuilt();
+        return result;
+      }
+
+      @Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return super.setField(field, value);
+      }
+      @Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof TboxRemoteDiagnose) {
+          return mergeFrom((TboxRemoteDiagnose)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(TboxRemoteDiagnose other) {
+        if (other == TboxRemoteDiagnose.getDefaultInstance()) return this;
+        if (!other.getVin().isEmpty()) {
+          vin_ = other.vin_;
+          onChanged();
+        }
+        if (other.getEventid() != 0) {
+          setEventid(other.getEventid());
+        }
+        if (other.getTimestamp() != 0) {
+          setTimestamp(other.getTimestamp());
+        }
+        if (other.datatype_ != 0) {
+          setDatatypeValue(other.getDatatypeValue());
+        }
+        if (other.cameraname_ != 0) {
+          setCameranameValue(other.getCameranameValue());
+        }
+        if (other.getAid() != 0) {
+          setAid(other.getAid());
+        }
+        if (other.getMid() != 0) {
+          setMid(other.getMid());
+        }
+        if (other.getEffectivetime() != 0) {
+          setEffectivetime(other.getEffectivetime());
+        }
+        if (other.getSizelimit() != 0) {
+          setSizelimit(other.getSizelimit());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        TboxRemoteDiagnose parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (TboxRemoteDiagnose) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private Object vin_ = "";
       /**
        * <code>string vin = 1;</code>
        * @return The vin.
        */
-      @Override
       public String getVin() {
-        return instance.getVin();
+        Object ref = vin_;
+        if (!(ref instanceof String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          String s = bs.toStringUtf8();
+          vin_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
       }
       /**
        * <code>string vin = 1;</code>
        * @return The bytes for vin.
        */
-      @Override
       public com.google.protobuf.ByteString
           getVinBytes() {
-        return instance.getVinBytes();
+        Object ref = vin_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (String) ref);
+          vin_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
       }
       /**
        * <code>string vin = 1;</code>
@@ -3591,8 +5476,12 @@ public final class IVITboxProto {
        */
       public Builder setVin(
           String value) {
-        copyOnWrite();
-        instance.setVin(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        vin_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -3600,8 +5489,9 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearVin() {
-        copyOnWrite();
-        instance.clearVin();
+        
+        vin_ = getDefaultInstance().getVin();
+        onChanged();
         return this;
       }
       /**
@@ -3611,18 +5501,23 @@ public final class IVITboxProto {
        */
       public Builder setVinBytes(
           com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setVinBytes(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        vin_ = value;
+        onChanged();
         return this;
       }
 
+      private int eventid_ ;
       /**
        * <code>uint32 eventid = 2;</code>
        * @return The eventid.
        */
-      @Override
       public int getEventid() {
-        return instance.getEventid();
+        return eventid_;
       }
       /**
        * <code>uint32 eventid = 2;</code>
@@ -3630,8 +5525,9 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder setEventid(int value) {
-        copyOnWrite();
-        instance.setEventid(value);
+        
+        eventid_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -3639,18 +5535,19 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearEventid() {
-        copyOnWrite();
-        instance.clearEventid();
+        
+        eventid_ = 0;
+        onChanged();
         return this;
       }
 
+      private int timestamp_ ;
       /**
        * <code>uint32 timestamp = 3;</code>
        * @return The timestamp.
        */
-      @Override
       public int getTimestamp() {
-        return instance.getTimestamp();
+        return timestamp_;
       }
       /**
        * <code>uint32 timestamp = 3;</code>
@@ -3658,8 +5555,9 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder setTimestamp(int value) {
-        copyOnWrite();
-        instance.setTimestamp(value);
+        
+        timestamp_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -3667,45 +5565,51 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearTimestamp() {
-        copyOnWrite();
-        instance.clearTimestamp();
+        
+        timestamp_ = 0;
+        onChanged();
         return this;
       }
 
+      private int datatype_ = 0;
       /**
        * <code>.DataTypeEnum datatype = 4;</code>
        * @return The enum numeric value on the wire for datatype.
        */
-      @Override
       public int getDatatypeValue() {
-        return instance.getDatatypeValue();
-      }
-      /**
-       * <code>.DataTypeEnum datatype = 4;</code>
-       * @param value The datatype to set.
-       * @return This builder for chaining.
-       */
-      public Builder setDatatypeValue(int value) {
-        copyOnWrite();
-        instance.setDatatypeValue(value);
-        return this;
-      }
-      /**
-       * <code>.DataTypeEnum datatype = 4;</code>
-       * @return The datatype.
-       */
-      @Override
-      public DataTypeEnum getDatatype() {
-        return instance.getDatatype();
+        return datatype_;
       }
       /**
        * <code>.DataTypeEnum datatype = 4;</code>
        * @param value The enum numeric value on the wire for datatype to set.
        * @return This builder for chaining.
        */
+      public Builder setDatatypeValue(int value) {
+        datatype_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.DataTypeEnum datatype = 4;</code>
+       * @return The datatype.
+       */
+      public DataTypeEnum getDatatype() {
+        @SuppressWarnings("deprecation")
+        DataTypeEnum result = DataTypeEnum.valueOf(datatype_);
+        return result == null ? DataTypeEnum.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.DataTypeEnum datatype = 4;</code>
+       * @param value The datatype to set.
+       * @return This builder for chaining.
+       */
       public Builder setDatatype(DataTypeEnum value) {
-        copyOnWrite();
-        instance.setDatatype(value);
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        datatype_ = value.getNumber();
+        onChanged();
         return this;
       }
       /**
@@ -3713,45 +5617,51 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearDatatype() {
-        copyOnWrite();
-        instance.clearDatatype();
+        
+        datatype_ = 0;
+        onChanged();
         return this;
       }
 
+      private int cameraname_ = 0;
       /**
        * <code>.CameraNameEnum cameraname = 5;</code>
        * @return The enum numeric value on the wire for cameraname.
        */
-      @Override
       public int getCameranameValue() {
-        return instance.getCameranameValue();
-      }
-      /**
-       * <code>.CameraNameEnum cameraname = 5;</code>
-       * @param value The cameraname to set.
-       * @return This builder for chaining.
-       */
-      public Builder setCameranameValue(int value) {
-        copyOnWrite();
-        instance.setCameranameValue(value);
-        return this;
-      }
-      /**
-       * <code>.CameraNameEnum cameraname = 5;</code>
-       * @return The cameraname.
-       */
-      @Override
-      public CameraNameEnum getCameraname() {
-        return instance.getCameraname();
+        return cameraname_;
       }
       /**
        * <code>.CameraNameEnum cameraname = 5;</code>
        * @param value The enum numeric value on the wire for cameraname to set.
        * @return This builder for chaining.
        */
+      public Builder setCameranameValue(int value) {
+        cameraname_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.CameraNameEnum cameraname = 5;</code>
+       * @return The cameraname.
+       */
+      public CameraNameEnum getCameraname() {
+        @SuppressWarnings("deprecation")
+        CameraNameEnum result = CameraNameEnum.valueOf(cameraname_);
+        return result == null ? CameraNameEnum.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.CameraNameEnum cameraname = 5;</code>
+       * @param value The cameraname to set.
+       * @return This builder for chaining.
+       */
       public Builder setCameraname(CameraNameEnum value) {
-        copyOnWrite();
-        instance.setCameraname(value);
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        cameraname_ = value.getNumber();
+        onChanged();
         return this;
       }
       /**
@@ -3759,18 +5669,19 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearCameraname() {
-        copyOnWrite();
-        instance.clearCameraname();
+        
+        cameraname_ = 0;
+        onChanged();
         return this;
       }
 
+      private int aid_ ;
       /**
        * <code>uint32 aid = 6;</code>
        * @return The aid.
        */
-      @Override
       public int getAid() {
-        return instance.getAid();
+        return aid_;
       }
       /**
        * <code>uint32 aid = 6;</code>
@@ -3778,8 +5689,9 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder setAid(int value) {
-        copyOnWrite();
-        instance.setAid(value);
+        
+        aid_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -3787,18 +5699,19 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearAid() {
-        copyOnWrite();
-        instance.clearAid();
+        
+        aid_ = 0;
+        onChanged();
         return this;
       }
 
+      private int mid_ ;
       /**
        * <code>uint32 mid = 7;</code>
        * @return The mid.
        */
-      @Override
       public int getMid() {
-        return instance.getMid();
+        return mid_;
       }
       /**
        * <code>uint32 mid = 7;</code>
@@ -3806,8 +5719,9 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder setMid(int value) {
-        copyOnWrite();
-        instance.setMid(value);
+        
+        mid_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -3815,18 +5729,19 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearMid() {
-        copyOnWrite();
-        instance.clearMid();
+        
+        mid_ = 0;
+        onChanged();
         return this;
       }
 
+      private int effectivetime_ ;
       /**
        * <code>uint32 effectivetime = 8;</code>
        * @return The effectivetime.
        */
-      @Override
       public int getEffectivetime() {
-        return instance.getEffectivetime();
+        return effectivetime_;
       }
       /**
        * <code>uint32 effectivetime = 8;</code>
@@ -3834,8 +5749,9 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder setEffectivetime(int value) {
-        copyOnWrite();
-        instance.setEffectivetime(value);
+        
+        effectivetime_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -3843,18 +5759,19 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearEffectivetime() {
-        copyOnWrite();
-        instance.clearEffectivetime();
+        
+        effectivetime_ = 0;
+        onChanged();
         return this;
       }
 
+      private int sizelimit_ ;
       /**
        * <code>uint32 sizelimit = 9;</code>
        * @return The sizelimit.
        */
-      @Override
       public int getSizelimit() {
-        return instance.getSizelimit();
+        return sizelimit_;
       }
       /**
        * <code>uint32 sizelimit = 9;</code>
@@ -3862,8 +5779,9 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder setSizelimit(int value) {
-        copyOnWrite();
-        instance.setSizelimit(value);
+        
+        sizelimit_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -3871,97 +5789,67 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearSizelimit() {
-        copyOnWrite();
-        instance.clearSizelimit();
+        
+        sizelimit_ = 0;
+        onChanged();
         return this;
       }
+      @Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
 
       // @@protoc_insertion_point(builder_scope:TboxRemoteDiagnose)
     }
-    @Override
-    @SuppressWarnings({"unchecked", "fallthrough"})
-    protected final Object dynamicMethod(
-        MethodToInvoke method,
-        Object arg0, Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new TboxRemoteDiagnose();
-        }
-        case NEW_BUILDER: {
-          return new Builder();
-        }
-        case BUILD_MESSAGE_INFO: {
-            Object[] objects = new Object[] {
-              "vin_",
-              "eventid_",
-              "timestamp_",
-              "datatype_",
-              "cameraname_",
-              "aid_",
-              "mid_",
-              "effectivetime_",
-              "sizelimit_",
-            };
-            String info =
-                "\u0000\t\u0000\u0000\u0001\t\t\u0000\u0000\u0000\u0001\u0208\u0002\u000b\u0003\u000b" +
-                "\u0004\f\u0005\f\u0006\u000b\u0007\u000b\b\u000b\t\u000b";
-            return newMessageInfo(DEFAULT_INSTANCE, info, objects);
-        }
-        // fall through
-        case GET_DEFAULT_INSTANCE: {
-          return DEFAULT_INSTANCE;
-        }
-        case GET_PARSER: {
-          com.google.protobuf.Parser<TboxRemoteDiagnose> parser = PARSER;
-          if (parser == null) {
-            synchronized (TboxRemoteDiagnose.class) {
-              parser = PARSER;
-              if (parser == null) {
-                parser =
-                    new DefaultInstanceBasedParser<TboxRemoteDiagnose>(
-                        DEFAULT_INSTANCE);
-                PARSER = parser;
-              }
-            }
-          }
-          return parser;
-      }
-      case GET_MEMOIZED_IS_INITIALIZED: {
-        return (byte) 1;
-      }
-      case SET_MEMOIZED_IS_INITIALIZED: {
-        return null;
-      }
-      }
-      throw new UnsupportedOperationException();
-    }
-
 
     // @@protoc_insertion_point(class_scope:TboxRemoteDiagnose)
     private static final TboxRemoteDiagnose DEFAULT_INSTANCE;
     static {
-      TboxRemoteDiagnose defaultInstance = new TboxRemoteDiagnose();
-      // New instances are implicitly immutable so no need to make
-      // immutable.
-      DEFAULT_INSTANCE = defaultInstance;
-      com.google.protobuf.GeneratedMessageLite.registerDefaultInstance(
-        TboxRemoteDiagnose.class, defaultInstance);
+      DEFAULT_INSTANCE = new TboxRemoteDiagnose();
     }
 
     public static TboxRemoteDiagnose getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static volatile com.google.protobuf.Parser<TboxRemoteDiagnose> PARSER;
+    private static final com.google.protobuf.Parser<TboxRemoteDiagnose>
+        PARSER = new com.google.protobuf.AbstractParser<TboxRemoteDiagnose>() {
+      @Override
+      public TboxRemoteDiagnose parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new TboxRemoteDiagnose(input, extensionRegistry);
+      }
+    };
 
     public static com.google.protobuf.Parser<TboxRemoteDiagnose> parser() {
-      return DEFAULT_INSTANCE.getParserForType();
+      return PARSER;
     }
+
+    @Override
+    public com.google.protobuf.Parser<TboxRemoteDiagnose> getParserForType() {
+      return PARSER;
+    }
+
+    @Override
+    public TboxRemoteDiagnose getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
   }
 
   public interface IhuLogfileOrBuilder extends
       // @@protoc_insertion_point(interface_extends:IhuLogfile)
-      com.google.protobuf.MessageLiteOrBuilder {
+      com.google.protobuf.MessageOrBuilder {
 
     /**
      * <code>string vin = 1;</code>
@@ -4035,58 +5923,160 @@ public final class IVITboxProto {
    * Protobuf type {@code IhuLogfile}
    */
   public  static final class IhuLogfile extends
-      com.google.protobuf.GeneratedMessageLite<
-          IhuLogfile, IhuLogfile.Builder> implements
+      com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:IhuLogfile)
       IhuLogfileOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use IhuLogfile.newBuilder() to construct.
+    private IhuLogfile(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
     private IhuLogfile() {
       vin_ = "";
     }
+
+    @Override
+    @SuppressWarnings({"unused"})
+    protected Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new IhuLogfile();
+    }
+
+    @Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private IhuLogfile(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              String s = input.readStringRequireUtf8();
+
+              vin_ = s;
+              break;
+            }
+            case 16: {
+
+              eventid_ = input.readUInt32();
+              break;
+            }
+            case 24: {
+
+              timestamp_ = input.readUInt32();
+              break;
+            }
+            case 32: {
+
+              aid_ = input.readUInt32();
+              break;
+            }
+            case 40: {
+
+              mid_ = input.readUInt32();
+              break;
+            }
+            case 48: {
+
+              starttime_ = input.readUInt32();
+              break;
+            }
+            case 56: {
+
+              durationtime_ = input.readUInt32();
+              break;
+            }
+            case 64: {
+
+              channel_ = input.readUInt32();
+              break;
+            }
+            case 72: {
+
+              level_ = input.readUInt32();
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return IVITboxProto.internal_static_IhuLogfile_descriptor;
+    }
+
+    @Override
+    protected FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return IVITboxProto.internal_static_IhuLogfile_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              IhuLogfile.class, Builder.class);
+    }
+
     public static final int VIN_FIELD_NUMBER = 1;
-    private String vin_;
+    private volatile Object vin_;
     /**
      * <code>string vin = 1;</code>
      * @return The vin.
      */
-    @Override
     public String getVin() {
-      return vin_;
+      Object ref = vin_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        vin_ = s;
+        return s;
+      }
     }
     /**
      * <code>string vin = 1;</code>
      * @return The bytes for vin.
      */
-    @Override
     public com.google.protobuf.ByteString
         getVinBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(vin_);
-    }
-    /**
-     * <code>string vin = 1;</code>
-     * @param value The vin to set.
-     */
-    private void setVin(
-        String value) {
-      value.getClass();
-  
-      vin_ = value;
-    }
-    /**
-     * <code>string vin = 1;</code>
-     */
-    private void clearVin() {
-      
-      vin_ = getDefaultInstance().getVin();
-    }
-    /**
-     * <code>string vin = 1;</code>
-     * @param value The bytes for vin to set.
-     */
-    private void setVinBytes(
-        com.google.protobuf.ByteString value) {
-      checkByteStringIsUtf8(value);
-      vin_ = value.toStringUtf8();
-      
+      Object ref = vin_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (String) ref);
+        vin_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int EVENTID_FIELD_NUMBER = 2;
@@ -4095,24 +6085,8 @@ public final class IVITboxProto {
      * <code>uint32 eventid = 2;</code>
      * @return The eventid.
      */
-    @Override
     public int getEventid() {
       return eventid_;
-    }
-    /**
-     * <code>uint32 eventid = 2;</code>
-     * @param value The eventid to set.
-     */
-    private void setEventid(int value) {
-      
-      eventid_ = value;
-    }
-    /**
-     * <code>uint32 eventid = 2;</code>
-     */
-    private void clearEventid() {
-      
-      eventid_ = 0;
     }
 
     public static final int TIMESTAMP_FIELD_NUMBER = 3;
@@ -4121,24 +6095,8 @@ public final class IVITboxProto {
      * <code>uint32 timestamp = 3;</code>
      * @return The timestamp.
      */
-    @Override
     public int getTimestamp() {
       return timestamp_;
-    }
-    /**
-     * <code>uint32 timestamp = 3;</code>
-     * @param value The timestamp to set.
-     */
-    private void setTimestamp(int value) {
-      
-      timestamp_ = value;
-    }
-    /**
-     * <code>uint32 timestamp = 3;</code>
-     */
-    private void clearTimestamp() {
-      
-      timestamp_ = 0;
     }
 
     public static final int AID_FIELD_NUMBER = 4;
@@ -4147,24 +6105,8 @@ public final class IVITboxProto {
      * <code>uint32 aid = 4;</code>
      * @return The aid.
      */
-    @Override
     public int getAid() {
       return aid_;
-    }
-    /**
-     * <code>uint32 aid = 4;</code>
-     * @param value The aid to set.
-     */
-    private void setAid(int value) {
-      
-      aid_ = value;
-    }
-    /**
-     * <code>uint32 aid = 4;</code>
-     */
-    private void clearAid() {
-      
-      aid_ = 0;
     }
 
     public static final int MID_FIELD_NUMBER = 5;
@@ -4173,24 +6115,8 @@ public final class IVITboxProto {
      * <code>uint32 mid = 5;</code>
      * @return The mid.
      */
-    @Override
     public int getMid() {
       return mid_;
-    }
-    /**
-     * <code>uint32 mid = 5;</code>
-     * @param value The mid to set.
-     */
-    private void setMid(int value) {
-      
-      mid_ = value;
-    }
-    /**
-     * <code>uint32 mid = 5;</code>
-     */
-    private void clearMid() {
-      
-      mid_ = 0;
     }
 
     public static final int STARTTIME_FIELD_NUMBER = 6;
@@ -4199,24 +6125,8 @@ public final class IVITboxProto {
      * <code>uint32 starttime = 6;</code>
      * @return The starttime.
      */
-    @Override
     public int getStarttime() {
       return starttime_;
-    }
-    /**
-     * <code>uint32 starttime = 6;</code>
-     * @param value The starttime to set.
-     */
-    private void setStarttime(int value) {
-      
-      starttime_ = value;
-    }
-    /**
-     * <code>uint32 starttime = 6;</code>
-     */
-    private void clearStarttime() {
-      
-      starttime_ = 0;
     }
 
     public static final int DURATIONTIME_FIELD_NUMBER = 7;
@@ -4225,24 +6135,8 @@ public final class IVITboxProto {
      * <code>uint32 durationtime = 7;</code>
      * @return The durationtime.
      */
-    @Override
     public int getDurationtime() {
       return durationtime_;
-    }
-    /**
-     * <code>uint32 durationtime = 7;</code>
-     * @param value The durationtime to set.
-     */
-    private void setDurationtime(int value) {
-      
-      durationtime_ = value;
-    }
-    /**
-     * <code>uint32 durationtime = 7;</code>
-     */
-    private void clearDurationtime() {
-      
-      durationtime_ = 0;
     }
 
     public static final int CHANNEL_FIELD_NUMBER = 8;
@@ -4255,32 +6149,8 @@ public final class IVITboxProto {
      * <code>uint32 channel = 8;</code>
      * @return The channel.
      */
-    @Override
     public int getChannel() {
       return channel_;
-    }
-    /**
-     * <pre>
-     *1:TBOX, 2:IHU
-     * </pre>
-     *
-     * <code>uint32 channel = 8;</code>
-     * @param value The channel to set.
-     */
-    private void setChannel(int value) {
-      
-      channel_ = value;
-    }
-    /**
-     * <pre>
-     *1:TBOX, 2:IHU
-     * </pre>
-     *
-     * <code>uint32 channel = 8;</code>
-     */
-    private void clearChannel() {
-      
-      channel_ = 0;
     }
 
     public static final int LEVEL_FIELD_NUMBER = 9;
@@ -4293,145 +6163,481 @@ public final class IVITboxProto {
      * <code>uint32 level = 9;</code>
      * @return The level.
      */
-    @Override
     public int getLevel() {
       return level_;
     }
-    /**
-     * <pre>
-     *1:ERROR, 2:WARN, 3:INFO, 4:DEBUG
-     * </pre>
-     *
-     * <code>uint32 level = 9;</code>
-     * @param value The level to set.
-     */
-    private void setLevel(int value) {
-      
-      level_ = value;
+
+    private byte memoizedIsInitialized = -1;
+    @Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
     }
-    /**
-     * <pre>
-     *1:ERROR, 2:WARN, 3:INFO, 4:DEBUG
-     * </pre>
-     *
-     * <code>uint32 level = 9;</code>
-     */
-    private void clearLevel() {
-      
-      level_ = 0;
+
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getVinBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, vin_);
+      }
+      if (eventid_ != 0) {
+        output.writeUInt32(2, eventid_);
+      }
+      if (timestamp_ != 0) {
+        output.writeUInt32(3, timestamp_);
+      }
+      if (aid_ != 0) {
+        output.writeUInt32(4, aid_);
+      }
+      if (mid_ != 0) {
+        output.writeUInt32(5, mid_);
+      }
+      if (starttime_ != 0) {
+        output.writeUInt32(6, starttime_);
+      }
+      if (durationtime_ != 0) {
+        output.writeUInt32(7, durationtime_);
+      }
+      if (channel_ != 0) {
+        output.writeUInt32(8, channel_);
+      }
+      if (level_ != 0) {
+        output.writeUInt32(9, level_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getVinBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, vin_);
+      }
+      if (eventid_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(2, eventid_);
+      }
+      if (timestamp_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(3, timestamp_);
+      }
+      if (aid_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(4, aid_);
+      }
+      if (mid_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(5, mid_);
+      }
+      if (starttime_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(6, starttime_);
+      }
+      if (durationtime_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(7, durationtime_);
+      }
+      if (channel_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(8, channel_);
+      }
+      if (level_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(9, level_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof IhuLogfile)) {
+        return super.equals(obj);
+      }
+      IhuLogfile other = (IhuLogfile) obj;
+
+      if (!getVin()
+          .equals(other.getVin())) return false;
+      if (getEventid()
+          != other.getEventid()) return false;
+      if (getTimestamp()
+          != other.getTimestamp()) return false;
+      if (getAid()
+          != other.getAid()) return false;
+      if (getMid()
+          != other.getMid()) return false;
+      if (getStarttime()
+          != other.getStarttime()) return false;
+      if (getDurationtime()
+          != other.getDurationtime()) return false;
+      if (getChannel()
+          != other.getChannel()) return false;
+      if (getLevel()
+          != other.getLevel()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + VIN_FIELD_NUMBER;
+      hash = (53 * hash) + getVin().hashCode();
+      hash = (37 * hash) + EVENTID_FIELD_NUMBER;
+      hash = (53 * hash) + getEventid();
+      hash = (37 * hash) + TIMESTAMP_FIELD_NUMBER;
+      hash = (53 * hash) + getTimestamp();
+      hash = (37 * hash) + AID_FIELD_NUMBER;
+      hash = (53 * hash) + getAid();
+      hash = (37 * hash) + MID_FIELD_NUMBER;
+      hash = (53 * hash) + getMid();
+      hash = (37 * hash) + STARTTIME_FIELD_NUMBER;
+      hash = (53 * hash) + getStarttime();
+      hash = (37 * hash) + DURATIONTIME_FIELD_NUMBER;
+      hash = (53 * hash) + getDurationtime();
+      hash = (37 * hash) + CHANNEL_FIELD_NUMBER;
+      hash = (53 * hash) + getChannel();
+      hash = (37 * hash) + LEVEL_FIELD_NUMBER;
+      hash = (53 * hash) + getLevel();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
     }
 
     public static IhuLogfile parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static IhuLogfile parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static IhuLogfile parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static IhuLogfile parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static IhuLogfile parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static IhuLogfile parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static IhuLogfile parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static IhuLogfile parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static IhuLogfile parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
     }
     public static IhuLogfile parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static IhuLogfile parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static IhuLogfile parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
+    @Override
+    public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
-      return (Builder) DEFAULT_INSTANCE.createBuilder();
+      return DEFAULT_INSTANCE.toBuilder();
     }
     public static Builder newBuilder(IhuLogfile prototype) {
-      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
     }
 
+    @Override
+    protected Builder newBuilderForType(
+        BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
     /**
      * Protobuf type {@code IhuLogfile}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          IhuLogfile, Builder> implements
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:IhuLogfile)
         IhuLogfileOrBuilder {
-      // Construct using com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.IhuLogfile.newBuilder()
-      private Builder() {
-        super(DEFAULT_INSTANCE);
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return IVITboxProto.internal_static_IhuLogfile_descriptor;
       }
 
+      @Override
+      protected FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return IVITboxProto.internal_static_IhuLogfile_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                IhuLogfile.class, Builder.class);
+      }
 
+      // Construct using com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.IhuLogfile.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @Override
+      public Builder clear() {
+        super.clear();
+        vin_ = "";
+
+        eventid_ = 0;
+
+        timestamp_ = 0;
+
+        aid_ = 0;
+
+        mid_ = 0;
+
+        starttime_ = 0;
+
+        durationtime_ = 0;
+
+        channel_ = 0;
+
+        level_ = 0;
+
+        return this;
+      }
+
+      @Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return IVITboxProto.internal_static_IhuLogfile_descriptor;
+      }
+
+      @Override
+      public IhuLogfile getDefaultInstanceForType() {
+        return IhuLogfile.getDefaultInstance();
+      }
+
+      @Override
+      public IhuLogfile build() {
+        IhuLogfile result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @Override
+      public IhuLogfile buildPartial() {
+        IhuLogfile result = new IhuLogfile(this);
+        result.vin_ = vin_;
+        result.eventid_ = eventid_;
+        result.timestamp_ = timestamp_;
+        result.aid_ = aid_;
+        result.mid_ = mid_;
+        result.starttime_ = starttime_;
+        result.durationtime_ = durationtime_;
+        result.channel_ = channel_;
+        result.level_ = level_;
+        onBuilt();
+        return result;
+      }
+
+      @Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return super.setField(field, value);
+      }
+      @Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof IhuLogfile) {
+          return mergeFrom((IhuLogfile)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(IhuLogfile other) {
+        if (other == IhuLogfile.getDefaultInstance()) return this;
+        if (!other.getVin().isEmpty()) {
+          vin_ = other.vin_;
+          onChanged();
+        }
+        if (other.getEventid() != 0) {
+          setEventid(other.getEventid());
+        }
+        if (other.getTimestamp() != 0) {
+          setTimestamp(other.getTimestamp());
+        }
+        if (other.getAid() != 0) {
+          setAid(other.getAid());
+        }
+        if (other.getMid() != 0) {
+          setMid(other.getMid());
+        }
+        if (other.getStarttime() != 0) {
+          setStarttime(other.getStarttime());
+        }
+        if (other.getDurationtime() != 0) {
+          setDurationtime(other.getDurationtime());
+        }
+        if (other.getChannel() != 0) {
+          setChannel(other.getChannel());
+        }
+        if (other.getLevel() != 0) {
+          setLevel(other.getLevel());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        IhuLogfile parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (IhuLogfile) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private Object vin_ = "";
       /**
        * <code>string vin = 1;</code>
        * @return The vin.
        */
-      @Override
       public String getVin() {
-        return instance.getVin();
+        Object ref = vin_;
+        if (!(ref instanceof String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          String s = bs.toStringUtf8();
+          vin_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
       }
       /**
        * <code>string vin = 1;</code>
        * @return The bytes for vin.
        */
-      @Override
       public com.google.protobuf.ByteString
           getVinBytes() {
-        return instance.getVinBytes();
+        Object ref = vin_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (String) ref);
+          vin_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
       }
       /**
        * <code>string vin = 1;</code>
@@ -4440,8 +6646,12 @@ public final class IVITboxProto {
        */
       public Builder setVin(
           String value) {
-        copyOnWrite();
-        instance.setVin(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        vin_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -4449,8 +6659,9 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearVin() {
-        copyOnWrite();
-        instance.clearVin();
+        
+        vin_ = getDefaultInstance().getVin();
+        onChanged();
         return this;
       }
       /**
@@ -4460,18 +6671,23 @@ public final class IVITboxProto {
        */
       public Builder setVinBytes(
           com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setVinBytes(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        vin_ = value;
+        onChanged();
         return this;
       }
 
+      private int eventid_ ;
       /**
        * <code>uint32 eventid = 2;</code>
        * @return The eventid.
        */
-      @Override
       public int getEventid() {
-        return instance.getEventid();
+        return eventid_;
       }
       /**
        * <code>uint32 eventid = 2;</code>
@@ -4479,8 +6695,9 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder setEventid(int value) {
-        copyOnWrite();
-        instance.setEventid(value);
+        
+        eventid_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -4488,18 +6705,19 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearEventid() {
-        copyOnWrite();
-        instance.clearEventid();
+        
+        eventid_ = 0;
+        onChanged();
         return this;
       }
 
+      private int timestamp_ ;
       /**
        * <code>uint32 timestamp = 3;</code>
        * @return The timestamp.
        */
-      @Override
       public int getTimestamp() {
-        return instance.getTimestamp();
+        return timestamp_;
       }
       /**
        * <code>uint32 timestamp = 3;</code>
@@ -4507,8 +6725,9 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder setTimestamp(int value) {
-        copyOnWrite();
-        instance.setTimestamp(value);
+        
+        timestamp_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -4516,18 +6735,19 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearTimestamp() {
-        copyOnWrite();
-        instance.clearTimestamp();
+        
+        timestamp_ = 0;
+        onChanged();
         return this;
       }
 
+      private int aid_ ;
       /**
        * <code>uint32 aid = 4;</code>
        * @return The aid.
        */
-      @Override
       public int getAid() {
-        return instance.getAid();
+        return aid_;
       }
       /**
        * <code>uint32 aid = 4;</code>
@@ -4535,8 +6755,9 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder setAid(int value) {
-        copyOnWrite();
-        instance.setAid(value);
+        
+        aid_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -4544,18 +6765,19 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearAid() {
-        copyOnWrite();
-        instance.clearAid();
+        
+        aid_ = 0;
+        onChanged();
         return this;
       }
 
+      private int mid_ ;
       /**
        * <code>uint32 mid = 5;</code>
        * @return The mid.
        */
-      @Override
       public int getMid() {
-        return instance.getMid();
+        return mid_;
       }
       /**
        * <code>uint32 mid = 5;</code>
@@ -4563,8 +6785,9 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder setMid(int value) {
-        copyOnWrite();
-        instance.setMid(value);
+        
+        mid_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -4572,18 +6795,19 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearMid() {
-        copyOnWrite();
-        instance.clearMid();
+        
+        mid_ = 0;
+        onChanged();
         return this;
       }
 
+      private int starttime_ ;
       /**
        * <code>uint32 starttime = 6;</code>
        * @return The starttime.
        */
-      @Override
       public int getStarttime() {
-        return instance.getStarttime();
+        return starttime_;
       }
       /**
        * <code>uint32 starttime = 6;</code>
@@ -4591,8 +6815,9 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder setStarttime(int value) {
-        copyOnWrite();
-        instance.setStarttime(value);
+        
+        starttime_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -4600,18 +6825,19 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearStarttime() {
-        copyOnWrite();
-        instance.clearStarttime();
+        
+        starttime_ = 0;
+        onChanged();
         return this;
       }
 
+      private int durationtime_ ;
       /**
        * <code>uint32 durationtime = 7;</code>
        * @return The durationtime.
        */
-      @Override
       public int getDurationtime() {
-        return instance.getDurationtime();
+        return durationtime_;
       }
       /**
        * <code>uint32 durationtime = 7;</code>
@@ -4619,8 +6845,9 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder setDurationtime(int value) {
-        copyOnWrite();
-        instance.setDurationtime(value);
+        
+        durationtime_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -4628,11 +6855,13 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearDurationtime() {
-        copyOnWrite();
-        instance.clearDurationtime();
+        
+        durationtime_ = 0;
+        onChanged();
         return this;
       }
 
+      private int channel_ ;
       /**
        * <pre>
        *1:TBOX, 2:IHU
@@ -4641,9 +6870,8 @@ public final class IVITboxProto {
        * <code>uint32 channel = 8;</code>
        * @return The channel.
        */
-      @Override
       public int getChannel() {
-        return instance.getChannel();
+        return channel_;
       }
       /**
        * <pre>
@@ -4655,8 +6883,9 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder setChannel(int value) {
-        copyOnWrite();
-        instance.setChannel(value);
+        
+        channel_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -4668,11 +6897,13 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearChannel() {
-        copyOnWrite();
-        instance.clearChannel();
+        
+        channel_ = 0;
+        onChanged();
         return this;
       }
 
+      private int level_ ;
       /**
        * <pre>
        *1:ERROR, 2:WARN, 3:INFO, 4:DEBUG
@@ -4681,9 +6912,8 @@ public final class IVITboxProto {
        * <code>uint32 level = 9;</code>
        * @return The level.
        */
-      @Override
       public int getLevel() {
-        return instance.getLevel();
+        return level_;
       }
       /**
        * <pre>
@@ -4695,8 +6925,9 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder setLevel(int value) {
-        copyOnWrite();
-        instance.setLevel(value);
+        
+        level_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -4708,97 +6939,67 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearLevel() {
-        copyOnWrite();
-        instance.clearLevel();
+        
+        level_ = 0;
+        onChanged();
         return this;
       }
+      @Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
 
       // @@protoc_insertion_point(builder_scope:IhuLogfile)
     }
-    @Override
-    @SuppressWarnings({"unchecked", "fallthrough"})
-    protected final Object dynamicMethod(
-        MethodToInvoke method,
-        Object arg0, Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new IhuLogfile();
-        }
-        case NEW_BUILDER: {
-          return new Builder();
-        }
-        case BUILD_MESSAGE_INFO: {
-            Object[] objects = new Object[] {
-              "vin_",
-              "eventid_",
-              "timestamp_",
-              "aid_",
-              "mid_",
-              "starttime_",
-              "durationtime_",
-              "channel_",
-              "level_",
-            };
-            String info =
-                "\u0000\t\u0000\u0000\u0001\t\t\u0000\u0000\u0000\u0001\u0208\u0002\u000b\u0003\u000b" +
-                "\u0004\u000b\u0005\u000b\u0006\u000b\u0007\u000b\b\u000b\t\u000b";
-            return newMessageInfo(DEFAULT_INSTANCE, info, objects);
-        }
-        // fall through
-        case GET_DEFAULT_INSTANCE: {
-          return DEFAULT_INSTANCE;
-        }
-        case GET_PARSER: {
-          com.google.protobuf.Parser<IhuLogfile> parser = PARSER;
-          if (parser == null) {
-            synchronized (IhuLogfile.class) {
-              parser = PARSER;
-              if (parser == null) {
-                parser =
-                    new DefaultInstanceBasedParser<IhuLogfile>(
-                        DEFAULT_INSTANCE);
-                PARSER = parser;
-              }
-            }
-          }
-          return parser;
-      }
-      case GET_MEMOIZED_IS_INITIALIZED: {
-        return (byte) 1;
-      }
-      case SET_MEMOIZED_IS_INITIALIZED: {
-        return null;
-      }
-      }
-      throw new UnsupportedOperationException();
-    }
-
 
     // @@protoc_insertion_point(class_scope:IhuLogfile)
     private static final IhuLogfile DEFAULT_INSTANCE;
     static {
-      IhuLogfile defaultInstance = new IhuLogfile();
-      // New instances are implicitly immutable so no need to make
-      // immutable.
-      DEFAULT_INSTANCE = defaultInstance;
-      com.google.protobuf.GeneratedMessageLite.registerDefaultInstance(
-        IhuLogfile.class, defaultInstance);
+      DEFAULT_INSTANCE = new IhuLogfile();
     }
 
     public static IhuLogfile getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static volatile com.google.protobuf.Parser<IhuLogfile> PARSER;
+    private static final com.google.protobuf.Parser<IhuLogfile>
+        PARSER = new com.google.protobuf.AbstractParser<IhuLogfile>() {
+      @Override
+      public IhuLogfile parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new IhuLogfile(input, extensionRegistry);
+      }
+    };
 
     public static com.google.protobuf.Parser<IhuLogfile> parser() {
-      return DEFAULT_INSTANCE.getParserForType();
+      return PARSER;
     }
+
+    @Override
+    public com.google.protobuf.Parser<IhuLogfile> getParserForType() {
+      return PARSER;
+    }
+
+    @Override
+    public IhuLogfile getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
   }
 
   public interface IhuChargeAppoointmentStsOrBuilder extends
       // @@protoc_insertion_point(interface_extends:IhuChargeAppoointmentSts)
-      com.google.protobuf.MessageLiteOrBuilder {
+      com.google.protobuf.MessageOrBuilder {
 
     /**
      * <code>uint32 timestamp = 1;</code>
@@ -4844,36 +7045,117 @@ public final class IVITboxProto {
    * Protobuf type {@code IhuChargeAppoointmentSts}
    */
   public  static final class IhuChargeAppoointmentSts extends
-      com.google.protobuf.GeneratedMessageLite<
-          IhuChargeAppoointmentSts, IhuChargeAppoointmentSts.Builder> implements
+      com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:IhuChargeAppoointmentSts)
       IhuChargeAppoointmentStsOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use IhuChargeAppoointmentSts.newBuilder() to construct.
+    private IhuChargeAppoointmentSts(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
     private IhuChargeAppoointmentSts() {
     }
+
+    @Override
+    @SuppressWarnings({"unused"})
+    protected Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new IhuChargeAppoointmentSts();
+    }
+
+    @Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private IhuChargeAppoointmentSts(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              timestamp_ = input.readUInt32();
+              break;
+            }
+            case 16: {
+
+              hour_ = input.readUInt32();
+              break;
+            }
+            case 24: {
+
+              min_ = input.readUInt32();
+              break;
+            }
+            case 32: {
+
+              id_ = input.readUInt32();
+              break;
+            }
+            case 40: {
+
+              targetpower_ = input.readUInt32();
+              break;
+            }
+            case 48: {
+
+              effectivestate_ = input.readBool();
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return IVITboxProto.internal_static_IhuChargeAppoointmentSts_descriptor;
+    }
+
+    @Override
+    protected FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return IVITboxProto.internal_static_IhuChargeAppoointmentSts_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              IhuChargeAppoointmentSts.class, Builder.class);
+    }
+
     public static final int TIMESTAMP_FIELD_NUMBER = 1;
     private int timestamp_;
     /**
      * <code>uint32 timestamp = 1;</code>
      * @return The timestamp.
      */
-    @Override
     public int getTimestamp() {
       return timestamp_;
-    }
-    /**
-     * <code>uint32 timestamp = 1;</code>
-     * @param value The timestamp to set.
-     */
-    private void setTimestamp(int value) {
-      
-      timestamp_ = value;
-    }
-    /**
-     * <code>uint32 timestamp = 1;</code>
-     */
-    private void clearTimestamp() {
-      
-      timestamp_ = 0;
     }
 
     public static final int HOUR_FIELD_NUMBER = 2;
@@ -4882,24 +7164,8 @@ public final class IVITboxProto {
      * <code>uint32 hour = 2;</code>
      * @return The hour.
      */
-    @Override
     public int getHour() {
       return hour_;
-    }
-    /**
-     * <code>uint32 hour = 2;</code>
-     * @param value The hour to set.
-     */
-    private void setHour(int value) {
-      
-      hour_ = value;
-    }
-    /**
-     * <code>uint32 hour = 2;</code>
-     */
-    private void clearHour() {
-      
-      hour_ = 0;
     }
 
     public static final int MIN_FIELD_NUMBER = 3;
@@ -4908,24 +7174,8 @@ public final class IVITboxProto {
      * <code>uint32 min = 3;</code>
      * @return The min.
      */
-    @Override
     public int getMin() {
       return min_;
-    }
-    /**
-     * <code>uint32 min = 3;</code>
-     * @param value The min to set.
-     */
-    private void setMin(int value) {
-      
-      min_ = value;
-    }
-    /**
-     * <code>uint32 min = 3;</code>
-     */
-    private void clearMin() {
-      
-      min_ = 0;
     }
 
     public static final int ID_FIELD_NUMBER = 4;
@@ -4934,24 +7184,8 @@ public final class IVITboxProto {
      * <code>uint32 id = 4;</code>
      * @return The id.
      */
-    @Override
     public int getId() {
       return id_;
-    }
-    /**
-     * <code>uint32 id = 4;</code>
-     * @param value The id to set.
-     */
-    private void setId(int value) {
-      
-      id_ = value;
-    }
-    /**
-     * <code>uint32 id = 4;</code>
-     */
-    private void clearId() {
-      
-      id_ = 0;
     }
 
     public static final int TARGETPOWER_FIELD_NUMBER = 5;
@@ -4960,24 +7194,8 @@ public final class IVITboxProto {
      * <code>uint32 targetpower = 5;</code>
      * @return The targetpower.
      */
-    @Override
     public int getTargetpower() {
       return targetpower_;
-    }
-    /**
-     * <code>uint32 targetpower = 5;</code>
-     * @param value The targetpower to set.
-     */
-    private void setTargetpower(int value) {
-      
-      targetpower_ = value;
-    }
-    /**
-     * <code>uint32 targetpower = 5;</code>
-     */
-    private void clearTargetpower() {
-      
-      targetpower_ = 0;
     }
 
     public static final int EFFECTIVESTATE_FIELD_NUMBER = 6;
@@ -4990,136 +7208,405 @@ public final class IVITboxProto {
      * <code>bool effectivestate = 6;</code>
      * @return The effectivestate.
      */
-    @Override
     public boolean getEffectivestate() {
       return effectivestate_;
     }
-    /**
-     * <pre>
-     *true:effective, false:Invalid
-     * </pre>
-     *
-     * <code>bool effectivestate = 6;</code>
-     * @param value The effectivestate to set.
-     */
-    private void setEffectivestate(boolean value) {
-      
-      effectivestate_ = value;
+
+    private byte memoizedIsInitialized = -1;
+    @Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
     }
-    /**
-     * <pre>
-     *true:effective, false:Invalid
-     * </pre>
-     *
-     * <code>bool effectivestate = 6;</code>
-     */
-    private void clearEffectivestate() {
-      
-      effectivestate_ = false;
+
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (timestamp_ != 0) {
+        output.writeUInt32(1, timestamp_);
+      }
+      if (hour_ != 0) {
+        output.writeUInt32(2, hour_);
+      }
+      if (min_ != 0) {
+        output.writeUInt32(3, min_);
+      }
+      if (id_ != 0) {
+        output.writeUInt32(4, id_);
+      }
+      if (targetpower_ != 0) {
+        output.writeUInt32(5, targetpower_);
+      }
+      if (effectivestate_ != false) {
+        output.writeBool(6, effectivestate_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (timestamp_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(1, timestamp_);
+      }
+      if (hour_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(2, hour_);
+      }
+      if (min_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(3, min_);
+      }
+      if (id_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(4, id_);
+      }
+      if (targetpower_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(5, targetpower_);
+      }
+      if (effectivestate_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(6, effectivestate_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof IhuChargeAppoointmentSts)) {
+        return super.equals(obj);
+      }
+      IhuChargeAppoointmentSts other = (IhuChargeAppoointmentSts) obj;
+
+      if (getTimestamp()
+          != other.getTimestamp()) return false;
+      if (getHour()
+          != other.getHour()) return false;
+      if (getMin()
+          != other.getMin()) return false;
+      if (getId()
+          != other.getId()) return false;
+      if (getTargetpower()
+          != other.getTargetpower()) return false;
+      if (getEffectivestate()
+          != other.getEffectivestate()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + TIMESTAMP_FIELD_NUMBER;
+      hash = (53 * hash) + getTimestamp();
+      hash = (37 * hash) + HOUR_FIELD_NUMBER;
+      hash = (53 * hash) + getHour();
+      hash = (37 * hash) + MIN_FIELD_NUMBER;
+      hash = (53 * hash) + getMin();
+      hash = (37 * hash) + ID_FIELD_NUMBER;
+      hash = (53 * hash) + getId();
+      hash = (37 * hash) + TARGETPOWER_FIELD_NUMBER;
+      hash = (53 * hash) + getTargetpower();
+      hash = (37 * hash) + EFFECTIVESTATE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getEffectivestate());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
     }
 
     public static IhuChargeAppoointmentSts parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static IhuChargeAppoointmentSts parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static IhuChargeAppoointmentSts parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static IhuChargeAppoointmentSts parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static IhuChargeAppoointmentSts parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static IhuChargeAppoointmentSts parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static IhuChargeAppoointmentSts parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static IhuChargeAppoointmentSts parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static IhuChargeAppoointmentSts parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
     }
     public static IhuChargeAppoointmentSts parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static IhuChargeAppoointmentSts parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static IhuChargeAppoointmentSts parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
+    @Override
+    public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
-      return (Builder) DEFAULT_INSTANCE.createBuilder();
+      return DEFAULT_INSTANCE.toBuilder();
     }
     public static Builder newBuilder(IhuChargeAppoointmentSts prototype) {
-      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
     }
 
+    @Override
+    protected Builder newBuilderForType(
+        BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
     /**
      * Protobuf type {@code IhuChargeAppoointmentSts}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          IhuChargeAppoointmentSts, Builder> implements
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:IhuChargeAppoointmentSts)
         IhuChargeAppoointmentStsOrBuilder {
-      // Construct using com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.IhuChargeAppoointmentSts.newBuilder()
-      private Builder() {
-        super(DEFAULT_INSTANCE);
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return IVITboxProto.internal_static_IhuChargeAppoointmentSts_descriptor;
       }
 
+      @Override
+      protected FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return IVITboxProto.internal_static_IhuChargeAppoointmentSts_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                IhuChargeAppoointmentSts.class, Builder.class);
+      }
 
+      // Construct using com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.IhuChargeAppoointmentSts.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @Override
+      public Builder clear() {
+        super.clear();
+        timestamp_ = 0;
+
+        hour_ = 0;
+
+        min_ = 0;
+
+        id_ = 0;
+
+        targetpower_ = 0;
+
+        effectivestate_ = false;
+
+        return this;
+      }
+
+      @Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return IVITboxProto.internal_static_IhuChargeAppoointmentSts_descriptor;
+      }
+
+      @Override
+      public IhuChargeAppoointmentSts getDefaultInstanceForType() {
+        return IhuChargeAppoointmentSts.getDefaultInstance();
+      }
+
+      @Override
+      public IhuChargeAppoointmentSts build() {
+        IhuChargeAppoointmentSts result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @Override
+      public IhuChargeAppoointmentSts buildPartial() {
+        IhuChargeAppoointmentSts result = new IhuChargeAppoointmentSts(this);
+        result.timestamp_ = timestamp_;
+        result.hour_ = hour_;
+        result.min_ = min_;
+        result.id_ = id_;
+        result.targetpower_ = targetpower_;
+        result.effectivestate_ = effectivestate_;
+        onBuilt();
+        return result;
+      }
+
+      @Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return super.setField(field, value);
+      }
+      @Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof IhuChargeAppoointmentSts) {
+          return mergeFrom((IhuChargeAppoointmentSts)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(IhuChargeAppoointmentSts other) {
+        if (other == IhuChargeAppoointmentSts.getDefaultInstance()) return this;
+        if (other.getTimestamp() != 0) {
+          setTimestamp(other.getTimestamp());
+        }
+        if (other.getHour() != 0) {
+          setHour(other.getHour());
+        }
+        if (other.getMin() != 0) {
+          setMin(other.getMin());
+        }
+        if (other.getId() != 0) {
+          setId(other.getId());
+        }
+        if (other.getTargetpower() != 0) {
+          setTargetpower(other.getTargetpower());
+        }
+        if (other.getEffectivestate() != false) {
+          setEffectivestate(other.getEffectivestate());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        IhuChargeAppoointmentSts parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (IhuChargeAppoointmentSts) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int timestamp_ ;
       /**
        * <code>uint32 timestamp = 1;</code>
        * @return The timestamp.
        */
-      @Override
       public int getTimestamp() {
-        return instance.getTimestamp();
+        return timestamp_;
       }
       /**
        * <code>uint32 timestamp = 1;</code>
@@ -5127,8 +7614,9 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder setTimestamp(int value) {
-        copyOnWrite();
-        instance.setTimestamp(value);
+        
+        timestamp_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -5136,18 +7624,19 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearTimestamp() {
-        copyOnWrite();
-        instance.clearTimestamp();
+        
+        timestamp_ = 0;
+        onChanged();
         return this;
       }
 
+      private int hour_ ;
       /**
        * <code>uint32 hour = 2;</code>
        * @return The hour.
        */
-      @Override
       public int getHour() {
-        return instance.getHour();
+        return hour_;
       }
       /**
        * <code>uint32 hour = 2;</code>
@@ -5155,8 +7644,9 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder setHour(int value) {
-        copyOnWrite();
-        instance.setHour(value);
+        
+        hour_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -5164,18 +7654,19 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearHour() {
-        copyOnWrite();
-        instance.clearHour();
+        
+        hour_ = 0;
+        onChanged();
         return this;
       }
 
+      private int min_ ;
       /**
        * <code>uint32 min = 3;</code>
        * @return The min.
        */
-      @Override
       public int getMin() {
-        return instance.getMin();
+        return min_;
       }
       /**
        * <code>uint32 min = 3;</code>
@@ -5183,8 +7674,9 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder setMin(int value) {
-        copyOnWrite();
-        instance.setMin(value);
+        
+        min_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -5192,18 +7684,19 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearMin() {
-        copyOnWrite();
-        instance.clearMin();
+        
+        min_ = 0;
+        onChanged();
         return this;
       }
 
+      private int id_ ;
       /**
        * <code>uint32 id = 4;</code>
        * @return The id.
        */
-      @Override
       public int getId() {
-        return instance.getId();
+        return id_;
       }
       /**
        * <code>uint32 id = 4;</code>
@@ -5211,8 +7704,9 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder setId(int value) {
-        copyOnWrite();
-        instance.setId(value);
+        
+        id_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -5220,18 +7714,19 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearId() {
-        copyOnWrite();
-        instance.clearId();
+        
+        id_ = 0;
+        onChanged();
         return this;
       }
 
+      private int targetpower_ ;
       /**
        * <code>uint32 targetpower = 5;</code>
        * @return The targetpower.
        */
-      @Override
       public int getTargetpower() {
-        return instance.getTargetpower();
+        return targetpower_;
       }
       /**
        * <code>uint32 targetpower = 5;</code>
@@ -5239,8 +7734,9 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder setTargetpower(int value) {
-        copyOnWrite();
-        instance.setTargetpower(value);
+        
+        targetpower_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -5248,11 +7744,13 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearTargetpower() {
-        copyOnWrite();
-        instance.clearTargetpower();
+        
+        targetpower_ = 0;
+        onChanged();
         return this;
       }
 
+      private boolean effectivestate_ ;
       /**
        * <pre>
        *true:effective, false:Invalid
@@ -5261,9 +7759,8 @@ public final class IVITboxProto {
        * <code>bool effectivestate = 6;</code>
        * @return The effectivestate.
        */
-      @Override
       public boolean getEffectivestate() {
-        return instance.getEffectivestate();
+        return effectivestate_;
       }
       /**
        * <pre>
@@ -5275,8 +7772,9 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder setEffectivestate(boolean value) {
-        copyOnWrite();
-        instance.setEffectivestate(value);
+        
+        effectivestate_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -5288,94 +7786,67 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearEffectivestate() {
-        copyOnWrite();
-        instance.clearEffectivestate();
+        
+        effectivestate_ = false;
+        onChanged();
         return this;
       }
+      @Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
 
       // @@protoc_insertion_point(builder_scope:IhuChargeAppoointmentSts)
     }
-    @Override
-    @SuppressWarnings({"unchecked", "fallthrough"})
-    protected final Object dynamicMethod(
-        MethodToInvoke method,
-        Object arg0, Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new IhuChargeAppoointmentSts();
-        }
-        case NEW_BUILDER: {
-          return new Builder();
-        }
-        case BUILD_MESSAGE_INFO: {
-            Object[] objects = new Object[] {
-              "timestamp_",
-              "hour_",
-              "min_",
-              "id_",
-              "targetpower_",
-              "effectivestate_",
-            };
-            String info =
-                "\u0000\u0006\u0000\u0000\u0001\u0006\u0006\u0000\u0000\u0000\u0001\u000b\u0002\u000b" +
-                "\u0003\u000b\u0004\u000b\u0005\u000b\u0006\u0007";
-            return newMessageInfo(DEFAULT_INSTANCE, info, objects);
-        }
-        // fall through
-        case GET_DEFAULT_INSTANCE: {
-          return DEFAULT_INSTANCE;
-        }
-        case GET_PARSER: {
-          com.google.protobuf.Parser<IhuChargeAppoointmentSts> parser = PARSER;
-          if (parser == null) {
-            synchronized (IhuChargeAppoointmentSts.class) {
-              parser = PARSER;
-              if (parser == null) {
-                parser =
-                    new DefaultInstanceBasedParser<IhuChargeAppoointmentSts>(
-                        DEFAULT_INSTANCE);
-                PARSER = parser;
-              }
-            }
-          }
-          return parser;
-      }
-      case GET_MEMOIZED_IS_INITIALIZED: {
-        return (byte) 1;
-      }
-      case SET_MEMOIZED_IS_INITIALIZED: {
-        return null;
-      }
-      }
-      throw new UnsupportedOperationException();
-    }
-
 
     // @@protoc_insertion_point(class_scope:IhuChargeAppoointmentSts)
     private static final IhuChargeAppoointmentSts DEFAULT_INSTANCE;
     static {
-      IhuChargeAppoointmentSts defaultInstance = new IhuChargeAppoointmentSts();
-      // New instances are implicitly immutable so no need to make
-      // immutable.
-      DEFAULT_INSTANCE = defaultInstance;
-      com.google.protobuf.GeneratedMessageLite.registerDefaultInstance(
-        IhuChargeAppoointmentSts.class, defaultInstance);
+      DEFAULT_INSTANCE = new IhuChargeAppoointmentSts();
     }
 
     public static IhuChargeAppoointmentSts getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static volatile com.google.protobuf.Parser<IhuChargeAppoointmentSts> PARSER;
+    private static final com.google.protobuf.Parser<IhuChargeAppoointmentSts>
+        PARSER = new com.google.protobuf.AbstractParser<IhuChargeAppoointmentSts>() {
+      @Override
+      public IhuChargeAppoointmentSts parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new IhuChargeAppoointmentSts(input, extensionRegistry);
+      }
+    };
 
     public static com.google.protobuf.Parser<IhuChargeAppoointmentSts> parser() {
-      return DEFAULT_INSTANCE.getParserForType();
+      return PARSER;
     }
+
+    @Override
+    public com.google.protobuf.Parser<IhuChargeAppoointmentSts> getParserForType() {
+      return PARSER;
+    }
+
+    @Override
+    public IhuChargeAppoointmentSts getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
   }
 
   public interface TboxChargeAppoointmentSetOrBuilder extends
       // @@protoc_insertion_point(interface_extends:TboxChargeAppoointmentSet)
-      com.google.protobuf.MessageLiteOrBuilder {
+      com.google.protobuf.MessageOrBuilder {
 
     /**
      * <code>uint32 timestamp = 1;</code>
@@ -5421,36 +7892,117 @@ public final class IVITboxProto {
    * Protobuf type {@code TboxChargeAppoointmentSet}
    */
   public  static final class TboxChargeAppoointmentSet extends
-      com.google.protobuf.GeneratedMessageLite<
-          TboxChargeAppoointmentSet, TboxChargeAppoointmentSet.Builder> implements
+      com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:TboxChargeAppoointmentSet)
       TboxChargeAppoointmentSetOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use TboxChargeAppoointmentSet.newBuilder() to construct.
+    private TboxChargeAppoointmentSet(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
     private TboxChargeAppoointmentSet() {
     }
+
+    @Override
+    @SuppressWarnings({"unused"})
+    protected Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new TboxChargeAppoointmentSet();
+    }
+
+    @Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private TboxChargeAppoointmentSet(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              timestamp_ = input.readUInt32();
+              break;
+            }
+            case 16: {
+
+              hour_ = input.readUInt32();
+              break;
+            }
+            case 24: {
+
+              min_ = input.readUInt32();
+              break;
+            }
+            case 32: {
+
+              id_ = input.readUInt32();
+              break;
+            }
+            case 40: {
+
+              targetpower_ = input.readUInt32();
+              break;
+            }
+            case 48: {
+
+              effectivestate_ = input.readBool();
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return IVITboxProto.internal_static_TboxChargeAppoointmentSet_descriptor;
+    }
+
+    @Override
+    protected FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return IVITboxProto.internal_static_TboxChargeAppoointmentSet_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              TboxChargeAppoointmentSet.class, Builder.class);
+    }
+
     public static final int TIMESTAMP_FIELD_NUMBER = 1;
     private int timestamp_;
     /**
      * <code>uint32 timestamp = 1;</code>
      * @return The timestamp.
      */
-    @Override
     public int getTimestamp() {
       return timestamp_;
-    }
-    /**
-     * <code>uint32 timestamp = 1;</code>
-     * @param value The timestamp to set.
-     */
-    private void setTimestamp(int value) {
-      
-      timestamp_ = value;
-    }
-    /**
-     * <code>uint32 timestamp = 1;</code>
-     */
-    private void clearTimestamp() {
-      
-      timestamp_ = 0;
     }
 
     public static final int HOUR_FIELD_NUMBER = 2;
@@ -5459,24 +8011,8 @@ public final class IVITboxProto {
      * <code>uint32 hour = 2;</code>
      * @return The hour.
      */
-    @Override
     public int getHour() {
       return hour_;
-    }
-    /**
-     * <code>uint32 hour = 2;</code>
-     * @param value The hour to set.
-     */
-    private void setHour(int value) {
-      
-      hour_ = value;
-    }
-    /**
-     * <code>uint32 hour = 2;</code>
-     */
-    private void clearHour() {
-      
-      hour_ = 0;
     }
 
     public static final int MIN_FIELD_NUMBER = 3;
@@ -5485,24 +8021,8 @@ public final class IVITboxProto {
      * <code>uint32 min = 3;</code>
      * @return The min.
      */
-    @Override
     public int getMin() {
       return min_;
-    }
-    /**
-     * <code>uint32 min = 3;</code>
-     * @param value The min to set.
-     */
-    private void setMin(int value) {
-      
-      min_ = value;
-    }
-    /**
-     * <code>uint32 min = 3;</code>
-     */
-    private void clearMin() {
-      
-      min_ = 0;
     }
 
     public static final int ID_FIELD_NUMBER = 4;
@@ -5511,24 +8031,8 @@ public final class IVITboxProto {
      * <code>uint32 id = 4;</code>
      * @return The id.
      */
-    @Override
     public int getId() {
       return id_;
-    }
-    /**
-     * <code>uint32 id = 4;</code>
-     * @param value The id to set.
-     */
-    private void setId(int value) {
-      
-      id_ = value;
-    }
-    /**
-     * <code>uint32 id = 4;</code>
-     */
-    private void clearId() {
-      
-      id_ = 0;
     }
 
     public static final int TARGETPOWER_FIELD_NUMBER = 5;
@@ -5537,24 +8041,8 @@ public final class IVITboxProto {
      * <code>uint32 targetpower = 5;</code>
      * @return The targetpower.
      */
-    @Override
     public int getTargetpower() {
       return targetpower_;
-    }
-    /**
-     * <code>uint32 targetpower = 5;</code>
-     * @param value The targetpower to set.
-     */
-    private void setTargetpower(int value) {
-      
-      targetpower_ = value;
-    }
-    /**
-     * <code>uint32 targetpower = 5;</code>
-     */
-    private void clearTargetpower() {
-      
-      targetpower_ = 0;
     }
 
     public static final int EFFECTIVESTATE_FIELD_NUMBER = 6;
@@ -5567,136 +8055,405 @@ public final class IVITboxProto {
      * <code>bool effectivestate = 6;</code>
      * @return The effectivestate.
      */
-    @Override
     public boolean getEffectivestate() {
       return effectivestate_;
     }
-    /**
-     * <pre>
-     *true:effective, false:Invalid
-     * </pre>
-     *
-     * <code>bool effectivestate = 6;</code>
-     * @param value The effectivestate to set.
-     */
-    private void setEffectivestate(boolean value) {
-      
-      effectivestate_ = value;
+
+    private byte memoizedIsInitialized = -1;
+    @Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
     }
-    /**
-     * <pre>
-     *true:effective, false:Invalid
-     * </pre>
-     *
-     * <code>bool effectivestate = 6;</code>
-     */
-    private void clearEffectivestate() {
-      
-      effectivestate_ = false;
+
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (timestamp_ != 0) {
+        output.writeUInt32(1, timestamp_);
+      }
+      if (hour_ != 0) {
+        output.writeUInt32(2, hour_);
+      }
+      if (min_ != 0) {
+        output.writeUInt32(3, min_);
+      }
+      if (id_ != 0) {
+        output.writeUInt32(4, id_);
+      }
+      if (targetpower_ != 0) {
+        output.writeUInt32(5, targetpower_);
+      }
+      if (effectivestate_ != false) {
+        output.writeBool(6, effectivestate_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (timestamp_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(1, timestamp_);
+      }
+      if (hour_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(2, hour_);
+      }
+      if (min_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(3, min_);
+      }
+      if (id_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(4, id_);
+      }
+      if (targetpower_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(5, targetpower_);
+      }
+      if (effectivestate_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(6, effectivestate_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof TboxChargeAppoointmentSet)) {
+        return super.equals(obj);
+      }
+      TboxChargeAppoointmentSet other = (TboxChargeAppoointmentSet) obj;
+
+      if (getTimestamp()
+          != other.getTimestamp()) return false;
+      if (getHour()
+          != other.getHour()) return false;
+      if (getMin()
+          != other.getMin()) return false;
+      if (getId()
+          != other.getId()) return false;
+      if (getTargetpower()
+          != other.getTargetpower()) return false;
+      if (getEffectivestate()
+          != other.getEffectivestate()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + TIMESTAMP_FIELD_NUMBER;
+      hash = (53 * hash) + getTimestamp();
+      hash = (37 * hash) + HOUR_FIELD_NUMBER;
+      hash = (53 * hash) + getHour();
+      hash = (37 * hash) + MIN_FIELD_NUMBER;
+      hash = (53 * hash) + getMin();
+      hash = (37 * hash) + ID_FIELD_NUMBER;
+      hash = (53 * hash) + getId();
+      hash = (37 * hash) + TARGETPOWER_FIELD_NUMBER;
+      hash = (53 * hash) + getTargetpower();
+      hash = (37 * hash) + EFFECTIVESTATE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getEffectivestate());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
     }
 
     public static TboxChargeAppoointmentSet parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static TboxChargeAppoointmentSet parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static TboxChargeAppoointmentSet parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static TboxChargeAppoointmentSet parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static TboxChargeAppoointmentSet parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static TboxChargeAppoointmentSet parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static TboxChargeAppoointmentSet parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static TboxChargeAppoointmentSet parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static TboxChargeAppoointmentSet parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
     }
     public static TboxChargeAppoointmentSet parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static TboxChargeAppoointmentSet parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static TboxChargeAppoointmentSet parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
+    @Override
+    public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
-      return (Builder) DEFAULT_INSTANCE.createBuilder();
+      return DEFAULT_INSTANCE.toBuilder();
     }
     public static Builder newBuilder(TboxChargeAppoointmentSet prototype) {
-      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
     }
 
+    @Override
+    protected Builder newBuilderForType(
+        BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
     /**
      * Protobuf type {@code TboxChargeAppoointmentSet}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          TboxChargeAppoointmentSet, Builder> implements
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:TboxChargeAppoointmentSet)
         TboxChargeAppoointmentSetOrBuilder {
-      // Construct using com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.TboxChargeAppoointmentSet.newBuilder()
-      private Builder() {
-        super(DEFAULT_INSTANCE);
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return IVITboxProto.internal_static_TboxChargeAppoointmentSet_descriptor;
       }
 
+      @Override
+      protected FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return IVITboxProto.internal_static_TboxChargeAppoointmentSet_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                TboxChargeAppoointmentSet.class, Builder.class);
+      }
 
+      // Construct using com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.TboxChargeAppoointmentSet.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @Override
+      public Builder clear() {
+        super.clear();
+        timestamp_ = 0;
+
+        hour_ = 0;
+
+        min_ = 0;
+
+        id_ = 0;
+
+        targetpower_ = 0;
+
+        effectivestate_ = false;
+
+        return this;
+      }
+
+      @Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return IVITboxProto.internal_static_TboxChargeAppoointmentSet_descriptor;
+      }
+
+      @Override
+      public TboxChargeAppoointmentSet getDefaultInstanceForType() {
+        return TboxChargeAppoointmentSet.getDefaultInstance();
+      }
+
+      @Override
+      public TboxChargeAppoointmentSet build() {
+        TboxChargeAppoointmentSet result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @Override
+      public TboxChargeAppoointmentSet buildPartial() {
+        TboxChargeAppoointmentSet result = new TboxChargeAppoointmentSet(this);
+        result.timestamp_ = timestamp_;
+        result.hour_ = hour_;
+        result.min_ = min_;
+        result.id_ = id_;
+        result.targetpower_ = targetpower_;
+        result.effectivestate_ = effectivestate_;
+        onBuilt();
+        return result;
+      }
+
+      @Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return super.setField(field, value);
+      }
+      @Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof TboxChargeAppoointmentSet) {
+          return mergeFrom((TboxChargeAppoointmentSet)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(TboxChargeAppoointmentSet other) {
+        if (other == TboxChargeAppoointmentSet.getDefaultInstance()) return this;
+        if (other.getTimestamp() != 0) {
+          setTimestamp(other.getTimestamp());
+        }
+        if (other.getHour() != 0) {
+          setHour(other.getHour());
+        }
+        if (other.getMin() != 0) {
+          setMin(other.getMin());
+        }
+        if (other.getId() != 0) {
+          setId(other.getId());
+        }
+        if (other.getTargetpower() != 0) {
+          setTargetpower(other.getTargetpower());
+        }
+        if (other.getEffectivestate() != false) {
+          setEffectivestate(other.getEffectivestate());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        TboxChargeAppoointmentSet parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (TboxChargeAppoointmentSet) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int timestamp_ ;
       /**
        * <code>uint32 timestamp = 1;</code>
        * @return The timestamp.
        */
-      @Override
       public int getTimestamp() {
-        return instance.getTimestamp();
+        return timestamp_;
       }
       /**
        * <code>uint32 timestamp = 1;</code>
@@ -5704,8 +8461,9 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder setTimestamp(int value) {
-        copyOnWrite();
-        instance.setTimestamp(value);
+        
+        timestamp_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -5713,18 +8471,19 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearTimestamp() {
-        copyOnWrite();
-        instance.clearTimestamp();
+        
+        timestamp_ = 0;
+        onChanged();
         return this;
       }
 
+      private int hour_ ;
       /**
        * <code>uint32 hour = 2;</code>
        * @return The hour.
        */
-      @Override
       public int getHour() {
-        return instance.getHour();
+        return hour_;
       }
       /**
        * <code>uint32 hour = 2;</code>
@@ -5732,8 +8491,9 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder setHour(int value) {
-        copyOnWrite();
-        instance.setHour(value);
+        
+        hour_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -5741,18 +8501,19 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearHour() {
-        copyOnWrite();
-        instance.clearHour();
+        
+        hour_ = 0;
+        onChanged();
         return this;
       }
 
+      private int min_ ;
       /**
        * <code>uint32 min = 3;</code>
        * @return The min.
        */
-      @Override
       public int getMin() {
-        return instance.getMin();
+        return min_;
       }
       /**
        * <code>uint32 min = 3;</code>
@@ -5760,8 +8521,9 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder setMin(int value) {
-        copyOnWrite();
-        instance.setMin(value);
+        
+        min_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -5769,18 +8531,19 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearMin() {
-        copyOnWrite();
-        instance.clearMin();
+        
+        min_ = 0;
+        onChanged();
         return this;
       }
 
+      private int id_ ;
       /**
        * <code>uint32 id = 4;</code>
        * @return The id.
        */
-      @Override
       public int getId() {
-        return instance.getId();
+        return id_;
       }
       /**
        * <code>uint32 id = 4;</code>
@@ -5788,8 +8551,9 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder setId(int value) {
-        copyOnWrite();
-        instance.setId(value);
+        
+        id_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -5797,18 +8561,19 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearId() {
-        copyOnWrite();
-        instance.clearId();
+        
+        id_ = 0;
+        onChanged();
         return this;
       }
 
+      private int targetpower_ ;
       /**
        * <code>uint32 targetpower = 5;</code>
        * @return The targetpower.
        */
-      @Override
       public int getTargetpower() {
-        return instance.getTargetpower();
+        return targetpower_;
       }
       /**
        * <code>uint32 targetpower = 5;</code>
@@ -5816,8 +8581,9 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder setTargetpower(int value) {
-        copyOnWrite();
-        instance.setTargetpower(value);
+        
+        targetpower_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -5825,11 +8591,13 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearTargetpower() {
-        copyOnWrite();
-        instance.clearTargetpower();
+        
+        targetpower_ = 0;
+        onChanged();
         return this;
       }
 
+      private boolean effectivestate_ ;
       /**
        * <pre>
        *true:effective, false:Invalid
@@ -5838,9 +8606,8 @@ public final class IVITboxProto {
        * <code>bool effectivestate = 6;</code>
        * @return The effectivestate.
        */
-      @Override
       public boolean getEffectivestate() {
-        return instance.getEffectivestate();
+        return effectivestate_;
       }
       /**
        * <pre>
@@ -5852,8 +8619,9 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder setEffectivestate(boolean value) {
-        copyOnWrite();
-        instance.setEffectivestate(value);
+        
+        effectivestate_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -5865,94 +8633,67 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearEffectivestate() {
-        copyOnWrite();
-        instance.clearEffectivestate();
+        
+        effectivestate_ = false;
+        onChanged();
         return this;
       }
+      @Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
 
       // @@protoc_insertion_point(builder_scope:TboxChargeAppoointmentSet)
     }
-    @Override
-    @SuppressWarnings({"unchecked", "fallthrough"})
-    protected final Object dynamicMethod(
-        MethodToInvoke method,
-        Object arg0, Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new TboxChargeAppoointmentSet();
-        }
-        case NEW_BUILDER: {
-          return new Builder();
-        }
-        case BUILD_MESSAGE_INFO: {
-            Object[] objects = new Object[] {
-              "timestamp_",
-              "hour_",
-              "min_",
-              "id_",
-              "targetpower_",
-              "effectivestate_",
-            };
-            String info =
-                "\u0000\u0006\u0000\u0000\u0001\u0006\u0006\u0000\u0000\u0000\u0001\u000b\u0002\u000b" +
-                "\u0003\u000b\u0004\u000b\u0005\u000b\u0006\u0007";
-            return newMessageInfo(DEFAULT_INSTANCE, info, objects);
-        }
-        // fall through
-        case GET_DEFAULT_INSTANCE: {
-          return DEFAULT_INSTANCE;
-        }
-        case GET_PARSER: {
-          com.google.protobuf.Parser<TboxChargeAppoointmentSet> parser = PARSER;
-          if (parser == null) {
-            synchronized (TboxChargeAppoointmentSet.class) {
-              parser = PARSER;
-              if (parser == null) {
-                parser =
-                    new DefaultInstanceBasedParser<TboxChargeAppoointmentSet>(
-                        DEFAULT_INSTANCE);
-                PARSER = parser;
-              }
-            }
-          }
-          return parser;
-      }
-      case GET_MEMOIZED_IS_INITIALIZED: {
-        return (byte) 1;
-      }
-      case SET_MEMOIZED_IS_INITIALIZED: {
-        return null;
-      }
-      }
-      throw new UnsupportedOperationException();
-    }
-
 
     // @@protoc_insertion_point(class_scope:TboxChargeAppoointmentSet)
     private static final TboxChargeAppoointmentSet DEFAULT_INSTANCE;
     static {
-      TboxChargeAppoointmentSet defaultInstance = new TboxChargeAppoointmentSet();
-      // New instances are implicitly immutable so no need to make
-      // immutable.
-      DEFAULT_INSTANCE = defaultInstance;
-      com.google.protobuf.GeneratedMessageLite.registerDefaultInstance(
-        TboxChargeAppoointmentSet.class, defaultInstance);
+      DEFAULT_INSTANCE = new TboxChargeAppoointmentSet();
     }
 
     public static TboxChargeAppoointmentSet getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static volatile com.google.protobuf.Parser<TboxChargeAppoointmentSet> PARSER;
+    private static final com.google.protobuf.Parser<TboxChargeAppoointmentSet>
+        PARSER = new com.google.protobuf.AbstractParser<TboxChargeAppoointmentSet>() {
+      @Override
+      public TboxChargeAppoointmentSet parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new TboxChargeAppoointmentSet(input, extensionRegistry);
+      }
+    };
 
     public static com.google.protobuf.Parser<TboxChargeAppoointmentSet> parser() {
-      return DEFAULT_INSTANCE.getParserForType();
+      return PARSER;
     }
+
+    @Override
+    public com.google.protobuf.Parser<TboxChargeAppoointmentSet> getParserForType() {
+      return PARSER;
+    }
+
+    @Override
+    public TboxChargeAppoointmentSet getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
   }
 
   public interface TboxChargeCtrlOrBuilder extends
       // @@protoc_insertion_point(interface_extends:TboxChargeCtrl)
-      com.google.protobuf.MessageLiteOrBuilder {
+      com.google.protobuf.MessageOrBuilder {
 
     /**
      * <code>uint32 timestamp = 1;</code>
@@ -5980,36 +8721,102 @@ public final class IVITboxProto {
    * Protobuf type {@code TboxChargeCtrl}
    */
   public  static final class TboxChargeCtrl extends
-      com.google.protobuf.GeneratedMessageLite<
-          TboxChargeCtrl, TboxChargeCtrl.Builder> implements
+      com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:TboxChargeCtrl)
       TboxChargeCtrlOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use TboxChargeCtrl.newBuilder() to construct.
+    private TboxChargeCtrl(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
     private TboxChargeCtrl() {
     }
+
+    @Override
+    @SuppressWarnings({"unused"})
+    protected Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new TboxChargeCtrl();
+    }
+
+    @Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private TboxChargeCtrl(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              timestamp_ = input.readUInt32();
+              break;
+            }
+            case 16: {
+
+              commend_ = input.readBool();
+              break;
+            }
+            case 24: {
+
+              targetpower_ = input.readUInt32();
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return IVITboxProto.internal_static_TboxChargeCtrl_descriptor;
+    }
+
+    @Override
+    protected FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return IVITboxProto.internal_static_TboxChargeCtrl_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              TboxChargeCtrl.class, Builder.class);
+    }
+
     public static final int TIMESTAMP_FIELD_NUMBER = 1;
     private int timestamp_;
     /**
      * <code>uint32 timestamp = 1;</code>
      * @return The timestamp.
      */
-    @Override
     public int getTimestamp() {
       return timestamp_;
-    }
-    /**
-     * <code>uint32 timestamp = 1;</code>
-     * @param value The timestamp to set.
-     */
-    private void setTimestamp(int value) {
-      
-      timestamp_ = value;
-    }
-    /**
-     * <code>uint32 timestamp = 1;</code>
-     */
-    private void clearTimestamp() {
-      
-      timestamp_ = 0;
     }
 
     public static final int COMMEND_FIELD_NUMBER = 2;
@@ -6022,32 +8829,8 @@ public final class IVITboxProto {
      * <code>bool commend = 2;</code>
      * @return The commend.
      */
-    @Override
     public boolean getCommend() {
       return commend_;
-    }
-    /**
-     * <pre>
-     *0: stop, 1:start
-     * </pre>
-     *
-     * <code>bool commend = 2;</code>
-     * @param value The commend to set.
-     */
-    private void setCommend(boolean value) {
-      
-      commend_ = value;
-    }
-    /**
-     * <pre>
-     *0: stop, 1:start
-     * </pre>
-     *
-     * <code>bool commend = 2;</code>
-     */
-    private void clearCommend() {
-      
-      commend_ = false;
     }
 
     public static final int TARGETPOWER_FIELD_NUMBER = 3;
@@ -6056,128 +8839,354 @@ public final class IVITboxProto {
      * <code>uint32 targetpower = 3;</code>
      * @return The targetpower.
      */
-    @Override
     public int getTargetpower() {
       return targetpower_;
     }
-    /**
-     * <code>uint32 targetpower = 3;</code>
-     * @param value The targetpower to set.
-     */
-    private void setTargetpower(int value) {
-      
-      targetpower_ = value;
+
+    private byte memoizedIsInitialized = -1;
+    @Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
     }
-    /**
-     * <code>uint32 targetpower = 3;</code>
-     */
-    private void clearTargetpower() {
-      
-      targetpower_ = 0;
+
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (timestamp_ != 0) {
+        output.writeUInt32(1, timestamp_);
+      }
+      if (commend_ != false) {
+        output.writeBool(2, commend_);
+      }
+      if (targetpower_ != 0) {
+        output.writeUInt32(3, targetpower_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (timestamp_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(1, timestamp_);
+      }
+      if (commend_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(2, commend_);
+      }
+      if (targetpower_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(3, targetpower_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof TboxChargeCtrl)) {
+        return super.equals(obj);
+      }
+      TboxChargeCtrl other = (TboxChargeCtrl) obj;
+
+      if (getTimestamp()
+          != other.getTimestamp()) return false;
+      if (getCommend()
+          != other.getCommend()) return false;
+      if (getTargetpower()
+          != other.getTargetpower()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + TIMESTAMP_FIELD_NUMBER;
+      hash = (53 * hash) + getTimestamp();
+      hash = (37 * hash) + COMMEND_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getCommend());
+      hash = (37 * hash) + TARGETPOWER_FIELD_NUMBER;
+      hash = (53 * hash) + getTargetpower();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
     }
 
     public static TboxChargeCtrl parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static TboxChargeCtrl parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static TboxChargeCtrl parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static TboxChargeCtrl parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static TboxChargeCtrl parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static TboxChargeCtrl parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static TboxChargeCtrl parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static TboxChargeCtrl parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static TboxChargeCtrl parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
     }
     public static TboxChargeCtrl parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static TboxChargeCtrl parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static TboxChargeCtrl parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
+    @Override
+    public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
-      return (Builder) DEFAULT_INSTANCE.createBuilder();
+      return DEFAULT_INSTANCE.toBuilder();
     }
     public static Builder newBuilder(TboxChargeCtrl prototype) {
-      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
     }
 
+    @Override
+    protected Builder newBuilderForType(
+        BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
     /**
      * Protobuf type {@code TboxChargeCtrl}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          TboxChargeCtrl, Builder> implements
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:TboxChargeCtrl)
         TboxChargeCtrlOrBuilder {
-      // Construct using com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.TboxChargeCtrl.newBuilder()
-      private Builder() {
-        super(DEFAULT_INSTANCE);
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return IVITboxProto.internal_static_TboxChargeCtrl_descriptor;
       }
 
+      @Override
+      protected FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return IVITboxProto.internal_static_TboxChargeCtrl_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                TboxChargeCtrl.class, Builder.class);
+      }
 
+      // Construct using com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.TboxChargeCtrl.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @Override
+      public Builder clear() {
+        super.clear();
+        timestamp_ = 0;
+
+        commend_ = false;
+
+        targetpower_ = 0;
+
+        return this;
+      }
+
+      @Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return IVITboxProto.internal_static_TboxChargeCtrl_descriptor;
+      }
+
+      @Override
+      public TboxChargeCtrl getDefaultInstanceForType() {
+        return TboxChargeCtrl.getDefaultInstance();
+      }
+
+      @Override
+      public TboxChargeCtrl build() {
+        TboxChargeCtrl result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @Override
+      public TboxChargeCtrl buildPartial() {
+        TboxChargeCtrl result = new TboxChargeCtrl(this);
+        result.timestamp_ = timestamp_;
+        result.commend_ = commend_;
+        result.targetpower_ = targetpower_;
+        onBuilt();
+        return result;
+      }
+
+      @Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return super.setField(field, value);
+      }
+      @Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof TboxChargeCtrl) {
+          return mergeFrom((TboxChargeCtrl)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(TboxChargeCtrl other) {
+        if (other == TboxChargeCtrl.getDefaultInstance()) return this;
+        if (other.getTimestamp() != 0) {
+          setTimestamp(other.getTimestamp());
+        }
+        if (other.getCommend() != false) {
+          setCommend(other.getCommend());
+        }
+        if (other.getTargetpower() != 0) {
+          setTargetpower(other.getTargetpower());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        TboxChargeCtrl parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (TboxChargeCtrl) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int timestamp_ ;
       /**
        * <code>uint32 timestamp = 1;</code>
        * @return The timestamp.
        */
-      @Override
       public int getTimestamp() {
-        return instance.getTimestamp();
+        return timestamp_;
       }
       /**
        * <code>uint32 timestamp = 1;</code>
@@ -6185,8 +9194,9 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder setTimestamp(int value) {
-        copyOnWrite();
-        instance.setTimestamp(value);
+        
+        timestamp_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -6194,11 +9204,13 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearTimestamp() {
-        copyOnWrite();
-        instance.clearTimestamp();
+        
+        timestamp_ = 0;
+        onChanged();
         return this;
       }
 
+      private boolean commend_ ;
       /**
        * <pre>
        *0: stop, 1:start
@@ -6207,9 +9219,8 @@ public final class IVITboxProto {
        * <code>bool commend = 2;</code>
        * @return The commend.
        */
-      @Override
       public boolean getCommend() {
-        return instance.getCommend();
+        return commend_;
       }
       /**
        * <pre>
@@ -6221,8 +9232,9 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder setCommend(boolean value) {
-        copyOnWrite();
-        instance.setCommend(value);
+        
+        commend_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -6234,18 +9246,19 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearCommend() {
-        copyOnWrite();
-        instance.clearCommend();
+        
+        commend_ = false;
+        onChanged();
         return this;
       }
 
+      private int targetpower_ ;
       /**
        * <code>uint32 targetpower = 3;</code>
        * @return The targetpower.
        */
-      @Override
       public int getTargetpower() {
-        return instance.getTargetpower();
+        return targetpower_;
       }
       /**
        * <code>uint32 targetpower = 3;</code>
@@ -6253,8 +9266,9 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder setTargetpower(int value) {
-        copyOnWrite();
-        instance.setTargetpower(value);
+        
+        targetpower_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -6262,91 +9276,67 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearTargetpower() {
-        copyOnWrite();
-        instance.clearTargetpower();
+        
+        targetpower_ = 0;
+        onChanged();
         return this;
       }
+      @Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
 
       // @@protoc_insertion_point(builder_scope:TboxChargeCtrl)
     }
-    @Override
-    @SuppressWarnings({"unchecked", "fallthrough"})
-    protected final Object dynamicMethod(
-        MethodToInvoke method,
-        Object arg0, Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new TboxChargeCtrl();
-        }
-        case NEW_BUILDER: {
-          return new Builder();
-        }
-        case BUILD_MESSAGE_INFO: {
-            Object[] objects = new Object[] {
-              "timestamp_",
-              "commend_",
-              "targetpower_",
-            };
-            String info =
-                "\u0000\u0003\u0000\u0000\u0001\u0003\u0003\u0000\u0000\u0000\u0001\u000b\u0002\u0007" +
-                "\u0003\u000b";
-            return newMessageInfo(DEFAULT_INSTANCE, info, objects);
-        }
-        // fall through
-        case GET_DEFAULT_INSTANCE: {
-          return DEFAULT_INSTANCE;
-        }
-        case GET_PARSER: {
-          com.google.protobuf.Parser<TboxChargeCtrl> parser = PARSER;
-          if (parser == null) {
-            synchronized (TboxChargeCtrl.class) {
-              parser = PARSER;
-              if (parser == null) {
-                parser =
-                    new DefaultInstanceBasedParser<TboxChargeCtrl>(
-                        DEFAULT_INSTANCE);
-                PARSER = parser;
-              }
-            }
-          }
-          return parser;
-      }
-      case GET_MEMOIZED_IS_INITIALIZED: {
-        return (byte) 1;
-      }
-      case SET_MEMOIZED_IS_INITIALIZED: {
-        return null;
-      }
-      }
-      throw new UnsupportedOperationException();
-    }
-
 
     // @@protoc_insertion_point(class_scope:TboxChargeCtrl)
     private static final TboxChargeCtrl DEFAULT_INSTANCE;
     static {
-      TboxChargeCtrl defaultInstance = new TboxChargeCtrl();
-      // New instances are implicitly immutable so no need to make
-      // immutable.
-      DEFAULT_INSTANCE = defaultInstance;
-      com.google.protobuf.GeneratedMessageLite.registerDefaultInstance(
-        TboxChargeCtrl.class, defaultInstance);
+      DEFAULT_INSTANCE = new TboxChargeCtrl();
     }
 
     public static TboxChargeCtrl getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static volatile com.google.protobuf.Parser<TboxChargeCtrl> PARSER;
+    private static final com.google.protobuf.Parser<TboxChargeCtrl>
+        PARSER = new com.google.protobuf.AbstractParser<TboxChargeCtrl>() {
+      @Override
+      public TboxChargeCtrl parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new TboxChargeCtrl(input, extensionRegistry);
+      }
+    };
 
     public static com.google.protobuf.Parser<TboxChargeCtrl> parser() {
-      return DEFAULT_INSTANCE.getParserForType();
+      return PARSER;
     }
+
+    @Override
+    public com.google.protobuf.Parser<TboxChargeCtrl> getParserForType() {
+      return PARSER;
+    }
+
+    @Override
+    public TboxChargeCtrl getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
   }
 
   public interface MsgResultOrBuilder extends
       // @@protoc_insertion_point(interface_extends:MsgResult)
-      com.google.protobuf.MessageLiteOrBuilder {
+      com.google.protobuf.MessageOrBuilder {
 
     /**
      * <pre>
@@ -6372,13 +9362,90 @@ public final class IVITboxProto {
    * Protobuf type {@code MsgResult}
    */
   public  static final class MsgResult extends
-      com.google.protobuf.GeneratedMessageLite<
-          MsgResult, MsgResult.Builder> implements
+      com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:MsgResult)
       MsgResultOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use MsgResult.newBuilder() to construct.
+    private MsgResult(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
     private MsgResult() {
       errorCode_ = com.google.protobuf.ByteString.EMPTY;
     }
+
+    @Override
+    @SuppressWarnings({"unused"})
+    protected Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new MsgResult();
+    }
+
+    @Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private MsgResult(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              result_ = input.readBool();
+              break;
+            }
+            case 18: {
+
+              errorCode_ = input.readBytes();
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return IVITboxProto.internal_static_MsgResult_descriptor;
+    }
+
+    @Override
+    protected FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return IVITboxProto.internal_static_MsgResult_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              MsgResult.class, Builder.class);
+    }
+
     public static final int RESULT_FIELD_NUMBER = 1;
     private boolean result_;
     /**
@@ -6389,32 +9456,8 @@ public final class IVITboxProto {
      * <code>bool result = 1;</code>
      * @return The result.
      */
-    @Override
     public boolean getResult() {
       return result_;
-    }
-    /**
-     * <pre>
-     *true:success    flase:failed
-     * </pre>
-     *
-     * <code>bool result = 1;</code>
-     * @param value The result to set.
-     */
-    private void setResult(boolean value) {
-      
-      result_ = value;
-    }
-    /**
-     * <pre>
-     *true:success    flase:failed
-     * </pre>
-     *
-     * <code>bool result = 1;</code>
-     */
-    private void clearResult() {
-      
-      result_ = false;
     }
 
     public static final int ERROR_CODE_FIELD_NUMBER = 2;
@@ -6427,130 +9470,331 @@ public final class IVITboxProto {
      * <code>bytes error_code = 2;</code>
      * @return The errorCode.
      */
-    @Override
     public com.google.protobuf.ByteString getErrorCode() {
       return errorCode_;
     }
-    /**
-     * <pre>
-     *none-error, dealing with failures and so on
-     * </pre>
-     *
-     * <code>bytes error_code = 2;</code>
-     * @param value The errorCode to set.
-     */
-    private void setErrorCode(com.google.protobuf.ByteString value) {
-      value.getClass();
-  
-      errorCode_ = value;
+
+    private byte memoizedIsInitialized = -1;
+    @Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
     }
-    /**
-     * <pre>
-     *none-error, dealing with failures and so on
-     * </pre>
-     *
-     * <code>bytes error_code = 2;</code>
-     */
-    private void clearErrorCode() {
-      
-      errorCode_ = getDefaultInstance().getErrorCode();
+
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (result_ != false) {
+        output.writeBool(1, result_);
+      }
+      if (!errorCode_.isEmpty()) {
+        output.writeBytes(2, errorCode_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (result_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(1, result_);
+      }
+      if (!errorCode_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(2, errorCode_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof MsgResult)) {
+        return super.equals(obj);
+      }
+      MsgResult other = (MsgResult) obj;
+
+      if (getResult()
+          != other.getResult()) return false;
+      if (!getErrorCode()
+          .equals(other.getErrorCode())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + RESULT_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getResult());
+      hash = (37 * hash) + ERROR_CODE_FIELD_NUMBER;
+      hash = (53 * hash) + getErrorCode().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
     }
 
     public static MsgResult parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static MsgResult parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static MsgResult parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static MsgResult parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static MsgResult parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static MsgResult parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static MsgResult parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static MsgResult parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static MsgResult parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
     }
     public static MsgResult parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static MsgResult parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static MsgResult parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
+    @Override
+    public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
-      return (Builder) DEFAULT_INSTANCE.createBuilder();
+      return DEFAULT_INSTANCE.toBuilder();
     }
     public static Builder newBuilder(MsgResult prototype) {
-      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
     }
 
+    @Override
+    protected Builder newBuilderForType(
+        BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
     /**
      * Protobuf type {@code MsgResult}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          MsgResult, Builder> implements
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:MsgResult)
         MsgResultOrBuilder {
-      // Construct using com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.MsgResult.newBuilder()
-      private Builder() {
-        super(DEFAULT_INSTANCE);
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return IVITboxProto.internal_static_MsgResult_descriptor;
       }
 
+      @Override
+      protected FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return IVITboxProto.internal_static_MsgResult_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                MsgResult.class, Builder.class);
+      }
 
+      // Construct using com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.MsgResult.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @Override
+      public Builder clear() {
+        super.clear();
+        result_ = false;
+
+        errorCode_ = com.google.protobuf.ByteString.EMPTY;
+
+        return this;
+      }
+
+      @Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return IVITboxProto.internal_static_MsgResult_descriptor;
+      }
+
+      @Override
+      public MsgResult getDefaultInstanceForType() {
+        return MsgResult.getDefaultInstance();
+      }
+
+      @Override
+      public MsgResult build() {
+        MsgResult result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @Override
+      public MsgResult buildPartial() {
+        MsgResult result = new MsgResult(this);
+        result.result_ = result_;
+        result.errorCode_ = errorCode_;
+        onBuilt();
+        return result;
+      }
+
+      @Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return super.setField(field, value);
+      }
+      @Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof MsgResult) {
+          return mergeFrom((MsgResult)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(MsgResult other) {
+        if (other == MsgResult.getDefaultInstance()) return this;
+        if (other.getResult() != false) {
+          setResult(other.getResult());
+        }
+        if (other.getErrorCode() != com.google.protobuf.ByteString.EMPTY) {
+          setErrorCode(other.getErrorCode());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        MsgResult parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (MsgResult) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private boolean result_ ;
       /**
        * <pre>
        *true:success    flase:failed
@@ -6559,9 +9803,8 @@ public final class IVITboxProto {
        * <code>bool result = 1;</code>
        * @return The result.
        */
-      @Override
       public boolean getResult() {
-        return instance.getResult();
+        return result_;
       }
       /**
        * <pre>
@@ -6573,8 +9816,9 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder setResult(boolean value) {
-        copyOnWrite();
-        instance.setResult(value);
+        
+        result_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -6586,11 +9830,13 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearResult() {
-        copyOnWrite();
-        instance.clearResult();
+        
+        result_ = false;
+        onChanged();
         return this;
       }
 
+      private com.google.protobuf.ByteString errorCode_ = com.google.protobuf.ByteString.EMPTY;
       /**
        * <pre>
        *none-error, dealing with failures and so on
@@ -6599,9 +9845,8 @@ public final class IVITboxProto {
        * <code>bytes error_code = 2;</code>
        * @return The errorCode.
        */
-      @Override
       public com.google.protobuf.ByteString getErrorCode() {
-        return instance.getErrorCode();
+        return errorCode_;
       }
       /**
        * <pre>
@@ -6613,8 +9858,12 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder setErrorCode(com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setErrorCode(value);
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        errorCode_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -6626,90 +9875,67 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearErrorCode() {
-        copyOnWrite();
-        instance.clearErrorCode();
+        
+        errorCode_ = getDefaultInstance().getErrorCode();
+        onChanged();
         return this;
       }
+      @Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
 
       // @@protoc_insertion_point(builder_scope:MsgResult)
     }
-    @Override
-    @SuppressWarnings({"unchecked", "fallthrough"})
-    protected final Object dynamicMethod(
-        MethodToInvoke method,
-        Object arg0, Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new MsgResult();
-        }
-        case NEW_BUILDER: {
-          return new Builder();
-        }
-        case BUILD_MESSAGE_INFO: {
-            Object[] objects = new Object[] {
-              "result_",
-              "errorCode_",
-            };
-            String info =
-                "\u0000\u0002\u0000\u0000\u0001\u0002\u0002\u0000\u0000\u0000\u0001\u0007\u0002\n" +
-                "";
-            return newMessageInfo(DEFAULT_INSTANCE, info, objects);
-        }
-        // fall through
-        case GET_DEFAULT_INSTANCE: {
-          return DEFAULT_INSTANCE;
-        }
-        case GET_PARSER: {
-          com.google.protobuf.Parser<MsgResult> parser = PARSER;
-          if (parser == null) {
-            synchronized (MsgResult.class) {
-              parser = PARSER;
-              if (parser == null) {
-                parser =
-                    new DefaultInstanceBasedParser<MsgResult>(
-                        DEFAULT_INSTANCE);
-                PARSER = parser;
-              }
-            }
-          }
-          return parser;
-      }
-      case GET_MEMOIZED_IS_INITIALIZED: {
-        return (byte) 1;
-      }
-      case SET_MEMOIZED_IS_INITIALIZED: {
-        return null;
-      }
-      }
-      throw new UnsupportedOperationException();
-    }
-
 
     // @@protoc_insertion_point(class_scope:MsgResult)
     private static final MsgResult DEFAULT_INSTANCE;
     static {
-      MsgResult defaultInstance = new MsgResult();
-      // New instances are implicitly immutable so no need to make
-      // immutable.
-      DEFAULT_INSTANCE = defaultInstance;
-      com.google.protobuf.GeneratedMessageLite.registerDefaultInstance(
-        MsgResult.class, defaultInstance);
+      DEFAULT_INSTANCE = new MsgResult();
     }
 
     public static MsgResult getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static volatile com.google.protobuf.Parser<MsgResult> PARSER;
+    private static final com.google.protobuf.Parser<MsgResult>
+        PARSER = new com.google.protobuf.AbstractParser<MsgResult>() {
+      @Override
+      public MsgResult parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new MsgResult(input, extensionRegistry);
+      }
+    };
 
     public static com.google.protobuf.Parser<MsgResult> parser() {
-      return DEFAULT_INSTANCE.getParserForType();
+      return PARSER;
     }
+
+    @Override
+    public com.google.protobuf.Parser<MsgResult> getParserForType() {
+      return PARSER;
+    }
+
+    @Override
+    public MsgResult getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
   }
 
   public interface TopMessageOrBuilder extends
       // @@protoc_insertion_point(interface_extends:TopMessage)
-      com.google.protobuf.MessageLiteOrBuilder {
+      com.google.protobuf.MessageOrBuilder {
 
     /**
      * <pre>
@@ -6769,6 +9995,10 @@ public final class IVITboxProto {
      * @return The tboxNetworkCtrl.
      */
     TboxNetworkCtrl getTboxNetworkCtrl();
+    /**
+     * <code>.TboxNetworkCtrl tbox_network_ctrl = 4;</code>
+     */
+    TboxNetworkCtrlOrBuilder getTboxNetworkCtrlOrBuilder();
 
     /**
      * <code>.TboxInfo tbox_info = 5;</code>
@@ -6780,6 +10010,10 @@ public final class IVITboxProto {
      * @return The tboxInfo.
      */
     TboxInfo getTboxInfo();
+    /**
+     * <code>.TboxInfo tbox_info = 5;</code>
+     */
+    TboxInfoOrBuilder getTboxInfoOrBuilder();
 
     /**
      * <code>.TboxGPSCmd tbox_gps_ctrl = 6;</code>
@@ -6791,6 +10025,10 @@ public final class IVITboxProto {
      * @return The tboxGpsCtrl.
      */
     TboxGPSCmd getTboxGpsCtrl();
+    /**
+     * <code>.TboxGPSCmd tbox_gps_ctrl = 6;</code>
+     */
+    TboxGPSCmdOrBuilder getTboxGpsCtrlOrBuilder();
 
     /**
      * <code>.TboxGPSInfo tbox_gpsinfo = 7;</code>
@@ -6802,6 +10040,10 @@ public final class IVITboxProto {
      * @return The tboxGpsinfo.
      */
     TboxGPSInfo getTboxGpsinfo();
+    /**
+     * <code>.TboxGPSInfo tbox_gpsinfo = 7;</code>
+     */
+    TboxGPSInfoOrBuilder getTboxGpsinfoOrBuilder();
 
     /**
      * <code>.TboxActiveState tbox_activestate = 8;</code>
@@ -6813,6 +10055,10 @@ public final class IVITboxProto {
      * @return The tboxActivestate.
      */
     TboxActiveState getTboxActivestate();
+    /**
+     * <code>.TboxActiveState tbox_activestate = 8;</code>
+     */
+    TboxActiveStateOrBuilder getTboxActivestateOrBuilder();
 
     /**
      * <code>.TboxRemoteDiagnose tbox_remotedaignose = 9;</code>
@@ -6824,6 +10070,10 @@ public final class IVITboxProto {
      * @return The tboxRemotedaignose.
      */
     TboxRemoteDiagnose getTboxRemotedaignose();
+    /**
+     * <code>.TboxRemoteDiagnose tbox_remotedaignose = 9;</code>
+     */
+    TboxRemoteDiagnoseOrBuilder getTboxRemotedaignoseOrBuilder();
 
     /**
      * <code>.MsgResult msg_result = 10;</code>
@@ -6835,6 +10085,10 @@ public final class IVITboxProto {
      * @return The msgResult.
      */
     MsgResult getMsgResult();
+    /**
+     * <code>.MsgResult msg_result = 10;</code>
+     */
+    MsgResultOrBuilder getMsgResultOrBuilder();
 
     /**
      * <code>.IhuLogfile ihu_logfile = 11;</code>
@@ -6846,6 +10100,10 @@ public final class IVITboxProto {
      * @return The ihuLogfile.
      */
     IhuLogfile getIhuLogfile();
+    /**
+     * <code>.IhuLogfile ihu_logfile = 11;</code>
+     */
+    IhuLogfileOrBuilder getIhuLogfileOrBuilder();
 
     /**
      * <code>.IhuChargeAppoointmentSts ihu_charge_appoointmentSts = 12;</code>
@@ -6857,6 +10115,10 @@ public final class IVITboxProto {
      * @return The ihuChargeAppoointmentSts.
      */
     IhuChargeAppoointmentSts getIhuChargeAppoointmentSts();
+    /**
+     * <code>.IhuChargeAppoointmentSts ihu_charge_appoointmentSts = 12;</code>
+     */
+    IhuChargeAppoointmentStsOrBuilder getIhuChargeAppoointmentStsOrBuilder();
 
     /**
      * <code>.TboxChargeAppoointmentSet tbox_charge_appoointmentSet = 13;</code>
@@ -6868,6 +10130,10 @@ public final class IVITboxProto {
      * @return The tboxChargeAppoointmentSet.
      */
     TboxChargeAppoointmentSet getTboxChargeAppoointmentSet();
+    /**
+     * <code>.TboxChargeAppoointmentSet tbox_charge_appoointmentSet = 13;</code>
+     */
+    TboxChargeAppoointmentSetOrBuilder getTboxChargeAppoointmentSetOrBuilder();
 
     /**
      * <code>.TboxChargeCtrl tbox_chargectrl = 14;</code>
@@ -6879,17 +10145,250 @@ public final class IVITboxProto {
      * @return The tboxChargectrl.
      */
     TboxChargeCtrl getTboxChargectrl();
+    /**
+     * <code>.TboxChargeCtrl tbox_chargectrl = 14;</code>
+     */
+    TboxChargeCtrlOrBuilder getTboxChargectrlOrBuilder();
   }
   /**
    * Protobuf type {@code TopMessage}
    */
   public  static final class TopMessage extends
-      com.google.protobuf.GeneratedMessageLite<
-          TopMessage, TopMessage.Builder> implements
+      com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:TopMessage)
       TopMessageOrBuilder {
-    private TopMessage() {
+  private static final long serialVersionUID = 0L;
+    // Use TopMessage.newBuilder() to construct.
+    private TopMessage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
     }
+    private TopMessage() {
+      messageType_ = 0;
+      signalType_ = 0;
+    }
+
+    @Override
+    @SuppressWarnings({"unused"})
+    protected Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new TopMessage();
+    }
+
+    @Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private TopMessage(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+              int rawValue = input.readEnum();
+
+              messageType_ = rawValue;
+              break;
+            }
+            case 16: {
+              int rawValue = input.readEnum();
+
+              signalType_ = rawValue;
+              break;
+            }
+            case 24: {
+
+              signalPower_ = input.readInt32();
+              break;
+            }
+            case 34: {
+              TboxNetworkCtrl.Builder subBuilder = null;
+              if (tboxNetworkCtrl_ != null) {
+                subBuilder = tboxNetworkCtrl_.toBuilder();
+              }
+              tboxNetworkCtrl_ = input.readMessage(TboxNetworkCtrl.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(tboxNetworkCtrl_);
+                tboxNetworkCtrl_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 42: {
+              TboxInfo.Builder subBuilder = null;
+              if (tboxInfo_ != null) {
+                subBuilder = tboxInfo_.toBuilder();
+              }
+              tboxInfo_ = input.readMessage(TboxInfo.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(tboxInfo_);
+                tboxInfo_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 50: {
+              TboxGPSCmd.Builder subBuilder = null;
+              if (tboxGpsCtrl_ != null) {
+                subBuilder = tboxGpsCtrl_.toBuilder();
+              }
+              tboxGpsCtrl_ = input.readMessage(TboxGPSCmd.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(tboxGpsCtrl_);
+                tboxGpsCtrl_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 58: {
+              TboxGPSInfo.Builder subBuilder = null;
+              if (tboxGpsinfo_ != null) {
+                subBuilder = tboxGpsinfo_.toBuilder();
+              }
+              tboxGpsinfo_ = input.readMessage(TboxGPSInfo.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(tboxGpsinfo_);
+                tboxGpsinfo_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 66: {
+              TboxActiveState.Builder subBuilder = null;
+              if (tboxActivestate_ != null) {
+                subBuilder = tboxActivestate_.toBuilder();
+              }
+              tboxActivestate_ = input.readMessage(TboxActiveState.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(tboxActivestate_);
+                tboxActivestate_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 74: {
+              TboxRemoteDiagnose.Builder subBuilder = null;
+              if (tboxRemotedaignose_ != null) {
+                subBuilder = tboxRemotedaignose_.toBuilder();
+              }
+              tboxRemotedaignose_ = input.readMessage(TboxRemoteDiagnose.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(tboxRemotedaignose_);
+                tboxRemotedaignose_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 82: {
+              MsgResult.Builder subBuilder = null;
+              if (msgResult_ != null) {
+                subBuilder = msgResult_.toBuilder();
+              }
+              msgResult_ = input.readMessage(MsgResult.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(msgResult_);
+                msgResult_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 90: {
+              IhuLogfile.Builder subBuilder = null;
+              if (ihuLogfile_ != null) {
+                subBuilder = ihuLogfile_.toBuilder();
+              }
+              ihuLogfile_ = input.readMessage(IhuLogfile.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(ihuLogfile_);
+                ihuLogfile_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 98: {
+              IhuChargeAppoointmentSts.Builder subBuilder = null;
+              if (ihuChargeAppoointmentSts_ != null) {
+                subBuilder = ihuChargeAppoointmentSts_.toBuilder();
+              }
+              ihuChargeAppoointmentSts_ = input.readMessage(IhuChargeAppoointmentSts.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(ihuChargeAppoointmentSts_);
+                ihuChargeAppoointmentSts_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 106: {
+              TboxChargeAppoointmentSet.Builder subBuilder = null;
+              if (tboxChargeAppoointmentSet_ != null) {
+                subBuilder = tboxChargeAppoointmentSet_.toBuilder();
+              }
+              tboxChargeAppoointmentSet_ = input.readMessage(TboxChargeAppoointmentSet.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(tboxChargeAppoointmentSet_);
+                tboxChargeAppoointmentSet_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 114: {
+              TboxChargeCtrl.Builder subBuilder = null;
+              if (tboxChargectrl_ != null) {
+                subBuilder = tboxChargectrl_.toBuilder();
+              }
+              tboxChargectrl_ = input.readMessage(TboxChargeCtrl.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(tboxChargectrl_);
+                tboxChargectrl_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return IVITboxProto.internal_static_TopMessage_descriptor;
+    }
+
+    @Override
+    protected FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return IVITboxProto.internal_static_TopMessage_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              TopMessage.class, Builder.class);
+    }
+
     public static final int MESSAGE_TYPE_FIELD_NUMBER = 1;
     private int messageType_;
     /**
@@ -6900,7 +10399,6 @@ public final class IVITboxProto {
      * <code>.Messagetype message_type = 1;</code>
      * @return The enum numeric value on the wire for messageType.
      */
-    @Override
     public int getMessageTypeValue() {
       return messageType_;
     }
@@ -6912,44 +10410,10 @@ public final class IVITboxProto {
      * <code>.Messagetype message_type = 1;</code>
      * @return The messageType.
      */
-    @Override
     public Messagetype getMessageType() {
-      Messagetype result = Messagetype.forNumber(messageType_);
+      @SuppressWarnings("deprecation")
+      Messagetype result = Messagetype.valueOf(messageType_);
       return result == null ? Messagetype.UNRECOGNIZED : result;
-    }
-    /**
-     * <pre>
-     *message type
-     * </pre>
-     *
-     * <code>.Messagetype message_type = 1;</code>
-     * @param value The enum numeric value on the wire for messageType to set.
-     */
-    private void setMessageTypeValue(int value) {
-        messageType_ = value;
-    }
-    /**
-     * <pre>
-     *message type
-     * </pre>
-     *
-     * <code>.Messagetype message_type = 1;</code>
-     * @param value The messageType to set.
-     */
-    private void setMessageType(Messagetype value) {
-      messageType_ = value.getNumber();
-      
-    }
-    /**
-     * <pre>
-     *message type
-     * </pre>
-     *
-     * <code>.Messagetype message_type = 1;</code>
-     */
-    private void clearMessageType() {
-      
-      messageType_ = 0;
     }
 
     public static final int SIGNAL_TYPE_FIELD_NUMBER = 2;
@@ -6962,7 +10426,6 @@ public final class IVITboxProto {
      * <code>.SignalType signal_type = 2;</code>
      * @return The enum numeric value on the wire for signalType.
      */
-    @Override
     public int getSignalTypeValue() {
       return signalType_;
     }
@@ -6974,44 +10437,10 @@ public final class IVITboxProto {
      * <code>.SignalType signal_type = 2;</code>
      * @return The signalType.
      */
-    @Override
     public SignalType getSignalType() {
-      SignalType result = SignalType.forNumber(signalType_);
+      @SuppressWarnings("deprecation")
+      SignalType result = SignalType.valueOf(signalType_);
       return result == null ? SignalType.UNRECOGNIZED : result;
-    }
-    /**
-     * <pre>
-     *current signal type
-     * </pre>
-     *
-     * <code>.SignalType signal_type = 2;</code>
-     * @param value The enum numeric value on the wire for signalType to set.
-     */
-    private void setSignalTypeValue(int value) {
-        signalType_ = value;
-    }
-    /**
-     * <pre>
-     *current signal type
-     * </pre>
-     *
-     * <code>.SignalType signal_type = 2;</code>
-     * @param value The signalType to set.
-     */
-    private void setSignalType(SignalType value) {
-      signalType_ = value.getNumber();
-      
-    }
-    /**
-     * <pre>
-     *current signal type
-     * </pre>
-     *
-     * <code>.SignalType signal_type = 2;</code>
-     */
-    private void clearSignalType() {
-      
-      signalType_ = 0;
     }
 
     public static final int SIGNAL_POWER_FIELD_NUMBER = 3;
@@ -7024,635 +10453,928 @@ public final class IVITboxProto {
      * <code>int32 signal_power = 3;</code>
      * @return The signalPower.
      */
-    @Override
     public int getSignalPower() {
       return signalPower_;
-    }
-    /**
-     * <pre>
-     *current signal strength, 0-5, 0 means no signal, 5 means strong strength
-     * </pre>
-     *
-     * <code>int32 signal_power = 3;</code>
-     * @param value The signalPower to set.
-     */
-    private void setSignalPower(int value) {
-      
-      signalPower_ = value;
-    }
-    /**
-     * <pre>
-     *current signal strength, 0-5, 0 means no signal, 5 means strong strength
-     * </pre>
-     *
-     * <code>int32 signal_power = 3;</code>
-     */
-    private void clearSignalPower() {
-      
-      signalPower_ = 0;
     }
 
     public static final int TBOX_NETWORK_CTRL_FIELD_NUMBER = 4;
     private TboxNetworkCtrl tboxNetworkCtrl_;
     /**
      * <code>.TboxNetworkCtrl tbox_network_ctrl = 4;</code>
+     * @return Whether the tboxNetworkCtrl field is set.
      */
-    @Override
     public boolean hasTboxNetworkCtrl() {
       return tboxNetworkCtrl_ != null;
     }
     /**
      * <code>.TboxNetworkCtrl tbox_network_ctrl = 4;</code>
+     * @return The tboxNetworkCtrl.
      */
-    @Override
     public TboxNetworkCtrl getTboxNetworkCtrl() {
       return tboxNetworkCtrl_ == null ? TboxNetworkCtrl.getDefaultInstance() : tboxNetworkCtrl_;
     }
     /**
      * <code>.TboxNetworkCtrl tbox_network_ctrl = 4;</code>
      */
-    private void setTboxNetworkCtrl(TboxNetworkCtrl value) {
-      value.getClass();
-  tboxNetworkCtrl_ = value;
-      
-      }
-    /**
-     * <code>.TboxNetworkCtrl tbox_network_ctrl = 4;</code>
-     */
-    @SuppressWarnings({"ReferenceEquality"})
-    private void mergeTboxNetworkCtrl(TboxNetworkCtrl value) {
-      value.getClass();
-  if (tboxNetworkCtrl_ != null &&
-          tboxNetworkCtrl_ != TboxNetworkCtrl.getDefaultInstance()) {
-        tboxNetworkCtrl_ =
-          TboxNetworkCtrl.newBuilder(tboxNetworkCtrl_).mergeFrom(value).buildPartial();
-      } else {
-        tboxNetworkCtrl_ = value;
-      }
-      
-    }
-    /**
-     * <code>.TboxNetworkCtrl tbox_network_ctrl = 4;</code>
-     */
-    private void clearTboxNetworkCtrl() {  tboxNetworkCtrl_ = null;
-      
+    public TboxNetworkCtrlOrBuilder getTboxNetworkCtrlOrBuilder() {
+      return getTboxNetworkCtrl();
     }
 
     public static final int TBOX_INFO_FIELD_NUMBER = 5;
     private TboxInfo tboxInfo_;
     /**
      * <code>.TboxInfo tbox_info = 5;</code>
+     * @return Whether the tboxInfo field is set.
      */
-    @Override
     public boolean hasTboxInfo() {
       return tboxInfo_ != null;
     }
     /**
      * <code>.TboxInfo tbox_info = 5;</code>
+     * @return The tboxInfo.
      */
-    @Override
     public TboxInfo getTboxInfo() {
       return tboxInfo_ == null ? TboxInfo.getDefaultInstance() : tboxInfo_;
     }
     /**
      * <code>.TboxInfo tbox_info = 5;</code>
      */
-    private void setTboxInfo(TboxInfo value) {
-      value.getClass();
-  tboxInfo_ = value;
-      
-      }
-    /**
-     * <code>.TboxInfo tbox_info = 5;</code>
-     */
-    @SuppressWarnings({"ReferenceEquality"})
-    private void mergeTboxInfo(TboxInfo value) {
-      value.getClass();
-  if (tboxInfo_ != null &&
-          tboxInfo_ != TboxInfo.getDefaultInstance()) {
-        tboxInfo_ =
-          TboxInfo.newBuilder(tboxInfo_).mergeFrom(value).buildPartial();
-      } else {
-        tboxInfo_ = value;
-      }
-      
-    }
-    /**
-     * <code>.TboxInfo tbox_info = 5;</code>
-     */
-    private void clearTboxInfo() {  tboxInfo_ = null;
-      
+    public TboxInfoOrBuilder getTboxInfoOrBuilder() {
+      return getTboxInfo();
     }
 
     public static final int TBOX_GPS_CTRL_FIELD_NUMBER = 6;
     private TboxGPSCmd tboxGpsCtrl_;
     /**
      * <code>.TboxGPSCmd tbox_gps_ctrl = 6;</code>
+     * @return Whether the tboxGpsCtrl field is set.
      */
-    @Override
     public boolean hasTboxGpsCtrl() {
       return tboxGpsCtrl_ != null;
     }
     /**
      * <code>.TboxGPSCmd tbox_gps_ctrl = 6;</code>
+     * @return The tboxGpsCtrl.
      */
-    @Override
     public TboxGPSCmd getTboxGpsCtrl() {
       return tboxGpsCtrl_ == null ? TboxGPSCmd.getDefaultInstance() : tboxGpsCtrl_;
     }
     /**
      * <code>.TboxGPSCmd tbox_gps_ctrl = 6;</code>
      */
-    private void setTboxGpsCtrl(TboxGPSCmd value) {
-      value.getClass();
-  tboxGpsCtrl_ = value;
-      
-      }
-    /**
-     * <code>.TboxGPSCmd tbox_gps_ctrl = 6;</code>
-     */
-    @SuppressWarnings({"ReferenceEquality"})
-    private void mergeTboxGpsCtrl(TboxGPSCmd value) {
-      value.getClass();
-  if (tboxGpsCtrl_ != null &&
-          tboxGpsCtrl_ != TboxGPSCmd.getDefaultInstance()) {
-        tboxGpsCtrl_ =
-          TboxGPSCmd.newBuilder(tboxGpsCtrl_).mergeFrom(value).buildPartial();
-      } else {
-        tboxGpsCtrl_ = value;
-      }
-      
-    }
-    /**
-     * <code>.TboxGPSCmd tbox_gps_ctrl = 6;</code>
-     */
-    private void clearTboxGpsCtrl() {  tboxGpsCtrl_ = null;
-      
+    public TboxGPSCmdOrBuilder getTboxGpsCtrlOrBuilder() {
+      return getTboxGpsCtrl();
     }
 
     public static final int TBOX_GPSINFO_FIELD_NUMBER = 7;
     private TboxGPSInfo tboxGpsinfo_;
     /**
      * <code>.TboxGPSInfo tbox_gpsinfo = 7;</code>
+     * @return Whether the tboxGpsinfo field is set.
      */
-    @Override
     public boolean hasTboxGpsinfo() {
       return tboxGpsinfo_ != null;
     }
     /**
      * <code>.TboxGPSInfo tbox_gpsinfo = 7;</code>
+     * @return The tboxGpsinfo.
      */
-    @Override
     public TboxGPSInfo getTboxGpsinfo() {
       return tboxGpsinfo_ == null ? TboxGPSInfo.getDefaultInstance() : tboxGpsinfo_;
     }
     /**
      * <code>.TboxGPSInfo tbox_gpsinfo = 7;</code>
      */
-    private void setTboxGpsinfo(TboxGPSInfo value) {
-      value.getClass();
-  tboxGpsinfo_ = value;
-      
-      }
-    /**
-     * <code>.TboxGPSInfo tbox_gpsinfo = 7;</code>
-     */
-    @SuppressWarnings({"ReferenceEquality"})
-    private void mergeTboxGpsinfo(TboxGPSInfo value) {
-      value.getClass();
-  if (tboxGpsinfo_ != null &&
-          tboxGpsinfo_ != TboxGPSInfo.getDefaultInstance()) {
-        tboxGpsinfo_ =
-          TboxGPSInfo.newBuilder(tboxGpsinfo_).mergeFrom(value).buildPartial();
-      } else {
-        tboxGpsinfo_ = value;
-      }
-      
-    }
-    /**
-     * <code>.TboxGPSInfo tbox_gpsinfo = 7;</code>
-     */
-    private void clearTboxGpsinfo() {  tboxGpsinfo_ = null;
-      
+    public TboxGPSInfoOrBuilder getTboxGpsinfoOrBuilder() {
+      return getTboxGpsinfo();
     }
 
     public static final int TBOX_ACTIVESTATE_FIELD_NUMBER = 8;
     private TboxActiveState tboxActivestate_;
     /**
      * <code>.TboxActiveState tbox_activestate = 8;</code>
+     * @return Whether the tboxActivestate field is set.
      */
-    @Override
     public boolean hasTboxActivestate() {
       return tboxActivestate_ != null;
     }
     /**
      * <code>.TboxActiveState tbox_activestate = 8;</code>
+     * @return The tboxActivestate.
      */
-    @Override
     public TboxActiveState getTboxActivestate() {
       return tboxActivestate_ == null ? TboxActiveState.getDefaultInstance() : tboxActivestate_;
     }
     /**
      * <code>.TboxActiveState tbox_activestate = 8;</code>
      */
-    private void setTboxActivestate(TboxActiveState value) {
-      value.getClass();
-  tboxActivestate_ = value;
-      
-      }
-    /**
-     * <code>.TboxActiveState tbox_activestate = 8;</code>
-     */
-    @SuppressWarnings({"ReferenceEquality"})
-    private void mergeTboxActivestate(TboxActiveState value) {
-      value.getClass();
-  if (tboxActivestate_ != null &&
-          tboxActivestate_ != TboxActiveState.getDefaultInstance()) {
-        tboxActivestate_ =
-          TboxActiveState.newBuilder(tboxActivestate_).mergeFrom(value).buildPartial();
-      } else {
-        tboxActivestate_ = value;
-      }
-      
-    }
-    /**
-     * <code>.TboxActiveState tbox_activestate = 8;</code>
-     */
-    private void clearTboxActivestate() {  tboxActivestate_ = null;
-      
+    public TboxActiveStateOrBuilder getTboxActivestateOrBuilder() {
+      return getTboxActivestate();
     }
 
     public static final int TBOX_REMOTEDAIGNOSE_FIELD_NUMBER = 9;
     private TboxRemoteDiagnose tboxRemotedaignose_;
     /**
      * <code>.TboxRemoteDiagnose tbox_remotedaignose = 9;</code>
+     * @return Whether the tboxRemotedaignose field is set.
      */
-    @Override
     public boolean hasTboxRemotedaignose() {
       return tboxRemotedaignose_ != null;
     }
     /**
      * <code>.TboxRemoteDiagnose tbox_remotedaignose = 9;</code>
+     * @return The tboxRemotedaignose.
      */
-    @Override
     public TboxRemoteDiagnose getTboxRemotedaignose() {
       return tboxRemotedaignose_ == null ? TboxRemoteDiagnose.getDefaultInstance() : tboxRemotedaignose_;
     }
     /**
      * <code>.TboxRemoteDiagnose tbox_remotedaignose = 9;</code>
      */
-    private void setTboxRemotedaignose(TboxRemoteDiagnose value) {
-      value.getClass();
-  tboxRemotedaignose_ = value;
-      
-      }
-    /**
-     * <code>.TboxRemoteDiagnose tbox_remotedaignose = 9;</code>
-     */
-    @SuppressWarnings({"ReferenceEquality"})
-    private void mergeTboxRemotedaignose(TboxRemoteDiagnose value) {
-      value.getClass();
-  if (tboxRemotedaignose_ != null &&
-          tboxRemotedaignose_ != TboxRemoteDiagnose.getDefaultInstance()) {
-        tboxRemotedaignose_ =
-          TboxRemoteDiagnose.newBuilder(tboxRemotedaignose_).mergeFrom(value).buildPartial();
-      } else {
-        tboxRemotedaignose_ = value;
-      }
-      
-    }
-    /**
-     * <code>.TboxRemoteDiagnose tbox_remotedaignose = 9;</code>
-     */
-    private void clearTboxRemotedaignose() {  tboxRemotedaignose_ = null;
-      
+    public TboxRemoteDiagnoseOrBuilder getTboxRemotedaignoseOrBuilder() {
+      return getTboxRemotedaignose();
     }
 
     public static final int MSG_RESULT_FIELD_NUMBER = 10;
     private MsgResult msgResult_;
     /**
      * <code>.MsgResult msg_result = 10;</code>
+     * @return Whether the msgResult field is set.
      */
-    @Override
     public boolean hasMsgResult() {
       return msgResult_ != null;
     }
     /**
      * <code>.MsgResult msg_result = 10;</code>
+     * @return The msgResult.
      */
-    @Override
     public MsgResult getMsgResult() {
       return msgResult_ == null ? MsgResult.getDefaultInstance() : msgResult_;
     }
     /**
      * <code>.MsgResult msg_result = 10;</code>
      */
-    private void setMsgResult(MsgResult value) {
-      value.getClass();
-  msgResult_ = value;
-      
-      }
-    /**
-     * <code>.MsgResult msg_result = 10;</code>
-     */
-    @SuppressWarnings({"ReferenceEquality"})
-    private void mergeMsgResult(MsgResult value) {
-      value.getClass();
-  if (msgResult_ != null &&
-          msgResult_ != MsgResult.getDefaultInstance()) {
-        msgResult_ =
-          MsgResult.newBuilder(msgResult_).mergeFrom(value).buildPartial();
-      } else {
-        msgResult_ = value;
-      }
-      
-    }
-    /**
-     * <code>.MsgResult msg_result = 10;</code>
-     */
-    private void clearMsgResult() {  msgResult_ = null;
-      
+    public MsgResultOrBuilder getMsgResultOrBuilder() {
+      return getMsgResult();
     }
 
     public static final int IHU_LOGFILE_FIELD_NUMBER = 11;
     private IhuLogfile ihuLogfile_;
     /**
      * <code>.IhuLogfile ihu_logfile = 11;</code>
+     * @return Whether the ihuLogfile field is set.
      */
-    @Override
     public boolean hasIhuLogfile() {
       return ihuLogfile_ != null;
     }
     /**
      * <code>.IhuLogfile ihu_logfile = 11;</code>
+     * @return The ihuLogfile.
      */
-    @Override
     public IhuLogfile getIhuLogfile() {
       return ihuLogfile_ == null ? IhuLogfile.getDefaultInstance() : ihuLogfile_;
     }
     /**
      * <code>.IhuLogfile ihu_logfile = 11;</code>
      */
-    private void setIhuLogfile(IhuLogfile value) {
-      value.getClass();
-  ihuLogfile_ = value;
-      
-      }
-    /**
-     * <code>.IhuLogfile ihu_logfile = 11;</code>
-     */
-    @SuppressWarnings({"ReferenceEquality"})
-    private void mergeIhuLogfile(IhuLogfile value) {
-      value.getClass();
-  if (ihuLogfile_ != null &&
-          ihuLogfile_ != IhuLogfile.getDefaultInstance()) {
-        ihuLogfile_ =
-          IhuLogfile.newBuilder(ihuLogfile_).mergeFrom(value).buildPartial();
-      } else {
-        ihuLogfile_ = value;
-      }
-      
-    }
-    /**
-     * <code>.IhuLogfile ihu_logfile = 11;</code>
-     */
-    private void clearIhuLogfile() {  ihuLogfile_ = null;
-      
+    public IhuLogfileOrBuilder getIhuLogfileOrBuilder() {
+      return getIhuLogfile();
     }
 
     public static final int IHU_CHARGE_APPOOINTMENTSTS_FIELD_NUMBER = 12;
     private IhuChargeAppoointmentSts ihuChargeAppoointmentSts_;
     /**
      * <code>.IhuChargeAppoointmentSts ihu_charge_appoointmentSts = 12;</code>
+     * @return Whether the ihuChargeAppoointmentSts field is set.
      */
-    @Override
     public boolean hasIhuChargeAppoointmentSts() {
       return ihuChargeAppoointmentSts_ != null;
     }
     /**
      * <code>.IhuChargeAppoointmentSts ihu_charge_appoointmentSts = 12;</code>
+     * @return The ihuChargeAppoointmentSts.
      */
-    @Override
     public IhuChargeAppoointmentSts getIhuChargeAppoointmentSts() {
       return ihuChargeAppoointmentSts_ == null ? IhuChargeAppoointmentSts.getDefaultInstance() : ihuChargeAppoointmentSts_;
     }
     /**
      * <code>.IhuChargeAppoointmentSts ihu_charge_appoointmentSts = 12;</code>
      */
-    private void setIhuChargeAppoointmentSts(IhuChargeAppoointmentSts value) {
-      value.getClass();
-  ihuChargeAppoointmentSts_ = value;
-      
-      }
-    /**
-     * <code>.IhuChargeAppoointmentSts ihu_charge_appoointmentSts = 12;</code>
-     */
-    @SuppressWarnings({"ReferenceEquality"})
-    private void mergeIhuChargeAppoointmentSts(IhuChargeAppoointmentSts value) {
-      value.getClass();
-  if (ihuChargeAppoointmentSts_ != null &&
-          ihuChargeAppoointmentSts_ != IhuChargeAppoointmentSts.getDefaultInstance()) {
-        ihuChargeAppoointmentSts_ =
-          IhuChargeAppoointmentSts.newBuilder(ihuChargeAppoointmentSts_).mergeFrom(value).buildPartial();
-      } else {
-        ihuChargeAppoointmentSts_ = value;
-      }
-      
-    }
-    /**
-     * <code>.IhuChargeAppoointmentSts ihu_charge_appoointmentSts = 12;</code>
-     */
-    private void clearIhuChargeAppoointmentSts() {  ihuChargeAppoointmentSts_ = null;
-      
+    public IhuChargeAppoointmentStsOrBuilder getIhuChargeAppoointmentStsOrBuilder() {
+      return getIhuChargeAppoointmentSts();
     }
 
     public static final int TBOX_CHARGE_APPOOINTMENTSET_FIELD_NUMBER = 13;
     private TboxChargeAppoointmentSet tboxChargeAppoointmentSet_;
     /**
      * <code>.TboxChargeAppoointmentSet tbox_charge_appoointmentSet = 13;</code>
+     * @return Whether the tboxChargeAppoointmentSet field is set.
      */
-    @Override
     public boolean hasTboxChargeAppoointmentSet() {
       return tboxChargeAppoointmentSet_ != null;
     }
     /**
      * <code>.TboxChargeAppoointmentSet tbox_charge_appoointmentSet = 13;</code>
+     * @return The tboxChargeAppoointmentSet.
      */
-    @Override
     public TboxChargeAppoointmentSet getTboxChargeAppoointmentSet() {
       return tboxChargeAppoointmentSet_ == null ? TboxChargeAppoointmentSet.getDefaultInstance() : tboxChargeAppoointmentSet_;
     }
     /**
      * <code>.TboxChargeAppoointmentSet tbox_charge_appoointmentSet = 13;</code>
      */
-    private void setTboxChargeAppoointmentSet(TboxChargeAppoointmentSet value) {
-      value.getClass();
-  tboxChargeAppoointmentSet_ = value;
-      
-      }
-    /**
-     * <code>.TboxChargeAppoointmentSet tbox_charge_appoointmentSet = 13;</code>
-     */
-    @SuppressWarnings({"ReferenceEquality"})
-    private void mergeTboxChargeAppoointmentSet(TboxChargeAppoointmentSet value) {
-      value.getClass();
-  if (tboxChargeAppoointmentSet_ != null &&
-          tboxChargeAppoointmentSet_ != TboxChargeAppoointmentSet.getDefaultInstance()) {
-        tboxChargeAppoointmentSet_ =
-          TboxChargeAppoointmentSet.newBuilder(tboxChargeAppoointmentSet_).mergeFrom(value).buildPartial();
-      } else {
-        tboxChargeAppoointmentSet_ = value;
-      }
-      
-    }
-    /**
-     * <code>.TboxChargeAppoointmentSet tbox_charge_appoointmentSet = 13;</code>
-     */
-    private void clearTboxChargeAppoointmentSet() {  tboxChargeAppoointmentSet_ = null;
-      
+    public TboxChargeAppoointmentSetOrBuilder getTboxChargeAppoointmentSetOrBuilder() {
+      return getTboxChargeAppoointmentSet();
     }
 
     public static final int TBOX_CHARGECTRL_FIELD_NUMBER = 14;
     private TboxChargeCtrl tboxChargectrl_;
     /**
      * <code>.TboxChargeCtrl tbox_chargectrl = 14;</code>
+     * @return Whether the tboxChargectrl field is set.
      */
-    @Override
     public boolean hasTboxChargectrl() {
       return tboxChargectrl_ != null;
     }
     /**
      * <code>.TboxChargeCtrl tbox_chargectrl = 14;</code>
+     * @return The tboxChargectrl.
      */
-    @Override
     public TboxChargeCtrl getTboxChargectrl() {
       return tboxChargectrl_ == null ? TboxChargeCtrl.getDefaultInstance() : tboxChargectrl_;
     }
     /**
      * <code>.TboxChargeCtrl tbox_chargectrl = 14;</code>
      */
-    private void setTboxChargectrl(TboxChargeCtrl value) {
-      value.getClass();
-  tboxChargectrl_ = value;
-      
-      }
-    /**
-     * <code>.TboxChargeCtrl tbox_chargectrl = 14;</code>
-     */
-    @SuppressWarnings({"ReferenceEquality"})
-    private void mergeTboxChargectrl(TboxChargeCtrl value) {
-      value.getClass();
-  if (tboxChargectrl_ != null &&
-          tboxChargectrl_ != TboxChargeCtrl.getDefaultInstance()) {
-        tboxChargectrl_ =
-          TboxChargeCtrl.newBuilder(tboxChargectrl_).mergeFrom(value).buildPartial();
-      } else {
-        tboxChargectrl_ = value;
-      }
-      
+    public TboxChargeCtrlOrBuilder getTboxChargectrlOrBuilder() {
+      return getTboxChargectrl();
     }
-    /**
-     * <code>.TboxChargeCtrl tbox_chargectrl = 14;</code>
-     */
-    private void clearTboxChargectrl() {  tboxChargectrl_ = null;
-      
+
+    private byte memoizedIsInitialized = -1;
+    @Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (messageType_ != Messagetype.REQUEST_RESPONSE_NONE.getNumber()) {
+        output.writeEnum(1, messageType_);
+      }
+      if (signalType_ != SignalType.NONE_SIGNAL.getNumber()) {
+        output.writeEnum(2, signalType_);
+      }
+      if (signalPower_ != 0) {
+        output.writeInt32(3, signalPower_);
+      }
+      if (tboxNetworkCtrl_ != null) {
+        output.writeMessage(4, getTboxNetworkCtrl());
+      }
+      if (tboxInfo_ != null) {
+        output.writeMessage(5, getTboxInfo());
+      }
+      if (tboxGpsCtrl_ != null) {
+        output.writeMessage(6, getTboxGpsCtrl());
+      }
+      if (tboxGpsinfo_ != null) {
+        output.writeMessage(7, getTboxGpsinfo());
+      }
+      if (tboxActivestate_ != null) {
+        output.writeMessage(8, getTboxActivestate());
+      }
+      if (tboxRemotedaignose_ != null) {
+        output.writeMessage(9, getTboxRemotedaignose());
+      }
+      if (msgResult_ != null) {
+        output.writeMessage(10, getMsgResult());
+      }
+      if (ihuLogfile_ != null) {
+        output.writeMessage(11, getIhuLogfile());
+      }
+      if (ihuChargeAppoointmentSts_ != null) {
+        output.writeMessage(12, getIhuChargeAppoointmentSts());
+      }
+      if (tboxChargeAppoointmentSet_ != null) {
+        output.writeMessage(13, getTboxChargeAppoointmentSet());
+      }
+      if (tboxChargectrl_ != null) {
+        output.writeMessage(14, getTboxChargectrl());
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (messageType_ != Messagetype.REQUEST_RESPONSE_NONE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(1, messageType_);
+      }
+      if (signalType_ != SignalType.NONE_SIGNAL.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(2, signalType_);
+      }
+      if (signalPower_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, signalPower_);
+      }
+      if (tboxNetworkCtrl_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(4, getTboxNetworkCtrl());
+      }
+      if (tboxInfo_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(5, getTboxInfo());
+      }
+      if (tboxGpsCtrl_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(6, getTboxGpsCtrl());
+      }
+      if (tboxGpsinfo_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(7, getTboxGpsinfo());
+      }
+      if (tboxActivestate_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(8, getTboxActivestate());
+      }
+      if (tboxRemotedaignose_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(9, getTboxRemotedaignose());
+      }
+      if (msgResult_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(10, getMsgResult());
+      }
+      if (ihuLogfile_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(11, getIhuLogfile());
+      }
+      if (ihuChargeAppoointmentSts_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(12, getIhuChargeAppoointmentSts());
+      }
+      if (tboxChargeAppoointmentSet_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(13, getTboxChargeAppoointmentSet());
+      }
+      if (tboxChargectrl_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(14, getTboxChargectrl());
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof TopMessage)) {
+        return super.equals(obj);
+      }
+      TopMessage other = (TopMessage) obj;
+
+      if (messageType_ != other.messageType_) return false;
+      if (signalType_ != other.signalType_) return false;
+      if (getSignalPower()
+          != other.getSignalPower()) return false;
+      if (hasTboxNetworkCtrl() != other.hasTboxNetworkCtrl()) return false;
+      if (hasTboxNetworkCtrl()) {
+        if (!getTboxNetworkCtrl()
+            .equals(other.getTboxNetworkCtrl())) return false;
+      }
+      if (hasTboxInfo() != other.hasTboxInfo()) return false;
+      if (hasTboxInfo()) {
+        if (!getTboxInfo()
+            .equals(other.getTboxInfo())) return false;
+      }
+      if (hasTboxGpsCtrl() != other.hasTboxGpsCtrl()) return false;
+      if (hasTboxGpsCtrl()) {
+        if (!getTboxGpsCtrl()
+            .equals(other.getTboxGpsCtrl())) return false;
+      }
+      if (hasTboxGpsinfo() != other.hasTboxGpsinfo()) return false;
+      if (hasTboxGpsinfo()) {
+        if (!getTboxGpsinfo()
+            .equals(other.getTboxGpsinfo())) return false;
+      }
+      if (hasTboxActivestate() != other.hasTboxActivestate()) return false;
+      if (hasTboxActivestate()) {
+        if (!getTboxActivestate()
+            .equals(other.getTboxActivestate())) return false;
+      }
+      if (hasTboxRemotedaignose() != other.hasTboxRemotedaignose()) return false;
+      if (hasTboxRemotedaignose()) {
+        if (!getTboxRemotedaignose()
+            .equals(other.getTboxRemotedaignose())) return false;
+      }
+      if (hasMsgResult() != other.hasMsgResult()) return false;
+      if (hasMsgResult()) {
+        if (!getMsgResult()
+            .equals(other.getMsgResult())) return false;
+      }
+      if (hasIhuLogfile() != other.hasIhuLogfile()) return false;
+      if (hasIhuLogfile()) {
+        if (!getIhuLogfile()
+            .equals(other.getIhuLogfile())) return false;
+      }
+      if (hasIhuChargeAppoointmentSts() != other.hasIhuChargeAppoointmentSts()) return false;
+      if (hasIhuChargeAppoointmentSts()) {
+        if (!getIhuChargeAppoointmentSts()
+            .equals(other.getIhuChargeAppoointmentSts())) return false;
+      }
+      if (hasTboxChargeAppoointmentSet() != other.hasTboxChargeAppoointmentSet()) return false;
+      if (hasTboxChargeAppoointmentSet()) {
+        if (!getTboxChargeAppoointmentSet()
+            .equals(other.getTboxChargeAppoointmentSet())) return false;
+      }
+      if (hasTboxChargectrl() != other.hasTboxChargectrl()) return false;
+      if (hasTboxChargectrl()) {
+        if (!getTboxChargectrl()
+            .equals(other.getTboxChargectrl())) return false;
+      }
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + MESSAGE_TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + messageType_;
+      hash = (37 * hash) + SIGNAL_TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + signalType_;
+      hash = (37 * hash) + SIGNAL_POWER_FIELD_NUMBER;
+      hash = (53 * hash) + getSignalPower();
+      if (hasTboxNetworkCtrl()) {
+        hash = (37 * hash) + TBOX_NETWORK_CTRL_FIELD_NUMBER;
+        hash = (53 * hash) + getTboxNetworkCtrl().hashCode();
+      }
+      if (hasTboxInfo()) {
+        hash = (37 * hash) + TBOX_INFO_FIELD_NUMBER;
+        hash = (53 * hash) + getTboxInfo().hashCode();
+      }
+      if (hasTboxGpsCtrl()) {
+        hash = (37 * hash) + TBOX_GPS_CTRL_FIELD_NUMBER;
+        hash = (53 * hash) + getTboxGpsCtrl().hashCode();
+      }
+      if (hasTboxGpsinfo()) {
+        hash = (37 * hash) + TBOX_GPSINFO_FIELD_NUMBER;
+        hash = (53 * hash) + getTboxGpsinfo().hashCode();
+      }
+      if (hasTboxActivestate()) {
+        hash = (37 * hash) + TBOX_ACTIVESTATE_FIELD_NUMBER;
+        hash = (53 * hash) + getTboxActivestate().hashCode();
+      }
+      if (hasTboxRemotedaignose()) {
+        hash = (37 * hash) + TBOX_REMOTEDAIGNOSE_FIELD_NUMBER;
+        hash = (53 * hash) + getTboxRemotedaignose().hashCode();
+      }
+      if (hasMsgResult()) {
+        hash = (37 * hash) + MSG_RESULT_FIELD_NUMBER;
+        hash = (53 * hash) + getMsgResult().hashCode();
+      }
+      if (hasIhuLogfile()) {
+        hash = (37 * hash) + IHU_LOGFILE_FIELD_NUMBER;
+        hash = (53 * hash) + getIhuLogfile().hashCode();
+      }
+      if (hasIhuChargeAppoointmentSts()) {
+        hash = (37 * hash) + IHU_CHARGE_APPOOINTMENTSTS_FIELD_NUMBER;
+        hash = (53 * hash) + getIhuChargeAppoointmentSts().hashCode();
+      }
+      if (hasTboxChargeAppoointmentSet()) {
+        hash = (37 * hash) + TBOX_CHARGE_APPOOINTMENTSET_FIELD_NUMBER;
+        hash = (53 * hash) + getTboxChargeAppoointmentSet().hashCode();
+      }
+      if (hasTboxChargectrl()) {
+        hash = (37 * hash) + TBOX_CHARGECTRL_FIELD_NUMBER;
+        hash = (53 * hash) + getTboxChargectrl().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
     }
 
     public static TopMessage parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static TopMessage parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static TopMessage parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static TopMessage parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static TopMessage parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
+      return PARSER.parseFrom(data);
     }
     public static TopMessage parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static TopMessage parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static TopMessage parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static TopMessage parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
     }
     public static TopMessage parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static TopMessage parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
     }
     public static TopMessage parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
+    @Override
+    public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
-      return (Builder) DEFAULT_INSTANCE.createBuilder();
+      return DEFAULT_INSTANCE.toBuilder();
     }
     public static Builder newBuilder(TopMessage prototype) {
-      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
     }
 
+    @Override
+    protected Builder newBuilderForType(
+        BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
     /**
      * Protobuf type {@code TopMessage}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          TopMessage, Builder> implements
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:TopMessage)
         TopMessageOrBuilder {
-      // Construct using com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.TopMessage.newBuilder()
-      private Builder() {
-        super(DEFAULT_INSTANCE);
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return IVITboxProto.internal_static_TopMessage_descriptor;
       }
 
+      @Override
+      protected FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return IVITboxProto.internal_static_TopMessage_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                TopMessage.class, Builder.class);
+      }
 
+      // Construct using com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.TopMessage.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @Override
+      public Builder clear() {
+        super.clear();
+        messageType_ = 0;
+
+        signalType_ = 0;
+
+        signalPower_ = 0;
+
+        if (tboxNetworkCtrlBuilder_ == null) {
+          tboxNetworkCtrl_ = null;
+        } else {
+          tboxNetworkCtrl_ = null;
+          tboxNetworkCtrlBuilder_ = null;
+        }
+        if (tboxInfoBuilder_ == null) {
+          tboxInfo_ = null;
+        } else {
+          tboxInfo_ = null;
+          tboxInfoBuilder_ = null;
+        }
+        if (tboxGpsCtrlBuilder_ == null) {
+          tboxGpsCtrl_ = null;
+        } else {
+          tboxGpsCtrl_ = null;
+          tboxGpsCtrlBuilder_ = null;
+        }
+        if (tboxGpsinfoBuilder_ == null) {
+          tboxGpsinfo_ = null;
+        } else {
+          tboxGpsinfo_ = null;
+          tboxGpsinfoBuilder_ = null;
+        }
+        if (tboxActivestateBuilder_ == null) {
+          tboxActivestate_ = null;
+        } else {
+          tboxActivestate_ = null;
+          tboxActivestateBuilder_ = null;
+        }
+        if (tboxRemotedaignoseBuilder_ == null) {
+          tboxRemotedaignose_ = null;
+        } else {
+          tboxRemotedaignose_ = null;
+          tboxRemotedaignoseBuilder_ = null;
+        }
+        if (msgResultBuilder_ == null) {
+          msgResult_ = null;
+        } else {
+          msgResult_ = null;
+          msgResultBuilder_ = null;
+        }
+        if (ihuLogfileBuilder_ == null) {
+          ihuLogfile_ = null;
+        } else {
+          ihuLogfile_ = null;
+          ihuLogfileBuilder_ = null;
+        }
+        if (ihuChargeAppoointmentStsBuilder_ == null) {
+          ihuChargeAppoointmentSts_ = null;
+        } else {
+          ihuChargeAppoointmentSts_ = null;
+          ihuChargeAppoointmentStsBuilder_ = null;
+        }
+        if (tboxChargeAppoointmentSetBuilder_ == null) {
+          tboxChargeAppoointmentSet_ = null;
+        } else {
+          tboxChargeAppoointmentSet_ = null;
+          tboxChargeAppoointmentSetBuilder_ = null;
+        }
+        if (tboxChargectrlBuilder_ == null) {
+          tboxChargectrl_ = null;
+        } else {
+          tboxChargectrl_ = null;
+          tboxChargectrlBuilder_ = null;
+        }
+        return this;
+      }
+
+      @Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return IVITboxProto.internal_static_TopMessage_descriptor;
+      }
+
+      @Override
+      public TopMessage getDefaultInstanceForType() {
+        return TopMessage.getDefaultInstance();
+      }
+
+      @Override
+      public TopMessage build() {
+        TopMessage result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @Override
+      public TopMessage buildPartial() {
+        TopMessage result = new TopMessage(this);
+        result.messageType_ = messageType_;
+        result.signalType_ = signalType_;
+        result.signalPower_ = signalPower_;
+        if (tboxNetworkCtrlBuilder_ == null) {
+          result.tboxNetworkCtrl_ = tboxNetworkCtrl_;
+        } else {
+          result.tboxNetworkCtrl_ = tboxNetworkCtrlBuilder_.build();
+        }
+        if (tboxInfoBuilder_ == null) {
+          result.tboxInfo_ = tboxInfo_;
+        } else {
+          result.tboxInfo_ = tboxInfoBuilder_.build();
+        }
+        if (tboxGpsCtrlBuilder_ == null) {
+          result.tboxGpsCtrl_ = tboxGpsCtrl_;
+        } else {
+          result.tboxGpsCtrl_ = tboxGpsCtrlBuilder_.build();
+        }
+        if (tboxGpsinfoBuilder_ == null) {
+          result.tboxGpsinfo_ = tboxGpsinfo_;
+        } else {
+          result.tboxGpsinfo_ = tboxGpsinfoBuilder_.build();
+        }
+        if (tboxActivestateBuilder_ == null) {
+          result.tboxActivestate_ = tboxActivestate_;
+        } else {
+          result.tboxActivestate_ = tboxActivestateBuilder_.build();
+        }
+        if (tboxRemotedaignoseBuilder_ == null) {
+          result.tboxRemotedaignose_ = tboxRemotedaignose_;
+        } else {
+          result.tboxRemotedaignose_ = tboxRemotedaignoseBuilder_.build();
+        }
+        if (msgResultBuilder_ == null) {
+          result.msgResult_ = msgResult_;
+        } else {
+          result.msgResult_ = msgResultBuilder_.build();
+        }
+        if (ihuLogfileBuilder_ == null) {
+          result.ihuLogfile_ = ihuLogfile_;
+        } else {
+          result.ihuLogfile_ = ihuLogfileBuilder_.build();
+        }
+        if (ihuChargeAppoointmentStsBuilder_ == null) {
+          result.ihuChargeAppoointmentSts_ = ihuChargeAppoointmentSts_;
+        } else {
+          result.ihuChargeAppoointmentSts_ = ihuChargeAppoointmentStsBuilder_.build();
+        }
+        if (tboxChargeAppoointmentSetBuilder_ == null) {
+          result.tboxChargeAppoointmentSet_ = tboxChargeAppoointmentSet_;
+        } else {
+          result.tboxChargeAppoointmentSet_ = tboxChargeAppoointmentSetBuilder_.build();
+        }
+        if (tboxChargectrlBuilder_ == null) {
+          result.tboxChargectrl_ = tboxChargectrl_;
+        } else {
+          result.tboxChargectrl_ = tboxChargectrlBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return super.setField(field, value);
+      }
+      @Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof TopMessage) {
+          return mergeFrom((TopMessage)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(TopMessage other) {
+        if (other == TopMessage.getDefaultInstance()) return this;
+        if (other.messageType_ != 0) {
+          setMessageTypeValue(other.getMessageTypeValue());
+        }
+        if (other.signalType_ != 0) {
+          setSignalTypeValue(other.getSignalTypeValue());
+        }
+        if (other.getSignalPower() != 0) {
+          setSignalPower(other.getSignalPower());
+        }
+        if (other.hasTboxNetworkCtrl()) {
+          mergeTboxNetworkCtrl(other.getTboxNetworkCtrl());
+        }
+        if (other.hasTboxInfo()) {
+          mergeTboxInfo(other.getTboxInfo());
+        }
+        if (other.hasTboxGpsCtrl()) {
+          mergeTboxGpsCtrl(other.getTboxGpsCtrl());
+        }
+        if (other.hasTboxGpsinfo()) {
+          mergeTboxGpsinfo(other.getTboxGpsinfo());
+        }
+        if (other.hasTboxActivestate()) {
+          mergeTboxActivestate(other.getTboxActivestate());
+        }
+        if (other.hasTboxRemotedaignose()) {
+          mergeTboxRemotedaignose(other.getTboxRemotedaignose());
+        }
+        if (other.hasMsgResult()) {
+          mergeMsgResult(other.getMsgResult());
+        }
+        if (other.hasIhuLogfile()) {
+          mergeIhuLogfile(other.getIhuLogfile());
+        }
+        if (other.hasIhuChargeAppoointmentSts()) {
+          mergeIhuChargeAppoointmentSts(other.getIhuChargeAppoointmentSts());
+        }
+        if (other.hasTboxChargeAppoointmentSet()) {
+          mergeTboxChargeAppoointmentSet(other.getTboxChargeAppoointmentSet());
+        }
+        if (other.hasTboxChargectrl()) {
+          mergeTboxChargectrl(other.getTboxChargectrl());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        TopMessage parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (TopMessage) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int messageType_ = 0;
       /**
        * <pre>
        *message type
@@ -7661,35 +11383,8 @@ public final class IVITboxProto {
        * <code>.Messagetype message_type = 1;</code>
        * @return The enum numeric value on the wire for messageType.
        */
-      @Override
       public int getMessageTypeValue() {
-        return instance.getMessageTypeValue();
-      }
-      /**
-       * <pre>
-       *message type
-       * </pre>
-       *
-       * <code>.Messagetype message_type = 1;</code>
-       * @param value The messageType to set.
-       * @return This builder for chaining.
-       */
-      public Builder setMessageTypeValue(int value) {
-        copyOnWrite();
-        instance.setMessageTypeValue(value);
-        return this;
-      }
-      /**
-       * <pre>
-       *message type
-       * </pre>
-       *
-       * <code>.Messagetype message_type = 1;</code>
-       * @return The messageType.
-       */
-      @Override
-      public Messagetype getMessageType() {
-        return instance.getMessageType();
+        return messageType_;
       }
       /**
        * <pre>
@@ -7700,9 +11395,40 @@ public final class IVITboxProto {
        * @param value The enum numeric value on the wire for messageType to set.
        * @return This builder for chaining.
        */
+      public Builder setMessageTypeValue(int value) {
+        messageType_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *message type
+       * </pre>
+       *
+       * <code>.Messagetype message_type = 1;</code>
+       * @return The messageType.
+       */
+      public Messagetype getMessageType() {
+        @SuppressWarnings("deprecation")
+        Messagetype result = Messagetype.valueOf(messageType_);
+        return result == null ? Messagetype.UNRECOGNIZED : result;
+      }
+      /**
+       * <pre>
+       *message type
+       * </pre>
+       *
+       * <code>.Messagetype message_type = 1;</code>
+       * @param value The messageType to set.
+       * @return This builder for chaining.
+       */
       public Builder setMessageType(Messagetype value) {
-        copyOnWrite();
-        instance.setMessageType(value);
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        messageType_ = value.getNumber();
+        onChanged();
         return this;
       }
       /**
@@ -7714,11 +11440,13 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearMessageType() {
-        copyOnWrite();
-        instance.clearMessageType();
+        
+        messageType_ = 0;
+        onChanged();
         return this;
       }
 
+      private int signalType_ = 0;
       /**
        * <pre>
        *current signal type
@@ -7727,35 +11455,8 @@ public final class IVITboxProto {
        * <code>.SignalType signal_type = 2;</code>
        * @return The enum numeric value on the wire for signalType.
        */
-      @Override
       public int getSignalTypeValue() {
-        return instance.getSignalTypeValue();
-      }
-      /**
-       * <pre>
-       *current signal type
-       * </pre>
-       *
-       * <code>.SignalType signal_type = 2;</code>
-       * @param value The signalType to set.
-       * @return This builder for chaining.
-       */
-      public Builder setSignalTypeValue(int value) {
-        copyOnWrite();
-        instance.setSignalTypeValue(value);
-        return this;
-      }
-      /**
-       * <pre>
-       *current signal type
-       * </pre>
-       *
-       * <code>.SignalType signal_type = 2;</code>
-       * @return The signalType.
-       */
-      @Override
-      public SignalType getSignalType() {
-        return instance.getSignalType();
+        return signalType_;
       }
       /**
        * <pre>
@@ -7766,9 +11467,40 @@ public final class IVITboxProto {
        * @param value The enum numeric value on the wire for signalType to set.
        * @return This builder for chaining.
        */
+      public Builder setSignalTypeValue(int value) {
+        signalType_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *current signal type
+       * </pre>
+       *
+       * <code>.SignalType signal_type = 2;</code>
+       * @return The signalType.
+       */
+      public SignalType getSignalType() {
+        @SuppressWarnings("deprecation")
+        SignalType result = SignalType.valueOf(signalType_);
+        return result == null ? SignalType.UNRECOGNIZED : result;
+      }
+      /**
+       * <pre>
+       *current signal type
+       * </pre>
+       *
+       * <code>.SignalType signal_type = 2;</code>
+       * @param value The signalType to set.
+       * @return This builder for chaining.
+       */
       public Builder setSignalType(SignalType value) {
-        copyOnWrite();
-        instance.setSignalType(value);
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        signalType_ = value.getNumber();
+        onChanged();
         return this;
       }
       /**
@@ -7780,11 +11512,13 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearSignalType() {
-        copyOnWrite();
-        instance.clearSignalType();
+        
+        signalType_ = 0;
+        onChanged();
         return this;
       }
 
+      private int signalPower_ ;
       /**
        * <pre>
        *current signal strength, 0-5, 0 means no signal, 5 means strong strength
@@ -7793,9 +11527,8 @@ public final class IVITboxProto {
        * <code>int32 signal_power = 3;</code>
        * @return The signalPower.
        */
-      @Override
       public int getSignalPower() {
-        return instance.getSignalPower();
+        return signalPower_;
       }
       /**
        * <pre>
@@ -7807,8 +11540,9 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder setSignalPower(int value) {
-        copyOnWrite();
-        instance.setSignalPower(value);
+        
+        signalPower_ = value;
+        onChanged();
         return this;
       }
       /**
@@ -7820,618 +11554,1589 @@ public final class IVITboxProto {
        * @return This builder for chaining.
        */
       public Builder clearSignalPower() {
-        copyOnWrite();
-        instance.clearSignalPower();
+        
+        signalPower_ = 0;
+        onChanged();
         return this;
       }
 
+      private TboxNetworkCtrl tboxNetworkCtrl_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          TboxNetworkCtrl, TboxNetworkCtrl.Builder, TboxNetworkCtrlOrBuilder> tboxNetworkCtrlBuilder_;
       /**
        * <code>.TboxNetworkCtrl tbox_network_ctrl = 4;</code>
+       * @return Whether the tboxNetworkCtrl field is set.
        */
-      @Override
       public boolean hasTboxNetworkCtrl() {
-        return instance.hasTboxNetworkCtrl();
+        return tboxNetworkCtrlBuilder_ != null || tboxNetworkCtrl_ != null;
       }
       /**
        * <code>.TboxNetworkCtrl tbox_network_ctrl = 4;</code>
+       * @return The tboxNetworkCtrl.
        */
-      @Override
       public TboxNetworkCtrl getTboxNetworkCtrl() {
-        return instance.getTboxNetworkCtrl();
+        if (tboxNetworkCtrlBuilder_ == null) {
+          return tboxNetworkCtrl_ == null ? TboxNetworkCtrl.getDefaultInstance() : tboxNetworkCtrl_;
+        } else {
+          return tboxNetworkCtrlBuilder_.getMessage();
+        }
       }
       /**
        * <code>.TboxNetworkCtrl tbox_network_ctrl = 4;</code>
        */
       public Builder setTboxNetworkCtrl(TboxNetworkCtrl value) {
-        copyOnWrite();
-        instance.setTboxNetworkCtrl(value);
-        return this;
+        if (tboxNetworkCtrlBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          tboxNetworkCtrl_ = value;
+          onChanged();
+        } else {
+          tboxNetworkCtrlBuilder_.setMessage(value);
         }
+
+        return this;
+      }
       /**
        * <code>.TboxNetworkCtrl tbox_network_ctrl = 4;</code>
        */
       public Builder setTboxNetworkCtrl(
           TboxNetworkCtrl.Builder builderForValue) {
-        copyOnWrite();
-        instance.setTboxNetworkCtrl(builderForValue.build());
+        if (tboxNetworkCtrlBuilder_ == null) {
+          tboxNetworkCtrl_ = builderForValue.build();
+          onChanged();
+        } else {
+          tboxNetworkCtrlBuilder_.setMessage(builderForValue.build());
+        }
+
         return this;
       }
       /**
        * <code>.TboxNetworkCtrl tbox_network_ctrl = 4;</code>
        */
       public Builder mergeTboxNetworkCtrl(TboxNetworkCtrl value) {
-        copyOnWrite();
-        instance.mergeTboxNetworkCtrl(value);
+        if (tboxNetworkCtrlBuilder_ == null) {
+          if (tboxNetworkCtrl_ != null) {
+            tboxNetworkCtrl_ =
+              TboxNetworkCtrl.newBuilder(tboxNetworkCtrl_).mergeFrom(value).buildPartial();
+          } else {
+            tboxNetworkCtrl_ = value;
+          }
+          onChanged();
+        } else {
+          tboxNetworkCtrlBuilder_.mergeFrom(value);
+        }
+
         return this;
       }
       /**
        * <code>.TboxNetworkCtrl tbox_network_ctrl = 4;</code>
        */
-      public Builder clearTboxNetworkCtrl() {  copyOnWrite();
-        instance.clearTboxNetworkCtrl();
+      public Builder clearTboxNetworkCtrl() {
+        if (tboxNetworkCtrlBuilder_ == null) {
+          tboxNetworkCtrl_ = null;
+          onChanged();
+        } else {
+          tboxNetworkCtrl_ = null;
+          tboxNetworkCtrlBuilder_ = null;
+        }
+
         return this;
       }
+      /**
+       * <code>.TboxNetworkCtrl tbox_network_ctrl = 4;</code>
+       */
+      public TboxNetworkCtrl.Builder getTboxNetworkCtrlBuilder() {
+        
+        onChanged();
+        return getTboxNetworkCtrlFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.TboxNetworkCtrl tbox_network_ctrl = 4;</code>
+       */
+      public TboxNetworkCtrlOrBuilder getTboxNetworkCtrlOrBuilder() {
+        if (tboxNetworkCtrlBuilder_ != null) {
+          return tboxNetworkCtrlBuilder_.getMessageOrBuilder();
+        } else {
+          return tboxNetworkCtrl_ == null ?
+              TboxNetworkCtrl.getDefaultInstance() : tboxNetworkCtrl_;
+        }
+      }
+      /**
+       * <code>.TboxNetworkCtrl tbox_network_ctrl = 4;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          TboxNetworkCtrl, TboxNetworkCtrl.Builder, TboxNetworkCtrlOrBuilder>
+          getTboxNetworkCtrlFieldBuilder() {
+        if (tboxNetworkCtrlBuilder_ == null) {
+          tboxNetworkCtrlBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              TboxNetworkCtrl, TboxNetworkCtrl.Builder, TboxNetworkCtrlOrBuilder>(
+                  getTboxNetworkCtrl(),
+                  getParentForChildren(),
+                  isClean());
+          tboxNetworkCtrl_ = null;
+        }
+        return tboxNetworkCtrlBuilder_;
+      }
 
+      private TboxInfo tboxInfo_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          TboxInfo, TboxInfo.Builder, TboxInfoOrBuilder> tboxInfoBuilder_;
       /**
        * <code>.TboxInfo tbox_info = 5;</code>
+       * @return Whether the tboxInfo field is set.
        */
-      @Override
       public boolean hasTboxInfo() {
-        return instance.hasTboxInfo();
+        return tboxInfoBuilder_ != null || tboxInfo_ != null;
       }
       /**
        * <code>.TboxInfo tbox_info = 5;</code>
+       * @return The tboxInfo.
        */
-      @Override
       public TboxInfo getTboxInfo() {
-        return instance.getTboxInfo();
+        if (tboxInfoBuilder_ == null) {
+          return tboxInfo_ == null ? TboxInfo.getDefaultInstance() : tboxInfo_;
+        } else {
+          return tboxInfoBuilder_.getMessage();
+        }
       }
       /**
        * <code>.TboxInfo tbox_info = 5;</code>
        */
       public Builder setTboxInfo(TboxInfo value) {
-        copyOnWrite();
-        instance.setTboxInfo(value);
-        return this;
+        if (tboxInfoBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          tboxInfo_ = value;
+          onChanged();
+        } else {
+          tboxInfoBuilder_.setMessage(value);
         }
+
+        return this;
+      }
       /**
        * <code>.TboxInfo tbox_info = 5;</code>
        */
       public Builder setTboxInfo(
           TboxInfo.Builder builderForValue) {
-        copyOnWrite();
-        instance.setTboxInfo(builderForValue.build());
+        if (tboxInfoBuilder_ == null) {
+          tboxInfo_ = builderForValue.build();
+          onChanged();
+        } else {
+          tboxInfoBuilder_.setMessage(builderForValue.build());
+        }
+
         return this;
       }
       /**
        * <code>.TboxInfo tbox_info = 5;</code>
        */
       public Builder mergeTboxInfo(TboxInfo value) {
-        copyOnWrite();
-        instance.mergeTboxInfo(value);
+        if (tboxInfoBuilder_ == null) {
+          if (tboxInfo_ != null) {
+            tboxInfo_ =
+              TboxInfo.newBuilder(tboxInfo_).mergeFrom(value).buildPartial();
+          } else {
+            tboxInfo_ = value;
+          }
+          onChanged();
+        } else {
+          tboxInfoBuilder_.mergeFrom(value);
+        }
+
         return this;
       }
       /**
        * <code>.TboxInfo tbox_info = 5;</code>
        */
-      public Builder clearTboxInfo() {  copyOnWrite();
-        instance.clearTboxInfo();
+      public Builder clearTboxInfo() {
+        if (tboxInfoBuilder_ == null) {
+          tboxInfo_ = null;
+          onChanged();
+        } else {
+          tboxInfo_ = null;
+          tboxInfoBuilder_ = null;
+        }
+
         return this;
       }
+      /**
+       * <code>.TboxInfo tbox_info = 5;</code>
+       */
+      public TboxInfo.Builder getTboxInfoBuilder() {
+        
+        onChanged();
+        return getTboxInfoFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.TboxInfo tbox_info = 5;</code>
+       */
+      public TboxInfoOrBuilder getTboxInfoOrBuilder() {
+        if (tboxInfoBuilder_ != null) {
+          return tboxInfoBuilder_.getMessageOrBuilder();
+        } else {
+          return tboxInfo_ == null ?
+              TboxInfo.getDefaultInstance() : tboxInfo_;
+        }
+      }
+      /**
+       * <code>.TboxInfo tbox_info = 5;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          TboxInfo, TboxInfo.Builder, TboxInfoOrBuilder>
+          getTboxInfoFieldBuilder() {
+        if (tboxInfoBuilder_ == null) {
+          tboxInfoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              TboxInfo, TboxInfo.Builder, TboxInfoOrBuilder>(
+                  getTboxInfo(),
+                  getParentForChildren(),
+                  isClean());
+          tboxInfo_ = null;
+        }
+        return tboxInfoBuilder_;
+      }
 
+      private TboxGPSCmd tboxGpsCtrl_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          TboxGPSCmd, TboxGPSCmd.Builder, TboxGPSCmdOrBuilder> tboxGpsCtrlBuilder_;
       /**
        * <code>.TboxGPSCmd tbox_gps_ctrl = 6;</code>
+       * @return Whether the tboxGpsCtrl field is set.
        */
-      @Override
       public boolean hasTboxGpsCtrl() {
-        return instance.hasTboxGpsCtrl();
+        return tboxGpsCtrlBuilder_ != null || tboxGpsCtrl_ != null;
       }
       /**
        * <code>.TboxGPSCmd tbox_gps_ctrl = 6;</code>
+       * @return The tboxGpsCtrl.
        */
-      @Override
       public TboxGPSCmd getTboxGpsCtrl() {
-        return instance.getTboxGpsCtrl();
+        if (tboxGpsCtrlBuilder_ == null) {
+          return tboxGpsCtrl_ == null ? TboxGPSCmd.getDefaultInstance() : tboxGpsCtrl_;
+        } else {
+          return tboxGpsCtrlBuilder_.getMessage();
+        }
       }
       /**
        * <code>.TboxGPSCmd tbox_gps_ctrl = 6;</code>
        */
       public Builder setTboxGpsCtrl(TboxGPSCmd value) {
-        copyOnWrite();
-        instance.setTboxGpsCtrl(value);
-        return this;
+        if (tboxGpsCtrlBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          tboxGpsCtrl_ = value;
+          onChanged();
+        } else {
+          tboxGpsCtrlBuilder_.setMessage(value);
         }
+
+        return this;
+      }
       /**
        * <code>.TboxGPSCmd tbox_gps_ctrl = 6;</code>
        */
       public Builder setTboxGpsCtrl(
           TboxGPSCmd.Builder builderForValue) {
-        copyOnWrite();
-        instance.setTboxGpsCtrl(builderForValue.build());
+        if (tboxGpsCtrlBuilder_ == null) {
+          tboxGpsCtrl_ = builderForValue.build();
+          onChanged();
+        } else {
+          tboxGpsCtrlBuilder_.setMessage(builderForValue.build());
+        }
+
         return this;
       }
       /**
        * <code>.TboxGPSCmd tbox_gps_ctrl = 6;</code>
        */
       public Builder mergeTboxGpsCtrl(TboxGPSCmd value) {
-        copyOnWrite();
-        instance.mergeTboxGpsCtrl(value);
+        if (tboxGpsCtrlBuilder_ == null) {
+          if (tboxGpsCtrl_ != null) {
+            tboxGpsCtrl_ =
+              TboxGPSCmd.newBuilder(tboxGpsCtrl_).mergeFrom(value).buildPartial();
+          } else {
+            tboxGpsCtrl_ = value;
+          }
+          onChanged();
+        } else {
+          tboxGpsCtrlBuilder_.mergeFrom(value);
+        }
+
         return this;
       }
       /**
        * <code>.TboxGPSCmd tbox_gps_ctrl = 6;</code>
        */
-      public Builder clearTboxGpsCtrl() {  copyOnWrite();
-        instance.clearTboxGpsCtrl();
+      public Builder clearTboxGpsCtrl() {
+        if (tboxGpsCtrlBuilder_ == null) {
+          tboxGpsCtrl_ = null;
+          onChanged();
+        } else {
+          tboxGpsCtrl_ = null;
+          tboxGpsCtrlBuilder_ = null;
+        }
+
         return this;
       }
+      /**
+       * <code>.TboxGPSCmd tbox_gps_ctrl = 6;</code>
+       */
+      public TboxGPSCmd.Builder getTboxGpsCtrlBuilder() {
+        
+        onChanged();
+        return getTboxGpsCtrlFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.TboxGPSCmd tbox_gps_ctrl = 6;</code>
+       */
+      public TboxGPSCmdOrBuilder getTboxGpsCtrlOrBuilder() {
+        if (tboxGpsCtrlBuilder_ != null) {
+          return tboxGpsCtrlBuilder_.getMessageOrBuilder();
+        } else {
+          return tboxGpsCtrl_ == null ?
+              TboxGPSCmd.getDefaultInstance() : tboxGpsCtrl_;
+        }
+      }
+      /**
+       * <code>.TboxGPSCmd tbox_gps_ctrl = 6;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          TboxGPSCmd, TboxGPSCmd.Builder, TboxGPSCmdOrBuilder>
+          getTboxGpsCtrlFieldBuilder() {
+        if (tboxGpsCtrlBuilder_ == null) {
+          tboxGpsCtrlBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              TboxGPSCmd, TboxGPSCmd.Builder, TboxGPSCmdOrBuilder>(
+                  getTboxGpsCtrl(),
+                  getParentForChildren(),
+                  isClean());
+          tboxGpsCtrl_ = null;
+        }
+        return tboxGpsCtrlBuilder_;
+      }
 
+      private TboxGPSInfo tboxGpsinfo_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          TboxGPSInfo, TboxGPSInfo.Builder, TboxGPSInfoOrBuilder> tboxGpsinfoBuilder_;
       /**
        * <code>.TboxGPSInfo tbox_gpsinfo = 7;</code>
+       * @return Whether the tboxGpsinfo field is set.
        */
-      @Override
       public boolean hasTboxGpsinfo() {
-        return instance.hasTboxGpsinfo();
+        return tboxGpsinfoBuilder_ != null || tboxGpsinfo_ != null;
       }
       /**
        * <code>.TboxGPSInfo tbox_gpsinfo = 7;</code>
+       * @return The tboxGpsinfo.
        */
-      @Override
       public TboxGPSInfo getTboxGpsinfo() {
-        return instance.getTboxGpsinfo();
+        if (tboxGpsinfoBuilder_ == null) {
+          return tboxGpsinfo_ == null ? TboxGPSInfo.getDefaultInstance() : tboxGpsinfo_;
+        } else {
+          return tboxGpsinfoBuilder_.getMessage();
+        }
       }
       /**
        * <code>.TboxGPSInfo tbox_gpsinfo = 7;</code>
        */
       public Builder setTboxGpsinfo(TboxGPSInfo value) {
-        copyOnWrite();
-        instance.setTboxGpsinfo(value);
-        return this;
+        if (tboxGpsinfoBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          tboxGpsinfo_ = value;
+          onChanged();
+        } else {
+          tboxGpsinfoBuilder_.setMessage(value);
         }
+
+        return this;
+      }
       /**
        * <code>.TboxGPSInfo tbox_gpsinfo = 7;</code>
        */
       public Builder setTboxGpsinfo(
           TboxGPSInfo.Builder builderForValue) {
-        copyOnWrite();
-        instance.setTboxGpsinfo(builderForValue.build());
+        if (tboxGpsinfoBuilder_ == null) {
+          tboxGpsinfo_ = builderForValue.build();
+          onChanged();
+        } else {
+          tboxGpsinfoBuilder_.setMessage(builderForValue.build());
+        }
+
         return this;
       }
       /**
        * <code>.TboxGPSInfo tbox_gpsinfo = 7;</code>
        */
       public Builder mergeTboxGpsinfo(TboxGPSInfo value) {
-        copyOnWrite();
-        instance.mergeTboxGpsinfo(value);
+        if (tboxGpsinfoBuilder_ == null) {
+          if (tboxGpsinfo_ != null) {
+            tboxGpsinfo_ =
+              TboxGPSInfo.newBuilder(tboxGpsinfo_).mergeFrom(value).buildPartial();
+          } else {
+            tboxGpsinfo_ = value;
+          }
+          onChanged();
+        } else {
+          tboxGpsinfoBuilder_.mergeFrom(value);
+        }
+
         return this;
       }
       /**
        * <code>.TboxGPSInfo tbox_gpsinfo = 7;</code>
        */
-      public Builder clearTboxGpsinfo() {  copyOnWrite();
-        instance.clearTboxGpsinfo();
+      public Builder clearTboxGpsinfo() {
+        if (tboxGpsinfoBuilder_ == null) {
+          tboxGpsinfo_ = null;
+          onChanged();
+        } else {
+          tboxGpsinfo_ = null;
+          tboxGpsinfoBuilder_ = null;
+        }
+
         return this;
       }
+      /**
+       * <code>.TboxGPSInfo tbox_gpsinfo = 7;</code>
+       */
+      public TboxGPSInfo.Builder getTboxGpsinfoBuilder() {
+        
+        onChanged();
+        return getTboxGpsinfoFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.TboxGPSInfo tbox_gpsinfo = 7;</code>
+       */
+      public TboxGPSInfoOrBuilder getTboxGpsinfoOrBuilder() {
+        if (tboxGpsinfoBuilder_ != null) {
+          return tboxGpsinfoBuilder_.getMessageOrBuilder();
+        } else {
+          return tboxGpsinfo_ == null ?
+              TboxGPSInfo.getDefaultInstance() : tboxGpsinfo_;
+        }
+      }
+      /**
+       * <code>.TboxGPSInfo tbox_gpsinfo = 7;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          TboxGPSInfo, TboxGPSInfo.Builder, TboxGPSInfoOrBuilder>
+          getTboxGpsinfoFieldBuilder() {
+        if (tboxGpsinfoBuilder_ == null) {
+          tboxGpsinfoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              TboxGPSInfo, TboxGPSInfo.Builder, TboxGPSInfoOrBuilder>(
+                  getTboxGpsinfo(),
+                  getParentForChildren(),
+                  isClean());
+          tboxGpsinfo_ = null;
+        }
+        return tboxGpsinfoBuilder_;
+      }
 
+      private TboxActiveState tboxActivestate_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          TboxActiveState, TboxActiveState.Builder, TboxActiveStateOrBuilder> tboxActivestateBuilder_;
       /**
        * <code>.TboxActiveState tbox_activestate = 8;</code>
+       * @return Whether the tboxActivestate field is set.
        */
-      @Override
       public boolean hasTboxActivestate() {
-        return instance.hasTboxActivestate();
+        return tboxActivestateBuilder_ != null || tboxActivestate_ != null;
       }
       /**
        * <code>.TboxActiveState tbox_activestate = 8;</code>
+       * @return The tboxActivestate.
        */
-      @Override
       public TboxActiveState getTboxActivestate() {
-        return instance.getTboxActivestate();
+        if (tboxActivestateBuilder_ == null) {
+          return tboxActivestate_ == null ? TboxActiveState.getDefaultInstance() : tboxActivestate_;
+        } else {
+          return tboxActivestateBuilder_.getMessage();
+        }
       }
       /**
        * <code>.TboxActiveState tbox_activestate = 8;</code>
        */
       public Builder setTboxActivestate(TboxActiveState value) {
-        copyOnWrite();
-        instance.setTboxActivestate(value);
-        return this;
+        if (tboxActivestateBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          tboxActivestate_ = value;
+          onChanged();
+        } else {
+          tboxActivestateBuilder_.setMessage(value);
         }
+
+        return this;
+      }
       /**
        * <code>.TboxActiveState tbox_activestate = 8;</code>
        */
       public Builder setTboxActivestate(
           TboxActiveState.Builder builderForValue) {
-        copyOnWrite();
-        instance.setTboxActivestate(builderForValue.build());
+        if (tboxActivestateBuilder_ == null) {
+          tboxActivestate_ = builderForValue.build();
+          onChanged();
+        } else {
+          tboxActivestateBuilder_.setMessage(builderForValue.build());
+        }
+
         return this;
       }
       /**
        * <code>.TboxActiveState tbox_activestate = 8;</code>
        */
       public Builder mergeTboxActivestate(TboxActiveState value) {
-        copyOnWrite();
-        instance.mergeTboxActivestate(value);
+        if (tboxActivestateBuilder_ == null) {
+          if (tboxActivestate_ != null) {
+            tboxActivestate_ =
+              TboxActiveState.newBuilder(tboxActivestate_).mergeFrom(value).buildPartial();
+          } else {
+            tboxActivestate_ = value;
+          }
+          onChanged();
+        } else {
+          tboxActivestateBuilder_.mergeFrom(value);
+        }
+
         return this;
       }
       /**
        * <code>.TboxActiveState tbox_activestate = 8;</code>
        */
-      public Builder clearTboxActivestate() {  copyOnWrite();
-        instance.clearTboxActivestate();
+      public Builder clearTboxActivestate() {
+        if (tboxActivestateBuilder_ == null) {
+          tboxActivestate_ = null;
+          onChanged();
+        } else {
+          tboxActivestate_ = null;
+          tboxActivestateBuilder_ = null;
+        }
+
         return this;
       }
+      /**
+       * <code>.TboxActiveState tbox_activestate = 8;</code>
+       */
+      public TboxActiveState.Builder getTboxActivestateBuilder() {
+        
+        onChanged();
+        return getTboxActivestateFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.TboxActiveState tbox_activestate = 8;</code>
+       */
+      public TboxActiveStateOrBuilder getTboxActivestateOrBuilder() {
+        if (tboxActivestateBuilder_ != null) {
+          return tboxActivestateBuilder_.getMessageOrBuilder();
+        } else {
+          return tboxActivestate_ == null ?
+              TboxActiveState.getDefaultInstance() : tboxActivestate_;
+        }
+      }
+      /**
+       * <code>.TboxActiveState tbox_activestate = 8;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          TboxActiveState, TboxActiveState.Builder, TboxActiveStateOrBuilder>
+          getTboxActivestateFieldBuilder() {
+        if (tboxActivestateBuilder_ == null) {
+          tboxActivestateBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              TboxActiveState, TboxActiveState.Builder, TboxActiveStateOrBuilder>(
+                  getTboxActivestate(),
+                  getParentForChildren(),
+                  isClean());
+          tboxActivestate_ = null;
+        }
+        return tboxActivestateBuilder_;
+      }
 
+      private TboxRemoteDiagnose tboxRemotedaignose_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          TboxRemoteDiagnose, TboxRemoteDiagnose.Builder, TboxRemoteDiagnoseOrBuilder> tboxRemotedaignoseBuilder_;
       /**
        * <code>.TboxRemoteDiagnose tbox_remotedaignose = 9;</code>
+       * @return Whether the tboxRemotedaignose field is set.
        */
-      @Override
       public boolean hasTboxRemotedaignose() {
-        return instance.hasTboxRemotedaignose();
+        return tboxRemotedaignoseBuilder_ != null || tboxRemotedaignose_ != null;
       }
       /**
        * <code>.TboxRemoteDiagnose tbox_remotedaignose = 9;</code>
+       * @return The tboxRemotedaignose.
        */
-      @Override
       public TboxRemoteDiagnose getTboxRemotedaignose() {
-        return instance.getTboxRemotedaignose();
+        if (tboxRemotedaignoseBuilder_ == null) {
+          return tboxRemotedaignose_ == null ? TboxRemoteDiagnose.getDefaultInstance() : tboxRemotedaignose_;
+        } else {
+          return tboxRemotedaignoseBuilder_.getMessage();
+        }
       }
       /**
        * <code>.TboxRemoteDiagnose tbox_remotedaignose = 9;</code>
        */
       public Builder setTboxRemotedaignose(TboxRemoteDiagnose value) {
-        copyOnWrite();
-        instance.setTboxRemotedaignose(value);
-        return this;
+        if (tboxRemotedaignoseBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          tboxRemotedaignose_ = value;
+          onChanged();
+        } else {
+          tboxRemotedaignoseBuilder_.setMessage(value);
         }
+
+        return this;
+      }
       /**
        * <code>.TboxRemoteDiagnose tbox_remotedaignose = 9;</code>
        */
       public Builder setTboxRemotedaignose(
           TboxRemoteDiagnose.Builder builderForValue) {
-        copyOnWrite();
-        instance.setTboxRemotedaignose(builderForValue.build());
+        if (tboxRemotedaignoseBuilder_ == null) {
+          tboxRemotedaignose_ = builderForValue.build();
+          onChanged();
+        } else {
+          tboxRemotedaignoseBuilder_.setMessage(builderForValue.build());
+        }
+
         return this;
       }
       /**
        * <code>.TboxRemoteDiagnose tbox_remotedaignose = 9;</code>
        */
       public Builder mergeTboxRemotedaignose(TboxRemoteDiagnose value) {
-        copyOnWrite();
-        instance.mergeTboxRemotedaignose(value);
+        if (tboxRemotedaignoseBuilder_ == null) {
+          if (tboxRemotedaignose_ != null) {
+            tboxRemotedaignose_ =
+              TboxRemoteDiagnose.newBuilder(tboxRemotedaignose_).mergeFrom(value).buildPartial();
+          } else {
+            tboxRemotedaignose_ = value;
+          }
+          onChanged();
+        } else {
+          tboxRemotedaignoseBuilder_.mergeFrom(value);
+        }
+
         return this;
       }
       /**
        * <code>.TboxRemoteDiagnose tbox_remotedaignose = 9;</code>
        */
-      public Builder clearTboxRemotedaignose() {  copyOnWrite();
-        instance.clearTboxRemotedaignose();
+      public Builder clearTboxRemotedaignose() {
+        if (tboxRemotedaignoseBuilder_ == null) {
+          tboxRemotedaignose_ = null;
+          onChanged();
+        } else {
+          tboxRemotedaignose_ = null;
+          tboxRemotedaignoseBuilder_ = null;
+        }
+
         return this;
       }
+      /**
+       * <code>.TboxRemoteDiagnose tbox_remotedaignose = 9;</code>
+       */
+      public TboxRemoteDiagnose.Builder getTboxRemotedaignoseBuilder() {
+        
+        onChanged();
+        return getTboxRemotedaignoseFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.TboxRemoteDiagnose tbox_remotedaignose = 9;</code>
+       */
+      public TboxRemoteDiagnoseOrBuilder getTboxRemotedaignoseOrBuilder() {
+        if (tboxRemotedaignoseBuilder_ != null) {
+          return tboxRemotedaignoseBuilder_.getMessageOrBuilder();
+        } else {
+          return tboxRemotedaignose_ == null ?
+              TboxRemoteDiagnose.getDefaultInstance() : tboxRemotedaignose_;
+        }
+      }
+      /**
+       * <code>.TboxRemoteDiagnose tbox_remotedaignose = 9;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          TboxRemoteDiagnose, TboxRemoteDiagnose.Builder, TboxRemoteDiagnoseOrBuilder>
+          getTboxRemotedaignoseFieldBuilder() {
+        if (tboxRemotedaignoseBuilder_ == null) {
+          tboxRemotedaignoseBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              TboxRemoteDiagnose, TboxRemoteDiagnose.Builder, TboxRemoteDiagnoseOrBuilder>(
+                  getTboxRemotedaignose(),
+                  getParentForChildren(),
+                  isClean());
+          tboxRemotedaignose_ = null;
+        }
+        return tboxRemotedaignoseBuilder_;
+      }
 
+      private MsgResult msgResult_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          MsgResult, MsgResult.Builder, MsgResultOrBuilder> msgResultBuilder_;
       /**
        * <code>.MsgResult msg_result = 10;</code>
+       * @return Whether the msgResult field is set.
        */
-      @Override
       public boolean hasMsgResult() {
-        return instance.hasMsgResult();
+        return msgResultBuilder_ != null || msgResult_ != null;
       }
       /**
        * <code>.MsgResult msg_result = 10;</code>
+       * @return The msgResult.
        */
-      @Override
       public MsgResult getMsgResult() {
-        return instance.getMsgResult();
+        if (msgResultBuilder_ == null) {
+          return msgResult_ == null ? MsgResult.getDefaultInstance() : msgResult_;
+        } else {
+          return msgResultBuilder_.getMessage();
+        }
       }
       /**
        * <code>.MsgResult msg_result = 10;</code>
        */
       public Builder setMsgResult(MsgResult value) {
-        copyOnWrite();
-        instance.setMsgResult(value);
-        return this;
+        if (msgResultBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          msgResult_ = value;
+          onChanged();
+        } else {
+          msgResultBuilder_.setMessage(value);
         }
+
+        return this;
+      }
       /**
        * <code>.MsgResult msg_result = 10;</code>
        */
       public Builder setMsgResult(
           MsgResult.Builder builderForValue) {
-        copyOnWrite();
-        instance.setMsgResult(builderForValue.build());
+        if (msgResultBuilder_ == null) {
+          msgResult_ = builderForValue.build();
+          onChanged();
+        } else {
+          msgResultBuilder_.setMessage(builderForValue.build());
+        }
+
         return this;
       }
       /**
        * <code>.MsgResult msg_result = 10;</code>
        */
       public Builder mergeMsgResult(MsgResult value) {
-        copyOnWrite();
-        instance.mergeMsgResult(value);
+        if (msgResultBuilder_ == null) {
+          if (msgResult_ != null) {
+            msgResult_ =
+              MsgResult.newBuilder(msgResult_).mergeFrom(value).buildPartial();
+          } else {
+            msgResult_ = value;
+          }
+          onChanged();
+        } else {
+          msgResultBuilder_.mergeFrom(value);
+        }
+
         return this;
       }
       /**
        * <code>.MsgResult msg_result = 10;</code>
        */
-      public Builder clearMsgResult() {  copyOnWrite();
-        instance.clearMsgResult();
+      public Builder clearMsgResult() {
+        if (msgResultBuilder_ == null) {
+          msgResult_ = null;
+          onChanged();
+        } else {
+          msgResult_ = null;
+          msgResultBuilder_ = null;
+        }
+
         return this;
       }
+      /**
+       * <code>.MsgResult msg_result = 10;</code>
+       */
+      public MsgResult.Builder getMsgResultBuilder() {
+        
+        onChanged();
+        return getMsgResultFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.MsgResult msg_result = 10;</code>
+       */
+      public MsgResultOrBuilder getMsgResultOrBuilder() {
+        if (msgResultBuilder_ != null) {
+          return msgResultBuilder_.getMessageOrBuilder();
+        } else {
+          return msgResult_ == null ?
+              MsgResult.getDefaultInstance() : msgResult_;
+        }
+      }
+      /**
+       * <code>.MsgResult msg_result = 10;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          MsgResult, MsgResult.Builder, MsgResultOrBuilder>
+          getMsgResultFieldBuilder() {
+        if (msgResultBuilder_ == null) {
+          msgResultBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              MsgResult, MsgResult.Builder, MsgResultOrBuilder>(
+                  getMsgResult(),
+                  getParentForChildren(),
+                  isClean());
+          msgResult_ = null;
+        }
+        return msgResultBuilder_;
+      }
 
+      private IhuLogfile ihuLogfile_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          IhuLogfile, IhuLogfile.Builder, IhuLogfileOrBuilder> ihuLogfileBuilder_;
       /**
        * <code>.IhuLogfile ihu_logfile = 11;</code>
+       * @return Whether the ihuLogfile field is set.
        */
-      @Override
       public boolean hasIhuLogfile() {
-        return instance.hasIhuLogfile();
+        return ihuLogfileBuilder_ != null || ihuLogfile_ != null;
       }
       /**
        * <code>.IhuLogfile ihu_logfile = 11;</code>
+       * @return The ihuLogfile.
        */
-      @Override
       public IhuLogfile getIhuLogfile() {
-        return instance.getIhuLogfile();
+        if (ihuLogfileBuilder_ == null) {
+          return ihuLogfile_ == null ? IhuLogfile.getDefaultInstance() : ihuLogfile_;
+        } else {
+          return ihuLogfileBuilder_.getMessage();
+        }
       }
       /**
        * <code>.IhuLogfile ihu_logfile = 11;</code>
        */
       public Builder setIhuLogfile(IhuLogfile value) {
-        copyOnWrite();
-        instance.setIhuLogfile(value);
-        return this;
+        if (ihuLogfileBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ihuLogfile_ = value;
+          onChanged();
+        } else {
+          ihuLogfileBuilder_.setMessage(value);
         }
+
+        return this;
+      }
       /**
        * <code>.IhuLogfile ihu_logfile = 11;</code>
        */
       public Builder setIhuLogfile(
           IhuLogfile.Builder builderForValue) {
-        copyOnWrite();
-        instance.setIhuLogfile(builderForValue.build());
+        if (ihuLogfileBuilder_ == null) {
+          ihuLogfile_ = builderForValue.build();
+          onChanged();
+        } else {
+          ihuLogfileBuilder_.setMessage(builderForValue.build());
+        }
+
         return this;
       }
       /**
        * <code>.IhuLogfile ihu_logfile = 11;</code>
        */
       public Builder mergeIhuLogfile(IhuLogfile value) {
-        copyOnWrite();
-        instance.mergeIhuLogfile(value);
+        if (ihuLogfileBuilder_ == null) {
+          if (ihuLogfile_ != null) {
+            ihuLogfile_ =
+              IhuLogfile.newBuilder(ihuLogfile_).mergeFrom(value).buildPartial();
+          } else {
+            ihuLogfile_ = value;
+          }
+          onChanged();
+        } else {
+          ihuLogfileBuilder_.mergeFrom(value);
+        }
+
         return this;
       }
       /**
        * <code>.IhuLogfile ihu_logfile = 11;</code>
        */
-      public Builder clearIhuLogfile() {  copyOnWrite();
-        instance.clearIhuLogfile();
+      public Builder clearIhuLogfile() {
+        if (ihuLogfileBuilder_ == null) {
+          ihuLogfile_ = null;
+          onChanged();
+        } else {
+          ihuLogfile_ = null;
+          ihuLogfileBuilder_ = null;
+        }
+
         return this;
       }
+      /**
+       * <code>.IhuLogfile ihu_logfile = 11;</code>
+       */
+      public IhuLogfile.Builder getIhuLogfileBuilder() {
+        
+        onChanged();
+        return getIhuLogfileFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.IhuLogfile ihu_logfile = 11;</code>
+       */
+      public IhuLogfileOrBuilder getIhuLogfileOrBuilder() {
+        if (ihuLogfileBuilder_ != null) {
+          return ihuLogfileBuilder_.getMessageOrBuilder();
+        } else {
+          return ihuLogfile_ == null ?
+              IhuLogfile.getDefaultInstance() : ihuLogfile_;
+        }
+      }
+      /**
+       * <code>.IhuLogfile ihu_logfile = 11;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          IhuLogfile, IhuLogfile.Builder, IhuLogfileOrBuilder>
+          getIhuLogfileFieldBuilder() {
+        if (ihuLogfileBuilder_ == null) {
+          ihuLogfileBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              IhuLogfile, IhuLogfile.Builder, IhuLogfileOrBuilder>(
+                  getIhuLogfile(),
+                  getParentForChildren(),
+                  isClean());
+          ihuLogfile_ = null;
+        }
+        return ihuLogfileBuilder_;
+      }
 
+      private IhuChargeAppoointmentSts ihuChargeAppoointmentSts_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          IhuChargeAppoointmentSts, IhuChargeAppoointmentSts.Builder, IhuChargeAppoointmentStsOrBuilder> ihuChargeAppoointmentStsBuilder_;
       /**
        * <code>.IhuChargeAppoointmentSts ihu_charge_appoointmentSts = 12;</code>
+       * @return Whether the ihuChargeAppoointmentSts field is set.
        */
-      @Override
       public boolean hasIhuChargeAppoointmentSts() {
-        return instance.hasIhuChargeAppoointmentSts();
+        return ihuChargeAppoointmentStsBuilder_ != null || ihuChargeAppoointmentSts_ != null;
       }
       /**
        * <code>.IhuChargeAppoointmentSts ihu_charge_appoointmentSts = 12;</code>
+       * @return The ihuChargeAppoointmentSts.
        */
-      @Override
       public IhuChargeAppoointmentSts getIhuChargeAppoointmentSts() {
-        return instance.getIhuChargeAppoointmentSts();
+        if (ihuChargeAppoointmentStsBuilder_ == null) {
+          return ihuChargeAppoointmentSts_ == null ? IhuChargeAppoointmentSts.getDefaultInstance() : ihuChargeAppoointmentSts_;
+        } else {
+          return ihuChargeAppoointmentStsBuilder_.getMessage();
+        }
       }
       /**
        * <code>.IhuChargeAppoointmentSts ihu_charge_appoointmentSts = 12;</code>
        */
       public Builder setIhuChargeAppoointmentSts(IhuChargeAppoointmentSts value) {
-        copyOnWrite();
-        instance.setIhuChargeAppoointmentSts(value);
-        return this;
+        if (ihuChargeAppoointmentStsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ihuChargeAppoointmentSts_ = value;
+          onChanged();
+        } else {
+          ihuChargeAppoointmentStsBuilder_.setMessage(value);
         }
+
+        return this;
+      }
       /**
        * <code>.IhuChargeAppoointmentSts ihu_charge_appoointmentSts = 12;</code>
        */
       public Builder setIhuChargeAppoointmentSts(
           IhuChargeAppoointmentSts.Builder builderForValue) {
-        copyOnWrite();
-        instance.setIhuChargeAppoointmentSts(builderForValue.build());
+        if (ihuChargeAppoointmentStsBuilder_ == null) {
+          ihuChargeAppoointmentSts_ = builderForValue.build();
+          onChanged();
+        } else {
+          ihuChargeAppoointmentStsBuilder_.setMessage(builderForValue.build());
+        }
+
         return this;
       }
       /**
        * <code>.IhuChargeAppoointmentSts ihu_charge_appoointmentSts = 12;</code>
        */
       public Builder mergeIhuChargeAppoointmentSts(IhuChargeAppoointmentSts value) {
-        copyOnWrite();
-        instance.mergeIhuChargeAppoointmentSts(value);
+        if (ihuChargeAppoointmentStsBuilder_ == null) {
+          if (ihuChargeAppoointmentSts_ != null) {
+            ihuChargeAppoointmentSts_ =
+              IhuChargeAppoointmentSts.newBuilder(ihuChargeAppoointmentSts_).mergeFrom(value).buildPartial();
+          } else {
+            ihuChargeAppoointmentSts_ = value;
+          }
+          onChanged();
+        } else {
+          ihuChargeAppoointmentStsBuilder_.mergeFrom(value);
+        }
+
         return this;
       }
       /**
        * <code>.IhuChargeAppoointmentSts ihu_charge_appoointmentSts = 12;</code>
        */
-      public Builder clearIhuChargeAppoointmentSts() {  copyOnWrite();
-        instance.clearIhuChargeAppoointmentSts();
+      public Builder clearIhuChargeAppoointmentSts() {
+        if (ihuChargeAppoointmentStsBuilder_ == null) {
+          ihuChargeAppoointmentSts_ = null;
+          onChanged();
+        } else {
+          ihuChargeAppoointmentSts_ = null;
+          ihuChargeAppoointmentStsBuilder_ = null;
+        }
+
         return this;
       }
+      /**
+       * <code>.IhuChargeAppoointmentSts ihu_charge_appoointmentSts = 12;</code>
+       */
+      public IhuChargeAppoointmentSts.Builder getIhuChargeAppoointmentStsBuilder() {
+        
+        onChanged();
+        return getIhuChargeAppoointmentStsFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.IhuChargeAppoointmentSts ihu_charge_appoointmentSts = 12;</code>
+       */
+      public IhuChargeAppoointmentStsOrBuilder getIhuChargeAppoointmentStsOrBuilder() {
+        if (ihuChargeAppoointmentStsBuilder_ != null) {
+          return ihuChargeAppoointmentStsBuilder_.getMessageOrBuilder();
+        } else {
+          return ihuChargeAppoointmentSts_ == null ?
+              IhuChargeAppoointmentSts.getDefaultInstance() : ihuChargeAppoointmentSts_;
+        }
+      }
+      /**
+       * <code>.IhuChargeAppoointmentSts ihu_charge_appoointmentSts = 12;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          IhuChargeAppoointmentSts, IhuChargeAppoointmentSts.Builder, IhuChargeAppoointmentStsOrBuilder>
+          getIhuChargeAppoointmentStsFieldBuilder() {
+        if (ihuChargeAppoointmentStsBuilder_ == null) {
+          ihuChargeAppoointmentStsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              IhuChargeAppoointmentSts, IhuChargeAppoointmentSts.Builder, IhuChargeAppoointmentStsOrBuilder>(
+                  getIhuChargeAppoointmentSts(),
+                  getParentForChildren(),
+                  isClean());
+          ihuChargeAppoointmentSts_ = null;
+        }
+        return ihuChargeAppoointmentStsBuilder_;
+      }
 
+      private TboxChargeAppoointmentSet tboxChargeAppoointmentSet_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          TboxChargeAppoointmentSet, TboxChargeAppoointmentSet.Builder, TboxChargeAppoointmentSetOrBuilder> tboxChargeAppoointmentSetBuilder_;
       /**
        * <code>.TboxChargeAppoointmentSet tbox_charge_appoointmentSet = 13;</code>
+       * @return Whether the tboxChargeAppoointmentSet field is set.
        */
-      @Override
       public boolean hasTboxChargeAppoointmentSet() {
-        return instance.hasTboxChargeAppoointmentSet();
+        return tboxChargeAppoointmentSetBuilder_ != null || tboxChargeAppoointmentSet_ != null;
       }
       /**
        * <code>.TboxChargeAppoointmentSet tbox_charge_appoointmentSet = 13;</code>
+       * @return The tboxChargeAppoointmentSet.
        */
-      @Override
       public TboxChargeAppoointmentSet getTboxChargeAppoointmentSet() {
-        return instance.getTboxChargeAppoointmentSet();
+        if (tboxChargeAppoointmentSetBuilder_ == null) {
+          return tboxChargeAppoointmentSet_ == null ? TboxChargeAppoointmentSet.getDefaultInstance() : tboxChargeAppoointmentSet_;
+        } else {
+          return tboxChargeAppoointmentSetBuilder_.getMessage();
+        }
       }
       /**
        * <code>.TboxChargeAppoointmentSet tbox_charge_appoointmentSet = 13;</code>
        */
       public Builder setTboxChargeAppoointmentSet(TboxChargeAppoointmentSet value) {
-        copyOnWrite();
-        instance.setTboxChargeAppoointmentSet(value);
-        return this;
+        if (tboxChargeAppoointmentSetBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          tboxChargeAppoointmentSet_ = value;
+          onChanged();
+        } else {
+          tboxChargeAppoointmentSetBuilder_.setMessage(value);
         }
+
+        return this;
+      }
       /**
        * <code>.TboxChargeAppoointmentSet tbox_charge_appoointmentSet = 13;</code>
        */
       public Builder setTboxChargeAppoointmentSet(
           TboxChargeAppoointmentSet.Builder builderForValue) {
-        copyOnWrite();
-        instance.setTboxChargeAppoointmentSet(builderForValue.build());
+        if (tboxChargeAppoointmentSetBuilder_ == null) {
+          tboxChargeAppoointmentSet_ = builderForValue.build();
+          onChanged();
+        } else {
+          tboxChargeAppoointmentSetBuilder_.setMessage(builderForValue.build());
+        }
+
         return this;
       }
       /**
        * <code>.TboxChargeAppoointmentSet tbox_charge_appoointmentSet = 13;</code>
        */
       public Builder mergeTboxChargeAppoointmentSet(TboxChargeAppoointmentSet value) {
-        copyOnWrite();
-        instance.mergeTboxChargeAppoointmentSet(value);
+        if (tboxChargeAppoointmentSetBuilder_ == null) {
+          if (tboxChargeAppoointmentSet_ != null) {
+            tboxChargeAppoointmentSet_ =
+              TboxChargeAppoointmentSet.newBuilder(tboxChargeAppoointmentSet_).mergeFrom(value).buildPartial();
+          } else {
+            tboxChargeAppoointmentSet_ = value;
+          }
+          onChanged();
+        } else {
+          tboxChargeAppoointmentSetBuilder_.mergeFrom(value);
+        }
+
         return this;
       }
       /**
        * <code>.TboxChargeAppoointmentSet tbox_charge_appoointmentSet = 13;</code>
        */
-      public Builder clearTboxChargeAppoointmentSet() {  copyOnWrite();
-        instance.clearTboxChargeAppoointmentSet();
+      public Builder clearTboxChargeAppoointmentSet() {
+        if (tboxChargeAppoointmentSetBuilder_ == null) {
+          tboxChargeAppoointmentSet_ = null;
+          onChanged();
+        } else {
+          tboxChargeAppoointmentSet_ = null;
+          tboxChargeAppoointmentSetBuilder_ = null;
+        }
+
         return this;
       }
+      /**
+       * <code>.TboxChargeAppoointmentSet tbox_charge_appoointmentSet = 13;</code>
+       */
+      public TboxChargeAppoointmentSet.Builder getTboxChargeAppoointmentSetBuilder() {
+        
+        onChanged();
+        return getTboxChargeAppoointmentSetFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.TboxChargeAppoointmentSet tbox_charge_appoointmentSet = 13;</code>
+       */
+      public TboxChargeAppoointmentSetOrBuilder getTboxChargeAppoointmentSetOrBuilder() {
+        if (tboxChargeAppoointmentSetBuilder_ != null) {
+          return tboxChargeAppoointmentSetBuilder_.getMessageOrBuilder();
+        } else {
+          return tboxChargeAppoointmentSet_ == null ?
+              TboxChargeAppoointmentSet.getDefaultInstance() : tboxChargeAppoointmentSet_;
+        }
+      }
+      /**
+       * <code>.TboxChargeAppoointmentSet tbox_charge_appoointmentSet = 13;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          TboxChargeAppoointmentSet, TboxChargeAppoointmentSet.Builder, TboxChargeAppoointmentSetOrBuilder>
+          getTboxChargeAppoointmentSetFieldBuilder() {
+        if (tboxChargeAppoointmentSetBuilder_ == null) {
+          tboxChargeAppoointmentSetBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              TboxChargeAppoointmentSet, TboxChargeAppoointmentSet.Builder, TboxChargeAppoointmentSetOrBuilder>(
+                  getTboxChargeAppoointmentSet(),
+                  getParentForChildren(),
+                  isClean());
+          tboxChargeAppoointmentSet_ = null;
+        }
+        return tboxChargeAppoointmentSetBuilder_;
+      }
 
+      private TboxChargeCtrl tboxChargectrl_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          TboxChargeCtrl, TboxChargeCtrl.Builder, TboxChargeCtrlOrBuilder> tboxChargectrlBuilder_;
       /**
        * <code>.TboxChargeCtrl tbox_chargectrl = 14;</code>
+       * @return Whether the tboxChargectrl field is set.
        */
-      @Override
       public boolean hasTboxChargectrl() {
-        return instance.hasTboxChargectrl();
+        return tboxChargectrlBuilder_ != null || tboxChargectrl_ != null;
       }
       /**
        * <code>.TboxChargeCtrl tbox_chargectrl = 14;</code>
+       * @return The tboxChargectrl.
        */
-      @Override
       public TboxChargeCtrl getTboxChargectrl() {
-        return instance.getTboxChargectrl();
+        if (tboxChargectrlBuilder_ == null) {
+          return tboxChargectrl_ == null ? TboxChargeCtrl.getDefaultInstance() : tboxChargectrl_;
+        } else {
+          return tboxChargectrlBuilder_.getMessage();
+        }
       }
       /**
        * <code>.TboxChargeCtrl tbox_chargectrl = 14;</code>
        */
       public Builder setTboxChargectrl(TboxChargeCtrl value) {
-        copyOnWrite();
-        instance.setTboxChargectrl(value);
-        return this;
+        if (tboxChargectrlBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          tboxChargectrl_ = value;
+          onChanged();
+        } else {
+          tboxChargectrlBuilder_.setMessage(value);
         }
+
+        return this;
+      }
       /**
        * <code>.TboxChargeCtrl tbox_chargectrl = 14;</code>
        */
       public Builder setTboxChargectrl(
           TboxChargeCtrl.Builder builderForValue) {
-        copyOnWrite();
-        instance.setTboxChargectrl(builderForValue.build());
+        if (tboxChargectrlBuilder_ == null) {
+          tboxChargectrl_ = builderForValue.build();
+          onChanged();
+        } else {
+          tboxChargectrlBuilder_.setMessage(builderForValue.build());
+        }
+
         return this;
       }
       /**
        * <code>.TboxChargeCtrl tbox_chargectrl = 14;</code>
        */
       public Builder mergeTboxChargectrl(TboxChargeCtrl value) {
-        copyOnWrite();
-        instance.mergeTboxChargectrl(value);
+        if (tboxChargectrlBuilder_ == null) {
+          if (tboxChargectrl_ != null) {
+            tboxChargectrl_ =
+              TboxChargeCtrl.newBuilder(tboxChargectrl_).mergeFrom(value).buildPartial();
+          } else {
+            tboxChargectrl_ = value;
+          }
+          onChanged();
+        } else {
+          tboxChargectrlBuilder_.mergeFrom(value);
+        }
+
         return this;
       }
       /**
        * <code>.TboxChargeCtrl tbox_chargectrl = 14;</code>
        */
-      public Builder clearTboxChargectrl() {  copyOnWrite();
-        instance.clearTboxChargectrl();
+      public Builder clearTboxChargectrl() {
+        if (tboxChargectrlBuilder_ == null) {
+          tboxChargectrl_ = null;
+          onChanged();
+        } else {
+          tboxChargectrl_ = null;
+          tboxChargectrlBuilder_ = null;
+        }
+
         return this;
       }
+      /**
+       * <code>.TboxChargeCtrl tbox_chargectrl = 14;</code>
+       */
+      public TboxChargeCtrl.Builder getTboxChargectrlBuilder() {
+        
+        onChanged();
+        return getTboxChargectrlFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.TboxChargeCtrl tbox_chargectrl = 14;</code>
+       */
+      public TboxChargeCtrlOrBuilder getTboxChargectrlOrBuilder() {
+        if (tboxChargectrlBuilder_ != null) {
+          return tboxChargectrlBuilder_.getMessageOrBuilder();
+        } else {
+          return tboxChargectrl_ == null ?
+              TboxChargeCtrl.getDefaultInstance() : tboxChargectrl_;
+        }
+      }
+      /**
+       * <code>.TboxChargeCtrl tbox_chargectrl = 14;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          TboxChargeCtrl, TboxChargeCtrl.Builder, TboxChargeCtrlOrBuilder>
+          getTboxChargectrlFieldBuilder() {
+        if (tboxChargectrlBuilder_ == null) {
+          tboxChargectrlBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              TboxChargeCtrl, TboxChargeCtrl.Builder, TboxChargeCtrlOrBuilder>(
+                  getTboxChargectrl(),
+                  getParentForChildren(),
+                  isClean());
+          tboxChargectrl_ = null;
+        }
+        return tboxChargectrlBuilder_;
+      }
+      @Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
 
       // @@protoc_insertion_point(builder_scope:TopMessage)
     }
-    @Override
-    @SuppressWarnings({"unchecked", "fallthrough"})
-    protected final Object dynamicMethod(
-        MethodToInvoke method,
-        Object arg0, Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new TopMessage();
-        }
-        case NEW_BUILDER: {
-          return new Builder();
-        }
-        case BUILD_MESSAGE_INFO: {
-            Object[] objects = new Object[] {
-              "messageType_",
-              "signalType_",
-              "signalPower_",
-              "tboxNetworkCtrl_",
-              "tboxInfo_",
-              "tboxGpsCtrl_",
-              "tboxGpsinfo_",
-              "tboxActivestate_",
-              "tboxRemotedaignose_",
-              "msgResult_",
-              "ihuLogfile_",
-              "ihuChargeAppoointmentSts_",
-              "tboxChargeAppoointmentSet_",
-              "tboxChargectrl_",
-            };
-            String info =
-                "\u0000\u000e\u0000\u0000\u0001\u000e\u000e\u0000\u0000\u0000\u0001\f\u0002\f\u0003" +
-                "\u0004\u0004\t\u0005\t\u0006\t\u0007\t\b\t\t\t\n\t\u000b\t\f\t\r\t\u000e\t";
-            return newMessageInfo(DEFAULT_INSTANCE, info, objects);
-        }
-        // fall through
-        case GET_DEFAULT_INSTANCE: {
-          return DEFAULT_INSTANCE;
-        }
-        case GET_PARSER: {
-          com.google.protobuf.Parser<TopMessage> parser = PARSER;
-          if (parser == null) {
-            synchronized (TopMessage.class) {
-              parser = PARSER;
-              if (parser == null) {
-                parser =
-                    new DefaultInstanceBasedParser<TopMessage>(
-                        DEFAULT_INSTANCE);
-                PARSER = parser;
-              }
-            }
-          }
-          return parser;
-      }
-      case GET_MEMOIZED_IS_INITIALIZED: {
-        return (byte) 1;
-      }
-      case SET_MEMOIZED_IS_INITIALIZED: {
-        return null;
-      }
-      }
-      throw new UnsupportedOperationException();
-    }
-
 
     // @@protoc_insertion_point(class_scope:TopMessage)
     private static final TopMessage DEFAULT_INSTANCE;
     static {
-      TopMessage defaultInstance = new TopMessage();
-      // New instances are implicitly immutable so no need to make
-      // immutable.
-      DEFAULT_INSTANCE = defaultInstance;
-      com.google.protobuf.GeneratedMessageLite.registerDefaultInstance(
-        TopMessage.class, defaultInstance);
+      DEFAULT_INSTANCE = new TopMessage();
     }
 
     public static TopMessage getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static volatile com.google.protobuf.Parser<TopMessage> PARSER;
+    private static final com.google.protobuf.Parser<TopMessage>
+        PARSER = new com.google.protobuf.AbstractParser<TopMessage>() {
+      @Override
+      public TopMessage parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new TopMessage(input, extensionRegistry);
+      }
+    };
 
     public static com.google.protobuf.Parser<TopMessage> parser() {
-      return DEFAULT_INSTANCE.getParserForType();
+      return PARSER;
     }
+
+    @Override
+    public com.google.protobuf.Parser<TopMessage> getParserForType() {
+      return PARSER;
+    }
+
+    @Override
+    public TopMessage getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
   }
 
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_TboxNetworkCtrl_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_TboxNetworkCtrl_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_TboxInfo_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_TboxInfo_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_TboxGPSCmd_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_TboxGPSCmd_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_TboxGPSInfo_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_TboxGPSInfo_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_TboxActiveState_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_TboxActiveState_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_TboxRemoteDiagnose_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_TboxRemoteDiagnose_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_IhuLogfile_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_IhuLogfile_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_IhuChargeAppoointmentSts_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_IhuChargeAppoointmentSts_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_TboxChargeAppoointmentSet_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_TboxChargeAppoointmentSet_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_TboxChargeCtrl_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_TboxChargeCtrl_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_MsgResult_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_MsgResult_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_TopMessage_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_TopMessage_fieldAccessorTable;
 
+  public static com.google.protobuf.Descriptors.FileDescriptor
+      getDescriptor() {
+    return descriptor;
+  }
+  private static  com.google.protobuf.Descriptors.FileDescriptor
+      descriptor;
   static {
+    String[] descriptorData = {
+      "\n\023IVI_Tbox_v1.0.proto\"I\n\017TboxNetworkCtrl" +
+      "\022\"\n\005onoff\030\001 \001(\0162\023.NETWORK_SEND_OnOff\022\022\n\n" +
+      "time_cycle\030\002 \001(\r\"v\n\010TboxInfo\022\030\n\020software" +
+      "_version\030\001 \001(\t\022\030\n\020hardware_version\030\002 \001(\t" +
+      "\022\r\n\005iccid\030\003 \001(\t\022\014\n\004pdid\030\004 \001(\t\022\014\n\004imei\030\005 " +
+      "\001(\t\022\013\n\003vin\030\006 \001(\t\"@\n\nTboxGPSCmd\022\036\n\005onoff\030" +
+      "\001 \001(\0162\017.GPS_SEND_OnOff\022\022\n\ntime_cycle\030\002 \001" +
+      "(\r\"\033\n\013TboxGPSInfo\022\014\n\004nmea\030\001 \001(\t\"\'\n\017TboxA" +
+      "ctiveState\022\024\n\014active_state\030\001 \001(\010\"\317\001\n\022Tbo" +
+      "xRemoteDiagnose\022\013\n\003vin\030\001 \001(\t\022\017\n\007eventid\030" +
+      "\002 \001(\r\022\021\n\ttimestamp\030\003 \001(\r\022\037\n\010datatype\030\004 \001" +
+      "(\0162\r.DataTypeEnum\022#\n\ncameraname\030\005 \001(\0162\017." +
+      "CameraNameEnum\022\013\n\003aid\030\006 \001(\r\022\013\n\003mid\030\007 \001(\r" +
+      "\022\025\n\reffectivetime\030\010 \001(\r\022\021\n\tsizelimit\030\t \001" +
+      "(\r\"\240\001\n\nIhuLogfile\022\013\n\003vin\030\001 \001(\t\022\017\n\007eventi" +
+      "d\030\002 \001(\r\022\021\n\ttimestamp\030\003 \001(\r\022\013\n\003aid\030\004 \001(\r\022" +
+      "\013\n\003mid\030\005 \001(\r\022\021\n\tstarttime\030\006 \001(\r\022\024\n\014durat" +
+      "iontime\030\007 \001(\r\022\017\n\007channel\030\010 \001(\r\022\r\n\005level\030" +
+      "\t \001(\r\"\201\001\n\030IhuChargeAppoointmentSts\022\021\n\tti" +
+      "mestamp\030\001 \001(\r\022\014\n\004hour\030\002 \001(\r\022\013\n\003min\030\003 \001(\r" +
+      "\022\n\n\002id\030\004 \001(\r\022\023\n\013targetpower\030\005 \001(\r\022\026\n\016eff" +
+      "ectivestate\030\006 \001(\010\"\202\001\n\031TboxChargeAppooint" +
+      "mentSet\022\021\n\ttimestamp\030\001 \001(\r\022\014\n\004hour\030\002 \001(\r" +
+      "\022\013\n\003min\030\003 \001(\r\022\n\n\002id\030\004 \001(\r\022\023\n\013targetpower" +
+      "\030\005 \001(\r\022\026\n\016effectivestate\030\006 \001(\010\"I\n\016TboxCh" +
+      "argeCtrl\022\021\n\ttimestamp\030\001 \001(\r\022\017\n\007commend\030\002" +
+      " \001(\010\022\023\n\013targetpower\030\003 \001(\r\"/\n\tMsgResult\022\016" +
+      "\n\006result\030\001 \001(\010\022\022\n\nerror_code\030\002 \001(\014\"\305\004\n\nT" +
+      "opMessage\022\"\n\014message_type\030\001 \001(\0162\014.Messag" +
+      "etype\022 \n\013signal_type\030\002 \001(\0162\013.SignalType\022" +
+      "\024\n\014signal_power\030\003 \001(\005\022+\n\021tbox_network_ct" +
+      "rl\030\004 \001(\0132\020.TboxNetworkCtrl\022\034\n\ttbox_info\030" +
+      "\005 \001(\0132\t.TboxInfo\022\"\n\rtbox_gps_ctrl\030\006 \001(\0132" +
+      "\013.TboxGPSCmd\022\"\n\014tbox_gpsinfo\030\007 \001(\0132\014.Tbo" +
+      "xGPSInfo\022*\n\020tbox_activestate\030\010 \001(\0132\020.Tbo" +
+      "xActiveState\0220\n\023tbox_remotedaignose\030\t \001(" +
+      "\0132\023.TboxRemoteDiagnose\022\036\n\nmsg_result\030\n \001" +
+      "(\0132\n.MsgResult\022 \n\013ihu_logfile\030\013 \001(\0132\013.Ih" +
+      "uLogfile\022=\n\032ihu_charge_appoointmentSts\030\014" +
+      " \001(\0132\031.IhuChargeAppoointmentSts\022?\n\033tbox_" +
+      "charge_appoointmentSet\030\r \001(\0132\032.TboxCharg" +
+      "eAppoointmentSet\022(\n\017tbox_chargectrl\030\016 \001(" +
+      "\0132\017.TboxChargeCtrl*\357\005\n\013Messagetype\022\031\n\025RE" +
+      "QUEST_RESPONSE_NONE\020\000\022\034\n\030REQUEST_HEARTBE" +
+      "AT_SIGNAL\020\001\022\035\n\031RESPONSE_HEARTBEAT_RESULT" +
+      "\020\002\022#\n\037REQUEST_NETWORK_SIGNAL_STRENGTH\020\003\022" +
+      "$\n RESPONSE_NETWORK_SIGNAL_STRENGTH\020\004\022\025\n" +
+      "\021REQUEST_TBOX_INFO\020\005\022\026\n\022RESPONSE_TBOX_IN" +
+      "FO\020\006\022\030\n\024REQUEST_TBOX_GPS_SET\020\007\022 \n\034RESPON" +
+      "SE_TBOX_GPS_SET_RESULT\020\010\022 \n\034RESPONSE_TBO" +
+      "X_GPSINFO_RESULT\020\t\022$\n RESPONSE_TBOX_ACTI" +
+      "VESTATE_RESULT\020\n\022\032\n\026IHU_ACTIVESTATE_RESU" +
+      "LT\020\013\022\037\n\033REQUEST_TBOX_REMOTEDIAGNOSE\020\014\022\'\n" +
+      "#RESPONSE_TBOX_REMOTEDIAGNOSE_RESULT\020\r\022\027" +
+      "\n\023REQUEST_IHU_LOGFILE\020\016\022\037\n\033RESPONSE_IHU_" +
+      "LOGFILE_RESULT\020\017\022$\n REQUEST_IHU_CHARGEAP" +
+      "POINTMENTSTS\020\020\022,\n(RESPONSE_IHU_CHARGEAPP" +
+      "OINTMENTSTS_RESULT\020\021\022%\n!REQUEST_TBOX_CHA" +
+      "RGEAPPOINTMENTSET\020\022\022-\n)RESPONSE_TBOX_CHA" +
+      "RGEAPPOINTMENTSET_RESULT\020\023\022\033\n\027REQUEST_TB" +
+      "OX_CHARGECTRL\020\024\022#\n\037RESPONSE_TBOX_CHARGEC" +
+      "TRL_RESULT\020\025*G\n\022NETWORK_SEND_OnOff\022\016\n\nNE" +
+      "TWORK_ON\020\000\022\017\n\013NETWORK_OFF\020\001\022\020\n\014NETWORK_O" +
+      "NCE\020\002*9\n\nSignalType\022\017\n\013NONE_SIGNAL\020\000\022\007\n\003" +
+      "GSM\020\001\022\010\n\004UMTS\020\002\022\007\n\003LTE\020\003*7\n\016GPS_SEND_OnO" +
+      "ff\022\n\n\006GPS_ON\020\000\022\013\n\007GPS_OFF\020\001\022\014\n\010GPS_ONCE\020" +
+      "\002*.\n\014DataTypeEnum\022\016\n\nPHOTO_TYPE\020\000\022\016\n\nVID" +
+      "EO_TYPE\020\001*,\n\016CameraNameEnum\022\014\n\010DVR_TYPE\020" +
+      "\000\022\014\n\010DMS_TYPE\020\001B4\n$com.zza.stardust.app." +
+      "ui.tboxprotobufB\014IVITboxProtob\006proto3"
+    };
+    descriptor = com.google.protobuf.Descriptors.FileDescriptor
+      .internalBuildGeneratedFileFrom(descriptorData,
+        new com.google.protobuf.Descriptors.FileDescriptor[] {
+        });
+    internal_static_TboxNetworkCtrl_descriptor =
+      getDescriptor().getMessageTypes().get(0);
+    internal_static_TboxNetworkCtrl_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_TboxNetworkCtrl_descriptor,
+        new String[] { "Onoff", "TimeCycle", });
+    internal_static_TboxInfo_descriptor =
+      getDescriptor().getMessageTypes().get(1);
+    internal_static_TboxInfo_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_TboxInfo_descriptor,
+        new String[] { "SoftwareVersion", "HardwareVersion", "Iccid", "Pdid", "Imei", "Vin", });
+    internal_static_TboxGPSCmd_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_TboxGPSCmd_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_TboxGPSCmd_descriptor,
+        new String[] { "Onoff", "TimeCycle", });
+    internal_static_TboxGPSInfo_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_TboxGPSInfo_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_TboxGPSInfo_descriptor,
+        new String[] { "Nmea", });
+    internal_static_TboxActiveState_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_TboxActiveState_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_TboxActiveState_descriptor,
+        new String[] { "ActiveState", });
+    internal_static_TboxRemoteDiagnose_descriptor =
+      getDescriptor().getMessageTypes().get(5);
+    internal_static_TboxRemoteDiagnose_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_TboxRemoteDiagnose_descriptor,
+        new String[] { "Vin", "Eventid", "Timestamp", "Datatype", "Cameraname", "Aid", "Mid", "Effectivetime", "Sizelimit", });
+    internal_static_IhuLogfile_descriptor =
+      getDescriptor().getMessageTypes().get(6);
+    internal_static_IhuLogfile_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_IhuLogfile_descriptor,
+        new String[] { "Vin", "Eventid", "Timestamp", "Aid", "Mid", "Starttime", "Durationtime", "Channel", "Level", });
+    internal_static_IhuChargeAppoointmentSts_descriptor =
+      getDescriptor().getMessageTypes().get(7);
+    internal_static_IhuChargeAppoointmentSts_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_IhuChargeAppoointmentSts_descriptor,
+        new String[] { "Timestamp", "Hour", "Min", "Id", "Targetpower", "Effectivestate", });
+    internal_static_TboxChargeAppoointmentSet_descriptor =
+      getDescriptor().getMessageTypes().get(8);
+    internal_static_TboxChargeAppoointmentSet_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_TboxChargeAppoointmentSet_descriptor,
+        new String[] { "Timestamp", "Hour", "Min", "Id", "Targetpower", "Effectivestate", });
+    internal_static_TboxChargeCtrl_descriptor =
+      getDescriptor().getMessageTypes().get(9);
+    internal_static_TboxChargeCtrl_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_TboxChargeCtrl_descriptor,
+        new String[] { "Timestamp", "Commend", "Targetpower", });
+    internal_static_MsgResult_descriptor =
+      getDescriptor().getMessageTypes().get(10);
+    internal_static_MsgResult_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_MsgResult_descriptor,
+        new String[] { "Result", "ErrorCode", });
+    internal_static_TopMessage_descriptor =
+      getDescriptor().getMessageTypes().get(11);
+    internal_static_TopMessage_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_TopMessage_descriptor,
+        new String[] { "MessageType", "SignalType", "SignalPower", "TboxNetworkCtrl", "TboxInfo", "TboxGpsCtrl", "TboxGpsinfo", "TboxActivestate", "TboxRemotedaignose", "MsgResult", "IhuLogfile", "IhuChargeAppoointmentSts", "TboxChargeAppoointmentSet", "TboxChargectrl", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

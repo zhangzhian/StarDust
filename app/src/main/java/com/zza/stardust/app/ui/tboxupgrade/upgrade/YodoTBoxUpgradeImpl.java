@@ -2,13 +2,13 @@ package com.zza.stardust.app.ui.tboxupgrade.upgrade;
 
 import android.text.TextUtils;
 
+import com.zza.library.utils.BytesUtils;
 import com.zza.library.utils.LogUtil;
 import com.zza.library.utils.ValidatorUtil;
-import com.zza.stardust.callback.PullFileCallBack;
 import com.zza.stardust.uilts.TFTPClientUtil;
 import com.zza.stardust.callback.TransFileCallBack;
 import com.zza.stardust.callback.UpgradeCallBack;
-import com.zza.stardust.uilts.UpgradeUtils;
+import com.zza.stardust.app.ui.tboxupgrade.UpgradeUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -149,7 +149,7 @@ public class YodoTBoxUpgradeImpl implements YodeTBoxUpgrade {
                     os = socket.getOutputStream();//字节输出流
                     pw = new PrintWriter(os);
                     byte[] data = UpgradeUtils.protocolMake(softVersion, hardVersion, TBOX_WIFI_ANDROID);
-                    String strData = UpgradeUtils.bytesToHexString(data);
+                    String strData = BytesUtils.bytesToHexString(data);
 
                     //3.获取输入流，并读取服务器端的响应信息
                     is = socket.getInputStream();
@@ -164,11 +164,10 @@ public class YodoTBoxUpgradeImpl implements YodeTBoxUpgrade {
                     //socket.shutdownOutput();//关闭输出流
                     //接收收到的数据
                     while ((line = is.read(buf)) != -1) {
-
                         //将字节数组转换成十六进制的字符串
-                        String strReturn = UpgradeUtils.bytesToHexString(buf);
+                        String strReturn = BytesUtils.bytesToHexString(buf);
                         LogUtil.w("---->:" + strReturn);
-                        byte[] dataBuf = UpgradeUtils.convertHexToBytes(buf, line);
+                        byte[] dataBuf = BytesUtils.convertHexToBytes(buf, line);
 
                         if (dataBuf[20] == 0x2C && dataBuf[21] == 0x01) {
                             LogUtil.i("收到回复：");

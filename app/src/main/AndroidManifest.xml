@@ -18,7 +18,7 @@
         <activity android:name=".app.ui.tboxprotobuf.ProtobufActivity"
             android:launchMode="singleTop"
             android:windowSoftInputMode="adjustPan|stateHidden">
-            ></activity>
+            </activity>
         <activity android:name=".app.ui.tboxupgrade.ScreenTboxUpgradeActivity" />
         <activity android:name=".app.ui.tboxlog.GetLogActivity" />
         <activity android:name=".app.ui.tboxupgrade.UpgradeWifiActivity" />
