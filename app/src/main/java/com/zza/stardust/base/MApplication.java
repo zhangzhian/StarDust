@@ -1,5 +1,7 @@
 package com.zza.stardust.base;
 
+import android.support.multidex.MultiDex;
+
 import com.zza.library.base.BaseApplication;
 import com.zza.library.utils.LogUtil;
 import com.zza.library.utils.VersionUtil;
@@ -18,6 +20,7 @@ public class MApplication extends BaseApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        MultiDex.install(this);
         LogUtil.setTAG("zza");
         softwareSourceVersionCode = VersionUtil.getLocalVersion(context) + "";
         softwareSourceVersionName = VersionUtil.getLocalVersionName(context) + "";

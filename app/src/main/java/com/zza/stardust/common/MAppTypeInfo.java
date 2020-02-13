@@ -18,7 +18,7 @@ public final class MAppTypeInfo {
 
     //唯一确定APP类型
     //需要在APP编译前确定
-    public static final int APP_TYPE = APP_YD_YODO;
+    public static final int APP_TYPE = APP_ZZA;
 
 
 }

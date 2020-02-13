@@ -20,8 +20,6 @@ import com.zza.stardust.common.MNetInfo;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-import static com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.Messagetype.REQUEST_HEARTBEAT_SIGNAL;
-
 /**
  * @Author: 张志安
  * @Mail: zhangzhian_123@qq.com zhangzhian2016@gmail.com
@@ -203,6 +201,7 @@ public class ProtobufActivity extends MActivity implements ProtobufListener {
     protected void onPause() {
         super.onPause();
         if (connecting) {
+            control.removeReceDataListener();
             control.disConnect();
             connecting = false;
         }
