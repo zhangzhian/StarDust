@@ -25,7 +25,7 @@ import com.zza.stardust.callback.TransFileCallBack;
 import com.zza.stardust.base.MActivity;
 import com.zza.stardust.bean.CarmakerBean;
 import com.zza.stardust.common.MAppTypeInfo;
-import com.zza.stardust.common.MNetString;
+import com.zza.stardust.common.MNetInfo;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -249,7 +249,7 @@ public class GetLogActivity extends MActivity {
         if (!file.exists()) file.mkdirs();
 
         YodoTBoxGetLogImpl.getInstance().TransFile(carmakerBeanChoose.getCarmakeIp(),
-                MNetString.YD_TFTP_PORT, storageDir, filePath, new TransFileCallBack() {
+                MNetInfo.YD_TFTP_PORT, storageDir, filePath, new TransFileCallBack() {
 
                     @Override
                     public void onTrans(String direction, String packetData, int progress) {
@@ -316,7 +316,7 @@ public class GetLogActivity extends MActivity {
         if (!file.exists()) file.mkdirs();
 
         YodoTBoxGetLogImpl.getInstance().TransFiles(carmakerBeanChoose.getCarmakeIp(),
-                MNetString.YD_TFTP_PORT, storageDir, filePathList, new PullFileCallBack() {
+                MNetInfo.YD_TFTP_PORT, storageDir, filePathList, new PullFileCallBack() {
                     @Override
                     public void onTransSingleSuccess(String remoteFileName, String localFilePath) {
                         String[] fileSplit = remoteFileName.split("/");

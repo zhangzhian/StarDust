@@ -78,6 +78,16 @@ public class TimeUtil {
         Date date = new Date(s);
         return simpleDateFormat.format(date);
     }
+
+    /*
+     * 将时间戳转换为时间
+     */
+    public static String stampToHMS(long s) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
+        Date date = new Date(s);
+        return simpleDateFormat.format(date);
+    }
+
     /*
      *两个时间戳转化为间隔
      */

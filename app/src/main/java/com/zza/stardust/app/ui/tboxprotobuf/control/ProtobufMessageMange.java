@@ -3,7 +3,29 @@ package com.zza.stardust.app.ui.tboxprotobuf.control;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.util.JsonFormat;
-import com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.*;
+import com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.GPS_SEND_OnOff;
+import com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.Messagetype;
+import com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.MsgResult;
+import com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.NETWORK_SEND_OnOff;
+import com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.TboxChargeAppoointmentSet;
+import com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.TboxChargeCtrl;
+import com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.TboxGPSCmd;
+import com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.TboxNetworkCtrl;
+import com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.TopMessage;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.Messagetype.IHU_ACTIVESTATE_RESULT;
+import static com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.Messagetype.REQUEST_HEARTBEAT_SIGNAL;
+import static com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.Messagetype.REQUEST_NETWORK_SIGNAL_STRENGTH;
+import static com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.Messagetype.REQUEST_TBOX_CHARGEAPPOINTMENTSET;
+import static com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.Messagetype.REQUEST_TBOX_CHARGECTRL;
+import static com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.Messagetype.REQUEST_TBOX_GPS_SET;
+import static com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.Messagetype.REQUEST_TBOX_INFO;
+import static com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.Messagetype.RESPONSE_IHU_CHARGEAPPOINTMENTSTS_RESULT;
+import static com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.Messagetype.RESPONSE_IHU_LOGFILE_RESULT;
+import static com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto.Messagetype.RESPONSE_TBOX_REMOTEDIAGNOSE_RESULT;
 
 /**
  * @Author: 张志安
@@ -19,7 +41,7 @@ public class ProtobufMessageMange {
         TopMessage.Builder message = TopMessage.newBuilder();
         switch (messagetype) {
             case REQUEST_HEARTBEAT_SIGNAL://心跳
-                message.setMessageType(Messagetype.REQUEST_HEARTBEAT_SIGNAL);
+                message.setMessageType(REQUEST_HEARTBEAT_SIGNAL);
                 break;
             case REQUEST_NETWORK_SIGNAL_STRENGTH://IHU发送给TBOX用于得到信号强度和制式
                 message.setMessageType(Messagetype.REQUEST_NETWORK_SIGNAL_STRENGTH);
@@ -45,49 +67,31 @@ public class ProtobufMessageMange {
                         .setErrorCode(ByteString.EMPTY)
                         .build());
                 break;
-            case REQUEST_TBOX_REMOTEDIAGNOSE://采集视频和图片
-                message.setMessageType(Messagetype.REQUEST_TBOX_REMOTEDIAGNOSE);
-                message.setTboxRemotedaignose(TboxRemoteDiagnose.newBuilder()
-                        .setVin("")
-                        .setEventid(0)
-                        .setTimestamp((int) (System.currentTimeMillis()/1000))
-                        .setDatatype(DataTypeEnum.PHOTO_TYPE)
-                        .setCameraname(CameraNameEnum.DVR_TYPE)
-                        .setAid(0)
-                        .setMid(0)
-                        .setEffectivetime(0)
-                        .setSizelimit(0)
+            case RESPONSE_TBOX_REMOTEDIAGNOSE_RESULT://采集视频和图片，IHU回复
+                message.setMessageType(Messagetype.RESPONSE_TBOX_REMOTEDIAGNOSE_RESULT);
+                message.setMsgResult(MsgResult.newBuilder()
+                        .setResult(true)
+                        .setErrorCode(ByteString.EMPTY)
                         .build());
                 break;
-            case REQUEST_IHU_LOGFILE://TBOX通知IHU上传日志文件
-                message.setMessageType(Messagetype.REQUEST_IHU_LOGFILE);
-                message.setIhuLogfile(IhuLogfile.newBuilder()
-                        .setVin("")
-                        .setEventid(0)
-                        .setTimestamp((int) (System.currentTimeMillis()/1000))
-                        .setAid(0)
-                        .setMid(0)
-                        .setStarttime((int) (System.currentTimeMillis()/1000))
-                        .setDurationtime(0)
-                        .setChannel(1)
-                        .setLevel(1)
+            case RESPONSE_IHU_LOGFILE_RESULT://TBOX通知IHU上传日志文件，IHU回复
+                message.setMessageType(Messagetype.RESPONSE_IHU_LOGFILE_RESULT);
+                message.setMsgResult(MsgResult.newBuilder()
+                        .setResult(true)
+                        .setErrorCode(ByteString.EMPTY)
                         .build());
                 break;
-            case REQUEST_IHU_CHARGEAPPOINTMENTSTS://TBOX 通知 IHU 更新预约充电状态
-                message.setMessageType(Messagetype.REQUEST_IHU_CHARGEAPPOINTMENTSTS);
-                message.setIhuChargeAppoointmentSts(IhuChargeAppoointmentSts.newBuilder()
-                        .setTimestamp((int) (System.currentTimeMillis()/1000))
-                        .setHour(0)
-                        .setMin(0)
-                        .setId(0)
-                        .setTargetpower(0)
-                        .setEffectivestate(true)
+            case RESPONSE_IHU_CHARGEAPPOINTMENTSTS_RESULT://TBOX 通知 IHU 更新预约充电状态，IHU回复
+                message.setMessageType(Messagetype.RESPONSE_IHU_CHARGEAPPOINTMENTSTS_RESULT);
+                message.setMsgResult(MsgResult.newBuilder()
+                        .setResult(true)
+                        .setErrorCode(ByteString.EMPTY)
                         .build());
                 break;
             case REQUEST_TBOX_CHARGEAPPOINTMENTSET://IHU 设置预约充电
                 message.setMessageType(Messagetype.REQUEST_TBOX_CHARGEAPPOINTMENTSET);
                 message.setTboxChargeAppoointmentSet(TboxChargeAppoointmentSet.newBuilder()
-                        .setTimestamp((int) (System.currentTimeMillis()/1000))
+                        .setTimestamp((int) (System.currentTimeMillis() / 1000))
                         .setHour(0)
                         .setMin(0)
                         .setId(0)
@@ -98,7 +102,7 @@ public class ProtobufMessageMange {
             case REQUEST_TBOX_CHARGECTRL://IHU 开启关闭即时充电
                 message.setMessageType(Messagetype.REQUEST_TBOX_CHARGECTRL);
                 message.setTboxChargectrl(TboxChargeCtrl.newBuilder()
-                        .setTimestamp((int) (System.currentTimeMillis()/1000))
+                        .setTimestamp((int) (System.currentTimeMillis() / 1000))
                         .setCommend(true)
                         .setTargetpower(100)
                         .build());
@@ -110,9 +114,9 @@ public class ProtobufMessageMange {
             case RESPONSE_TBOX_GPS_SET_RESULT:
             case RESPONSE_TBOX_GPSINFO_RESULT://GPS信息主动上报
             case RESPONSE_TBOX_ACTIVESTATE_RESULT:
-            case RESPONSE_TBOX_REMOTEDIAGNOSE_RESULT:
-            case RESPONSE_IHU_LOGFILE_RESULT:
-            case RESPONSE_IHU_CHARGEAPPOINTMENTSTS_RESULT:
+            case REQUEST_TBOX_REMOTEDIAGNOSE:
+            case REQUEST_IHU_LOGFILE:
+            case REQUEST_IHU_CHARGEAPPOINTMENTSTS:
             case RESPONSE_TBOX_CHARGEAPPOINTMENTSET_RESULT:
             case RESPONSE_TBOX_CHARGECTRL_RESULT:
                 return null;
@@ -121,10 +125,33 @@ public class ProtobufMessageMange {
         return message.build();
     }
 
+    public static List<String> getAllMessage() {
+        List<String> list = new ArrayList<>();
+        list.add(REQUEST_HEARTBEAT_SIGNAL + ":心跳");
+        list.add(REQUEST_NETWORK_SIGNAL_STRENGTH + ":信号强度和制式");
+        list.add(REQUEST_TBOX_INFO + ":TBOX的信息");
+        list.add(REQUEST_TBOX_GPS_SET + ":设置GPS信息");
+        list.add(IHU_ACTIVESTATE_RESULT + ":绑车激活");
+        list.add(RESPONSE_TBOX_REMOTEDIAGNOSE_RESULT + ":回复采集视频和图片");
+        list.add(RESPONSE_IHU_LOGFILE_RESULT + ":回复上传日志文件");
+        list.add(RESPONSE_IHU_CHARGEAPPOINTMENTSTS_RESULT + ":回复更新预约充电状态");
+        list.add(REQUEST_TBOX_CHARGEAPPOINTMENTSET + ":IHU 设置预约充电");
+        list.add(REQUEST_TBOX_CHARGECTRL + ":IHU 开启关闭即时充电");
+        return list;
+    }
+
+
+    public static String getJSONMessageByMessagetype(Messagetype messagetype) throws InvalidProtocolBufferException {
+        return message2JSONString(getMessageByMessagetype(messagetype));
+    }
+
     public static TopMessage paraseBytes2Message(byte[] data) throws InvalidProtocolBufferException {
         return TopMessage.parseFrom(data);
     }
 
+    public static byte[] paraseMessage2Bytes(TopMessage msg) {
+        return msg.toByteArray();
+    }
 
     public static String message2JSONString(TopMessage message) throws InvalidProtocolBufferException {
         return JsonFormat.printer().print(message);

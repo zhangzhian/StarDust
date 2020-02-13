@@ -9,20 +9,30 @@ package com.zza.stardust.common;
   * @UpdateRemark:
   * @Version:        1.0
  */
-public class MNetString {
+public class MNetInfo {
     /**
      * 服务器IP
      */
-    public static String YD_TFTP_IP = "192.168.225.1";
+    public static String YD_TBOX_IP = "192.168.225.1";
     /**
-     * 服务器端口号
+     * TFTP服务器端口号
      */
     public static int YD_TFTP_PORT = 69;
-
     /**
-     * 获取服务器地址
+     * Protobuf服务器端口号
+     */
+    public static int YD_PROTOBUF_PORT = 60000;
+    /**
+     * TFTP获取服务器地址
      */
     public static String getYD_TFTP_URL() {
-        return YD_TFTP_IP + ":" + YD_TFTP_PORT;
+        return YD_TBOX_IP + ":" + YD_TFTP_PORT;
+    }
+
+    /**
+     * Protobuf获取服务器地址
+     */
+    public static String getPROTOBUF_TFTP_URL() {
+        return YD_TBOX_IP + ":" + YD_PROTOBUF_PORT;
     }
 }

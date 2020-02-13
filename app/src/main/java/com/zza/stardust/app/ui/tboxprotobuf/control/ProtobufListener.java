@@ -22,7 +22,7 @@ public interface ProtobufListener {
 
     void onDisConnectFail(int code, Exception e);
 
-    void sendData(int msgId);
+    void sendDataSuccess(int msgI, boolean period);
 
-    void sendDataFail(int msgId, int code, Exception e);
+    void sendDataFail(int msgId, boolean period, int code, Exception e);
 }
