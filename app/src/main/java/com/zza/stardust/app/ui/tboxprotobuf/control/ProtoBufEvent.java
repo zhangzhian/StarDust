@@ -1,5 +1,7 @@
 package com.zza.stardust.app.ui.tboxprotobuf.control;
 
+import com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto;
+
 /**
  * @Author: 张志安
  * @Mail: zhangzhian_123@qq.com zhangzhian2016@gmail.com
@@ -15,16 +17,18 @@ public class ProtoBufEvent {
     private int curTimes;
     private Boolean period;
     private int periodTimeMils;
+    private IVITboxProto.TopMessage topMessage;
 
     public ProtoBufEvent() {
 
     }
 
-    public ProtoBufEvent(int msgId, String msg, Boolean period, int periodTimeMils) {
+    public ProtoBufEvent(int msgId, String msg, IVITboxProto.TopMessage topMessage, Boolean period, int periodTimeMils) {
         this.msgId = msgId;
         this.msg = msg;
         this.curTimes = 0;
         this.period = period;
+        this.topMessage = topMessage;
         this.periodTimeMils = periodTimeMils;
     }
 
@@ -66,5 +70,13 @@ public class ProtoBufEvent {
 
     public void setPeriodTimeMils(int periodTimeMils) {
         this.periodTimeMils = periodTimeMils;
+    }
+
+    public IVITboxProto.TopMessage getTopMessage() {
+        return topMessage;
+    }
+
+    public void setTopMessage(IVITboxProto.TopMessage topMessage) {
+        this.topMessage = topMessage;
     }
 }

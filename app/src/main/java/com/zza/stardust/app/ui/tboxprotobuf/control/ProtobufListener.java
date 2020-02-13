@@ -13,8 +13,16 @@ import com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto;
  */
 public interface ProtobufListener {
     void receData(IVITboxProto.TopMessage data);
+
     void onConnectSuccess();
+
     void onConnectFail(int code, Exception e);
+
     void onDisConnect();
+
     void onDisConnectFail(int code, Exception e);
+
+    void sendData(int msgId);
+
+    void sendDataFail(int msgId, int code, Exception e);
 }

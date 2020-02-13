@@ -1,8 +1,10 @@
 package com.zza.stardust.app.ui.tboxprotobuf.control;
 
+import com.google.protobuf.InvalidProtocolBufferException;
 import com.zza.library.utils.BytesUtils;
 import com.zza.library.utils.LogUtil;
 import com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto;
+import com.zza.stardust.app.ui.tboxupgrade.upgrade.YodoTBoxUpgradeImpl;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,11 +30,14 @@ public class ProtobufControlImpl implements ProtobufControl {
     private static final int ERR_INTERRUPTED = -2;
     private static final int ERR_UNKNOWN_HOST = -3;
     private static final int ERR_IO = -4;
-
+    private static final int ERR_INVALID_PROTOCOLBUFFER = -5;
     private static final int ERROR = -99;
 
+    private static final int SEND_PERIOD = -99;
     private static final String PROTOBUF_START = "#START*";
     private static final String PROTOBUF_END = "#END*";
+
+    private volatile static ProtobufControlImpl uniqueInstance;
 
     private ProtobufListener listener = null;
     private Thread threadTcp = null;
@@ -49,6 +54,20 @@ public class ProtobufControlImpl implements ProtobufControl {
 
     private CopyOnWriteArrayList<ProtoBufEvent> buffList = new CopyOnWriteArrayList<>();
     private int currentPos = 0;
+
+    private ProtobufControlImpl() {
+    }
+
+    public static ProtobufControlImpl getInstance() {
+        if (uniqueInstance == null) {
+            synchronized (ProtobufControlImpl.class) {
+                if (uniqueInstance == null) {
+                    uniqueInstance = new ProtobufControlImpl();
+                }
+            }
+        }
+        return uniqueInstance;
+    }
 
     @Override
     public void init(String host, int port, ProtobufListener listener) {
@@ -95,7 +114,13 @@ public class ProtobufControlImpl implements ProtobufControl {
 
     @Override
     public void sendCmd(int msgId, String cmd, boolean period, int periodTimeMils) {
-        buffList.add(new ProtoBufEvent(msgId, cmd, period, periodTimeMils));
+        try {
+            IVITboxProto.TopMessage topMessage = ProtobufMessageMange.paraseJSONString2Message(cmd, IVITboxProto.TopMessage.newBuilder());
+            buffList.add(new ProtoBufEvent(msgId, cmd, topMessage, period, periodTimeMils));
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+            if (listener != null) listener.sendDataFail(msgId, ERR_INVALID_PROTOCOLBUFFER, e);
+        }
     }
 
     @Override
@@ -129,7 +154,7 @@ public class ProtobufControlImpl implements ProtobufControl {
                 socket = new Socket(host, port);
                 //获取输出流，向服务器端发送信息
                 os = socket.getOutputStream();
-                pw = new PrintWriter(os);
+                //pw = new PrintWriter(os);
                 //获取输入流，并读取服务器端的响应信息
                 is = socket.getInputStream();
 
@@ -205,19 +230,23 @@ public class ProtobufControlImpl implements ProtobufControl {
                     if (buffList.size() == 0) {
                         Thread.sleep(1000);
                     } else {
+                        currentPos++;
                         if (currentPos >= buffList.size()) {
                             currentPos = 0;
-                        } else {
-                            currentPos++;
                         }
                         ProtoBufEvent protoBufEvent = buffList.get(currentPos);
-                        if (!protoBufEvent.getPeriod()){
-
-                        }else {
-                            String sendData = getSendData(protoBufEvent.getMsg());
-
+                        if (!protoBufEvent.getPeriod()) {
+                            int times = protoBufEvent.getPeriodTimeMils() / SEND_PERIOD;
+                            if (protoBufEvent.getCurTimes() < times){
+                                protoBufEvent.setCurTimes(protoBufEvent.getCurTimes()+1);
+                            }else {
+                                protoBufEvent.setCurTimes(0);
+                                sendData(protoBufEvent);
+                            }
+                        } else {
+                            sendData(protoBufEvent);
                         }
-                        Thread.sleep(50);
+                        Thread.sleep(SEND_PERIOD);
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -225,9 +254,15 @@ public class ProtobufControlImpl implements ProtobufControl {
             }
         }
 
-        private String getSendData(String msg) {
-            //ProtobufMessageMange.paraseBytes2Message();
-            return "";
+        private void sendData(ProtoBufEvent msg) {
+            try {
+                os.write(msg.getTopMessage().toByteArray());
+                os.flush();
+                if (listener != null) listener.sendData(msg.getMsgId());
+            } catch (IOException e) {
+                e.printStackTrace();
+                if (listener != null) listener.sendDataFail(msg.getMsgId(), ERR_IO, e);
+            }
         }
     }
 }
