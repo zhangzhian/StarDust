@@ -1,5 +1,6 @@
 package com.zza.stardust.app.ui.androidart;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,6 +13,7 @@ import com.zza.library.utils.ToastUtil;
 import com.zza.stardust.R;
 import com.zza.stardust.app.adpter.AppAdapter;
 import com.zza.stardust.app.adpter.StrItemAdapter;
+import com.zza.stardust.app.ui.androidart.SerializableParcelable.SerializableParcelableActivity1;
 import com.zza.stardust.base.MActivity;
 import com.zza.stardust.bean.AppInfoBean;
 
@@ -25,8 +27,9 @@ public class AndroidArtActivity extends MActivity implements IOnItemClickListene
 
     @BindView(R.id.rv_test)
     RecyclerView rvTest;
-    private List<String>  data = new ArrayList<>();
+    private List<String> data = new ArrayList<>();
     private StrItemAdapter adapter = null;
+
     @Override
     protected BasePresenter createPresenter() {
         return null;
@@ -46,7 +49,7 @@ public class AndroidArtActivity extends MActivity implements IOnItemClickListene
 
     private void initData() {
         data.clear();
-        data.add("Test");
+        data.add("Serializable Parcelable");
     }
 
     private void initRecycleView() {
@@ -61,11 +64,10 @@ public class AndroidArtActivity extends MActivity implements IOnItemClickListene
 
     @Override
     public void onItemClick(View view, int position) {
-        switch (position){
+        switch (position) {
             case 0:
-                ToastUtil.show("Click Test");
+                startActivity(new Intent(AndroidArtActivity.this, SerializableParcelableActivity1.class));
                 break;
-
             case 1:
 
                 break;
