@@ -4,10 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
-import android.view.View;
 
 import com.zza.library.utils.LogUtil;
 import com.zza.stardust.R;
+import com.zza.stardust.app.ui.androidart.Book;
 
 import java.io.File;
 import java.io.FileOutputStream;
