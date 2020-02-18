@@ -38,37 +38,33 @@ public class SerializableParcelableActivity2 extends Activity {
     }
 
     private void recoverFromFile() {
-        new Thread(new Runnable() {
+        new Thread(() -> {
+            User user = null;
+            File cachedFile = new File(Environment
+                    .getExternalStorageDirectory().getPath()
+                    + "/StarDust/ParcelableToFile/cache");
+            if (cachedFile.exists()) {
+                ObjectInputStream objectInputStream = null;
+                try {
+                    objectInputStream = new ObjectInputStream(
+                            new FileInputStream(cachedFile));
+                    user = (User) objectInputStream.readObject();
+                    LogUtil.d("recover user:" + user);
 
-            @Override
-            public void run() {
-                User user = null;
-                File cachedFile = new File(Environment
-                        .getExternalStorageDirectory().getPath()
-                        + "/StarDust/ParcelableToFile/cache");
-                if (cachedFile.exists()) {
-                    ObjectInputStream objectInputStream = null;
+                    User finalUser = user;
+                    runOnUiThread(() -> textView.setText(userS.toString() + "\r\n"+ finalUser.toString()));
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                } finally {
                     try {
-                        objectInputStream = new ObjectInputStream(
-                                new FileInputStream(cachedFile));
-                        user = (User) objectInputStream.readObject();
-                        LogUtil.d("recover user:" + user);
-
-                        User finalUser = user;
-                        runOnUiThread(() -> textView.setText(userS.toString() + "\r\n"+ finalUser.toString()));
-
+                        if (objectInputStream != null) {
+                            objectInputStream.close();
+                        }
                     } catch (IOException e) {
                         e.printStackTrace();
-                    } catch (ClassNotFoundException e) {
-                        e.printStackTrace();
-                    } finally {
-                        try {
-                            if (objectInputStream != null) {
-                                objectInputStream.close();
-                            }
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
                     }
                 }
             }

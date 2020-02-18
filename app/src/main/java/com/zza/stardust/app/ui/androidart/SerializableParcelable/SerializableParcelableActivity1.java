@@ -33,36 +33,32 @@ public class SerializableParcelableActivity1 extends Activity {
     }
 
     private void persistToFile() {
-        new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                User user = new User(1, "hello world", false);
-                File dir = new File(Environment
-                        .getExternalStorageDirectory().getPath()
-                        + "/StarDust/ParcelableToFile/");
-                if (!dir.exists()) {
-                    dir.mkdirs();
-                }
-                File cachedFile = new File(Environment
-                        .getExternalStorageDirectory().getPath()
-                        + "/StarDust/ParcelableToFile/cache");
-                ObjectOutputStream objectOutputStream = null;
+        new Thread(() -> {
+            User user = new User(1, "hello world", false);
+            File dir = new File(Environment
+                    .getExternalStorageDirectory().getPath()
+                    + "/StarDust/ParcelableToFile/");
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+            File cachedFile = new File(Environment
+                    .getExternalStorageDirectory().getPath()
+                    + "/StarDust/ParcelableToFile/cache");
+            ObjectOutputStream objectOutputStream = null;
+            try {
+                objectOutputStream = new ObjectOutputStream(
+                        new FileOutputStream(cachedFile));
+                objectOutputStream.writeObject(user);
+                LogUtil.d("persist user:" + user);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
                 try {
-                    objectOutputStream = new ObjectOutputStream(
-                            new FileOutputStream(cachedFile));
-                    objectOutputStream.writeObject(user);
-                    LogUtil.d("persist user:" + user);
+                    if (objectOutputStream != null) {
+                        objectOutputStream.close();
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
-                } finally {
-                    try {
-                        if (objectOutputStream != null) {
-                            objectOutputStream.close();
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
                 }
             }
         }).start();

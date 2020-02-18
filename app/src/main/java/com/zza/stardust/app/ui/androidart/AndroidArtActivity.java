@@ -2,6 +2,7 @@ package com.zza.stardust.app.ui.androidart;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Message;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +15,7 @@ import com.zza.stardust.R;
 import com.zza.stardust.app.adpter.AppAdapter;
 import com.zza.stardust.app.adpter.StrItemAdapter;
 import com.zza.stardust.app.ui.androidart.SerializableParcelable.SerializableParcelableActivity1;
+import com.zza.stardust.app.ui.androidart.messenger.MessengerActivity;
 import com.zza.stardust.base.MActivity;
 import com.zza.stardust.bean.AppInfoBean;
 
@@ -50,6 +52,7 @@ public class AndroidArtActivity extends MActivity implements IOnItemClickListene
     private void initData() {
         data.clear();
         data.add("Serializable Parcelable");
+        data.add("Messenger");
     }
 
     private void initRecycleView() {
@@ -69,7 +72,7 @@ public class AndroidArtActivity extends MActivity implements IOnItemClickListene
                 startActivity(new Intent(AndroidArtActivity.this, SerializableParcelableActivity1.class));
                 break;
             case 1:
-
+                startActivity(new Intent(AndroidArtActivity.this, MessengerActivity.class));
                 break;
         }
     }

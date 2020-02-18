@@ -15,7 +15,16 @@
         android:roundIcon="@drawable/logo_star_dust"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".app.ui.androidart.SerializableParcelable.SerializableParcelableActivity2"></activity>
+        <service
+            android:name=".app.ui.androidart.messenger.MessengerService"
+            android:process=":remote">
+            <intent-filter>
+                <action android:name="com.zza.MessengerService.launch" />
+            </intent-filter>
+        </service>
+
+        <activity android:name=".app.ui.androidart.messenger.MessengerActivity" />
+        <activity android:name=".app.ui.androidart.SerializableParcelable.SerializableParcelableActivity2" />
         <activity android:name=".app.ui.androidart.SerializableParcelable.SerializableParcelableActivity1" />
         <activity
             android:name=".app.ui.tboxprotobuf.ProtobufActivity"
