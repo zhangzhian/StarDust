@@ -7,7 +7,7 @@ import android.os.Environment;
 
 import com.zza.library.utils.LogUtil;
 import com.zza.stardust.R;
-import com.zza.stardust.app.ui.androidart.Book;
+import com.zza.stardust.app.ui.androidart.aidl.Book;
 
 import java.io.File;
 import java.io.FileOutputStream;

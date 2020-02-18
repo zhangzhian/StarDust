@@ -15,6 +15,7 @@ import com.zza.stardust.R;
 import com.zza.stardust.app.adpter.AppAdapter;
 import com.zza.stardust.app.adpter.StrItemAdapter;
 import com.zza.stardust.app.ui.androidart.SerializableParcelable.SerializableParcelableActivity1;
+import com.zza.stardust.app.ui.androidart.aidl.BookManagerActivity;
 import com.zza.stardust.app.ui.androidart.messenger.MessengerActivity;
 import com.zza.stardust.base.MActivity;
 import com.zza.stardust.bean.AppInfoBean;
@@ -53,6 +54,7 @@ public class AndroidArtActivity extends MActivity implements IOnItemClickListene
         data.clear();
         data.add("Serializable Parcelable");
         data.add("Messenger");
+        data.add("AIDL");
     }
 
     private void initRecycleView() {
@@ -73,6 +75,9 @@ public class AndroidArtActivity extends MActivity implements IOnItemClickListene
                 break;
             case 1:
                 startActivity(new Intent(AndroidArtActivity.this, MessengerActivity.class));
+                break;
+            case 2:
+                startActivity(new Intent(AndroidArtActivity.this, BookManagerActivity.class));
                 break;
         }
     }

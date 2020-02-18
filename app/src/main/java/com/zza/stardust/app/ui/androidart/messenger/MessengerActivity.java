@@ -23,17 +23,13 @@ public class MessengerActivity extends MActivity {
 
     private Messenger mService;
     private Messenger mGetReplyMessenger = new Messenger(new MessengerHandler());
+
     private static class MessengerHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 1:
-                    try {
-                        Thread.sleep(3 * 1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    ToastUtil.show("receive msg from Service:" + msg.getData().getString("reply"));
+                    LogUtil.i("[" + Thread.currentThread().getName() + "]receive msg from Service:" + msg.getData().getString("reply"));
                     break;
                 default:
                     super.handleMessage(msg);

@@ -5,7 +5,7 @@ import java.io.Serializable;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.zza.stardust.app.ui.androidart.Book;
+import com.zza.stardust.app.ui.androidart.aidl.Book;
 
 public class User implements Parcelable, Serializable {
     private static final long serialVersionUID = 519067123721295773L;

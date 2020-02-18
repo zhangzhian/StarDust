@@ -20,7 +20,7 @@ public class MessengerService extends Service {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 1:
-                    ToastUtil.show("receive msg from Client:" + msg.getData().getString("msg"));
+                    ToastUtil.show("[" + Thread.currentThread().getName() + "]receive msg from Client:" + msg.getData().getString("msg"));
                     Messenger client = msg.replyTo;
                     Message relpyMessage = Message.obtain(null, 1);
                     Bundle bundle = new Bundle();

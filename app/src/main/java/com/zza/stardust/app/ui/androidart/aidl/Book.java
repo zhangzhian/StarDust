@@ -1,4 +1,4 @@
-package com.zza.stardust.app.ui.androidart;
+package com.zza.stardust.app.ui.androidart.aidl;
 
 import android.os.Parcel;
 import android.os.Parcelable;

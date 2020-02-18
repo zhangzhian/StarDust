@@ -2,9 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.zza.stardust">
 
+    <permission
+        android:name="com.zza.stardust.permission.ACCESS_BOOK_SERVICE"
+        android:protectionLevel="normal" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.zza.stardust.permission.ACCESS_BOOK_SERVICE" />
 
     <application
         android:name=".base.MApplication"
@@ -15,6 +20,11 @@
         android:roundIcon="@drawable/logo_star_dust"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".app.ui.androidart.aidl.BookManagerActivity"></activity>
+
+        <service
+            android:name=".app.ui.androidart.aidl.BookManagerService"
+            android:process=":remote" />
         <service
             android:name=".app.ui.androidart.messenger.MessengerService"
             android:process=":remote">
