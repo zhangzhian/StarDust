@@ -23,7 +23,6 @@ public class MessengerActivity extends MActivity {
 
     private Messenger mService;
     private Messenger mGetReplyMessenger = new Messenger(new MessengerHandler());
-    private TextView tvShow;
     private static class MessengerHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
@@ -65,7 +64,6 @@ public class MessengerActivity extends MActivity {
     @Override
     protected void onInit(Bundle savedInstanceState) {
         super.onInit(savedInstanceState);
-        tvShow = findViewById(R.id.tv_show);
         findViewById(R.id.bt_start_service).setOnClickListener(v -> {
             Intent intent = new Intent();
             intent.setAction("com.zza.MessengerService.launch");
