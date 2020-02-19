@@ -28,7 +28,7 @@ public class BytesUtils {
         return result;
     }
 
-    public static byte[] convertHexToBytes(byte[] hex, int size) {
+    public static byte[] hexStringToBytes(byte[] hex, int size) {
 
         byte[] bytes = new byte[size / 2];
 
@@ -44,5 +44,13 @@ public class BytesUtils {
         }
 
         return bytes;
+    }
+
+    public static String bytesToString(byte bytes[], int offset, int length) {
+        return new String(bytes, offset, length);
+    }
+
+    public static String bytesToString(byte bytes[], int length) {
+        return new String(bytes, 0, length);
     }
 }

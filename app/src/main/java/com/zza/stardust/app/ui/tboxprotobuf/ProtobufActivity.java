@@ -6,6 +6,7 @@ import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.google.protobuf.InvalidProtocolBufferException;
 import com.zza.library.base.BasePresenter;
 import com.zza.library.utils.TimeUtil;
 import com.zza.library.utils.ToastUtil;
@@ -63,7 +64,9 @@ public class ProtobufActivity extends MActivity implements ProtobufListener {
     TextView tvStopHeart;
 
     private ProtobufControl control = null;
-    private StringBuffer bufferShow = new StringBuffer();
+    private StringBuffer bufferShowConn = new StringBuffer();
+    private StringBuffer bufferShowRece = new StringBuffer();
+
     private int msgId = 0;
     private boolean connecting = false;
 
@@ -81,6 +84,7 @@ public class ProtobufActivity extends MActivity implements ProtobufListener {
     protected void onInit(Bundle savedInstanceState) {
         super.onInit(savedInstanceState);
         control = ProtobufControlImpl.getInstance();
+        clearShowData();
     }
 
     @OnClick({R.id.tv_choose_data, R.id.tv_send_data, R.id.tv_muit_send, R.id.tv_clear_text, R.id.tv_conn, R.id.tv_disconn, R.id.tv_send_heart, R.id.tv_stop_heart})
@@ -103,8 +107,7 @@ public class ProtobufActivity extends MActivity implements ProtobufListener {
                 }
                 break;
             case R.id.tv_clear_text:
-                tvReceMsg.setText("");
-                bufferShow.setLength(0);
+                clearShowData();
                 break;
             case R.id.tv_conn:
                 if (!connecting) {
@@ -122,59 +125,74 @@ public class ProtobufActivity extends MActivity implements ProtobufListener {
                 break;
             case R.id.tv_send_heart:
                 if (connecting) {
-                    control.sendCmd(0, etSendMsg.getText().toString(), true, 20 * 1000);
+                    try {
+                        String jsonStr = ProtobufMessageMange.message2JSONString(ProtobufMessageMange.getMessageByMessagetype(IVITboxProto.Messagetype.REQUEST_HEARTBEAT_SIGNAL));
+                        control.sendCmd(0, jsonStr, true, 20 * 1000);
+                    } catch (InvalidProtocolBufferException e) {
+                        e.printStackTrace();
+                    }
                 } else {
                     ToastUtil.show("未连接");
                 }
                 break;
             case R.id.tv_stop_heart:
-                if (connecting){
+                if (connecting) {
                     control.stopCmd(0);
                     ToastUtil.show("已停止");
-                }else {
+                } else {
                     ToastUtil.show("未连接");
                 }
                 break;
         }
     }
 
+    private void clearShowData() {
+        bufferShowRece.setLength(0);
+        bufferShowRece.append("接收到的数据：" + "\r\n");
+        tvReceMsg.setText(bufferShowRece.toString());
+        bufferShowConn.setLength(0);
+        bufferShowConn.append("连接数据：" + "\r\n");
+        tvLog.setText(bufferShowConn.toString());
+    }
+
     private void connetServer() {
         control.init(MNetInfo.YD_TBOX_IP, MNetInfo.YD_PROTOBUF_PORT, this);
         control.connect();
+        tvLog.setText(bufferShowConn.append("正在连接" + "\r\n").toString());
     }
 
     @Override
     public void receData(IVITboxProto.TopMessage data) {
-        showMessage(tvReceMsg, "["
-                + TimeUtil.stampToHMS(System.currentTimeMillis()) + "]/r/n"
-                + ProtobufMessageMange.paraseMessage2Bytes(data) + "/r/n"
-                + data.toString() + "/r/n");
+        showMessage(tvReceMsg, bufferShowRece, "["
+                + TimeUtil.stampToHMS(System.currentTimeMillis()) + "]\r\n"
+                + ProtobufMessageMange.paraseMessage2Bytes(data) + "\r\n"
+                + data.toString() + "\r\n");
     }
 
     @Override
     public void onConnectSuccess() {
         connecting = true;
-        showMessage(tvChooseData, "["
-                + TimeUtil.stampToHMS(System.currentTimeMillis()) + "] 连接成功/r/n");
+        showMessage(tvLog, bufferShowConn, "["
+                + TimeUtil.stampToHMS(System.currentTimeMillis()) + "] 连接成功\r\n");
     }
 
     @Override
     public void onConnectFail(int code, Exception e) {
-        showMessage(tvChooseData, "["
-                + TimeUtil.stampToHMS(System.currentTimeMillis()) + "] 连接失败 " + code + "/r/n");
+        showMessage(tvLog, bufferShowConn, "["
+                + TimeUtil.stampToHMS(System.currentTimeMillis()) + "] 连接失败 " + code + "\r\n");
     }
 
     @Override
     public void onDisConnect() {
         connecting = false;
-        showMessage(tvChooseData, "["
-                + TimeUtil.stampToHMS(System.currentTimeMillis()) + "] 连接断开/r/n");
+        showMessage(tvLog, bufferShowConn, "["
+                + TimeUtil.stampToHMS(System.currentTimeMillis()) + "] 连接断开\r\n");
     }
 
     @Override
     public void onDisConnectFail(int code, Exception e) {
-        showMessage(tvChooseData, "["
-                + TimeUtil.stampToHMS(System.currentTimeMillis()) + "] 连接断开失败" + code + "/r/n");
+        showMessage(tvLog, bufferShowConn, "["
+                + TimeUtil.stampToHMS(System.currentTimeMillis()) + "] 连接断开失败" + code + "\r\n");
     }
 
     @Override
@@ -189,8 +207,12 @@ public class ProtobufActivity extends MActivity implements ProtobufListener {
         showToastMessage("发送失败: " + msgId + "Exception: " + code);
     }
 
-    private void showMessage(TextView tv, String data) {
-        runOnUiThread(() -> tv.setText(bufferShow.append(data).toString()));
+    private void showMessage(TextView tv, StringBuffer buffer, String data) {
+        runOnUiThread(() -> {
+            tv.setText(buffer.append(data).toString());
+            svLog.fullScroll(ScrollView.FOCUS_DOWN);
+            svReceMsg.fullScroll(ScrollView.FOCUS_DOWN);
+        });
     }
 
     private void showToastMessage(String data) {

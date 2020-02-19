@@ -167,7 +167,7 @@ public class YodoTBoxUpgradeImpl implements YodeTBoxUpgrade {
                         //将字节数组转换成十六进制的字符串
                         String strReturn = BytesUtils.bytesToHexString(buf);
                         LogUtil.w("---->:" + strReturn);
-                        byte[] dataBuf = BytesUtils.convertHexToBytes(buf, line);
+                        byte[] dataBuf = BytesUtils.hexStringToBytes(buf, line);
 
                         if (dataBuf[20] == 0x2C && dataBuf[21] == 0x01) {
                             LogUtil.i("收到回复：");

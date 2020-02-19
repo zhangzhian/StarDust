@@ -1,5 +1,8 @@
 package com.zza.stardust.app.ui.tboxprotobuf.control;
 
+import android.text.TextUtils;
+
+import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.zza.library.utils.BytesUtils;
 import com.zza.library.utils.LogUtil;
@@ -8,6 +11,7 @@ import com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.ConnectException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -29,9 +33,12 @@ public class ProtobufControlImpl implements ProtobufControl {
     private static final int ERR_UNKNOWN_HOST = -3;
     private static final int ERR_IO = -4;
     private static final int ERR_INVALID_PROTOCOLBUFFER = -5;
+    private static final int ERR_ISRUNNING = -6;
+    private static final int ERR_CONNECT = -7;
+    private static final int ERR_IO_CLOSE = -8;
     private static final int ERROR = -99;
 
-    private static final int SEND_PERIOD = -99;
+    private static final int SEND_PERIOD = 100;
     private static final String PROTOBUF_START = "#START*";
     private static final String PROTOBUF_END = "#END*";
 
@@ -40,7 +47,8 @@ public class ProtobufControlImpl implements ProtobufControl {
     private ProtobufListener listener = null;
     private Thread threadTcp = null;
     private Thread threadSend = null;
-    private Boolean isRunning = true;
+
+    private Boolean isRunning = false;
 
     private Socket socket = null;
     private OutputStream os = null;//字节输出流
@@ -81,12 +89,17 @@ public class ProtobufControlImpl implements ProtobufControl {
     @Override
     public void connect() {
         if (threadTcp != null) {
-            threadTcp.start();
+            if (!isRunning) {
+                threadTcp.start();
+                if (threadSend != null) threadSend.start();
+                isRunning = true;
+            } else {
+                if (listener != null)
+                    listener.onConnectFail(ERR_ISRUNNING, new Exception("thread is running."));
+            }
         } else {
             if (listener != null) listener.onConnectFail(ERR_NOT_INIT, new Exception("not init."));
         }
-
-        if (threadSend != null) threadSend.start();
     }
 
     @Override
@@ -96,14 +109,19 @@ public class ProtobufControlImpl implements ProtobufControl {
 
             buffList.clear();
 
-            if (is != null)
+            if (is != null) {
                 is.close();
-            if (os != null)
+                is = null;
+            }
+            if (os != null) {
                 os.close();
-            if (socket != null)
+                os = null;
+            }
+
+            if (socket != null) {
                 socket.close();
-            //if (pw != null)
-            //   pw.close();
+                socket = null;
+            }
 
             isRunning = false;
 
@@ -111,10 +129,14 @@ public class ProtobufControlImpl implements ProtobufControl {
 
             if (threadSend != null) threadSend = null;
 
-            if (listener != null) listener.onDisConnect();
+            if (listener != null) {
+                listener.onDisConnect();
+                listener = null;
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
-            if (listener != null) listener.onDisConnectFail(ERR_IO, e);
+            if (listener != null) listener.onDisConnectFail(ERR_IO_CLOSE, e);
             isRunning = false;
         }
     }
@@ -123,10 +145,11 @@ public class ProtobufControlImpl implements ProtobufControl {
     public void sendCmd(int msgId, String cmd, boolean period, int periodTimeMils) {
         try {
             IVITboxProto.TopMessage topMessage = ProtobufMessageMange.paraseJSONString2Message(cmd, IVITboxProto.TopMessage.newBuilder());
-            buffList.add(new ProtoBufEvent(msgId, cmd, topMessage, period, periodTimeMils));
+            buffList.add(new ProtoBufEvent(msgId, cmd, topMessage, period, periodTimeMils < 1000 ? 1000 : periodTimeMils));
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
-            if (listener != null) listener.sendDataFail(msgId, period,ERR_INVALID_PROTOCOLBUFFER, e);
+            if (listener != null)
+                listener.sendDataFail(msgId, period, ERR_INVALID_PROTOCOLBUFFER, e);
         }
     }
 
@@ -156,6 +179,7 @@ public class ProtobufControlImpl implements ProtobufControl {
             try {
                 //接收服务器的响应
                 byte[] buf = new byte[1024];
+                int readSize = 0;
 
                 //创建客户端Socket，指定服务器地址和端口
                 socket = new Socket(host, port);
@@ -165,26 +189,31 @@ public class ProtobufControlImpl implements ProtobufControl {
                 //获取输入流，并读取服务器端的响应信息
                 is = socket.getInputStream();
 
-                listener.onConnectSuccess();
+                if (listener != null) listener.onConnectSuccess();
 
-                while (isRunning || (is.read(buf)) != -1) {
+                while (isRunning && (readSize = is.read(buf)) != -1) {
                     //将字节数组转换成十六进制的字符串
-                    String dataStr = BytesUtils.bytesToHexString(buf);
-                    LogUtil.w("---->:" + dataStr);
+                    //String dataStr = BytesUtils.bytesToHexString(buf);
+
+                    String dataStr = BytesUtils.bytesToString(buf, readSize);
+                    LogUtil.i("rece:" + readSize + ":" + dataStr);
                     paraseReceData(dataStr);
-                    Thread.sleep(100);
+                    Thread.sleep(200);
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
-                if (listener != null) listener.onConnectFail(ERR_INTERRUPTED, e);
+                if (isRunning && listener != null) listener.onConnectFail(ERR_INTERRUPTED, e);
             } catch (UnknownHostException e) {
                 e.printStackTrace();
-                if (listener != null) listener.onConnectFail(ERR_UNKNOWN_HOST, e);
+                if (isRunning && listener != null) listener.onConnectFail(ERR_UNKNOWN_HOST, e);
+            } catch (ConnectException e) {
+                e.printStackTrace();
+                if (isRunning && listener != null) listener.onConnectFail(ERR_CONNECT, e);
             } catch (IOException e) {
                 e.printStackTrace();
-                if (listener != null) listener.onConnectFail(ERR_IO, e);
+                if (isRunning && listener != null) listener.onConnectFail(ERR_IO, e);
             } finally {
-                disConnect();
+                if (isRunning) disConnect();
             }
 
         }
@@ -192,38 +221,27 @@ public class ProtobufControlImpl implements ProtobufControl {
         private void paraseReceData(String dataStr) {
             int startIndex;
             int endIndex;
-            int dataLength;
-            while ((startIndex = dataStr.indexOf(PROTOBUF_START)) >= 0) {
-                dataStr = dataStr.substring(startIndex);
-                String lengthData = dataStr.substring(PROTOBUF_START.length(), PROTOBUF_START.length() + 2);
-                if (lengthData != null && lengthData.length() == 2) {
-                    int length_high = 0;
-                    int length_low = 0;
-                    try {
-                        length_high = Integer.parseInt(lengthData.substring(0, 1));
-                        length_low = Integer.parseInt(lengthData.substring(1));
-                        dataLength = length_high * 16 + length_low;
-                        endIndex = dataStr.indexOf(PROTOBUF_END);
-                        if (endIndex > 0 && endIndex - PROTOBUF_START.length() - 2 == dataLength) {
-                            dataStr = dataStr.substring(2, dataLength - PROTOBUF_END.length());
-                            byte[] dataBuf = BytesUtils.convertHexToBytes(dataStr.getBytes(), dataLength);
-                            if (listener != null) {
-                                IVITboxProto.TopMessage topMessage = ProtobufMessageMange.paraseBytes2Message(dataBuf);
-                                listener.receData(topMessage);
-                            }
-                        } else {
-                            dataStr = dataStr.substring(startIndex + PROTOBUF_START.length());
-                            continue;
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        dataStr = dataStr.substring(startIndex + PROTOBUF_START.length());
-                        continue;
-                    }
+            while (!TextUtils.isEmpty(dataStr)
+                    && (startIndex = dataStr.indexOf(PROTOBUF_START)) >= 0
+                    && (endIndex = dataStr.indexOf(PROTOBUF_END)) > 0
+                    && endIndex - startIndex > 2 + PROTOBUF_START.length()
+            ) {
 
-                } else {
-                    return;
+                byte[] size = dataStr.substring(startIndex + PROTOBUF_START.length(), startIndex + PROTOBUF_START.length() + 2).getBytes();
+                byte[] proto = dataStr.substring(startIndex + PROTOBUF_START.length() + 2, endIndex).getBytes();
+                if (size != null && proto != null && size.length == 2) {
+                    int size_value = size[0] * 10 + size[1];
+                    if (size_value == proto.length) {
+                        try {
+                            IVITboxProto.TopMessage topMessage = ProtobufMessageMange.paraseBytes2Message(proto);
+                            listener.receData(topMessage);
+                        } catch (InvalidProtocolBufferException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
+
+                dataStr = dataStr.substring(endIndex + PROTOBUF_END.length());
             }
         }
     }
@@ -242,16 +260,17 @@ public class ProtobufControlImpl implements ProtobufControl {
                             currentPos = 0;
                         }
                         ProtoBufEvent protoBufEvent = buffList.get(currentPos);
-                        if (!protoBufEvent.getPeriod()) {
+                        if (protoBufEvent.getPeriod()) {
                             int times = protoBufEvent.getPeriodTimeMils() / SEND_PERIOD;
-                            if (protoBufEvent.getCurTimes() < times) {
-                                protoBufEvent.setCurTimes(protoBufEvent.getCurTimes() + 1);
-                            } else {
-                                protoBufEvent.setCurTimes(0);
+                            if (protoBufEvent.getCurTimes() == 0 || protoBufEvent.getCurTimes() >= times) {
                                 sendData(protoBufEvent);
+                                protoBufEvent.setCurTimes(1);
+                            } else {
+                                protoBufEvent.setCurTimes(protoBufEvent.getCurTimes() + 1);
                             }
                         } else {
                             sendData(protoBufEvent);
+                            buffList.remove(currentPos);
                         }
                         Thread.sleep(SEND_PERIOD);
                     }
@@ -263,7 +282,7 @@ public class ProtobufControlImpl implements ProtobufControl {
 
         private void sendData(ProtoBufEvent msg) {
             try {
-                os.write(msg.getTopMessage().toByteArray());
+                os.write(getPocketData(msg.getTopMessage().toByteArray()));
                 os.flush();
                 if (listener != null) listener.sendDataSuccess(msg.getMsgId(), msg.getPeriod());
             } catch (IOException e) {
@@ -272,5 +291,16 @@ public class ProtobufControlImpl implements ProtobufControl {
                     listener.sendDataFail(msg.getMsgId(), msg.getPeriod(), ERR_IO, e);
             }
         }
+
+        private byte[] getPocketData(byte[] bytes) {
+            byte[] pocketData = new byte[PROTOBUF_START.length() + PROTOBUF_END.length() + 2 + bytes.length];
+            System.arraycopy(PROTOBUF_START.getBytes(), 0, pocketData, 0, PROTOBUF_START.length());
+            pocketData[PROTOBUF_START.length()] = (byte) (bytes.length / 16);
+            pocketData[PROTOBUF_START.length() + 1] = (byte) (bytes.length % 16);
+            System.arraycopy(bytes, 0, pocketData, PROTOBUF_START.length() + 2, bytes.length);
+            System.arraycopy(PROTOBUF_END.getBytes(), 0, pocketData, PROTOBUF_START.length() + 2 + bytes.length, PROTOBUF_END.length());
+            return pocketData;
+        }
     }
+
 }
