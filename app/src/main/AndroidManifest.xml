@@ -5,11 +5,15 @@
     <permission
         android:name="com.zza.stardust.permission.ACCESS_BOOK_SERVICE"
         android:protectionLevel="normal" />
+    <permission
+        android:name="com.zza.PROVIDER"
+        android:protectionLevel="normal" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="com.zza.stardust.permission.ACCESS_BOOK_SERVICE" />
+    <uses-permission android:name="com.zza.PROVIDER" />
 
     <application
         android:name=".base.MApplication"
@@ -20,7 +24,15 @@
         android:roundIcon="@drawable/logo_star_dust"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".app.ui.androidart.aidl.BookManagerActivity"></activity>
+        <activity android:name=".app.ui.androidart.provider.ProviderActivity"></activity>
+
+        <provider
+            android:name=".app.ui.androidart.provider.BookProvider"
+            android:authorities="com.zza.book.provider"
+            android:permission="com.zza.PROVIDER"
+            android:process=":provider" />
+
+        <activity android:name=".app.ui.androidart.aidl.BookManagerActivity" />
 
         <service
             android:name=".app.ui.androidart.aidl.BookManagerService"
