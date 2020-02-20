@@ -24,9 +24,14 @@
         android:roundIcon="@drawable/logo_star_dust"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".app.ui.androidart.binderpool.BinderPoolActivity"></activity>
+
+        <service
+            android:name=".app.ui.androidart.binderpool.BinderPoolService"
+            android:process=":remote" />
         <service
             android:name=".app.ui.androidart.socket.TCPServerService"
-            android:process=":remote"></service>
+            android:process=":remote" />
 
         <activity android:name=".app.ui.androidart.socket.TCPClientActivity" />
         <activity android:name=".app.ui.androidart.provider.ProviderActivity" />
