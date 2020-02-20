@@ -2,30 +2,25 @@ package com.zza.stardust.app.ui.androidart;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Message;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.zza.library.base.BasePresenter;
 import com.zza.library.common.lmpl.IOnItemClickListener;
-import com.zza.library.utils.ToastUtil;
 import com.zza.stardust.R;
-import com.zza.stardust.app.adpter.AppAdapter;
 import com.zza.stardust.app.adpter.StrItemAdapter;
-import com.zza.stardust.app.ui.androidart.SerializableParcelable.SerializableParcelableActivity1;
+import com.zza.stardust.app.ui.androidart.serializableParcelable.SerializableParcelableActivity1;
 import com.zza.stardust.app.ui.androidart.aidl.BookManagerActivity;
 import com.zza.stardust.app.ui.androidart.messenger.MessengerActivity;
 import com.zza.stardust.app.ui.androidart.provider.ProviderActivity;
+import com.zza.stardust.app.ui.androidart.socket.TCPClientActivity;
 import com.zza.stardust.base.MActivity;
-import com.zza.stardust.bean.AppInfoBean;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class AndroidArtActivity extends MActivity implements IOnItemClickListener {
 
@@ -57,6 +52,7 @@ public class AndroidArtActivity extends MActivity implements IOnItemClickListene
         data.add("Messenger");
         data.add("AIDL");
         data.add("Provider");
+        data.add("Socket");
     }
 
     private void initRecycleView() {
@@ -83,6 +79,9 @@ public class AndroidArtActivity extends MActivity implements IOnItemClickListene
                 break;
             case 3:
                 startActivity(new Intent(AndroidArtActivity.this, ProviderActivity.class));
+                break;
+            case 4:
+                startActivity(new Intent(AndroidArtActivity.this, TCPClientActivity.class));
                 break;
         }
     }

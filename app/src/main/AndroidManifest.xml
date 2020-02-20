@@ -24,7 +24,12 @@
         android:roundIcon="@drawable/logo_star_dust"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".app.ui.androidart.provider.ProviderActivity"></activity>
+        <service
+            android:name=".app.ui.androidart.socket.TCPServerService"
+            android:process=":remote"></service>
+
+        <activity android:name=".app.ui.androidart.socket.TCPClientActivity" />
+        <activity android:name=".app.ui.androidart.provider.ProviderActivity" />
 
         <provider
             android:name=".app.ui.androidart.provider.BookProvider"
@@ -46,8 +51,8 @@
         </service>
 
         <activity android:name=".app.ui.androidart.messenger.MessengerActivity" />
-        <activity android:name=".app.ui.androidart.SerializableParcelable.SerializableParcelableActivity2" />
-        <activity android:name=".app.ui.androidart.SerializableParcelable.SerializableParcelableActivity1" />
+        <activity android:name=".app.ui.androidart.serializableParcelable.SerializableParcelableActivity2" />
+        <activity android:name=".app.ui.androidart.serializableParcelable.SerializableParcelableActivity1" />
         <activity
             android:name=".app.ui.tboxprotobuf.ProtobufActivity"
             android:launchMode="singleTop"

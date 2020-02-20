@@ -3,21 +3,18 @@ package com.zza.stardust.app.ui.androidart.provider;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.zza.library.base.BasePresenter;
-import com.zza.library.utils.LogUtil;
 import com.zza.library.utils.ToastUtil;
 import com.zza.stardust.R;
-import com.zza.stardust.app.ui.androidart.SerializableParcelable.User;
+import com.zza.stardust.app.ui.androidart.serializableParcelable.User;
 import com.zza.stardust.app.ui.androidart.aidl.Book;
 import com.zza.stardust.base.MActivity;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ProviderActivity extends MActivity {

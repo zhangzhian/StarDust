@@ -1,4 +1,4 @@
-package com.zza.stardust.app.ui.androidart.SerializableParcelable;
+package com.zza.stardust.app.ui.androidart.serializableParcelable;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -12,8 +12,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-
-import static com.zza.library.utils.LogUtil.TAG;
 
 public class SerializableParcelableActivity2 extends Activity {
 

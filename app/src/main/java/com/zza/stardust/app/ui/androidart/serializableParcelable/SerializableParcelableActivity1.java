@@ -1,4 +1,4 @@
-package com.zza.stardust.app.ui.androidart.SerializableParcelable;
+package com.zza.stardust.app.ui.androidart.serializableParcelable;
 
 import android.app.Activity;
 import android.content.Intent;
