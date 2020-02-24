@@ -127,22 +127,22 @@ public class ProtobufMessageMange {
 
     public static List<String> getAllMessage() {
         List<String> list = new ArrayList<>();
-        list.add(REQUEST_HEARTBEAT_SIGNAL + ":心跳");
-        list.add(REQUEST_NETWORK_SIGNAL_STRENGTH + ":信号强度和制式");
-        list.add(REQUEST_TBOX_INFO + ":TBOX的信息");
-        list.add(REQUEST_TBOX_GPS_SET + ":设置GPS信息");
-        list.add(IHU_ACTIVESTATE_RESULT + ":绑车激活");
-        list.add(RESPONSE_TBOX_REMOTEDIAGNOSE_RESULT + ":回复采集视频和图片");
-        list.add(RESPONSE_IHU_LOGFILE_RESULT + ":回复上传日志文件");
-        list.add(RESPONSE_IHU_CHARGEAPPOINTMENTSTS_RESULT + ":回复更新预约充电状态");
-        list.add(REQUEST_TBOX_CHARGEAPPOINTMENTSET + ":IHU 设置预约充电");
-        list.add(REQUEST_TBOX_CHARGECTRL + ":IHU 开启关闭即时充电");
+        list.add(REQUEST_HEARTBEAT_SIGNAL + "\r\n心跳");
+        list.add(REQUEST_NETWORK_SIGNAL_STRENGTH + "\r\n信号强度和制式");
+        list.add(REQUEST_TBOX_INFO + "\r\nTBOX的信息");
+        list.add(REQUEST_TBOX_GPS_SET + "\r\n设置GPS信息");
+        list.add(IHU_ACTIVESTATE_RESULT + "\r\n绑车激活");
+        list.add(RESPONSE_TBOX_REMOTEDIAGNOSE_RESULT + "\r\n回复采集视频和图片");
+        list.add(RESPONSE_IHU_LOGFILE_RESULT + "\r\n回复上传日志文件");
+        list.add(RESPONSE_IHU_CHARGEAPPOINTMENTSTS_RESULT + "\r\n回复更新预约充电状态");
+        list.add(REQUEST_TBOX_CHARGEAPPOINTMENTSET + "\r\nIHU 设置预约充电");
+        list.add(REQUEST_TBOX_CHARGECTRL + "\r\nIHU 开启关闭即时充电");
         return list;
     }
 
 
     public static String getJSONMessageByMessagetype(Messagetype messagetype) throws InvalidProtocolBufferException {
-        return message2JSONString(getMessageByMessagetype(messagetype));
+        return parseMessage2JSONString(getMessageByMessagetype(messagetype));
     }
 
     public static TopMessage paraseBytes2Message(byte[] data) throws InvalidProtocolBufferException {
@@ -153,7 +153,7 @@ public class ProtobufMessageMange {
         return msg.toByteArray();
     }
 
-    public static String message2JSONString(TopMessage message) throws InvalidProtocolBufferException {
+    public static String parseMessage2JSONString(TopMessage message) throws InvalidProtocolBufferException {
         return JsonFormat.printer().print(message);
     }
 

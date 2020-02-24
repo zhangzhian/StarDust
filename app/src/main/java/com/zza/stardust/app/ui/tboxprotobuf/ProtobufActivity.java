@@ -8,8 +8,10 @@ import android.widget.TextView;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.zza.library.base.BasePresenter;
+import com.zza.library.common.lmpl.IOnItemClickListener;
 import com.zza.library.utils.TimeUtil;
 import com.zza.library.utils.ToastUtil;
+import com.zza.library.weight.ListDialog;
 import com.zza.stardust.R;
 import com.zza.stardust.app.ui.tboxprotobuf.control.ProtobufControl;
 import com.zza.stardust.app.ui.tboxprotobuf.control.ProtobufControlImpl;
@@ -32,7 +34,7 @@ import butterknife.OnClick;
  * @UpdateRemark:
  * @Version: 1.0
  */
-public class ProtobufActivity extends MActivity implements ProtobufListener {
+public class ProtobufActivity extends MActivity implements ProtobufListener, IOnItemClickListener {
 
     @BindView(R.id.tv_log)
     TextView tvLog;
@@ -69,6 +71,8 @@ public class ProtobufActivity extends MActivity implements ProtobufListener {
 
     private int msgId = 0;
     private boolean connecting = false;
+    private ListDialog dialog;
+    private boolean isPause = false;
 
     @Override
     protected BasePresenter createPresenter() {
@@ -87,10 +91,12 @@ public class ProtobufActivity extends MActivity implements ProtobufListener {
         clearShowData();
     }
 
-    @OnClick({R.id.tv_choose_data, R.id.tv_send_data, R.id.tv_muit_send, R.id.tv_clear_text, R.id.tv_conn, R.id.tv_disconn, R.id.tv_send_heart, R.id.tv_stop_heart})
+    @OnClick({R.id.tv_choose_data, R.id.tv_send_data, R.id.tv_muit_send, R.id.tv_clear_text,
+            R.id.tv_conn, R.id.tv_disconn, R.id.tv_send_heart, R.id.tv_stop_heart, R.id.tv_rece_msg})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_choose_data:
+                showListDialog();
                 break;
             case R.id.tv_send_data:
                 if (connecting) {
@@ -126,7 +132,7 @@ public class ProtobufActivity extends MActivity implements ProtobufListener {
             case R.id.tv_send_heart:
                 if (connecting) {
                     try {
-                        String jsonStr = ProtobufMessageMange.message2JSONString(ProtobufMessageMange.getMessageByMessagetype(IVITboxProto.Messagetype.REQUEST_HEARTBEAT_SIGNAL));
+                        String jsonStr = ProtobufMessageMange.parseMessage2JSONString(ProtobufMessageMange.getMessageByMessagetype(IVITboxProto.Messagetype.REQUEST_HEARTBEAT_SIGNAL));
                         control.sendCmd(0, jsonStr, true, 20 * 1000);
                     } catch (InvalidProtocolBufferException e) {
                         e.printStackTrace();
@@ -143,7 +149,15 @@ public class ProtobufActivity extends MActivity implements ProtobufListener {
                     ToastUtil.show("未连接");
                 }
                 break;
+            case R.id.tv_rece_msg:
+                isPause = !isPause;
+                break;
         }
+    }
+
+    private void showListDialog() {
+        dialog = new ListDialog(this, this, ProtobufMessageMange.getAllMessage(), "选择命令");
+        dialog.show();
     }
 
     private void clearShowData() {
@@ -209,9 +223,19 @@ public class ProtobufActivity extends MActivity implements ProtobufListener {
 
     private void showMessage(TextView tv, StringBuffer buffer, String data) {
         runOnUiThread(() -> {
-            tv.setText(buffer.append(data).toString());
-            svLog.fullScroll(ScrollView.FOCUS_DOWN);
-            svReceMsg.fullScroll(ScrollView.FOCUS_DOWN);
+            if (isPause) {
+                if (buffer.length() > 10 * 1024) {
+                    return;
+                }
+            } else {
+                if (buffer.length() > 10 * 1024) {
+                    buffer.delete(0, 9 * 1024);
+                }
+                tv.setText(buffer.append(data).toString());
+
+                svLog.post(() -> svLog.fullScroll(ScrollView.FOCUS_DOWN));
+                svReceMsg.post(() -> svReceMsg.fullScroll(ScrollView.FOCUS_DOWN));
+            }
         });
     }
 
@@ -237,5 +261,17 @@ public class ProtobufActivity extends MActivity implements ProtobufListener {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    @Override
+    public void onItemClick(View view, int position) {
+        String mesgType = ProtobufMessageMange.getAllMessage().get(position).split("\r\n")[0];
+        try {
+            etSendMsg.setText(ProtobufMessageMange.getJSONMessageByMessagetype(IVITboxProto.Messagetype.valueOf(mesgType)));
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
+        dialog.dismiss();
+
     }
 }

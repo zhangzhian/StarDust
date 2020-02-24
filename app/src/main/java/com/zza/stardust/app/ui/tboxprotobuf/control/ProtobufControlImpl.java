@@ -6,14 +6,17 @@ import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.zza.library.utils.BytesUtils;
 import com.zza.library.utils.LogUtil;
+import com.zza.library.utils.StringUtils;
 import com.zza.stardust.app.ui.tboxprotobuf.IVITboxProto;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.ConnectException;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.nio.charset.Charset;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
@@ -39,9 +42,14 @@ public class ProtobufControlImpl implements ProtobufControl {
     private static final int ERROR = -99;
 
     private static final int SEND_PERIOD = 100;
+
     private static final String PROTOBUF_START = "#START*";
     private static final String PROTOBUF_END = "#END*";
 
+    private static final String PROTOBUF_START_HEX = StringUtils.strToHexStr(PROTOBUF_START);
+    private static final String PROTOBUF_END_HEX = StringUtils.strToHexStr(PROTOBUF_END);
+
+    private static final int PROTOBUF_LENGTH_SIZE = 4;
     private volatile static ProtobufControlImpl uniqueInstance;
 
     private ProtobufListener listener = null;
@@ -178,7 +186,7 @@ public class ProtobufControlImpl implements ProtobufControl {
         public void run() {
             try {
                 //接收服务器的响应
-                byte[] buf = new byte[1024];
+                byte[] buf = new byte[10300];
                 int readSize = 0;
 
                 //创建客户端Socket，指定服务器地址和端口
@@ -195,7 +203,7 @@ public class ProtobufControlImpl implements ProtobufControl {
                     //将字节数组转换成十六进制的字符串
                     //String dataStr = BytesUtils.bytesToHexString(buf);
 
-                    String dataStr = BytesUtils.bytesToString(buf, readSize);
+                    String dataStr = BytesUtils.bytesToHexString(buf, readSize);
                     LogUtil.i("rece:" + readSize + ":" + dataStr);
                     paraseReceData(dataStr);
                     Thread.sleep(200);
@@ -218,30 +226,30 @@ public class ProtobufControlImpl implements ProtobufControl {
 
         }
 
-        private void paraseReceData(String dataStr) {
+        private void paraseReceData(String dataStr) throws UnsupportedEncodingException {
             int startIndex;
-            int endIndex;
+            int endIndex = 0;
             while (!TextUtils.isEmpty(dataStr)
-                    && (startIndex = dataStr.indexOf(PROTOBUF_START)) >= 0
-                    && (endIndex = dataStr.indexOf(PROTOBUF_END)) > 0
-                    && endIndex - startIndex > 2 + PROTOBUF_START.length()
+                    && (startIndex = dataStr.indexOf(PROTOBUF_START_HEX)) >= 0
+                    && (endIndex = dataStr.indexOf(PROTOBUF_END_HEX)) > 0
+                    && endIndex - startIndex > PROTOBUF_LENGTH_SIZE + PROTOBUF_START_HEX.length()
             ) {
 
-                byte[] size = dataStr.substring(startIndex + PROTOBUF_START.length(), startIndex + PROTOBUF_START.length() + 2).getBytes();
-                byte[] proto = dataStr.substring(startIndex + PROTOBUF_START.length() + 2, endIndex).getBytes();
-                if (size != null && proto != null && size.length == 2) {
-                    int size_value = size[0] * 10 + size[1];
-                    if (size_value == proto.length) {
-                        try {
-                            IVITboxProto.TopMessage topMessage = ProtobufMessageMange.paraseBytes2Message(proto);
-                            listener.receData(topMessage);
-                        } catch (InvalidProtocolBufferException e) {
-                            e.printStackTrace();
-                        }
+                String size_hex = dataStr.substring(startIndex + PROTOBUF_START_HEX.length(),
+                        startIndex + PROTOBUF_START_HEX.length() + PROTOBUF_LENGTH_SIZE);
+                byte[] proto_byte = BytesUtils.hexStringToBytes(dataStr.substring(startIndex +
+                        PROTOBUF_START_HEX.length() + PROTOBUF_LENGTH_SIZE, endIndex));
+                int size_value = Integer.parseInt(size_hex, 16);
+
+                if (size_value == proto_byte.length) {
+                    try {
+                        IVITboxProto.TopMessage topMessage = ProtobufMessageMange.paraseBytes2Message(proto_byte);
+                        listener.receData(topMessage);
+                    } catch (InvalidProtocolBufferException e) {
+                        e.printStackTrace();
                     }
                 }
-
-                dataStr = dataStr.substring(endIndex + PROTOBUF_END.length());
+                dataStr = dataStr.substring(endIndex + PROTOBUF_END_HEX.length());
             }
         }
     }
