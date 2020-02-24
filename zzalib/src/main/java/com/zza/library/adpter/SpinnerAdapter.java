@@ -1,4 +1,4 @@
-package com.zza.library.weight;
+package com.zza.library.adpter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
