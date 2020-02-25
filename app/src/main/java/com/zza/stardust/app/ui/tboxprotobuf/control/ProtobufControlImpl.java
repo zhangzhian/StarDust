@@ -226,7 +226,7 @@ public class ProtobufControlImpl implements ProtobufControl {
 
         }
 
-        private void paraseReceData(String dataStr) throws UnsupportedEncodingException {
+        private void paraseReceData(String dataStr) {
             int startIndex;
             int endIndex = 0;
             while (!TextUtils.isEmpty(dataStr)

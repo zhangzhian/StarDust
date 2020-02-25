@@ -16,6 +16,7 @@ import com.zza.stardust.app.ui.androidart.aidl.BookManagerActivity;
 import com.zza.stardust.app.ui.androidart.messenger.MessengerActivity;
 import com.zza.stardust.app.ui.androidart.provider.ProviderActivity;
 import com.zza.stardust.app.ui.androidart.socket.TCPClientActivity;
+import com.zza.stardust.app.ui.androidart.viewbase.ViewBaseActivity;
 import com.zza.stardust.base.MActivity;
 
 import java.util.ArrayList;
@@ -55,6 +56,7 @@ public class AndroidArtActivity extends MActivity implements IOnItemClickListene
         data.add("Provider");
         data.add("Socket");
         data.add("BinderPool");
+        data.add("View Base");
     }
 
     private void initRecycleView() {
@@ -87,6 +89,9 @@ public class AndroidArtActivity extends MActivity implements IOnItemClickListene
                 break;
             case 5:
                 startActivity(new Intent(AndroidArtActivity.this, BinderPoolActivity.class));
+                break;
+            case 6:
+                startActivity(new Intent(AndroidArtActivity.this, ViewBaseActivity.class));
                 break;
         }
     }
