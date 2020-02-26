@@ -91,11 +91,11 @@ public class GetLogActivity extends MActivity {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, CODE_FOR_WRITE_PERMISSION);
         }
 
-
         File file = new File(TBOX_FILE_STORAGE_DIR);
         if (!file.exists()) {
             file.mkdirs();
         }
+
         adaptationVersion();
     }
 

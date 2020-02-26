@@ -65,34 +65,34 @@ public class YodoTBoxGetLogImpl implements YodeTBoxGetLog {
         }
 
         if (TextUtils.isEmpty(host)) {
-            callBack.onTransFail(HOST_ERROR, new Exception("IP地址不合法"));
             isRunning = false;
+            callBack.onTransFail(HOST_ERROR, new Exception("IP地址不合法"));
             return;
         }
         if (!ValidatorUtil.isPort(post)) {
-            callBack.onTransFail(PORT_ERROR, new Exception("端口号不合法"));
             isRunning = false;
+            callBack.onTransFail(PORT_ERROR, new Exception("端口号不合法"));
             return;
         }
         if (TextUtils.isEmpty(localDir)) {
-            callBack.onTransFail(FILEPATH_ERROR, new Exception("本地文件路径不能为空"));
             isRunning = false;
+            callBack.onTransFail(FILEPATH_ERROR, new Exception("本地文件路径不能为空"));
             return;
         }
         if (remoteFilenames.size() <= 0) {
-            callBack.onTransFail(FILEPATH_ERROR, new Exception("远程文件路径不能为空"));
             isRunning = false;
+            callBack.onTransFail(FILEPATH_ERROR, new Exception("远程文件路径不能为空"));
             return;
         }
         if (callBack == null) {
-            callBack.onTransFail(CALLBACK_ERROR, new Exception("CallBack不能为null"));
             isRunning = false;
+            callBack.onTransFail(CALLBACK_ERROR, new Exception("CallBack不能为null"));
             return;
         }
 
         if (!(callBack instanceof PullFileCallBack)) {
-            callBack.onTransFail(CALLBACK_ERROR, new Exception("CallBack类型错误"));
             isRunning = false;
+            callBack.onTransFail(CALLBACK_ERROR, new Exception("CallBack类型错误"));
             return;
         }
 
@@ -111,7 +111,7 @@ public class YodoTBoxGetLogImpl implements YodeTBoxGetLog {
                     String[] fileSplit = filePath.split("/");
 
                     try {
-                        client.getFile(host + ":" + post, localDir, filePath);
+                        client.getFile(host + ":" + post, localDir + fileSplit[fileSplit.length - 1], filePath);
 
                         long timeEnd = System.currentTimeMillis();
 
@@ -125,27 +125,27 @@ public class YodoTBoxGetLogImpl implements YodeTBoxGetLog {
                     } catch (UnknownHostException e) {
                         LogUtil.e("Error: could not resolve hostname.");
                         LogUtil.e(e.getMessage());
+                        isRunning = false;
                         pullFileCallBack.onTransSingleFail(filePath, localDir
                                 + fileSplit[fileSplit.length - 1] + "", HOSTNAME_ERROR, e);
-                        isRunning = false;
                     } catch (SocketException e) {
                         LogUtil.e("Error: could not open local UDP socket.");
                         LogUtil.e(e.getMessage());
+                        isRunning = false;
                         pullFileCallBack.onTransSingleFail(filePath, localDir
                                 + fileSplit[fileSplit.length - 1] + "", SOCKET_ERROR, e);
-                        isRunning = false;
                     } catch (IOException e) {
                         LogUtil.e("Error: I/O exception occurred while sending file.");
                         LogUtil.e(e.getMessage());
+                        isRunning = false;
                         pullFileCallBack.onTransSingleFail(filePath, localDir
                                 + fileSplit[fileSplit.length - 1] + "", IO_ERROR, e);
-                        isRunning = false;
                     } catch (Exception e) {
                         LogUtil.e("Exception");
                         LogUtil.e(e.getMessage());
+                        isRunning = false;
                         pullFileCallBack.onTransSingleFail(filePath, localDir
                                 + fileSplit[fileSplit.length - 1] + "", EXCEPTION, e);
-                        isRunning = false;
                     }
                 }
                 isRunning = false;
@@ -166,38 +166,38 @@ public class YodoTBoxGetLogImpl implements YodeTBoxGetLog {
         }
 
         if (TextUtils.isEmpty(host)) {
-            callBack.onTransFail(HOST_ERROR, new Exception("IP地址不合法"));
             isRunning = false;
+            callBack.onTransFail(HOST_ERROR, new Exception("IP地址不合法"));
             return;
         }
 
         if (!ValidatorUtil.isPort(post)) {
-            callBack.onTransFail(PORT_ERROR, new Exception("端口号不合法"));
             isRunning = false;
+            callBack.onTransFail(PORT_ERROR, new Exception("端口号不合法"));
             return;
         }
 
         if (TextUtils.isEmpty(localDir)) {
-            callBack.onTransFail(FILEPATH_ERROR, new Exception("本地文件路径不能为空"));
             isRunning = false;
+            callBack.onTransFail(FILEPATH_ERROR, new Exception("本地文件路径不能为空"));
             return;
         }
 
         if (TextUtils.isEmpty(remoteFilename)) {
-            callBack.onTransFail(FILEPATH_ERROR, new Exception("远程文件路径不能为空"));
             isRunning = false;
+            callBack.onTransFail(FILEPATH_ERROR, new Exception("远程文件路径不能为空"));
             return;
         }
 
         if (callBack == null) {
-            callBack.onTransFail(CALLBACK_ERROR, new Exception("CallBack不能为null"));
             isRunning = false;
+            callBack.onTransFail(CALLBACK_ERROR, new Exception("CallBack不能为null"));
             return;
         }
 
         if (!(callBack instanceof TransFileCallBack)) {
-            callBack.onTransFail(CALLBACK_ERROR, new Exception("CallBack类型错误"));
             isRunning = false;
+            callBack.onTransFail(CALLBACK_ERROR, new Exception("CallBack类型错误"));
             return;
         }
 
@@ -215,34 +215,34 @@ public class YodoTBoxGetLogImpl implements YodeTBoxGetLog {
                 client.initClient(callBack, 0);
 
                 try {
-                    client.getFile(host + ":" + post, localDir, filePath);
+                    client.getFile(host + ":" + post, localDir + fileSplit[fileSplit.length - 1], filePath);
 
                     long timeEnd = System.currentTimeMillis();
 
                     LogUtil.i("TFTP: time(ms) " + (timeEnd - timeStart));
 
-                    callBack.onTransSuccess();
                     isRunning = false;
+                    callBack.onTransSuccess();
                 } catch (UnknownHostException e) {
                     LogUtil.e("Error: could not resolve hostname.");
                     LogUtil.e(e.getMessage());
-                    callBack.onTransFail(HOSTNAME_ERROR, e);
                     isRunning = false;
+                    callBack.onTransFail(HOSTNAME_ERROR, e);
                 } catch (SocketException e) {
                     LogUtil.e("Error: could not open local UDP socket.");
                     LogUtil.e(e.getMessage());
-                    callBack.onTransFail(SOCKET_ERROR, e);
                     isRunning = false;
+                    callBack.onTransFail(SOCKET_ERROR, e);
                 } catch (IOException e) {
                     LogUtil.e("Error: I/O exception occurred while sending file.");
                     LogUtil.e(e.getMessage());
-                    callBack.onTransFail(IO_ERROR, e);
                     isRunning = false;
+                    callBack.onTransFail(IO_ERROR, e);
                 } catch (Exception e) {
                     LogUtil.e("Exception");
                     LogUtil.e(e.getMessage());
-                    callBack.onTransFail(EXCEPTION, e);
                     isRunning = false;
+                    callBack.onTransFail(EXCEPTION, e);
                 }
             }
 
