@@ -15,7 +15,6 @@ import com.zza.library.base.BasePresenter;
 import com.zza.stardust.R;
 import com.zza.stardust.app.ui.AppFragment;
 import com.zza.stardust.base.MActivity;
-import com.zza.stardust.bean.AppInfoBean;
 import com.zza.stardust.common.MAppConfigInfo;
 import com.zza.stardust.common.MAppInfo;
 import com.zza.stardust.common.MAppTypeInfo;
@@ -78,7 +77,7 @@ public class MainActivity extends MActivity implements ViewPager.OnPageChangeLis
 
     @Override
     protected void onInit(Bundle savedInstanceState) {
-        ButterKnife.bind(this);
+        super.onInit(savedInstanceState);
         initViewPager();
         initBottomTab(HOME);
         initAppShowData();
@@ -100,15 +99,15 @@ public class MainActivity extends MActivity implements ViewPager.OnPageChangeLis
         switch (home) {
             case HOME:
                 ivHome.setImageDrawable(getResources().getDrawable(R.drawable.home_press));
-                tvHome.setTextColor(getResources().getColor(R.color.color_1296db));
+                tvHome.setTextColor(getResources().getColor(R.color.blue_1296db));
                 break;
             case APP:
                 ivApp.setImageDrawable(getResources().getDrawable(R.drawable.app_press));
-                tvApp.setTextColor(getResources().getColor(R.color.color_1296db));
+                tvApp.setTextColor(getResources().getColor(R.color.blue_1296db));
                 break;
             case MINE:
                 ivMine.setImageDrawable(getResources().getDrawable(R.drawable.mine_press));
-                tvMine.setTextColor(getResources().getColor(R.color.color_1296db));
+                tvMine.setTextColor(getResources().getColor(R.color.blue_1296db));
                 break;
         }
     }
