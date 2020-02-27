@@ -24,7 +24,9 @@
         android:roundIcon="@drawable/logo_star_dust"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".app.ui.androidart.viewbase.ViewBaseActivity"></activity>
+        <activity android:name=".app.ui.androidart.slidingConflict.SlidingConflictInterActivity"></activity>
+        <activity android:name=".app.ui.androidart.slidingConflict.SlidingConflictExteralActivity" />
+        <activity android:name=".app.ui.androidart.viewbase.ViewBaseActivity" />
         <activity android:name=".app.ui.androidart.binderpool.BinderPoolActivity" />
 
         <service

@@ -15,6 +15,8 @@ import com.zza.stardust.app.ui.androidart.serializableParcelable.SerializablePar
 import com.zza.stardust.app.ui.androidart.aidl.BookManagerActivity;
 import com.zza.stardust.app.ui.androidart.messenger.MessengerActivity;
 import com.zza.stardust.app.ui.androidart.provider.ProviderActivity;
+import com.zza.stardust.app.ui.androidart.slidingConflict.SlidingConflictExteralActivity;
+import com.zza.stardust.app.ui.androidart.slidingConflict.SlidingConflictInterActivity;
 import com.zza.stardust.app.ui.androidart.socket.TCPClientActivity;
 import com.zza.stardust.app.ui.androidart.viewbase.ViewBaseActivity;
 import com.zza.stardust.base.MActivity;
@@ -57,6 +59,9 @@ public class AndroidArtActivity extends MActivity implements IOnItemClickListene
         data.add("Socket");
         data.add("BinderPool");
         data.add("View Base");
+        data.add("Sliding conflict: External interception");
+        data.add("Sliding conflict: Internal interception");
+
     }
 
     private void initRecycleView() {
@@ -92,6 +97,12 @@ public class AndroidArtActivity extends MActivity implements IOnItemClickListene
                 break;
             case 6:
                 startActivity(new Intent(AndroidArtActivity.this, ViewBaseActivity.class));
+                break;
+            case 7:
+                startActivity(new Intent(AndroidArtActivity.this, SlidingConflictExteralActivity.class));
+                break;
+            case 8:
+                startActivity(new Intent(AndroidArtActivity.this, SlidingConflictInterActivity.class));
                 break;
         }
     }
