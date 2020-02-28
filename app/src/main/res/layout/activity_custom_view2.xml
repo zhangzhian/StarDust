@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".app.ui.androidart.customview.CustomViewActivity">
+
+    <com.zza.stardust.app.ui.androidart.customview.CircleView
+        android:id="@+id/cv"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_margin="20dp"
+        android:background="#000000"
+        android:padding="20dp"
+        app:circle_color="@color/blue479bff" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="100px"
+        android:background="#ff0000"
+        android:text="test1" />
+
+    <com.zza.stardust.app.ui.androidart.customview.TestButton
+        android:id="@+id/button2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
+        android:background="#000000"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:text="test2" />
+
+</LinearLayout>

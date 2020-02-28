@@ -11,6 +11,7 @@ import com.zza.library.common.lmpl.IOnItemClickListener;
 import com.zza.stardust.R;
 import com.zza.stardust.app.adpter.StrItemAdapter;
 import com.zza.stardust.app.ui.androidart.binderpool.BinderPoolActivity;
+import com.zza.stardust.app.ui.androidart.customview.CustomViewActivity;
 import com.zza.stardust.app.ui.androidart.serializableParcelable.SerializableParcelableActivity1;
 import com.zza.stardust.app.ui.androidart.aidl.BookManagerActivity;
 import com.zza.stardust.app.ui.androidart.messenger.MessengerActivity;
@@ -61,6 +62,7 @@ public class AndroidArtActivity extends MActivity implements IOnItemClickListene
         data.add("View Base");
         data.add("Sliding conflict: External interception");
         data.add("Sliding conflict: Internal interception");
+        data.add("Custom View");
 
     }
 
@@ -103,6 +105,9 @@ public class AndroidArtActivity extends MActivity implements IOnItemClickListene
                 break;
             case 8:
                 startActivity(new Intent(AndroidArtActivity.this, SlidingConflictInterActivity.class));
+                break;
+            case 9:
+                startActivity(new Intent(AndroidArtActivity.this, CustomViewActivity.class));
                 break;
         }
     }
