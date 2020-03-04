@@ -24,22 +24,24 @@
         android:roundIcon="@drawable/logo_star_dust"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".app.ui.androidart.animation.AnimationTest2Activity"></activity>
+        <activity android:name=".app.ui.androidart.animation.AnimationTest1Activity" />
+        <activity android:name=".app.ui.androidart.animation.AnimationActivity" />
 
-        <receiver android:name=".app.ui.androidart.remoteViews.MyAppWidgetProvider" >
+        <receiver android:name=".app.ui.androidart.remoteViews.MyAppWidgetProvider">
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/appwidget_provider_info" >
-            </meta-data>
+                android:resource="@xml/appwidget_provider_info" />
 
             <intent-filter>
-                <action android:name="com.zza.stardust.action.CLICK" />
+                <action android:name="com.zza.stardust.action.APPWIDGET_CLICK" />
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
         </receiver>
 
         <activity
             android:name=".app.ui.androidart.remoteViews.RemotoViewTestActivity"
-            android:launchMode="standard"></activity>
+            android:launchMode="standard" />
         <activity
             android:name=".app.ui.androidart.remoteViews.RemoteViewsActivity"
             android:process=":remote" />

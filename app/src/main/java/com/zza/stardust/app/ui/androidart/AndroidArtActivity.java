@@ -10,6 +10,7 @@ import com.zza.library.base.BasePresenter;
 import com.zza.library.common.lmpl.IOnItemClickListener;
 import com.zza.stardust.R;
 import com.zza.stardust.app.adpter.StrItemAdapter;
+import com.zza.stardust.app.ui.androidart.animation.AnimationActivity;
 import com.zza.stardust.app.ui.androidart.binderpool.BinderPoolActivity;
 import com.zza.stardust.app.ui.androidart.customview.CustomViewActivity;
 import com.zza.stardust.app.ui.androidart.remoteViews.RemoteViewsActivity;
@@ -65,6 +66,7 @@ public class AndroidArtActivity extends MActivity implements IOnItemClickListene
         data.add("Sliding conflict: Internal interception");
         data.add("Custom View");
         data.add("Remote View");
+        data.add("Animation");
 
     }
 
@@ -113,6 +115,9 @@ public class AndroidArtActivity extends MActivity implements IOnItemClickListene
                 break;
             case 10:
                 startActivity(new Intent(AndroidArtActivity.this, RemoteViewsActivity.class));
+                break;
+            case 11:
+                startActivity(new Intent(AndroidArtActivity.this, AnimationActivity.class));
                 break;
         }
     }

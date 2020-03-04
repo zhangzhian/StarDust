@@ -27,7 +27,7 @@ import com.zza.stardust.R;
  */
 public class MyAppWidgetProvider extends AppWidgetProvider {
 
-    public static final String CLICK_ACTION = "com.zza.stardust.action.CLICK";
+    public static final String CLICK_ACTION = "com.zza.stardust.action.APPWIDGET_CLICK";
 
     public MyAppWidgetProvider() {
         super();
