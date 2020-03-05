@@ -14,6 +14,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="com.zza.stardust.permission.ACCESS_BOOK_SERVICE" />
     <uses-permission android:name="com.zza.PROVIDER" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
         android:name=".base.MApplication"
@@ -24,7 +25,8 @@
         android:roundIcon="@drawable/logo_star_dust"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".app.ui.androidart.animation.AnimationTest2Activity"></activity>
+        <activity android:name=".app.ui.androidart.window.WindowActivity"></activity>
+        <activity android:name=".app.ui.androidart.animation.AnimationTest2Activity" />
         <activity android:name=".app.ui.androidart.animation.AnimationTest1Activity" />
         <activity android:name=".app.ui.androidart.animation.AnimationActivity" />
 
