@@ -21,6 +21,7 @@ import com.zza.stardust.app.ui.androidart.provider.ProviderActivity;
 import com.zza.stardust.app.ui.androidart.slidingConflict.SlidingConflictExteralActivity;
 import com.zza.stardust.app.ui.androidart.slidingConflict.SlidingConflictInterActivity;
 import com.zza.stardust.app.ui.androidart.socket.TCPClientActivity;
+import com.zza.stardust.app.ui.androidart.thread.AndroidThreadActivity;
 import com.zza.stardust.app.ui.androidart.viewbase.ViewBaseActivity;
 import com.zza.stardust.app.ui.androidart.window.WindowActivity;
 import com.zza.stardust.base.MActivity;
@@ -69,6 +70,7 @@ public class AndroidArtActivity extends MActivity implements IOnItemClickListene
         data.add("Remote View");
         data.add("Animation");
         data.add("Window");
+        data.add("Android Thread And ThreadPool");
 
     }
 
@@ -123,6 +125,9 @@ public class AndroidArtActivity extends MActivity implements IOnItemClickListene
                 break;
             case 12:
                 startActivity(new Intent(AndroidArtActivity.this, WindowActivity.class));
+                break;
+            case 13:
+                startActivity(new Intent(AndroidArtActivity.this, AndroidThreadActivity.class));
                 break;
         }
     }
