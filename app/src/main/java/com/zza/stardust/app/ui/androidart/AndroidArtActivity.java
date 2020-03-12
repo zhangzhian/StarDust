@@ -13,6 +13,7 @@ import com.zza.stardust.app.adpter.StrItemAdapter;
 import com.zza.stardust.app.ui.androidart.animation.AnimationActivity;
 import com.zza.stardust.app.ui.androidart.binderpool.BinderPoolActivity;
 import com.zza.stardust.app.ui.androidart.bitmapcache.BitmapCacheActivity;
+import com.zza.stardust.app.ui.androidart.crash.CrashActivity;
 import com.zza.stardust.app.ui.androidart.customview.CustomViewActivity;
 import com.zza.stardust.app.ui.androidart.remoteViews.RemoteViewsActivity;
 import com.zza.stardust.app.ui.androidart.serializableParcelable.SerializableParcelableActivity1;
@@ -73,7 +74,7 @@ public class AndroidArtActivity extends MActivity implements IOnItemClickListene
         data.add("Window");
         data.add("Android Thread And ThreadPool");
         data.add("Bitmap Cache");
-
+        data.add("Crash");
 
     }
 
@@ -134,6 +135,9 @@ public class AndroidArtActivity extends MActivity implements IOnItemClickListene
                 break;
             case 14:
                 startActivity(new Intent(AndroidArtActivity.this, BitmapCacheActivity.class));
+                break;
+            case 15:
+                startActivity(new Intent(AndroidArtActivity.this, CrashActivity.class));
                 break;
         }
     }
